@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,11 +10,6 @@
     <Folder Include="src\reactProject\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DataLayer\Fucha.DataLayer.csproj" />
-    <ProjectReference Include="..\DomainClasses\Fucha.DomainClasses.csproj" />
-    <ProjectReference Include="..\Fucha.Application\Fucha.Application.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.0" />
@@ -29,6 +24,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fucha.Application\Fucha.Application.csproj" />
+    <ProjectReference Include="..\Fucha.DataLayer\Fucha.DataLayer.csproj" />
+    <ProjectReference Include="..\Fucha.DomainClasses\Fucha.DomainClasses.csproj" />
   </ItemGroup>
 
 </Project>

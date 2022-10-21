@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fucha.DataLayer", "DataLayer\Fucha.DataLayer.csproj", "{1D183463-7FE0-4CE6-99E4-5A2C9448882E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fucha.DomainClasses", "DomainClasses\Fucha.DomainClasses.csproj", "{6FCC0283-395B-42BE-9284-23EEE7B8ED7A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fucha.Web", "Fucha.Web\Fucha.Web.csproj", "{8DA51368-34BB-435F-A987-751DE1EB1A64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fucha.Application", "Fucha.Application\Fucha.Application.csproj", "{B26D4CC0-A8EF-45E4-8178-AB884F26CECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fucha.Application", "Fucha.Application\Fucha.Application.csproj", "{B26D4CC0-A8EF-45E4-8178-AB884F26CECE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fucha.DataLayer", "Fucha.DataLayer\Fucha.DataLayer.csproj", "{5365234A-CC95-4339-B8CC-EE58FCA9D64C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fucha.DomainClasses", "Fucha.DomainClasses\Fucha.DomainClasses.csproj", "{92799B2A-8452-41E7-B9F7-168F2DC017B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D183463-7FE0-4CE6-99E4-5A2C9448882E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D183463-7FE0-4CE6-99E4-5A2C9448882E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D183463-7FE0-4CE6-99E4-5A2C9448882E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D183463-7FE0-4CE6-99E4-5A2C9448882E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6FCC0283-395B-42BE-9284-23EEE7B8ED7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6FCC0283-395B-42BE-9284-23EEE7B8ED7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6FCC0283-395B-42BE-9284-23EEE7B8ED7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6FCC0283-395B-42BE-9284-23EEE7B8ED7A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8DA51368-34BB-435F-A987-751DE1EB1A64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DA51368-34BB-435F-A987-751DE1EB1A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DA51368-34BB-435F-A987-751DE1EB1A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +25,14 @@ Global
 		{B26D4CC0-A8EF-45E4-8178-AB884F26CECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B26D4CC0-A8EF-45E4-8178-AB884F26CECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B26D4CC0-A8EF-45E4-8178-AB884F26CECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5365234A-CC95-4339-B8CC-EE58FCA9D64C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5365234A-CC95-4339-B8CC-EE58FCA9D64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5365234A-CC95-4339-B8CC-EE58FCA9D64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5365234A-CC95-4339-B8CC-EE58FCA9D64C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92799B2A-8452-41E7-B9F7-168F2DC017B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92799B2A-8452-41E7-B9F7-168F2DC017B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92799B2A-8452-41E7-B9F7-168F2DC017B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92799B2A-8452-41E7-B9F7-168F2DC017B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vd7zxjs0q6mj4T98lJa+uIreriQYmNaOXop9kcKA5UXiD/TKM6GnRjyOxFrvJy1zWm724kRDUCno+fa7H8zCqg==",
+  "dgSpecHash": "XJV36KImb2KSjFL/bBjmbHFYY1tfGrE1AkSA8n9BSD6nzsZSlya4bPU2D7CTbb5Eb5tTX5TCA1nDf/uJnCZWDQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\A\\source\\repos\\FuchaMilkteaWebApp\\DataLayer\\Fucha.DataLayer.csproj",
+  "projectFilePath": "C:\\Users\\A\\source\\repos\\FuchaMilkteaWebApp\\Fucha.DataLayer\\Fucha.DataLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\A\\.nuget\\packages\\automapper\\8.1.0\\automapper.8.1.0.nupkg.sha512",
     "C:\\Users\\A\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.0\\automapper.extensions.microsoft.dependencyinjection.6.1.0.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1xxJa0rZPD8CZZLTV93mNbicz/7ZePO12favxVzJFRJW9STARVhJe4zH/0QZrb0KlpGZVfjsknx3XHQK49JALQ==",
+  "dgSpecHash": "2e8vSz9i9AApdVAHOvtSXkO3yCuhFuXpcYUB7oWwQO2pk3WoHQb4rE46eMn+z40MultVu3Gq/7chGEu1hYYEkg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\A\\source\\repos\\FuchaMilkteaWebApp\\DomainClasses\\Fucha.DomainClasses.csproj",
+  "projectFilePath": "C:\\Users\\A\\source\\repos\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\Fucha.DomainClasses.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\A\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.9\\microsoft.entityframeworkcore.6.0.9.nupkg.sha512",
     "C:\\Users\\A\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.9\\microsoft.entityframeworkcore.abstractions.6.0.9.nupkg.sha512",

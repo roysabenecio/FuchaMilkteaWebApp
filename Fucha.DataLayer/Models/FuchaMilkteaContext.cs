@@ -16,6 +16,12 @@ namespace Fucha.DataLayer.Models
         public FuchaMilkteaContext() { }
         public FuchaMilkteaContext(DbContextOptions<FuchaMilkteaContext> options) : base(options) { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            new DbInitializer(modelBuilder).Seed();
+        }
+
         public DbSet<Ingredient> Ingredients { get; set; }
         //public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Material> Materials { get; set; }
@@ -24,6 +30,7 @@ namespace Fucha.DataLayer.Models
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Sale> Sale { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Meal> Meals { get; set; }
 
         public int SaveChanges()
         {
@@ -32,22 +39,30 @@ namespace Fucha.DataLayer.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "server=localhost; port=5432; database=fuchaappdb; username=postgres; password=adminPass ;Persist Security Info=False;";
-            optionsBuilder.UseNpgsql(connectionString);
+            //var connectionString = "server=localhost; port=5432; database=fuchaappdb; username=postgres; password=adminPass ;Persist Security Info=False;";
+            //var connectionString = "Data Source = tcp:fuchaappdb.database.windows.net,1433; Initial Catalog = FuchaAppDB; User Id = dbAdmin@fuchaappdb; Password = @CapstoneDb;";
+            var connectionString = "Data Source=DESKTOP-LMK627L\\SQLEXPRESS;Initial Catalog=fuchaappdb;Integrated Security=True";
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
+
+    public class DbInitializer
+    {
+        private readonly ModelBuilder _modelBuilder;
+        public DbInitializer(ModelBuilder modelBuilder)
+        {
+            _modelBuilder = modelBuilder;
         }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-
-        //}
-        //public class UserDetailMappings : IEntityTypeConfiguration<User>
-        //{
-        //    public void Configure(EntityTypeBuilder<User> builder)
-        //    {
-        //        //throw new NotImplementedException();
-        //        builder.HasKey(u => u.Id);
-        //    }
-        //}
+        public void Seed()
+        {
+            _modelBuilder.Entity<User>().HasData(
+                new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "roy", Password = "r", Role = "Admin", UserStatus = "Approved" }
+                );
+            //_modelBuilder.Entity<Ingredient>().HasData(
+            //    new Ingredient() { Id = 1, Name="Okinawa", Category="", Quantity="200",IngredientStatus}
+            //    );
+        }
     }
 
     public interface IFuchaMilkteaContext : IDisposable
@@ -60,6 +75,7 @@ namespace Fucha.DataLayer.Models
         DbSet<Recipe> Recipes { get; set; }
         DbSet<Sale> Sale { get; set; }
         DbSet<User> Users { get; set; }
+        DbSet<Meal> Meals { get; set; }
 
         int SaveChanges();
     }

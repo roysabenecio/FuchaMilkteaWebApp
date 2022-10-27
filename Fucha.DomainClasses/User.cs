@@ -1,19 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Fucha.DomainClasses.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fucha.DomainClasses
 {
     public class User : BaseEntity
     {
-        //[ForeignKey("Role")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; } // for consideration
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public DateTime? Created { get; set; }
-        public Role Role { get; set; }
+        public string Role { get; set; }
+        public string UserStatus { get; set; }
+        public string? DateCreated { get; set; }
+        //public Role? Role { get; set; }
+        //public UserStatus? Status { get; set; }
+
+        //public string Email { get; set; } // for consideration
+
+
         //public PurchaseRecord? PurchaseRecord { get; set; }
     }
 }

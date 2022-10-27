@@ -18,10 +18,6 @@ namespace Fucha.Web.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        //private static GetUsers getUsers = new GetUsers();
-        private static CreateUser createUser = new CreateUser();
-        private static DeleteUser deleteUser = new DeleteUser();
-        //private static EditUser editUser = new EditUser();
 
         private readonly IMediator _mediator;
 
@@ -41,44 +37,41 @@ namespace Fucha.Web.Controllers
         }
 
         //[HttpGet]
-        //[Route("GetUser")]
-        //[ResponseType(typeof(Task<UserDTO>))]
-        //public async Task<IActionResult> GetUser([FromHeader] GetUserQuery request)
+        //[Route("GetUserById/{id}")]
+        //public async Task<IActionResult> GetUserById()
         //{
-        //    var response = await _mediator.Send(request);
-
-        //    return Ok(result);
+        //    //var result = await
+        //    return Ok();
         //}
 
         [HttpGet]
-        [Route("Credentials")]
-        [ResponseType(typeof(Task<LoginCredentialsDTO>))]
-        public async Task<IActionResult> GetCredentials([FromHeader] LoginCredentialsQuery request)
+        [Route("GetUserInfo")]
+        public async Task<IActionResult> GetUserInfo([FromQuery] GetUserQuery query)
         {
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
-        //[Route("GetUser")]
-        //[HttpGet]
-        //public ActionResult GetUser(int id)
-        //{
-        //    return getUsers.GetUserQuery(id);
-        //}
-
-        [Route("CreateUser")]
         [HttpPost]
-        public void CreatUser(User userInfo)
+        [Route("RegisterUser")]
+        //[ResponseType(typeof(Task<User>))]
+        public async Task<IActionResult> RegisterUser(RegisterUserCommand command)
         {
-            createUser.CreateUserCommand(userInfo);
+            var response = await _mediator.Send(command);
+            return Ok();
         }
 
-        [Route("DeleteUser")]
-        [HttpDelete]
-        public void DeletUser(DeleteUserRequest request)
-        {
-            deleteUser.DeleteUserCommand(request);
-        }
+        //[HttpDelete]
+        //[Route("DeleteUser")]
+        //public async Task<IAction>
+
+
+        //[Route("DeleteUser")]
+        //[HttpDelete]
+        //public void DeletUser(DeleteUserRequest request)
+        //{
+        //    deleteUser.DeleteUserCommand(request);
+        //}
 
         //[Route("EditUser")]
         //[HttpPut]

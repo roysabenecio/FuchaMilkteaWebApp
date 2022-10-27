@@ -1,4 +1,4 @@
-﻿namespace Fucha.DomainClasses
+﻿namespace Fucha.DomainClasses.Enums
 {
     public enum Role
     {

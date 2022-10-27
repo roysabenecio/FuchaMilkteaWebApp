@@ -29,9 +29,11 @@ namespace Fucha.DataLayer.CQRS.Queries
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email,
+                //Email = user.Email,
                 UserName = user.UserName,
-                Role = user.Role
+                Role = user.Role,
+                UserStatus = user.UserStatus,
+                DateCreated = user.DateCreated
             }).ToList();
             return Task.FromResult<List<UserDTO>>(allUsers);
         }

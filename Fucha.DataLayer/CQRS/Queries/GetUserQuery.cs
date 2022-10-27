@@ -1,41 +1,43 @@
-﻿//using Fucha.DataLayer.DTOs;
-//using Fucha.DataLayer.Models;
-//using MediatR;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using Fucha.DataLayer.DTOs;
+using Fucha.DataLayer.Models;
+using Fucha.DomainClasses;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace Fucha.DataLayer.CQRS.Queries
-//{
-//    public class GetUserQuery : IRequest<UserDTO>
-//    {
-//        public string UserName { get; set; }
-//        public string Password { get; set; }
-//    }
+namespace Fucha.DataLayer.CQRS.Queries
+{
+    public class GetUserQuery : IRequest<User>
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
 
-//    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDTO>
-//    {
-//        private readonly IFuchaMilkteaContext _dbContext;
+    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, User>
+    {
+        private readonly IFuchaMilkteaContext _dbContext;
 
-//        public GetUserQueryHandler(IFuchaMilkteaContext dbContext)
-//        {
-//            _dbContext = dbContext;
-//        }
+        public GetUserQueryHandler(IFuchaMilkteaContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-//        public Task<UserDTO> Handle(GetUserQuery request, CancellationToken cancellationToken)
-//        {
-//            var response = _dbContext.Users.Select(user => (user.UserName == request.UserName) ? new UserDTO
-//            {
-//                Id = user.Id,
-//                FirstName = user.FirstName,
-//                LastName = user.LastName,
-//                Email = user.Email,
-//                UserName = user.UserName,
-//                Role = user.Role
-//            );
-//            return Task.FromResult<UserDTO>(selectedUser);
-//        }
-//    }
-//}
+        public Task<User> Handle(GetUserQuery request, CancellationToken cancellationToken)
+        {
+            var selectedUser= _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName);
+            if (selectedUser.UserName == request.UserName && selectedUser.Password == request.Password)
+            {
+                return Task.FromResult<User>(selectedUser);
+            } 
+            else
+            {
+                return null;
+            }
+            //var response = _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName);
+            
+        }
+    }
+}

@@ -18,9 +18,16 @@ namespace Fucha.Web.Controllers
             _mediator = mediator;
         }
 
-        // Add All Ingredient
+        // Get All Ingredient
+        [HttpGet]
+        [Route("GetAllIngredients")]
+        public async Task<IActionResult> GetAllIngredients()
+        {
+            var result = await _mediator.Send(new GetAllIngredientsQuery());
+            return Ok(result);
+        }
 
-        // Add All Material
+        // Get All Material
 
 
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fucha.DataLayer.Migrations
 {
     [DbContext(typeof(FuchaMilkteaContext))]
-    [Migration("20221026042537_DataSeeding")]
-    partial class DataSeeding
+    [Migration("20221103160035_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,17 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("IngredientCategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IngredientStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MeasurementType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -39,17 +50,12 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId");
-
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredient");
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.Material", b =>
+            modelBuilder.Entity("Fucha.DomainClasses.Item", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,33 +63,45 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
+                    b.Property<string>("ItemCategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Measurement")
-                        .HasColumnType("int");
+                    b.Property<string>("ItemStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MeasurementUnit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId");
+                    b.ToTable("Items");
 
-                    b.ToTable("Materials");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ItemCategory = "Milk Tea Powder",
+                            MeasurementUnit = "Kilograms",
+                            Name = "Okinawa Powder",
+                            Quantity = 5m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ItemCategory = "Utensil",
+                            MeasurementUnit = "Pieces",
+                            Name = "Milk Tea Cup",
+                            Quantity = 10m
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.Menu", b =>
@@ -94,22 +112,70 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<decimal?>("AddOnsPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("MenuStatus")
+                    b.Property<int>("MenuCategory")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.HasKey("Id");
+
+                    b.ToTable("Menus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MenuCategory = 0,
+                            Name = "Okinawa"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MenuCategory = 0,
+                            Name = "Red Velvet"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MenuCategory = 0,
+                            Name = "Wintermelon"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            MenuCategory = 1,
+                            Name = "Cookies & Cream"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            MenuCategory = 1,
+                            Name = "Dark Chocolate"
+                        });
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OrderQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SaleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Menu");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.PurchaseRecord", b =>
@@ -148,17 +214,28 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RequiredMeasure")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
+                    b.Property<string>("RecipeCategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IngredientId")
+                        .IsUnique();
 
                     b.ToTable("Recipes");
                 });
@@ -171,23 +248,15 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("DateSold")
+                    b.Property<DateTime?>("DateSold")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MenuItemId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalAmount")
+                    b.Property<decimal?>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuItemId");
-
-                    b.ToTable("Sale");
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.User", b =>
@@ -198,7 +267,7 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Created")
+                    b.Property<string>("DateCreated")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -242,20 +311,6 @@ namespace Fucha.DataLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.Ingredient", b =>
-                {
-                    b.HasOne("Fucha.DomainClasses.Recipe", null)
-                        .WithMany("Ingredients")
-                        .HasForeignKey("RecipeId");
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.Material", b =>
-                {
-                    b.HasOne("Fucha.DomainClasses.Recipe", null)
-                        .WithMany("Materials")
-                        .HasForeignKey("RecipeId");
-                });
-
             modelBuilder.Entity("Fucha.DomainClasses.PurchaseRecord", b =>
                 {
                     b.HasOne("Fucha.DomainClasses.User", "User")
@@ -267,22 +322,20 @@ namespace Fucha.DataLayer.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.Sale", b =>
+            modelBuilder.Entity("Fucha.DomainClasses.Recipe", b =>
                 {
-                    b.HasOne("Fucha.DomainClasses.Menu", "MenuItem")
-                        .WithMany()
-                        .HasForeignKey("MenuItemId")
+                    b.HasOne("Fucha.DomainClasses.Ingredient", "Ingredient")
+                        .WithOne("Recipe")
+                        .HasForeignKey("Fucha.DomainClasses.Recipe", "IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("MenuItem");
+                    b.Navigation("Ingredient");
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.Recipe", b =>
+            modelBuilder.Entity("Fucha.DomainClasses.Ingredient", b =>
                 {
-                    b.Navigation("Ingredients");
-
-                    b.Navigation("Materials");
+                    b.Navigation("Recipe");
                 });
 #pragma warning restore 612, 618
         }

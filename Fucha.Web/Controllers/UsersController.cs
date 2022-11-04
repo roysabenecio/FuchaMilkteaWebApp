@@ -12,15 +12,11 @@ using System.Web.Http.Description;
 
 namespace Fucha.Web.Controllers
 {
-    //[Route("api/[controller]")]
-    //[EnableCors("AnotherPolicy")]
     [Route("api/Users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
-
         private readonly IMediator _mediator;
-
         public UsersController(IMediator mediator)
         {
             _mediator = mediator;

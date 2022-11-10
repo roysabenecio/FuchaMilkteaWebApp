@@ -76,7 +76,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             {
                 Id = request.Id,
                 Name = request.Name,
-                Quantity = request.Quantity,
+                //Quantity = request.Quantity,
                 //Category = request.Category,
                 //Status = request.Status,
             };

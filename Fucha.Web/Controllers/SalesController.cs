@@ -30,13 +30,20 @@ namespace Fucha.Web.Controllers
         public async Task<IActionResult> PostSalesOrders([FromBody] List<Order> orders)
 
         {
+            if (orders.Count != 0)
+            {
+                var result = await _mediator.Send(new PostSalesOrdersCommand(orders));
+                //var result = await _mediator.Send(new PostSalesOrdersCommand());
+
+
+                //var result = await _mediator.Send(request);
+                return Ok(result);
+            } else
+            {
+                return NoContent();
+            }
+
             
-            var result = await _mediator.Send(new PostSalesOrdersCommand(orders));
-            //var result = await _mediator.Send(new PostSalesOrdersCommand());
-
-
-            //var result = await _mediator.Send(request);
-            return Ok(result);
         }
     }
 }

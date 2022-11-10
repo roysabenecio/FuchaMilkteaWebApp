@@ -50,7 +50,34 @@ namespace Fucha.Web.Controllers
         [Route("GetAllMenus")]
         public async Task<IActionResult> GetAllMenus()
         {
-            var result = await _mediator.Send(new GetAllMenusQuery());
+            var result = await _mediator.Send(new GetAllMenuQuery());
+            return Ok(result);
+        }
+
+        // Get All Add Ons
+        [HttpGet]
+        [Route("GetAllAddOns")]
+        public async Task<IActionResult> GetAllAddOns()
+        {
+            var result = await _mediator.Send(new GetAllAddOnsQuery());
+            return Ok(result);
+        }
+
+        // Get All Sizes
+        [HttpGet]
+        [Route("GetAllSizes")]
+        public async Task<IActionResult> GetAllSizes()
+        {
+            var result = await _mediator.Send(new GetAllSizesQuery());
+            return Ok(result);
+        }
+
+        // Get All Prices
+        [HttpGet]
+        [Route("GetAllMenuPrices")]
+        public async Task<IActionResult> GetAllMenuPrices()
+        {
+            var result = await _mediator.Send(new GetAllMenuPricesQuery());
             return Ok(result);
         }
 

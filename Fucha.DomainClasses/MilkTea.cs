@@ -10,6 +10,6 @@ namespace Fucha.DomainClasses
     {
         public string Name { get; set; }
         public string Size { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
     }
 }

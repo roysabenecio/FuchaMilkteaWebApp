@@ -7,7 +7,7 @@ namespace Fucha.DomainClasses
     {
         public string Name { get; set; }
         public string IngredientCategory { get; set; }
-        public decimal Quantity { get; set; } // nullable
+        public double Quantity { get; set; } // nullable
         public string MeasurementType { get; set; } // nullable
         public string? IngredientStatus { get; set; }
 

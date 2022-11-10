@@ -22,6 +22,58 @@ namespace Fucha.DataLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Fucha.DomainClasses.AddOn", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<double>("AddOnPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AddOns");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddOnPrice = 10.0,
+                            Name = "Pearl"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddOnPrice = 10.0,
+                            Name = "Nata"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddOnPrice = 10.0,
+                            Name = "Nutella"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddOnPrice = 10.0,
+                            Name = "Cookies"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AddOnPrice = 10.0,
+                            Name = "Cream Cheese"
+                        });
+                });
+
             modelBuilder.Entity("Fucha.DomainClasses.Ingredient", b =>
                 {
                     b.Property<int>("Id")
@@ -45,8 +97,8 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -76,8 +128,8 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -90,7 +142,7 @@ namespace Fucha.DataLayer.Migrations
                             ItemCategory = "Milk Tea Powder",
                             MeasurementUnit = "Kilograms",
                             Name = "Okinawa Powder",
-                            Quantity = 5m
+                            Quantity = 5.0
                         },
                         new
                         {
@@ -98,7 +150,7 @@ namespace Fucha.DataLayer.Migrations
                             ItemCategory = "Utensil",
                             MeasurementUnit = "Pieces",
                             Name = "Milk Tea Cup",
-                            Quantity = 10m
+                            Quantity = 10.0
                         });
                 });
 
@@ -110,7 +162,7 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("MenuCategory")
+                    b.Property<int>("MenuCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -125,32 +177,274 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            MenuCategory = 0,
+                            MenuCategoryId = 1,
                             Name = "Okinawa"
                         },
                         new
                         {
                             Id = 2,
-                            MenuCategory = 0,
+                            MenuCategoryId = 1,
                             Name = "Red Velvet"
                         },
                         new
                         {
                             Id = 3,
-                            MenuCategory = 0,
+                            MenuCategoryId = 1,
                             Name = "Wintermelon"
                         },
                         new
                         {
+                            Id = 4,
+                            MenuCategoryId = 1,
+                            Name = "Salted Caramel"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MenuCategoryId = 1,
+                            Name = "Taro"
+                        },
+                        new
+                        {
                             Id = 6,
-                            MenuCategory = 1,
+                            MenuCategoryId = 2,
                             Name = "Cookies & Cream"
                         },
                         new
                         {
                             Id = 7,
-                            MenuCategory = 1,
+                            MenuCategoryId = 2,
                             Name = "Dark Chocolate"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            MenuCategoryId = 2,
+                            Name = "Hokkaido"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            MenuCategoryId = 2,
+                            Name = "Black Wintermel"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            MenuCategoryId = 2,
+                            Name = "Avocado Cheescake"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            MenuCategoryId = 2,
+                            Name = "Choco Bunny"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            MenuCategoryId = 2,
+                            Name = "Choco Berry Meiji"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            MenuCategoryId = 2,
+                            Name = "Mango Graham Cabin"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            MenuCategoryId = 2,
+                            Name = "Salty Cream Okinawa"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            MenuCategoryId = 3,
+                            Name = "Japanese Sausage with Rice & Egg"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            MenuCategoryId = 3,
+                            Name = "Hungarian Sausage with Rice & Egg"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            MenuCategoryId = 3,
+                            Name = "Spam Bacon with Rice & Egg"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            MenuCategoryId = 3,
+                            Name = "Cheesedog with Rice & Hotdog"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            MenuCategoryId = 3,
+                            Name = "Hungarian Sausage"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            MenuCategoryId = 3,
+                            Name = "Spam & Japanese Sausage"
+                        });
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.MenuCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Classic Milk Tea"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Premium Milk Tea"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "All Day Meals"
+                        });
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.MenuPrice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("MenuCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("SizeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuPrices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MenuCategoryId = 1,
+                            Price = 50.0,
+                            SizeId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MenuCategoryId = 1,
+                            Price = 60.0,
+                            SizeId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MenuCategoryId = 1,
+                            Price = 70.0,
+                            SizeId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            MenuCategoryId = 1,
+                            Price = 120.0,
+                            SizeId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MenuCategoryId = 2,
+                            Price = 70.0,
+                            SizeId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            MenuCategoryId = 2,
+                            Price = 90.0,
+                            SizeId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            MenuCategoryId = 2,
+                            Price = 130.0,
+                            SizeId = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            MenuCategoryId = 3,
+                            MenuId = 15,
+                            Price = 60.0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            MenuCategoryId = 3,
+                            MenuId = 16,
+                            Price = 75.0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            MenuCategoryId = 3,
+                            MenuId = 17,
+                            Price = 65.0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            MenuCategoryId = 3,
+                            MenuId = 18,
+                            Price = 65.0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            MenuCategoryId = 3,
+                            MenuId = 19,
+                            Price = 50.0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            MenuCategoryId = 3,
+                            MenuId = 20,
+                            Price = 65.0
                         });
                 });
 
@@ -162,13 +456,35 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("MenuId")
+                    b.Property<string>("AddOn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("AddOnPrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("MenuCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderQuantity")
+                    b.Property<int>("MenuId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SaleId")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("OrderPrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("OrderQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SaleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SizeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -188,11 +504,11 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -219,8 +535,8 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<string>("RecipeCategory")
                         .IsRequired()
@@ -238,7 +554,7 @@ namespace Fucha.DataLayer.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.Sale", b =>
+            modelBuilder.Entity("Fucha.DomainClasses.SaleTransaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -246,15 +562,55 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("DateSold")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DateSold")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sales");
+                    b.ToTable("SalesTransaction");
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.Size", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sizes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Small"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Medium"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Large"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "1 Liter"
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.User", b =>
@@ -304,7 +660,7 @@ namespace Fucha.DataLayer.Migrations
                             LastName = "Sabenecio",
                             Password = "r",
                             Role = "Admin",
-                            UserName = "roy",
+                            UserName = "r",
                             UserStatus = "Approved"
                         });
                 });

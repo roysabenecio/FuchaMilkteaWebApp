@@ -8,10 +8,16 @@ namespace Fucha.DomainClasses
 {
     public class Order : BaseEntity
     {
-        public int? MenuId { get; set; }
-        //public List<Menu>? Menus { get; set; }
-        public int? OrderQuantity { get; set; }
-        public int? SaleId { get; set; }
-        //public Sale? Sale { get; set; }
+        public int MenuId { get; set; } //
+        public int MenuCategoryId { get; set; }
+        public string Name { get; set; }
+        public int OrderQuantity { get; set; }
+        public double OrderPrice { get; set; }
+        public string? AddOn { get; set; }
+        public double? AddOnPrice { get; set; }
+        public int? SizeId { get; set; }
+        public string? Size { get; set; } //
+
+        public int SaleId { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             var newIngredient = new Ingredient
             {
                 Name = request.Name,
-                Quantity = request.Quantity,
+                //Quantity = request.Quantity,
                 //UserName = request.UserName,
                 //Password = request.Password,
                 //Role = 0,

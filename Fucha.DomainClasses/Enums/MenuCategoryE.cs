@@ -1,6 +1,6 @@
 ﻿namespace Fucha.DomainClasses.Enums
 {
-    public enum MenuCategory
+    public enum MenuCategoryE
     {
         ClassicMilkTea,
         PremiumMilkTea,

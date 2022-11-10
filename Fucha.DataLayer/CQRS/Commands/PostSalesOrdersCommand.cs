@@ -1,8 +1,11 @@
 ﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
+using Fucha.DomainClasses.Enums;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,82 +30,100 @@ namespace Fucha.DataLayer.CQRS.Commands
     //public class PostSalesOrdersCommandHandler : IRequestHandler<PostSalesOrdersCommand, Order>
     public class PostSalesOrdersCommandHandler : IRequestHandler<PostSalesOrdersCommand, List<Order>>
     {
-        private readonly IFuchaMilkteaContext _dbContext;
+        private readonly IFuchaMilkteaContext _context;
         public PostSalesOrdersCommandHandler(IFuchaMilkteaContext dbContext)
         {
-            _dbContext = dbContext;
+            _context = dbContext;
         }
 
         //public Task<Order> Handle(PostSalesOrdersCommand request, CancellationToken cancellationToken)
         public Task<List<Order>> Handle(PostSalesOrdersCommand request, CancellationToken cancellationToken)
         {
-            //var newOrders = (newOrders => new Order
+
+            //if (request.Orders.Count != 0)
             //{
 
-            //})
-            //var newOrder = new Order();
+            var newSale = new SaleTransaction
+            {
+                DateSold = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")
+            };
+            _context.SalesTransaction.Add(newSale);
+            _context.SaveChanges();
 
-            //    var sale = new Sale
-            //    {
-            //        Orders = () => {foreach (var order in request.Orders)
-            //            {
-            //                new Order
-            //                {
-            //                    MenuId = order.MenuId
-            //                };
-            //            }
-
-            //    }
+            var currentSaleId = newSale.Id;
             //}
-            var newSale = new Sale();
-            _dbContext.Sales.Add(newSale);
-            _dbContext.SaveChanges();
 
-            int saleId = newSale.Id;
 
-            //var orders = _dbContext.Orders.Select(id => new Order { MenuId = id.MenuId }).ToList();
+            //var getAddOn = AddOns.Select(a => a).Where(a => a.Name == pearl).Select(a => a.AddOnsPrice);
+            //_dbContext.AddOns.Select(a => a).Where(a => a.Name == order.AddOn).Select(a => a.AddOnsPrice);
+            //var getAddOn = _dbContext.AddOns.Select(a => a).Where(a => a.Name == "Pearl").Select(a => a.AddOnsPrice);
 
-            //var newOrder = new Order
+            //var getAddOnPrice = _context.AddOns.Select(a => a).Where(a => a.Name == "Pearl").Select(a => a.AddOnPrice).ToList();
+
+            //var addOnPrice = 0.00;
+            //foreach (var v in getAddOnPrice)
             //{
-            //    MenuId = request.Id
-            //};
+            //    //Console.WriteLine(v);
+            //    addOnPrice = v;
+            //}
 
-            //var newOrders = request.Orders.Select(order => new List<Order>
-            //{
-            //    Menu = order.MenuId
-            //}).ToList();
-
+            //var t = 0;
+            //var getOrderPrice = _context.Prices.Select(x => x).Where(p => p.SizeId == sizeId && p.CategoryId == catId).SingleOrDefault();
             var newOrders = request.Orders.Select(order => new Order
             {
+
+                Name = order.Name,
                 MenuId = order.Id,
-                SaleId = saleId,
+                MenuCategoryId = order.MenuCategoryId,
+                SaleId = currentSaleId,
+                
+                                            
+                AddOn = order.AddOn,
+                AddOnPrice = order.OrderQuantity * _context.AddOns.Select(ao => ao)
+                                            .Where(ao => ao.Name == order.AddOn)
+                                            .Select(ao => ao.AddOnPrice)
+                                            .SingleOrDefault(),
+                OrderQuantity = order.OrderQuantity,
+                SizeId = order.SizeId,
+                OrderPrice = _context.MenuPrices.Select(p => p)
+                                            .Where(p => (p.SizeId == order.SizeId && p.MenuCategoryId == order.MenuCategoryId) || p.MenuId == order.MenuId)
+                                            .Select(x => x.Price)
+                                            .SingleOrDefault() * order.OrderQuantity
                 //quantity
                 //price
                 //size
             }).ToList();
 
-            foreach(var order in newOrders)
+            foreach (var order in newOrders)
             {
-                _dbContext.Orders.Add(order);
+                _context.Orders.Add(order);
+                _context.SaveChanges();
             }
             // addRange() option
-            
-            _dbContext.SaveChanges();
 
-            //foreach (var t in request)
+            
+
+            var currentOrdersPrices = _context.Orders.Select(o => o).Where(o => o.SaleId == currentSaleId).Select(o => o.OrderPrice).ToList().Sum();
+            var currentAddOnsPrices = _context.Orders.Select(o => o).Where(o => o.SaleId == currentSaleId).Select(o => o.AddOnPrice).ToList().Sum();
+
+
+            var totalPrice = currentAddOnsPrices + currentOrdersPrices;
+            //foreach (var price in currentOrdersPrices)
             //{
-            //    var newOrder = new Order
-            //    {
-            //        MenuId = request.MenuId,
-            //        OrderQuantity = request.Quantity
-            //    };
+            //    totalPrice += price;
             //}
 
-            //var newOrder = new Order();
+            //_dbContext.Sales.Update(s => s.TotalAmount);
+            //var currentSale = _dbContext.Sales.Single(sale => new SaleTransaction
+            //{
+            //    Id = sale.Id
 
-            //_dbContext.Orders.Add(newOrder);
-            //_dbContext.SaveChanges();
-            //return Task.FromResult<Order>(newOrder);
+            //}).Where(x => x.Id == saleId);
+            //SaleTransaction currentSale = new SaleTransaction();
+            var currentSale = _context.SalesTransaction.Single(s => s.Id == currentSaleId);
+            currentSale.TotalAmount = (double)totalPrice;
+            _context.SaveChanges();
+
             return Task.FromResult<List<Order>>(newOrders);
         }
     }

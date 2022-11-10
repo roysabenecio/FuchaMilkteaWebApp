@@ -32,20 +32,24 @@ namespace Fucha.DataLayer.Models
 
         }
 
-        //public DbSet<Ingredient> Ingredients { get; set; }
-        //public DbSet<Inventory> Inventories { get; set; }
-        //public DbSet<Material> Materials { get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<AddOn> AddOns { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<SaleTransaction> SalesTransaction { get; set; }
+
+        public DbSet<MenuCategory> MenuCategories { get; set; }
+
+        public DbSet<Size> Sizes { get; set; }
+
         public DbSet<PurchaseRecord> PurchaseRecords { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
-        public DbSet<Sale> Sales { get; set; }
-        public DbSet<User> Users { get; set; }
+        
+        
         //public DbSet<Meal> Meals { get; set; } // double check
 
         public DbSet<Item> Items { get; set; }
-
-        public DbSet<Order> Orders { get; set; }
-
+        public DbSet<MenuPrice> MenuPrices { get; set; }
 
         public int SaveChanges()
         {
@@ -61,6 +65,31 @@ namespace Fucha.DataLayer.Models
         }
     }
 
+    public interface IFuchaMilkteaContext : IDisposable
+    {
+        DbSet<Menu> Menus { get; set; }
+        DbSet<AddOn> AddOns { get; set; }
+        DbSet<Order> Orders { get; set; }
+        DbSet<User> Users { get; set; }
+        DbSet<SaleTransaction> SalesTransaction { get; set; }
+
+        DbSet<MenuCategory> MenuCategories { get; set; }
+
+        DbSet<Size> Sizes { get; set; }
+
+        DbSet<PurchaseRecord> PurchaseRecords { get; set; }
+        DbSet<Recipe> Recipes { get; set; }
+        //DbSet<Meal> Meals { get; set; }
+        DbSet<Item> Items { get; set; }
+        DbSet<MenuPrice> MenuPrices { get; set; }
+
+
+
+        //DbSet<Sale> Sales { get; set; }
+
+        int SaveChanges();
+    }
+
 
 
     //public class DbInitializer
@@ -73,11 +102,11 @@ namespace Fucha.DataLayer.Models
 
     //    public void Seed()
     //    {
-            
+
     //        //_modelBuilder.Entity<Ingredient>().HasData(
     //        //    new Ingredient() { Id = 1, Name="Okinawa", Category="", Quantity="200",IngredientStatus}
     //        //    );
-            
+
 
     //        //var ingredients = dbContext.Ingredients.ToDictionary(i => i.Name, i => i.Id);
     //        //_modelBuilder.Entity<Recipe>().HasData(
@@ -110,23 +139,5 @@ namespace Fucha.DataLayer.Models
     //    }
     //}
 
-    public interface IFuchaMilkteaContext : IDisposable
-    {
-        //DbSet<Ingredient> Ingredients { get; set; }
-        //public DbSet<Inventory> Inventories { get; set; }
-        //DbSet<Material> Materials { get; set; }
-        DbSet<Menu> Menus { get; set; }
-        DbSet<PurchaseRecord> PurchaseRecords { get; set; }
-        DbSet<Recipe> Recipes { get; set; }
-        DbSet<Sale> Sales { get; set; }
-        DbSet<User> Users { get; set; }
-        //DbSet<Meal> Meals { get; set; }
-        DbSet<Item> Items { get; set; }
 
-
-        //DbSet<Sale> Sales { get; set; }
-        DbSet<Order> Orders { get; set; }
-
-        int SaveChanges();
-    }
 }

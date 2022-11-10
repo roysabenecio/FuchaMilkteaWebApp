@@ -9,7 +9,7 @@ namespace Fucha.DomainClasses
     public class Item : BaseEntity
     {
         public string Name { get; set; }
-        public decimal Quantity { get; set; } // nullable
+        public double Quantity { get; set; } // nullable
         public string MeasurementUnit { get; set; } // nullable
         public string ItemCategory { get; set; }
         public string? ItemStatus { get; set; }

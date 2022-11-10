@@ -21,6 +21,6 @@ namespace Fucha.DomainClasses
         public int IngredientId { get; set; }
         //public List<Ingredient>? Ingredients { get; set; }
         //public List<Material>? Materials { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
     }
 }

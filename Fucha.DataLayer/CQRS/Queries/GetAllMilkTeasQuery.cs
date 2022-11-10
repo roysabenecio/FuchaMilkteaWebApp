@@ -30,7 +30,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                 Id = milktea.Id,
                 Name = milktea.Name,
                 Size = milktea.Size,
-                Price = milktea.Price
+                //Price = milktea.Price
             }).ToList();
             return Task.FromResult<List<MilkTeaDTO>>(allMilkTeas);
         }

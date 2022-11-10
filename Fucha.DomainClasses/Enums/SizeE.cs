@@ -1,9 +1,10 @@
 ﻿namespace Fucha.DomainClasses.Enums
 {
-    public enum Size
+    public enum SizeE
     {
         Small,
         Medium,
-        Large
+        Large,
+        OneLiter
     }
 }

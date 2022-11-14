@@ -12,17 +12,10 @@ using System.Web.Http.Description;
 
 namespace Fucha.Web.Controllers
 {
-    //[Route("api/[controller]")]
-    //[EnableCors("AnotherPolicy")]
     [Route("api/Users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
-        //private static GetUsers getUsers = new GetUsers();
-        private static CreateUser createUser = new CreateUser();
-        private static DeleteUser deleteUser = new DeleteUser();
-        //private static EditUser editUser = new EditUser();
-
         private readonly IMediator _mediator;
 
         public UsersController(IMediator mediator)
@@ -66,19 +59,19 @@ namespace Fucha.Web.Controllers
         //    return getUsers.GetUserQuery(id);
         //}
 
-        [Route("CreateUser")]
-        [HttpPost]
-        public void CreatUser(User userInfo)
-        {
-            createUser.CreateUserCommand(userInfo);
-        }
+        //[Route("CreateUser")]
+        //[HttpPost]
+        //public void CreatUser(User userInfo)
+        //{
+        //    createUser.CreateUserCommand(userInfo);
+        //}
 
-        [Route("DeleteUser")]
-        [HttpDelete]
-        public void DeletUser(DeleteUserRequest request)
-        {
-            deleteUser.DeleteUserCommand(request);
-        }
+        //[Route("DeleteUser")]
+        //[HttpDelete]
+        //public void DeletUser(DeleteUserRequest request)
+        //{
+        //    deleteUser.DeleteUserCommand(request);
+        //}
 
         //[Route("EditUser")]
         //[HttpPut]

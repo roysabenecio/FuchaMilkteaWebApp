@@ -33,7 +33,6 @@
 
 
   <ItemGroup>
-    <Folder Include="CQRS\Commands\Inventory\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

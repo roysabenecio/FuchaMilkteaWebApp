@@ -20,16 +20,7 @@ namespace Fucha.DataLayer.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //base.OnModelCreating(modelBuilder);
-            
-            //modelBuilder.Entity<Recipe>()
-            //    .HasOne(r => r.Ingredient)
-            //    .WithOne(i => i.Recipe)
-            //    .HasForeignKey<Ingredient>(i => i.RecipeId);
-
             modelBuilder.Seed(); // Initialize Data
-            //new DbInitializer(modelBuilder).Seed();
-
         }
 
         public DbSet<Menu> Menus { get; set; }
@@ -61,6 +52,7 @@ namespace Fucha.DataLayer.Models
             // Azure Connection String
             //var connectionString = "Data Source = tcp:fuchaappdb.database.windows.net,1433; Initial Catalog = FuchaAppDB; User Id = dbAdmin@fuchaappdb; Password = @CapstoneDb;";
             var connectionString = "Data Source=DESKTOP-LMK627L\\SQLEXPRESS;Initial Catalog=fuchaappdb;Integrated Security=True";
+            //var connectionString = "Data Source=DESKTOP-8QM55PT;Initial Catalog=fuchaappdb;Integrated Security=True";
             optionsBuilder.UseSqlServer(connectionString);
         }
     }
@@ -83,61 +75,9 @@ namespace Fucha.DataLayer.Models
         DbSet<Item> Items { get; set; }
         DbSet<MenuPrice> MenuPrices { get; set; }
 
-
-
         //DbSet<Sale> Sales { get; set; }
 
         int SaveChanges();
     }
-
-
-
-    //public class DbInitializer
-    //{
-    //    private readonly ModelBuilder _modelBuilder;
-    //    public DbInitializer(ModelBuilder modelBuilder)
-    //    {
-    //        _modelBuilder = modelBuilder;
-    //    }
-
-    //    public void Seed()
-    //    {
-
-    //        //_modelBuilder.Entity<Ingredient>().HasData(
-    //        //    new Ingredient() { Id = 1, Name="Okinawa", Category="", Quantity="200",IngredientStatus}
-    //        //    );
-
-
-    //        //var ingredients = dbContext.Ingredients.ToDictionary(i => i.Name, i => i.Id);
-    //        //_modelBuilder.Entity<Recipe>().HasData(
-    //        //    new Recipe { Id=1, RecipeCategory="Milk Tea", Name="Okinawa", Size="Small",
-    //        //        Ingredients = new[]
-    //        //        {
-    //        //            new Ingredient { Id= ingredients["Okinawa"], Name=}
-    //        //        }
-    //        //        , Materials, Price, }
-    //        //    );
-    //        //_modelBuilder.Entity<Recipe>().HasData(
-    //        //    new Recipe
-    //        //    {
-    //        //        Id = 1,
-    //        //        RecipeCategory = "Milk Tea",
-    //        //        Name = "Okinawa",
-    //        //        Size = "Small",
-    //        //        Price = 60,
-    //        //    });
-
-    //        //dbContext.SaveChanges();
-
-    //        //var r1 = dbContext.Recipes.Find(1);
-    //        //var i1 = dbContext.Ingredients.Find(1);
-
-    //        //r1.Ingredients.Add(i1);
-
-    //        //        //var r1 = dbContext.Entry(r1).Collection(r => r.Ingredients).Load();
-
-    //    }
-    //}
-
 
 }

@@ -32,7 +32,6 @@ namespace Fucha.DataLayer.CQRS.Queries
                 SizeId = p.SizeId,
             }).ToList();
 
-
             return Task.FromResult<List<MenuPrice>>(allPrices);
         }
     }

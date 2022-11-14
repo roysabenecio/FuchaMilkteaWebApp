@@ -32,7 +32,6 @@ namespace Fucha.DataLayer.CQRS.Queries
                 MenuCategoryId = menu.MenuCategoryId
             }).ToList();
 
-
             return Task.FromResult<List<Menu>>(getAllMenu);
         }
     }

@@ -18,24 +18,6 @@ namespace Fucha.Web.Controllers
             _mediator = mediator;
         }
 
-        // Get All Ingredient
-        //[HttpGet]
-        //[Route("GetAllIngredients")]
-        //public async Task<IActionResult> GetAllIngredients()
-        //{
-        //    var result = await _mediator.Send(new GetAllIngredientsQuery());
-        //    return Ok(result);
-        //}
-
-        // Get All Material
-        //[HttpGet]
-        //[Route("GetAllMaterials")]
-        //public async Task<IActionResult> GetAllMaterials()
-        //{
-        //    var result = await _mediator.Send(new GetAllMaterialsQuery());
-        //    return Ok(result);
-        //}
-
         // Get All Item
         [HttpGet]
         [Route("GetAllItems")]
@@ -51,6 +33,15 @@ namespace Fucha.Web.Controllers
         public async Task<IActionResult> GetAllMenus()
         {
             var result = await _mediator.Send(new GetAllMenuQuery());
+            return Ok(result);
+        }
+
+        // Get All Prices
+        [HttpGet]
+        [Route("GetAllMenuPrices")]
+        public async Task<IActionResult> GetAllMenuPrices()
+        {
+            var result = await _mediator.Send(new GetAllMenuPricesQuery());
             return Ok(result);
         }
 
@@ -71,26 +62,5 @@ namespace Fucha.Web.Controllers
             var result = await _mediator.Send(new GetAllSizesQuery());
             return Ok(result);
         }
-
-        // Get All Prices
-        [HttpGet]
-        [Route("GetAllMenuPrices")]
-        public async Task<IActionResult> GetAllMenuPrices()
-        {
-            var result = await _mediator.Send(new GetAllMenuPricesQuery());
-            return Ok(result);
-        }
-
-
-        //[HttpPost]
-        //[Route("AddIngredient")]
-        //[ResponseType(typeof(Task<IngredientDTO>))]
-        //public async Task<IActionResult> AddIngredient(AddItemCommand command)
-        //{
-        //    Console.WriteLine(command);
-        //    //var result = await _mediator.Send(command);
-        //    //return Ok(result);
-        //    return Ok();
-        //}
     }
 }

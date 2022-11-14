@@ -14,12 +14,5 @@ namespace Fucha.DomainClasses
         public string Role { get; set; }
         public string UserStatus { get; set; }
         public string? DateCreated { get; set; }
-        //public Role? Role { get; set; }
-        //public UserStatus? Status { get; set; }
-
-        //public string Email { get; set; } // for consideration
-
-
-        //public PurchaseRecord? PurchaseRecord { get; set; }
     }
 }

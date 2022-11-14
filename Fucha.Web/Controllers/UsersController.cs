@@ -32,14 +32,6 @@ namespace Fucha.Web.Controllers
             return Ok(result);
         }
 
-        //[HttpGet]
-        //[Route("GetUserById/{id}")]
-        //public async Task<IActionResult> GetUserById()
-        //{
-        //    //var result = await
-        //    return Ok();
-        //}
-
         [HttpGet]
         [Route("GetUserInfo")]
         public async Task<IActionResult> GetUserInfo([FromQuery] GetUserQuery query)
@@ -47,56 +39,5 @@ namespace Fucha.Web.Controllers
             var result = await _mediator.Send(query);
             return Ok(result);
         }
-
-        [HttpPost]
-        [Route("RegisterUser")]
-        //[ResponseType(typeof(Task<User>))]
-        public async Task<IActionResult> RegisterUser(RegisterUserCommand command)
-        {
-            var response = await _mediator.Send(command);
-            return Ok();
-        }
-
-        //[HttpDelete]
-        //[Route("DeleteUser")]
-        //public async Task<IAction>
-
-
-        //[Route("DeleteUser")]
-        //[HttpDelete]
-        //public void DeletUser(DeleteUserRequest request)
-        //{
-        //    deleteUser.DeleteUserCommand(request);
-        //}
-
-        //[Route("EditUser")]
-        //[HttpPut]
-        //public void EditUser(EditUserRequest request)
-        //{
-        //    EditUserCommand(request);
-        //}
-
-
-        //public UsersController(IMapper mapper, IUserService service)
-        //{
-        //    this._mapper = mapper;
-        //    this._service = service;
-        //}
-        //public string GetUserInfo(string type)
-        //{
-        //    return this.User.Claims.First(i => i.Type == type).Value;
-        //}
-        //[HttpGet]
-        //[ProducesResponseType(typeof(UserResultResource), 200)]
-        //public async Task<IActionResult> Get()
-        //{
-
-        //    var userResource = new UserResultResource()
-        //    {
-        //        FirstName = GetUserInfo("name"),
-        //        Users = _mapper.Map<IEnumerable<UserResource>>(await _service.GetAllUsersAsync())
-        //    };
-        //    return Ok(userResource);
-        //}
     }
 }

@@ -196,7 +196,3 @@ C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\refint\Fuc
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.pdb
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.genruntimeconfig.cache
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\ref\Fucha.Web.dll
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\src\app-fu-cha-pos\data\db.json
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\src\app-fu-cha-pos\package-lock.json
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\src\app-fu-cha-pos\package.json
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\src\app-fu-cha-pos\public\manifest.json

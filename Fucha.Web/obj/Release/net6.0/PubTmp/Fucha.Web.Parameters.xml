@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="FuchaWebApp" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\A\\source\\repos\\FuchaMilkteaWebApp\\Fucha\.Web\\obj\\Release\\net6\.0\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="Fucha.DataLayer.Models.FuchaMilkteaContext" description="" value="Data Source=tcp:fuchaappdb.database.windows.net,1433;Initial Catalog=FuchaAppDB;User Id=dbAdmin@fuchaappdb;Password=@CapstoneDb;" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\A\\source\\repos\\FuchaMilkteaWebApp\\Fucha\.Web\\obj\\Release\\net6\.0\\PubTmp\\EFSQLScripts\\Fucha\.DataLayer\.Models\.FuchaMilkteaContext\.sql$" />
+  </parameter>
+</parameters>

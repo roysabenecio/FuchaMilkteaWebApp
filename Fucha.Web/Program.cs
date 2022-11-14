@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 /* PostgreSql Connection */
 builder.Services.AddDbContext<FuchaMilkteaContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("FuchaMilkteaPostgreSqlDb")));
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("AzureConnectionString")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnectionString"))); 
 
 //builder.Services.AddCors(options =>
 //{
@@ -40,7 +41,7 @@ builder.Services.AddMediatR(typeof(FuchaMilkteaContext));
 
 
 builder.Services.AddAutoMapper(configAction => { configAction.ValidateInlineMaps = false; }, typeof(Fucha.Application.Response));
-
+//builder.Services.AddAutoMapper(typeof())
 // Add services to the container.
 builder.Services.AddControllers();
 //builder.Services.AddRazorPages();

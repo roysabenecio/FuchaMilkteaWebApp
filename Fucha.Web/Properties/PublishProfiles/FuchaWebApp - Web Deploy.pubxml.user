@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAEvHpzBBdD0S41k8hHSIxKwAAAAACAAAAAAAQZgAAAAEAACAAAADYU3IjiD9OEA0qhKxkvrIzWDiDn5B/rXzwzY+P+aAHIgAAAAAOgAAAAAIAACAAAABQeEWfd3IiLemw+iRwsOv8C1OoaWM3vyp/d6XdM64AqYAAAAAMrRY47fMqEt26dgD8rP5H8Yoat+VrLdENNWpUzuDrhRnWskFiWxZ4JAWX8N6lYDPoYEwxoRAGqfHiOVXRJ6j5B0KgbPTZawQGyGyp0LZqT716Ba7VZ6fVdAe5C1NLRSJIKY+b9nAekAY2KploO/ahfJ23vqPho3cxigjnTq908EAAAADVFoVuGLupTqQfGTivO+TQI0ToAVdKwe0vJXrKx6Ukl6+aWksBpn3I+0fQ865Z8tu3FHe7VEPfavDNyo2q3NRB</EncryptedPassword>
+    <History>True|2022-10-21T15:12:24.9497386Z;False|2022-10-21T22:24:00.4256537+08:00;False|2022-10-21T22:22:44.6720228+08:00;False|2022-10-21T22:21:17.7506848+08:00;False|2022-10-21T22:19:01.3404438+08:00;False|2022-10-21T22:18:19.0342488+08:00;False|2022-10-21T22:16:14.1525888+08:00;False|2022-10-21T22:08:28.7606925+08:00;False|2022-10-21T21:45:35.5386054+08:00;False|2022-10-21T21:44:19.9295362+08:00;False|2022-10-21T21:42:37.5474474+08:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="Fucha.DataLayer.Models.FuchaMilkteaContext">
+      <Value>Data Source=tcp:fuchaappdb.database.windows.net,1433%3bInitial Catalog=FuchaAppDB%3bUser Id=dbAdmin%40fuchaappdb%3bPassword=%40CapstoneDb%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

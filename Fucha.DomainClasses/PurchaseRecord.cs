@@ -7,8 +7,8 @@ namespace Fucha.DomainClasses
     {
         
         public string ItemName { get; set; }
-        public decimal Quantity { get; set; }
-        public decimal Price { get; set; }
+        public double Quantity { get; set; }
+        public double Price { get; set; }
         DateTime DatePurchased { get; set; }
 
         //supplier, to follow

@@ -1,4 +1,5 @@
 ﻿using Fucha.DomainClasses;
+using Fucha.DomainClasses.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ namespace Fucha.DataLayer.DTOs
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; } // for consideration
+        //public string Email { get; set; } // for consideration
         public string UserName { get; set; }
-
-        public Role Role { get; set; }
+        public string Role { get; set; }
+        public string UserStatus { get; set; }
+        public string DateCreated { get; set; }
     }
 }

@@ -1,0 +1,12 @@
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\bin\Release\net6.0\Fucha.DomainClasses.deps.json
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\bin\Release\net6.0\Fucha.DomainClasses.dll
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\bin\Release\net6.0\Fucha.DomainClasses.pdb
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Release\net6.0\Fucha.DomainClasses.csproj.AssemblyReference.cache
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Release\net6.0\Fucha.DomainClasses.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Release\net6.0\Fucha.DomainClasses.AssemblyInfoInputs.cache
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Release\net6.0\Fucha.DomainClasses.AssemblyInfo.cs
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Release\net6.0\Fucha.DomainClasses.csproj.CoreCompileInputs.cache
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Release\net6.0\Fucha.DomainClasses.dll
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Release\net6.0\refint\Fucha.DomainClasses.dll
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Release\net6.0\Fucha.DomainClasses.pdb
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Release\net6.0\ref\Fucha.DomainClasses.dll

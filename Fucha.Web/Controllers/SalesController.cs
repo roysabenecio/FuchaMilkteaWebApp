@@ -15,35 +15,23 @@ namespace Fucha.Web.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet]
-        [Route("GetAllMilkTeas")]
-        public async Task<IActionResult> GetAllMilkTeasQuery()
-        {
-            var result = await _mediator.Send(new GetAllMilkTeasQuery());
-            return Ok(result);
-        }
 
         [HttpPost]
         [Route("SalesOrders")]
         //public async Task<IActionResult> PostSalesOrders([FromBody]PostSalesOrdersCommand request)
         //public async Task<IActionResult> PostSalesOrders([FromBody] PostSalesOrdersCommand request)
         public async Task<IActionResult> PostSalesOrders([FromBody] List<Order> orders)
-
         {
             if (orders.Count != 0)
             {
                 var result = await _mediator.Send(new PostSalesOrdersCommand(orders));
                 //var result = await _mediator.Send(new PostSalesOrdersCommand());
-
-
                 //var result = await _mediator.Send(request);
                 return Ok(result);
             } else
             {
                 return NoContent();
             }
-
-            
         }
     }
 }

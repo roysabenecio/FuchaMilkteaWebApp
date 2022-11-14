@@ -75,9 +75,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 Name = order.Name,
                 MenuId = order.Id,
                 MenuCategoryId = order.MenuCategoryId,
-                SaleId = currentSaleId,
-                
-                                            
+                SaleId = currentSaleId,                   
                 AddOn = order.AddOn,
                 AddOnPrice = order.OrderQuantity * _context.AddOns.Select(ao => ao)
                                             .Where(ao => ao.Name == order.AddOn)
@@ -101,12 +99,8 @@ namespace Fucha.DataLayer.CQRS.Commands
             }
             // addRange() option
 
-            
-
             var currentOrdersPrices = _context.Orders.Select(o => o).Where(o => o.SaleId == currentSaleId).Select(o => o.OrderPrice).ToList().Sum();
             var currentAddOnsPrices = _context.Orders.Select(o => o).Where(o => o.SaleId == currentSaleId).Select(o => o.AddOnPrice).ToList().Sum();
-
-
             var totalPrice = currentAddOnsPrices + currentOrdersPrices;
             //foreach (var price in currentOrdersPrices)
             //{

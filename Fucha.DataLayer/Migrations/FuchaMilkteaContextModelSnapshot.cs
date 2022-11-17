@@ -105,55 +105,6 @@ namespace Fucha.DataLayer.Migrations
                     b.ToTable("Ingredient");
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.Item", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ItemCategory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ItemStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MeasurementUnit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Items");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ItemCategory = "Milk Tea Powder",
-                            MeasurementUnit = "Kilograms",
-                            Name = "Okinawa Powder",
-                            Quantity = 5.0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ItemCategory = "Utensil",
-                            MeasurementUnit = "Pieces",
-                            Name = "Milk Tea Cup",
-                            Quantity = 10.0
-                        });
-                });
-
             modelBuilder.Entity("Fucha.DomainClasses.Menu", b =>
                 {
                     b.Property<int>("Id")
@@ -472,17 +423,14 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("OrderPrice")
+                    b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("OrderQuantity")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<int>("SaleId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SizeId")
                         .HasColumnType("int");
@@ -500,15 +448,15 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ItemName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.Property<double>("Quantity")
                         .HasColumnType("float");
+
+                    b.Property<string>("StockName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -566,7 +514,7 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("TotalAmount")
+                    b.Property<double>("TotalSales")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -611,6 +559,111 @@ namespace Fucha.DataLayer.Migrations
                             Id = 4,
                             Name = "1 Liter"
                         });
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.Stock", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("DateAdded")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastRestocked")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Measure")
+                        .HasColumnType("float");
+
+                    b.Property<int>("MeasurementUnit")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StockCategory")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Stocks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Measure = 5.0,
+                            MeasurementUnit = 1,
+                            Name = "Okinawa",
+                            StockCategory = 0,
+                            StockStatus = 0,
+                            SupplierId = 0
+                        });
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.StockCategorys", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("MeasurementUnit")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StockCategories");
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.Supplier", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ContactNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactPerson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateAdded")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.User", b =>

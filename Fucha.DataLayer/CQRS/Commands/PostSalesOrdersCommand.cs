@@ -77,29 +77,34 @@ namespace Fucha.DataLayer.CQRS.Commands
                 MenuCategoryId = order.MenuCategoryId,
                 SaleId = currentSaleId,                   
                 AddOn = order.AddOn,
-                AddOnPrice = order.OrderQuantity * _context.AddOns.Select(ao => ao)
-                                            .Where(ao => ao.Name == order.AddOn)
-                                            .Select(ao => ao.AddOnPrice)
-                                            .SingleOrDefault(),
-                OrderQuantity = order.OrderQuantity,
+                //AddOnPrice = order.OrderQuantity * _context.AddOns.Select(ao => ao)
+                //                            .Where(ao => ao.Name == order.AddOn)
+                //                            .Select(ao => ao.AddOnPrice)
+                //                            .SingleOrDefault(),
+                AddOnPrice = order.AddOnPrice,
+                Quantity = order.Quantity,
                 SizeId = order.SizeId,
-                OrderPrice = _context.MenuPrices.Select(p => p)
-                                            .Where(p => (p.SizeId == order.SizeId && p.MenuCategoryId == order.MenuCategoryId) || p.MenuId == order.MenuId)
-                                            .Select(x => x.Price)
-                                            .SingleOrDefault() * order.OrderQuantity
-                //quantity
-                //price
-                //size
+                //OrderPrice = _context.MenuPrices.Select(p => p)
+                //                            .Where(p => (p.SizeId == order.SizeId && p.MenuCategoryId == order.MenuCategoryId) || p.MenuId == order.MenuId)
+                //                            .Select(x => x.Price)
+                //                            .SingleOrDefault() * order.OrderQuantity
+                Price = order.Price,
             }).ToList();
 
-            foreach (var order in newOrders)
+            newOrders.ForEach(x =>
             {
-                _context.Orders.Add(order);
+                _context.Orders.Add(x);
                 _context.SaveChanges();
-            }
+            });
+
+            //foreach (var order in newOrders)
+            //{
+            //    _context.Orders.Add(order);
+            //    _context.SaveChanges();
+            //}
             // addRange() option
 
-            var currentOrdersPrices = _context.Orders.Select(o => o).Where(o => o.SaleId == currentSaleId).Select(o => o.OrderPrice).ToList().Sum();
+            var currentOrdersPrices = _context.Orders.Select(o => o).Where(o => o.SaleId == currentSaleId).Select(o => o.Price).ToList().Sum();
             var currentAddOnsPrices = _context.Orders.Select(o => o).Where(o => o.SaleId == currentSaleId).Select(o => o.AddOnPrice).ToList().Sum();
             var totalPrice = currentAddOnsPrices + currentOrdersPrices;
             //foreach (var price in currentOrdersPrices)
@@ -115,7 +120,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             //}).Where(x => x.Id == saleId);
             //SaleTransaction currentSale = new SaleTransaction();
             var currentSale = _context.SalesTransaction.Single(s => s.Id == currentSaleId);
-            currentSale.TotalAmount = (double)totalPrice;
+            currentSale.TotalSales = (double) totalPrice;
             _context.SaveChanges();
 
             return Task.FromResult<List<Order>>(newOrders);

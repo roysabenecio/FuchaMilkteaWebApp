@@ -6,10 +6,10 @@ namespace Fucha.DomainClasses
     public class PurchaseRecord: BaseEntity
     {
         
-        public string ItemName { get; set; }
+        public string StockName { get; set; }
         public double Quantity { get; set; }
         public double Price { get; set; }
-        DateTime DatePurchased { get; set; }
+        string? DatePurchased { get; set; }
 
         //supplier, to follow
         public User User { get; set; }

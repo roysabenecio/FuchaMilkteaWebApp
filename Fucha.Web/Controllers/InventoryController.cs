@@ -19,13 +19,13 @@ namespace Fucha.Web.Controllers
         }
 
         // Get All Item
-        [HttpGet]
-        [Route("GetAllItems")]
-        public async Task<IActionResult> GetAllItems()
-        {
-            var result = await _mediator.Send(new GetAllItemsQuery());
-            return Ok(result);
-        }
+        //[HttpGet]
+        //[Route("GetAllItems")]
+        //public async Task<IActionResult> GetAllItems()
+        //{
+        //    var result = await _mediator.Send(new GetAllItemsQuery());
+        //    return Ok(result);
+        //}
 
         // Get All Menu
         [HttpGet]

@@ -27,17 +27,27 @@ namespace Fucha.DataLayer.CQRS.Queries
 
         public Task<User> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
-            var selectedUser= _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName);
-            if (selectedUser.UserName == request.UserName && selectedUser.Password == request.Password)
+
+
+            var selectedUser = _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName);
+            if (selectedUser == null || (selectedUser.Password != request.Password && selectedUser.UserName != request.UserName))
             {
+                selectedUser = new User();
                 return Task.FromResult<User>(selectedUser);
-            } 
-            else
-            {
-                return null;
             }
+
+            return Task.FromResult<User>(selectedUser);
+
+            //if (selectedUser.UserName == request.UserName && selectedUser.Password == request.Password)
+            //{
+            //    return Task.FromResult<User>(selectedUser);
+            //} 
+            //else
+            //{
+            //    return null;
+            //}
             //var response = _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName);
-            
+
         }
     }
 }

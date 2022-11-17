@@ -5,7 +5,7 @@
         //public int OrderId { get; set; }
         //public List<Order>? Orders { get; set; }
         public string DateSold { get; set; }
-        public double TotalAmount { get; set; }
+        public double TotalSales { get; set; }
 
         //public Menu MenuItem { get; set; } //Product
 

@@ -38,9 +38,12 @@ namespace Fucha.DataLayer.Models
         
         
         //public DbSet<Meal> Meals { get; set; } // double check
-
-        public DbSet<Item> Items { get; set; }
         public DbSet<MenuPrice> MenuPrices { get; set; }
+
+        //Inventory Side
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<StockCategorys> StockCategories { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
 
         public int SaveChanges()
         {
@@ -72,10 +75,17 @@ namespace Fucha.DataLayer.Models
         DbSet<PurchaseRecord> PurchaseRecords { get; set; }
         DbSet<Recipe> Recipes { get; set; }
         //DbSet<Meal> Meals { get; set; }
-        DbSet<Item> Items { get; set; }
         DbSet<MenuPrice> MenuPrices { get; set; }
 
         //DbSet<Sale> Sales { get; set; }
+
+
+        //Inventory Side
+        DbSet<Stock> Stocks { get; set; }
+        DbSet<StockCategorys> StockCategories { get; set; }
+        DbSet<Supplier> Suppliers { get; set; }
+
+
 
         int SaveChanges();
     }

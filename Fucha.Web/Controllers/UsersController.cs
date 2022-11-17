@@ -6,8 +6,7 @@ using Fucha.DomainClasses;
 using Fucha.Application;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using System.Web.Http.Description;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 //using System.Web.Http;
 
 namespace Fucha.Web.Controllers
@@ -25,7 +24,7 @@ namespace Fucha.Web.Controllers
         [HttpGet]
         [Route("GetAllUsers")]
         //[ProducesResponseType(typeof(List<UserDTO>), (int)HttpStatusCode.OK)]
-        [ResponseType(typeof(Task<List<UserDTO>>))]
+        //[ResponseType(typeof(Task<List<UserDTO>>))]
         public async Task<IActionResult> GetAllUsers()
         {
             var result = await _mediator.Send(new GetAllUsersQuery());
@@ -37,6 +36,7 @@ namespace Fucha.Web.Controllers
         public async Task<IActionResult> GetUserInfo([FromQuery] GetUserQuery query)
         {
             var result = await _mediator.Send(query);
+
             return Ok(result);
         }
     }

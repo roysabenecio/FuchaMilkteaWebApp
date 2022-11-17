@@ -84,10 +84,12 @@ namespace Fucha.DataLayer.Models
             modelBuilder.Entity<User>().HasData(
                 new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "r", Password = "r", Role = "Admin", UserStatus = "Approved" }
                 );
-            modelBuilder.Entity<Item>().HasData(
-                new Item{ Id = 1, ItemCategory = "Milk Tea Powder", Name = "Okinawa Powder", Quantity = 5, MeasurementUnit = "Kilograms" },
-                new Item { Id = 2, ItemCategory = "Utensil", Name= "Milk Tea Cup", Quantity = 10, MeasurementUnit = "Pieces"}
+            modelBuilder.Entity<Stock>().HasData(
+                new Stock{ Id = 1, StockCategory = StockCategory.MilkTeaFlavor, Name = "Okinawa", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram }
+                //new Stock { Id = 2, StockCategory = "Utensil", Name= "Milk Tea Cup", Quantity = 10, MeasurementUnit = "Pieces"}
                 );
+
+
         }
     }
 }

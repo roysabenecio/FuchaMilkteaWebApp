@@ -12,7 +12,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-        public int UserStatus { get; set; }
+        public string UserStatus { get; set; }
     }
 
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, User>
@@ -34,7 +34,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 UserName = request.UserName,
                 Password = request.Password,
                 Role = request.Role,
-                UserStatus = "Approved",
+                UserStatus = request.UserStatus,
                 DateCreated = DateTime.Now.ToString("dddd, dd MMMM yyyy")
             };
             _dbContext.Users.Add(newUser);

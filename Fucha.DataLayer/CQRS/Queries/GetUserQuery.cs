@@ -1,12 +1,6 @@
-﻿using Fucha.DataLayer.DTOs;
-using Fucha.DataLayer.Models;
+﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fucha.DataLayer.CQRS.Queries
 {
@@ -19,7 +13,6 @@ namespace Fucha.DataLayer.CQRS.Queries
     public class GetUserQueryHandler : IRequestHandler<GetUserQuery, User>
     {
         private readonly IFuchaMilkteaContext _dbContext;
-
         public GetUserQueryHandler(IFuchaMilkteaContext dbContext)
         {
             _dbContext = dbContext;
@@ -27,9 +20,7 @@ namespace Fucha.DataLayer.CQRS.Queries
 
         public Task<User> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
-
-
-            var selectedUser = _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName);
+            var selectedUser = _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName && user.Password == request.Password);
             if (selectedUser == null || (selectedUser.Password != request.Password && selectedUser.UserName != request.UserName))
             {
                 selectedUser = new User();
@@ -37,17 +28,6 @@ namespace Fucha.DataLayer.CQRS.Queries
             }
 
             return Task.FromResult<User>(selectedUser);
-
-            //if (selectedUser.UserName == request.UserName && selectedUser.Password == request.Password)
-            //{
-            //    return Task.FromResult<User>(selectedUser);
-            //} 
-            //else
-            //{
-            //    return null;
-            //}
-            //var response = _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName);
-
         }
     }
 }

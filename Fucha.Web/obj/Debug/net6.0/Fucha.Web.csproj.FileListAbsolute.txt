@@ -115,12 +115,6 @@ C:\Users\A\Documents\My Files\Capstone\FuchaMilkteaWebApp102122\Fucha.Web\obj\De
 C:\Users\A\Documents\My Files\Capstone\FuchaMilkteaWebApp102122\Fucha.Web\obj\Debug\net6.0\Fucha.Web.pdb
 C:\Users\A\Documents\My Files\Capstone\FuchaMilkteaWebApp102122\Fucha.Web\obj\Debug\net6.0\Fucha.Web.genruntimeconfig.cache
 C:\Users\A\Documents\My Files\Capstone\FuchaMilkteaWebApp102122\Fucha.Web\obj\Debug\net6.0\ref\Fucha.Web.dll
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.csproj.AssemblyReference.cache
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.AssemblyInfoInputs.cache
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.AssemblyInfo.cs
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.csproj.CoreCompileInputs.cache
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\appsettings.json
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\libman.json
@@ -187,6 +181,12 @@ C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\Fucha.Doma
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\Fucha.Application.pdb
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\Fucha.DataLayer.pdb
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\bin\Debug\net6.0\Fucha.DomainClasses.pdb
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.csproj.AssemblyReference.cache
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.AssemblyInfoInputs.cache
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.AssemblyInfo.cs
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.csproj.CoreCompileInputs.cache
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\Fucha.Web.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\staticwebassets.development.json
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Web\obj\Debug\net6.0\scopedcss\bundle\Fucha.Web.styles.css

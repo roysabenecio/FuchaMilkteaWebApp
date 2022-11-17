@@ -1,13 +1,8 @@
 ﻿using Fucha.DataLayer.CQRS.Commands;
 using Fucha.DataLayer.CQRS.Queries;
-using Fucha.DataLayer.DTOs;
-using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
-using Fucha.Application;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-//using System.Web.Http;
 
 namespace Fucha.Web.Controllers
 {
@@ -23,8 +18,6 @@ namespace Fucha.Web.Controllers
 
         [HttpGet]
         [Route("GetAllUsers")]
-        //[ProducesResponseType(typeof(List<UserDTO>), (int)HttpStatusCode.OK)]
-        //[ResponseType(typeof(Task<List<UserDTO>>))]
         public async Task<IActionResult> GetAllUsers()
         {
             var result = await _mediator.Send(new GetAllUsersQuery());
@@ -36,8 +29,31 @@ namespace Fucha.Web.Controllers
         public async Task<IActionResult> GetUserInfo([FromQuery] GetUserQuery query)
         {
             var result = await _mediator.Send(query);
-
             return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("RegisterUser")]
+        public async Task<IActionResult> RegisterUser(RegisterUserCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        [Route("EditUser/{id}")]
+        public async Task<IActionResult> EditUser(int id, [FromBody] User command)
+        {
+            var response = await _mediator.Send(new EditUserCommand(id, command));
+            return Ok(response);
+        }
+
+        [HttpDelete]
+        [Route("RemoveUser")]
+        public async Task<IActionResult> RemoveUser(RemoveUserCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
         }
     }
 }

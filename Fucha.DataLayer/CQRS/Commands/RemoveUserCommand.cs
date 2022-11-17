@@ -24,8 +24,8 @@ namespace Fucha.DataLayer.CQRS.Commands
         public Task<User> Handle(RemoveUserCommand request, CancellationToken cancellationToken)
         {
             var selectedUser = _dbContext.Users.FirstOrDefault(user => user.Id == request.Id);
-            //_dbContext.Users.Remove(selectedUser);
-            //_dbContext.SaveChanges();
+            _dbContext.Users.Remove(selectedUser);
+            _dbContext.SaveChanges();
             return Task.FromResult(selectedUser);
         }
     }

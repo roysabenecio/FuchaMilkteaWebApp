@@ -85,11 +85,28 @@ namespace Fucha.DataLayer.Models
                 new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "r", Password = "r", Role = "Admin", UserStatus = "Approved" }
                 );
             modelBuilder.Entity<Stock>().HasData(
-                new Stock{ Id = 1, StockCategory = StockCategory.MilkTeaFlavor, Name = "Okinawa", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram }
+                new Stock { Id = 1, StockCategory = StockCategory.MilkTeaFlavor, Name = "Okinawa", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
+                new Stock { Id = 2, StockCategory = StockCategory.MilkTeaFlavor, Name = "Red Velvet", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
+
+                new Stock { Id = 3, StockCategory = StockCategory.MilkTeaFlavor, Name = "Wintermelon", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 2 },
+                new Stock { Id = 4, StockCategory = StockCategory.MilkTeaAddOn, Name = "Nutella", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 3 }
+
                 //new Stock { Id = 2, StockCategory = "Utensil", Name= "Milk Tea Cup", Quantity = 10, MeasurementUnit = "Pieces"}
                 );
-
-
+            modelBuilder.Entity<Supplier>().HasData(
+                new Supplier { Id = 1, Name = "In joy", Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", ContactNumber = 9178077279, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Supplier { Id = 2, Name = "PHNI Bubble Tea Store", Address = "208A Banawe St., Brgy Tatalon, Quezon City", ContactNumber = 09175858100, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Supplier { Id = 3, Name = "MSCS PrimeGoods, Inc.", Address = "San Juan Manila", ContactNumber = 91712841510, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") }
+                );
+            modelBuilder.Entity<PurchaseRecord>().HasData(
+                new PurchaseRecord() { Id = 1, SupplierId = 1, ItemQuantity = 2, TotalAmount = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), },
+                new PurchaseRecord() { Id = 2, SupplierId = 3, ItemQuantity = 1, TotalAmount = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), }
+                );
+            modelBuilder.Entity<PORecord>().HasData(
+                new PORecord() { Id = 1, StockId = 1, Category = StockCategory.MilkTeaFlavor, Quantity = 100, MeasurementUnit = MeasurementUnit.Kilogram, Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord() { Id = 2, StockId = 2, Category = StockCategory.MilkTeaFlavor, Quantity = 50, MeasurementUnit = MeasurementUnit.Kilogram, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord() { Id = 3, StockId = 4, Category = StockCategory.MilkTeaAddOn, Quantity = 50, MeasurementUnit = MeasurementUnit.Kilogram, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
+                );
         }
     }
 }

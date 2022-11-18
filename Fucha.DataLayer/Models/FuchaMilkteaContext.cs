@@ -33,7 +33,9 @@ namespace Fucha.DataLayer.Models
 
         public DbSet<Size> Sizes { get; set; }
 
+        public DbSet<PORecord> PORecords { get; set; }
         public DbSet<PurchaseRecord> PurchaseRecords { get; set; }
+
         public DbSet<Recipe> Recipes { get; set; }
         
         
@@ -72,6 +74,7 @@ namespace Fucha.DataLayer.Models
 
         DbSet<Size> Sizes { get; set; }
 
+        DbSet<PORecord> PORecords { get; set; }
         DbSet<PurchaseRecord> PurchaseRecords { get; set; }
         DbSet<Recipe> Recipes { get; set; }
         //DbSet<Meal> Meals { get; set; }

@@ -1,17 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Fucha.DomainClasses.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fucha.DomainClasses
 {
-    public class PurchaseRecord: BaseEntity
+    public class PurchaseRecord : BaseEntity
     {
-        
-        public string StockName { get; set; }
-        public double Quantity { get; set; }
-        public double Price { get; set; }
-        string? DatePurchased { get; set; }
+        public int ItemQuantity { get; set; }
+        public double TotalAmount { get; set; }
+        public string? DatePurchased { get; set; }
+        //public PRStatus Status { get; set; }
 
-        //supplier, to follow
-        public User User { get; set; }
+        public int SupplierId { get; set; }
+
+        //public int PurchaseRecordId { get; set; }
+
+        //public User? User { get; set; }
     }
 }

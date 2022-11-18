@@ -440,6 +440,75 @@ namespace Fucha.DataLayer.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("Fucha.DomainClasses.PORecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DatePurchased")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MeasurementUnit")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("PurchaseRecordId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
+
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PORecords");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = 0,
+                            DatePurchased = "Friday, 18 November 2022",
+                            MeasurementUnit = 1,
+                            Price = 100.0,
+                            PurchaseRecordId = 1,
+                            Quantity = 100.0,
+                            StockId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = 0,
+                            DatePurchased = "Friday, 18 November 2022",
+                            MeasurementUnit = 1,
+                            Price = 50.0,
+                            PurchaseRecordId = 1,
+                            Quantity = 50.0,
+                            StockId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = 1,
+                            DatePurchased = "Friday, 18 November 2022",
+                            MeasurementUnit = 1,
+                            Price = 50.0,
+                            PurchaseRecordId = 2,
+                            Quantity = 50.0,
+                            StockId = 4
+                        });
+                });
+
             modelBuilder.Entity("Fucha.DomainClasses.PurchaseRecord", b =>
                 {
                     b.Property<int>("Id")
@@ -448,24 +517,39 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<string>("StockName")
-                        .IsRequired()
+                    b.Property<string>("DatePurchased")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("ItemQuantity")
                         .HasColumnType("int");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("PurchaseRecords");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DatePurchased = "Friday, 18 November 2022",
+                            ItemQuantity = 2,
+                            SupplierId = 1,
+                            TotalAmount = 100.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DatePurchased = "Friday, 18 November 2022",
+                            ItemQuantity = 1,
+                            SupplierId = 3,
+                            TotalAmount = 50.0
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.Recipe", b =>
@@ -607,7 +691,37 @@ namespace Fucha.DataLayer.Migrations
                             Name = "Okinawa",
                             StockCategory = 0,
                             StockStatus = 0,
-                            SupplierId = 0
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Measure = 5.0,
+                            MeasurementUnit = 1,
+                            Name = "Red Velvet",
+                            StockCategory = 0,
+                            StockStatus = 0,
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Measure = 5.0,
+                            MeasurementUnit = 1,
+                            Name = "Wintermelon",
+                            StockCategory = 0,
+                            StockStatus = 0,
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Measure = 5.0,
+                            MeasurementUnit = 1,
+                            Name = "Nutella",
+                            StockCategory = 1,
+                            StockStatus = 0,
+                            SupplierId = 3
                         });
                 });
 
@@ -643,15 +757,10 @@ namespace Fucha.DataLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ContactNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContactPerson")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("ContactNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("DateAdded")
                         .IsRequired()
@@ -664,6 +773,32 @@ namespace Fucha.DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Suppliers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City",
+                            ContactNumber = 9178077279L,
+                            DateAdded = "Friday, 18 November 2022",
+                            Name = "In joy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "208A Banawe St., Brgy Tatalon, Quezon City",
+                            ContactNumber = 9175858100L,
+                            DateAdded = "Friday, 18 November 2022",
+                            Name = "PHNI Bubble Tea Store"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "San Juan Manila",
+                            ContactNumber = 91712841510L,
+                            DateAdded = "Friday, 18 November 2022",
+                            Name = "MSCS PrimeGoods, Inc."
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.User", b =>
@@ -716,17 +851,6 @@ namespace Fucha.DataLayer.Migrations
                             UserName = "r",
                             UserStatus = "Approved"
                         });
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.PurchaseRecord", b =>
-                {
-                    b.HasOne("Fucha.DomainClasses.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.Recipe", b =>

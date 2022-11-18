@@ -2,6 +2,7 @@
 {
     public enum StockCategory
     {
-        MilkTeaFlavor
+        MilkTeaFlavor,
+        MilkTeaAddOn
     }
 }

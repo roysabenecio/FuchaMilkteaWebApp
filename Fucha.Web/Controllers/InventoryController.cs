@@ -62,22 +62,5 @@ namespace Fucha.Web.Controllers
             var result = await _mediator.Send(new GetAllSizesQuery());
             return Ok(result);
         }
-
-        // Get All Suppliers
-        [HttpGet]
-        [Route("AllSuppliers")]
-        public async Task<IActionResult> AllSuppliers()
-        {
-            var result = await _mediator.Send(new GetAllSuppliersQuery());
-            return Ok(result);
-        }
-        // Get All Suppliers
-        [HttpGet]
-        [Route("AllPurchaseRecords")]
-        public async Task<IActionResult> AllPurchaseRecords()
-        {
-            var result = await _mediator.Send(new GetAllPurchaseRecordsQuery());
-            return Ok(result);
-        }
     }
 }

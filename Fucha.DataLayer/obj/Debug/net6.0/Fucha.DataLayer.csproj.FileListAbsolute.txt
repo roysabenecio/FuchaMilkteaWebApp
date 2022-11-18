@@ -17,11 +17,6 @@ C:\Users\A\source\repos\FuchaMilkteaWebApp\DataLayer\obj\Debug\net6.0\refint\Fuc
 C:\Users\A\source\repos\FuchaMilkteaWebApp\DataLayer\obj\Debug\net6.0\Fucha.DataLayer.pdb
 C:\Users\A\source\repos\FuchaMilkteaWebApp\DataLayer\obj\Debug\net6.0\Fucha.DataLayer.genruntimeconfig.cache
 C:\Users\A\source\repos\FuchaMilkteaWebApp\DataLayer\obj\Debug\net6.0\ref\Fucha.DataLayer.dll
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.csproj.AssemblyReference.cache
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.AssemblyInfoInputs.cache
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.AssemblyInfo.cs
-C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.csproj.CoreCompileInputs.cache
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\bin\Debug\net6.0\Fucha.DataLayer.deps.json
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\bin\Debug\net6.0\Fucha.DataLayer.runtimeconfig.json
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\bin\Debug\net6.0\Fucha.DataLayer.dll
@@ -30,6 +25,11 @@ C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\bin\Debug\net6.0\Fuch
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\bin\Debug\net6.0\Fucha.DomainClasses.dll
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\bin\Debug\net6.0\Fucha.Application.pdb
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\bin\Debug\net6.0\Fucha.DomainClasses.pdb
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.csproj.AssemblyReference.cache
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.AssemblyInfoInputs.cache
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.AssemblyInfo.cs
+C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.csproj.CoreCompileInputs.cache
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.csproj.CopyComplete
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\Fucha.DataLayer.dll
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.DataLayer\obj\Debug\net6.0\refint\Fucha.DataLayer.dll

@@ -42,5 +42,14 @@ namespace Fucha.Web.Controllers
             var result = await _mediator.Send(new GetAllPurchaseRecordsQuery());
             return Ok(result);
         }
+
+        // Get All Purchase Records
+        [HttpPost]
+        [Route("AddSupplier")]
+        public async Task<IActionResult> AddSupplier(AddSupplierCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                         .Join(
                             getAllPOR,
                             s => s.Id,
-                            pr => pr.StockId,
+                            por => por.StockId,
                             (s, por) => new
                             {
                                 por.Id,

@@ -28,7 +28,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             var selectedUser = _context.Users.FirstOrDefault(x => x.Id == request.Id);
             selectedUser.FirstName = request.User.FirstName;
             selectedUser.LastName = request.User.LastName;
-            selectedUser.LastName = request.User.LastName;
+            selectedUser.UserName = request.User.UserName;
             selectedUser.Password = request.User.Password;
             selectedUser.Role = request.User.Role;
             selectedUser.UserStatus = request.User.UserStatus;

@@ -23,23 +23,6 @@ namespace Fucha.DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ingredient",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IngredientCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Quantity = table.Column<double>(type: "float", nullable: false),
-                    MeasurementType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IngredientStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ingredient", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MenuCategories",
                 columns: table => new
                 {
@@ -101,6 +84,58 @@ namespace Fucha.DataLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PORecords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StockId = table.Column<int>(type: "int", nullable: false),
+                    Category = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<double>(type: "float", nullable: false),
+                    MeasurementUnit = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    DatePurchased = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PurchaseRecordId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PORecords", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PurchaseRecords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ItemQuantity = table.Column<int>(type: "int", nullable: false),
+                    TotalAmount = table.Column<double>(type: "float", nullable: false),
+                    DatePurchased = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SupplierId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PurchaseRecords", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Recipes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MenuId = table.Column<int>(type: "int", nullable: false),
+                    SizeId = table.Column<int>(type: "int", nullable: true),
+                    AddOnId = table.Column<int>(type: "int", nullable: true),
+                    RequiredMeasure = table.Column<double>(type: "float", nullable: false),
+                    MeasurementUnit = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Recipes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -200,77 +235,6 @@ namespace Fucha.DataLayer.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Recipes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RecipeCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Size = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IngredientId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Recipes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Recipes_Ingredient_IngredientId",
-                        column: x => x.IngredientId,
-                        principalTable: "Ingredient",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PORecord",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SupplierId = table.Column<int>(type: "int", nullable: false),
-                    ItemQuantity = table.Column<int>(type: "int", nullable: false),
-                    TotalAmount = table.Column<double>(type: "float", nullable: false),
-                    DatePurchased = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PORecord", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PORecord_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PurchaseRecords",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StockId = table.Column<int>(type: "int", nullable: false),
-                    Category = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<double>(type: "float", nullable: false),
-                    MeasurementUnit = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    DatePurchased = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PORecordId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PurchaseRecords", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PurchaseRecords_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.InsertData(
                 table: "AddOns",
                 columns: new[] { "Id", "AddOnPrice", "Name" },
@@ -290,7 +254,9 @@ namespace Fucha.DataLayer.Migrations
                 {
                     { 1, "Classic Milk Tea" },
                     { 2, "Premium Milk Tea" },
-                    { 3, "All Day Meals" }
+                    { 3, "All Day Meals" },
+                    { 4, "Pizza Regular" },
+                    { 5, "Pizza Premium" }
                 });
 
             migrationBuilder.InsertData(
@@ -336,27 +302,51 @@ namespace Fucha.DataLayer.Migrations
                     { 16, 3, "Hungarian Sausage with Rice & Egg" },
                     { 17, 3, "Spam Bacon with Rice & Egg" },
                     { 18, 3, "Cheesedog with Rice & Hotdog" },
-                    { 19, 3, "Hungarian Sausage" },
-                    { 20, 3, "Spam & Japanese Sausage" }
+                    { 19, 3, "Hungarian Sausage" }
                 });
 
             migrationBuilder.InsertData(
-                table: "PORecord",
-                columns: new[] { "Id", "DatePurchased", "ItemQuantity", "Status", "SupplierId", "TotalAmount", "UserId" },
-                values: new object[] { 1, "Thursday, 17 November 2022", 1, 0, 1, 100.0, null });
+                table: "Menus",
+                columns: new[] { "Id", "MenuCategoryId", "Name" },
+                values: new object[,]
+                {
+                    { 20, 3, "Spam & Japanese Sausage" },
+                    { 41, 4, "Cheesy Garlic" },
+                    { 42, 4, "Ham 'N Cheese" },
+                    { 43, 4, "Peperoni" },
+                    { 44, 4, "Hawaiian" },
+                    { 45, 4, "Beef Mushroom" }
+                });
 
             migrationBuilder.InsertData(
-                table: "PORecord",
-                columns: new[] { "Id", "DatePurchased", "ItemQuantity", "Status", "SupplierId", "TotalAmount", "UserId" },
-                values: new object[] { 2, "Thursday, 17 November 2022", 1, 0, 3, 50.0, null });
+                table: "PORecords",
+                columns: new[] { "Id", "Category", "DatePurchased", "MeasurementUnit", "Price", "PurchaseRecordId", "Quantity", "StockId" },
+                values: new object[,]
+                {
+                    { 1, 0, "Sunday, 20 November 2022", 1, 100.0, 1, 100.0, 1 },
+                    { 2, 0, "Sunday, 20 November 2022", 1, 50.0, 1, 50.0, 2 },
+                    { 3, 1, "Sunday, 20 November 2022", 1, 50.0, 2, 50.0, 4 }
+                });
 
             migrationBuilder.InsertData(
                 table: "PurchaseRecords",
-                columns: new[] { "Id", "Category", "DatePurchased", "MeasurementUnit", "PORecordId", "Price", "Quantity", "StockId", "UserId" },
+                columns: new[] { "Id", "DatePurchased", "ItemQuantity", "SupplierId", "TotalAmount" },
                 values: new object[,]
                 {
-                    { 1, 0, "Thursday, 17 November 2022", 1, 1, 100.0, 100.0, 1, null },
-                    { 2, 1, "Thursday, 17 November 2022", 1, 2, 50.0, 50.0, 3, null }
+                    { 1, "Sunday, 20 November 2022", 2, 1, 100.0 },
+                    { 2, "Sunday, 20 November 2022", 1, 3, 50.0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Recipes",
+                columns: new[] { "Id", "AddOnId", "MeasurementUnit", "MenuId", "RequiredMeasure", "SizeId" },
+                values: new object[,]
+                {
+                    { 31, null, 3, 41, 1.0, null },
+                    { 32, null, 3, 42, 1.0, null },
+                    { 33, null, 3, 43, 1.0, null },
+                    { 34, null, 3, 44, 1.0, null },
+                    { 35, null, 3, 45, 1.0, null }
                 });
 
             migrationBuilder.InsertData(
@@ -376,8 +366,14 @@ namespace Fucha.DataLayer.Migrations
                 values: new object[,]
                 {
                     { 1, null, null, 5.0, 1, "Okinawa", 0, 0, 1 },
-                    { 2, null, null, 5.0, 1, "Wintermelon", 0, 0, 2 },
-                    { 3, null, null, 5.0, 1, "Nutella", 1, 0, 3 }
+                    { 2, null, null, 5.0, 1, "Red Velvet", 0, 0, 1 },
+                    { 3, null, null, 5.0, 1, "Wintermelon", 0, 0, 2 },
+                    { 4, null, null, 5.0, 1, "Nutella", 1, 0, 3 },
+                    { 41, null, null, 100.0, 3, "Cheesy Garlic", 2, 0, 10 },
+                    { 42, null, null, 100.0, 3, "Ham 'N Cheese", 2, 0, 10 },
+                    { 43, null, null, 100.0, 3, "Peperoni", 2, 0, 10 },
+                    { 44, null, null, 100.0, 3, "Hawaiian", 2, 0, 10 },
+                    { 45, null, null, 100.0, 3, "Beef Mushroom", 2, 0, 10 }
                 });
 
             migrationBuilder.InsertData(
@@ -385,31 +381,16 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "Address", "ContactNumber", "DateAdded", "Name" },
                 values: new object[,]
                 {
-                    { 1, "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", 9178077279L, "Thursday, 17 November 2022", "In joy" },
-                    { 2, "208A Banawe St., Brgy Tatalon, Quezon City", 9175858100L, "Thursday, 17 November 2022", "PHNI Bubble Tea Store" },
-                    { 3, "San Juan Manila", 91712841510L, "Thursday, 17 November 2022", "MSCS PrimeGoods, Inc." }
+                    { 1, "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", 9178077279L, "Sunday, 20 November 2022", "In joy" },
+                    { 2, "208A Banawe St., Brgy Tatalon, Quezon City", 9175858100L, "Sunday, 20 November 2022", "PHNI Bubble Tea Store" },
+                    { 3, "San Juan Manila", 91712841510L, "Sunday, 20 November 2022", "MSCS PrimeGoods, Inc." },
+                    { 10, "#24 F Pasco Aveue Santolan, Pasig, Philippines", 9955823086L, "Sunday, 20 November 2022", "Pizza Crust" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "DateCreated", "FirstName", "LastName", "Password", "Role", "UserName", "UserStatus" },
                 values: new object[] { 1, null, "Roy", "Sabenecio", "r", "Admin", "r", "Approved" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PORecord_UserId",
-                table: "PORecord",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PurchaseRecords_UserId",
-                table: "PurchaseRecords",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Recipes_IngredientId",
-                table: "Recipes",
-                column: "IngredientId",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -430,7 +411,7 @@ namespace Fucha.DataLayer.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "PORecord");
+                name: "PORecords");
 
             migrationBuilder.DropTable(
                 name: "PurchaseRecords");
@@ -455,9 +436,6 @@ namespace Fucha.DataLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Ingredient");
         }
     }
 }

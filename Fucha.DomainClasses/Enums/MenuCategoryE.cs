@@ -4,12 +4,11 @@
     {
         ClassicMilkTea,
         PremiumMilkTea,
-        AddOns,
         Snacks,
         AllDayMeals,
         ChickenWings,
         AlaCarte,
-        Pizza,
-        Special
+        PizzaRegular,
+        PizzaSpecial
     }
 }

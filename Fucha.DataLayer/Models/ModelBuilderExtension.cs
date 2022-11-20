@@ -8,6 +8,17 @@ namespace Fucha.DataLayer.Models
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Recipe>().HasData(
+                new Recipe { Id = 31, MenuId = 41, MeasurementUnit = MeasurementUnit.Pieces, RequiredMeasure = 1   },
+                new Recipe { Id = 32, MenuId = 42, MeasurementUnit = MeasurementUnit.Pieces, RequiredMeasure = 1 },
+
+                new Recipe { Id = 33, MenuId = 43, MeasurementUnit = MeasurementUnit.Pieces, RequiredMeasure = 1 },
+
+                new Recipe { Id = 34, MenuId = 44, MeasurementUnit = MeasurementUnit.Pieces, RequiredMeasure = 1 },
+                new Recipe { Id = 35, MenuId = 45, MeasurementUnit = MeasurementUnit.Pieces, RequiredMeasure = 1 }
+
+                );
+
             modelBuilder.Entity<Menu>().HasData(
                 new Menu { Id = 1, MenuCategoryId = 1, Name = "Okinawa" },
                 new Menu { Id = 2, MenuCategoryId = 1, Name = "Red Velvet"},
@@ -28,8 +39,19 @@ namespace Fucha.DataLayer.Models
                 new Menu { Id = 17, MenuCategoryId = 3, Name = "Spam Bacon with Rice & Egg" },
                 new Menu { Id = 18, MenuCategoryId = 3, Name = "Cheesedog with Rice & Hotdog" },
                 new Menu { Id = 19, MenuCategoryId = 3, Name = "Hungarian Sausage" },
-                new Menu { Id = 20, MenuCategoryId = 3, Name = "Spam & Japanese Sausage" }
+                new Menu { Id = 20, MenuCategoryId = 3, Name = "Spam & Japanese Sausage" },
 
+                new Menu { Id = 21, MenuCategoryId = 6, Name = "Hungarian Solo" },
+                new Menu { Id = 22, MenuCategoryId = 6, Name = "Assorted Balls" },
+                new Menu { Id = 23, MenuCategoryId = 6, Name = "Gyoza" },
+                new Menu { Id = 24, MenuCategoryId = 6, Name = "Fries" },
+                new Menu { Id = 25, MenuCategoryId = 6, Name = "Siomai" },
+
+                new Menu { Id = 41, MenuCategoryId = 4, Name = "Cheesy Garlic" },
+                new Menu { Id = 42, MenuCategoryId = 4, Name = "Ham 'N Cheese" },
+                new Menu { Id = 43, MenuCategoryId = 4, Name = "Peperoni" },
+                new Menu { Id = 44, MenuCategoryId = 4, Name = "Hawaiian" },
+                new Menu { Id = 45, MenuCategoryId = 4, Name = "Beef Mushroom" }
                 );
             modelBuilder.Entity<MenuPrice>().HasData(
                 new MenuPrice { Id = 1, Price = 50, SizeId = 1, MenuCategoryId = 1 },
@@ -44,7 +66,18 @@ namespace Fucha.DataLayer.Models
                 new MenuPrice { Id = 10, MenuId = 17, Price = 65, MenuCategoryId = 3 },
                 new MenuPrice { Id = 11, MenuId = 18, Price = 65, MenuCategoryId = 3 },
                 new MenuPrice { Id = 12, MenuId = 19, Price = 50, MenuCategoryId = 3 },
-                new MenuPrice { Id = 13, MenuId = 20, Price = 65, MenuCategoryId = 3 }
+                new MenuPrice { Id = 13, MenuId = 20, Price = 65, MenuCategoryId = 3 },
+                new MenuPrice { Id = 14, MenuId = 21, Price = 50, MenuCategoryId = 6 },
+                new MenuPrice { Id = 15, MenuId = 22, Price = 25, MenuCategoryId = 6 },
+                new MenuPrice { Id = 16, MenuId = 23, Price = 40, MenuCategoryId = 6 },
+                new MenuPrice { Id = 17, MenuId = 24, Price = 30, MenuCategoryId = 6 },
+                new MenuPrice { Id = 18, MenuId = 25, Price = 25, MenuCategoryId = 6 },
+
+                new MenuPrice { Id = 19, MenuId = 41, Price = 115, MenuCategoryId = 4 },
+                new MenuPrice { Id = 20, MenuId = 42, Price = 115, MenuCategoryId = 4 },
+                new MenuPrice { Id = 21, MenuId = 43, Price = 115, MenuCategoryId = 4 },
+                new MenuPrice { Id = 22, MenuId = 44, Price = 115, MenuCategoryId = 4 },
+                new MenuPrice { Id = 23, MenuId = 45, Price = 115, MenuCategoryId = 4 }
                 );
 
             modelBuilder.Entity<AddOn>().HasData(
@@ -79,7 +112,14 @@ namespace Fucha.DataLayer.Models
             modelBuilder.Entity<MenuCategory>().HasData(
                 new MenuCategory { Id = 1, Name = "Classic Milk Tea" },
                 new MenuCategory { Id = 2, Name = "Premium Milk Tea" },
-                new MenuCategory { Id = 3, Name = "All Day Meals" }
+                new MenuCategory { Id = 3, Name = "All Day Meals" },
+                new MenuCategory { Id = 4, Name = "Pizza Regular" },
+                new MenuCategory { Id = 5, Name = "Pizza Premium" },
+                new MenuCategory { Id = 6, Name = "Snacks" },
+                new MenuCategory { Id = 7, Name = "Ala Carte" },
+                new MenuCategory { Id = 8, Name = "Chicken Wings" }
+
+
                 );
             modelBuilder.Entity<User>().HasData(
                 new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "r", Password = "r", Role = "Admin", UserStatus = "Approved" }
@@ -87,16 +127,22 @@ namespace Fucha.DataLayer.Models
             modelBuilder.Entity<Stock>().HasData(
                 new Stock { Id = 1, StockCategory = StockCategory.MilkTeaFlavor, Name = "Okinawa", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
                 new Stock { Id = 2, StockCategory = StockCategory.MilkTeaFlavor, Name = "Red Velvet", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
-
                 new Stock { Id = 3, StockCategory = StockCategory.MilkTeaFlavor, Name = "Wintermelon", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 2 },
-                new Stock { Id = 4, StockCategory = StockCategory.MilkTeaAddOn, Name = "Nutella", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 3 }
+                new Stock { Id = 4, StockCategory = StockCategory.MilkTeaAddOn, Name = "Nutella", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 3 },
 
+
+                new Stock { Id = 41, StockCategory = StockCategory.Pizza, Name = "Cheesy Garlic", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 42, StockCategory = StockCategory.Pizza, Name = "Ham 'N Cheese", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 43, StockCategory = StockCategory.Pizza, Name = "Peperoni", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 44, StockCategory = StockCategory.Pizza, Name = "Hawaiian", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 45, StockCategory = StockCategory.Pizza, Name = "Beef Mushroom", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 }
                 //new Stock { Id = 2, StockCategory = "Utensil", Name= "Milk Tea Cup", Quantity = 10, MeasurementUnit = "Pieces"}
                 );
             modelBuilder.Entity<Supplier>().HasData(
                 new Supplier { Id = 1, Name = "In joy", Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", ContactNumber = 9178077279, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
                 new Supplier { Id = 2, Name = "PHNI Bubble Tea Store", Address = "208A Banawe St., Brgy Tatalon, Quezon City", ContactNumber = 09175858100, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Supplier { Id = 3, Name = "MSCS PrimeGoods, Inc.", Address = "San Juan Manila", ContactNumber = 91712841510, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") }
+                new Supplier { Id = 3, Name = "MSCS PrimeGoods, Inc.", Address = "San Juan Manila", ContactNumber = 91712841510, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Supplier { Id = 10, Name = "Pizza Crust", Address = "#24 F Pasco Aveue Santolan, Pasig, Philippines", ContactNumber = 9955823086, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") }
                 );
             modelBuilder.Entity<PurchaseRecord>().HasData(
                 new PurchaseRecord() { Id = 1, SupplierId = 1, ItemQuantity = 2, TotalAmount = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), },

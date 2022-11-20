@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fucha.DataLayer.Migrations
 {
     [DbContext(typeof(FuchaMilkteaContext))]
-    [Migration("20221118021404_InitialCreate2")]
-    partial class InitialCreate2
+    [Migration("20221120142007_InitialCreate3")]
+    partial class InitialCreate3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,37 +74,6 @@ namespace Fucha.DataLayer.Migrations
                             AddOnPrice = 10.0,
                             Name = "Cream Cheese"
                         });
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.Ingredient", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("IngredientCategory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IngredientStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MeasurementType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ingredient");
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.Menu", b =>
@@ -246,6 +215,66 @@ namespace Fucha.DataLayer.Migrations
                             Id = 20,
                             MenuCategoryId = 3,
                             Name = "Spam & Japanese Sausage"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            MenuCategoryId = 6,
+                            Name = "Hungarian Solo"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            MenuCategoryId = 6,
+                            Name = "Assorted Balls"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            MenuCategoryId = 6,
+                            Name = "Gyoza"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            MenuCategoryId = 6,
+                            Name = "Fries"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            MenuCategoryId = 6,
+                            Name = "Siomai"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            MenuCategoryId = 4,
+                            Name = "Cheesy Garlic"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            MenuCategoryId = 4,
+                            Name = "Ham 'N Cheese"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            MenuCategoryId = 4,
+                            Name = "Peperoni"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            MenuCategoryId = 4,
+                            Name = "Hawaiian"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            MenuCategoryId = 4,
+                            Name = "Beef Mushroom"
                         });
                 });
 
@@ -280,6 +309,31 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 3,
                             Name = "All Day Meals"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Pizza Regular"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Pizza Premium"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Snacks"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Ala Carte"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Chicken Wings"
                         });
                 });
 
@@ -398,6 +452,76 @@ namespace Fucha.DataLayer.Migrations
                             MenuCategoryId = 3,
                             MenuId = 20,
                             Price = 65.0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            MenuCategoryId = 6,
+                            MenuId = 21,
+                            Price = 50.0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            MenuCategoryId = 6,
+                            MenuId = 22,
+                            Price = 25.0
+                        },
+                        new
+                        {
+                            Id = 16,
+                            MenuCategoryId = 6,
+                            MenuId = 23,
+                            Price = 40.0
+                        },
+                        new
+                        {
+                            Id = 17,
+                            MenuCategoryId = 6,
+                            MenuId = 24,
+                            Price = 30.0
+                        },
+                        new
+                        {
+                            Id = 18,
+                            MenuCategoryId = 6,
+                            MenuId = 25,
+                            Price = 25.0
+                        },
+                        new
+                        {
+                            Id = 19,
+                            MenuCategoryId = 4,
+                            MenuId = 41,
+                            Price = 115.0
+                        },
+                        new
+                        {
+                            Id = 20,
+                            MenuCategoryId = 4,
+                            MenuId = 42,
+                            Price = 115.0
+                        },
+                        new
+                        {
+                            Id = 21,
+                            MenuCategoryId = 4,
+                            MenuId = 43,
+                            Price = 115.0
+                        },
+                        new
+                        {
+                            Id = 22,
+                            MenuCategoryId = 4,
+                            MenuId = 44,
+                            Price = 115.0
+                        },
+                        new
+                        {
+                            Id = 23,
+                            MenuCategoryId = 4,
+                            MenuId = 45,
+                            Price = 115.0
                         });
                 });
 
@@ -450,6 +574,75 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DatePurchased")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MeasurementUnit")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("PurchaseRecordId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
+
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PORecords");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = 0,
+                            DatePurchased = "Sunday, 20 November 2022",
+                            MeasurementUnit = 1,
+                            Price = 100.0,
+                            PurchaseRecordId = 1,
+                            Quantity = 100.0,
+                            StockId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = 0,
+                            DatePurchased = "Sunday, 20 November 2022",
+                            MeasurementUnit = 1,
+                            Price = 50.0,
+                            PurchaseRecordId = 1,
+                            Quantity = 50.0,
+                            StockId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = 1,
+                            DatePurchased = "Sunday, 20 November 2022",
+                            MeasurementUnit = 1,
+                            Price = 50.0,
+                            PurchaseRecordId = 2,
+                            Quantity = 50.0,
+                            StockId = 4
+                        });
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.PurchaseRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<string>("DatePurchased")
                         .HasColumnType("nvarchar(max)");
 
@@ -464,13 +657,13 @@ namespace Fucha.DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PORecord");
+                    b.ToTable("PurchaseRecords");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            DatePurchased = "Friday, 18 November 2022",
+                            DatePurchased = "Sunday, 20 November 2022",
                             ItemQuantity = 2,
                             SupplierId = 1,
                             TotalAmount = 100.0
@@ -478,79 +671,10 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 2,
-                            DatePurchased = "Friday, 18 November 2022",
+                            DatePurchased = "Sunday, 20 November 2022",
                             ItemQuantity = 1,
                             SupplierId = 3,
                             TotalAmount = 50.0
-                        });
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.PurchaseRecord", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DatePurchased")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MeasurementUnit")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PORecordId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<int>("StockId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PurchaseRecords");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Category = 0,
-                            DatePurchased = "Friday, 18 November 2022",
-                            MeasurementUnit = 1,
-                            PORecordId = 1,
-                            Price = 100.0,
-                            Quantity = 100.0,
-                            StockId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Category = 0,
-                            DatePurchased = "Friday, 18 November 2022",
-                            MeasurementUnit = 1,
-                            PORecordId = 1,
-                            Price = 50.0,
-                            Quantity = 50.0,
-                            StockId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Category = 1,
-                            DatePurchased = "Friday, 18 November 2022",
-                            MeasurementUnit = 1,
-                            PORecordId = 2,
-                            Price = 50.0,
-                            Quantity = 50.0,
-                            StockId = 4
                         });
                 });
 
@@ -562,30 +686,61 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("IngredientId")
+                    b.Property<int?>("AddOnId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MeasurementUnit")
+                        .HasColumnType("int");
 
-                    b.Property<double>("Price")
+                    b.Property<int>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("RequiredMeasure")
                         .HasColumnType("float");
 
-                    b.Property<string>("RecipeCategory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("SizeId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IngredientId")
-                        .IsUnique();
-
                     b.ToTable("Recipes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 31,
+                            MeasurementUnit = 3,
+                            MenuId = 41,
+                            RequiredMeasure = 1.0
+                        },
+                        new
+                        {
+                            Id = 32,
+                            MeasurementUnit = 3,
+                            MenuId = 42,
+                            RequiredMeasure = 1.0
+                        },
+                        new
+                        {
+                            Id = 33,
+                            MeasurementUnit = 3,
+                            MenuId = 43,
+                            RequiredMeasure = 1.0
+                        },
+                        new
+                        {
+                            Id = 34,
+                            MeasurementUnit = 3,
+                            MenuId = 44,
+                            RequiredMeasure = 1.0
+                        },
+                        new
+                        {
+                            Id = 35,
+                            MeasurementUnit = 3,
+                            MenuId = 45,
+                            RequiredMeasure = 1.0
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.SaleTransaction", b =>
@@ -700,7 +855,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 2,
                             Measure = 5.0,
                             MeasurementUnit = 1,
-                            Name = "Okinawa",
+                            Name = "Red Velvet",
                             StockCategory = 0,
                             StockStatus = 0,
                             SupplierId = 1
@@ -724,6 +879,56 @@ namespace Fucha.DataLayer.Migrations
                             StockCategory = 1,
                             StockStatus = 0,
                             SupplierId = 3
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Cheesy Garlic",
+                            StockCategory = 2,
+                            StockStatus = 0,
+                            SupplierId = 10
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Ham 'N Cheese",
+                            StockCategory = 2,
+                            StockStatus = 0,
+                            SupplierId = 10
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Peperoni",
+                            StockCategory = 2,
+                            StockStatus = 0,
+                            SupplierId = 10
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Hawaiian",
+                            StockCategory = 2,
+                            StockStatus = 0,
+                            SupplierId = 10
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Beef Mushroom",
+                            StockCategory = 2,
+                            StockStatus = 0,
+                            SupplierId = 10
                         });
                 });
 
@@ -782,7 +987,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 1,
                             Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City",
                             ContactNumber = 9178077279L,
-                            DateAdded = "Friday, 18 November 2022",
+                            DateAdded = "Sunday, 20 November 2022",
                             Name = "In joy"
                         },
                         new
@@ -790,7 +995,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 2,
                             Address = "208A Banawe St., Brgy Tatalon, Quezon City",
                             ContactNumber = 9175858100L,
-                            DateAdded = "Friday, 18 November 2022",
+                            DateAdded = "Sunday, 20 November 2022",
                             Name = "PHNI Bubble Tea Store"
                         },
                         new
@@ -798,8 +1003,16 @@ namespace Fucha.DataLayer.Migrations
                             Id = 3,
                             Address = "San Juan Manila",
                             ContactNumber = 91712841510L,
-                            DateAdded = "Friday, 18 November 2022",
+                            DateAdded = "Sunday, 20 November 2022",
                             Name = "MSCS PrimeGoods, Inc."
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Address = "#24 F Pasco Aveue Santolan, Pasig, Philippines",
+                            ContactNumber = 9955823086L,
+                            DateAdded = "Sunday, 20 November 2022",
+                            Name = "Pizza Crust"
                         });
                 });
 
@@ -853,22 +1066,6 @@ namespace Fucha.DataLayer.Migrations
                             UserName = "r",
                             UserStatus = "Approved"
                         });
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.Recipe", b =>
-                {
-                    b.HasOne("Fucha.DomainClasses.Ingredient", "Ingredient")
-                        .WithOne("Recipe")
-                        .HasForeignKey("Fucha.DomainClasses.Recipe", "IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ingredient");
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.Ingredient", b =>
-                {
-                    b.Navigation("Recipe");
                 });
 #pragma warning restore 612, 618
         }

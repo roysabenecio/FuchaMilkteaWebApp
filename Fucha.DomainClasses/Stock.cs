@@ -9,6 +9,7 @@ namespace Fucha.DomainClasses
 {
     public class Stock : BaseEntity
     {
+        public int MenuId { get; set; }
         public string Name { get; set; }
         public double Measure { get; set; } // nullable
         public MeasurementUnit MeasurementUnit { get; set; } // nullable

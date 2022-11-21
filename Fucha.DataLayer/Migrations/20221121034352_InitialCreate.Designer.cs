@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fucha.DataLayer.Migrations
 {
     [DbContext(typeof(FuchaMilkteaContext))]
-    [Migration("20221120114702_InitialCreate2")]
-    partial class InitialCreate2
+    [Migration("20221121034352_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -218,6 +218,36 @@ namespace Fucha.DataLayer.Migrations
                         },
                         new
                         {
+                            Id = 21,
+                            MenuCategoryId = 6,
+                            Name = "Hungarian Solo"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            MenuCategoryId = 6,
+                            Name = "Assorted Balls"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            MenuCategoryId = 6,
+                            Name = "Gyoza"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            MenuCategoryId = 6,
+                            Name = "Fries"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            MenuCategoryId = 6,
+                            Name = "Siomai"
+                        },
+                        new
+                        {
                             Id = 41,
                             MenuCategoryId = 4,
                             Name = "Cheesy Garlic"
@@ -289,6 +319,21 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 5,
                             Name = "Pizza Premium"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Snacks"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Ala Carte"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Chicken Wings"
                         });
                 });
 
@@ -411,34 +456,69 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 14,
+                            MenuCategoryId = 6,
+                            MenuId = 21,
+                            Price = 50.0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            MenuCategoryId = 6,
+                            MenuId = 22,
+                            Price = 25.0
+                        },
+                        new
+                        {
+                            Id = 16,
+                            MenuCategoryId = 6,
+                            MenuId = 23,
+                            Price = 40.0
+                        },
+                        new
+                        {
+                            Id = 17,
+                            MenuCategoryId = 6,
+                            MenuId = 24,
+                            Price = 30.0
+                        },
+                        new
+                        {
+                            Id = 18,
+                            MenuCategoryId = 6,
+                            MenuId = 25,
+                            Price = 25.0
+                        },
+                        new
+                        {
+                            Id = 19,
                             MenuCategoryId = 4,
                             MenuId = 41,
                             Price = 115.0
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 20,
                             MenuCategoryId = 4,
                             MenuId = 42,
                             Price = 115.0
                         },
                         new
                         {
-                            Id = 16,
+                            Id = 21,
                             MenuCategoryId = 4,
                             MenuId = 43,
                             Price = 115.0
                         },
                         new
                         {
-                            Id = 17,
+                            Id = 22,
                             MenuCategoryId = 4,
                             MenuId = 44,
                             Price = 115.0
                         },
                         new
                         {
-                            Id = 18,
+                            Id = 23,
                             MenuCategoryId = 4,
                             MenuId = 45,
                             Price = 115.0
@@ -524,7 +604,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 1,
                             Category = 0,
-                            DatePurchased = "Sunday, 20 November 2022",
+                            DatePurchased = "Monday, 21 November 2022",
                             MeasurementUnit = 1,
                             Price = 100.0,
                             PurchaseRecordId = 1,
@@ -535,7 +615,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 2,
                             Category = 0,
-                            DatePurchased = "Sunday, 20 November 2022",
+                            DatePurchased = "Monday, 21 November 2022",
                             MeasurementUnit = 1,
                             Price = 50.0,
                             PurchaseRecordId = 1,
@@ -546,7 +626,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 3,
                             Category = 1,
-                            DatePurchased = "Sunday, 20 November 2022",
+                            DatePurchased = "Monday, 21 November 2022",
                             MeasurementUnit = 1,
                             Price = 50.0,
                             PurchaseRecordId = 2,
@@ -583,7 +663,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            DatePurchased = "Sunday, 20 November 2022",
+                            DatePurchased = "Monday, 21 November 2022",
                             ItemQuantity = 2,
                             SupplierId = 1,
                             TotalAmount = 100.0
@@ -591,7 +671,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 2,
-                            DatePurchased = "Sunday, 20 November 2022",
+                            DatePurchased = "Monday, 21 November 2022",
                             ItemQuantity = 1,
                             SupplierId = 3,
                             TotalAmount = 50.0
@@ -742,6 +822,9 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<int>("MeasurementUnit")
                         .HasColumnType("int");
 
+                    b.Property<int>("MenuId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -765,6 +848,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 1,
                             Measure = 5.0,
                             MeasurementUnit = 1,
+                            MenuId = 0,
                             Name = "Okinawa",
                             StockCategory = 0,
                             StockStatus = 0,
@@ -775,6 +859,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 2,
                             Measure = 5.0,
                             MeasurementUnit = 1,
+                            MenuId = 0,
                             Name = "Red Velvet",
                             StockCategory = 0,
                             StockStatus = 0,
@@ -785,6 +870,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 3,
                             Measure = 5.0,
                             MeasurementUnit = 1,
+                            MenuId = 0,
                             Name = "Wintermelon",
                             StockCategory = 0,
                             StockStatus = 0,
@@ -795,6 +881,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 4,
                             Measure = 5.0,
                             MeasurementUnit = 1,
+                            MenuId = 0,
                             Name = "Nutella",
                             StockCategory = 1,
                             StockStatus = 0,
@@ -805,6 +892,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 41,
                             Measure = 100.0,
                             MeasurementUnit = 3,
+                            MenuId = 0,
                             Name = "Cheesy Garlic",
                             StockCategory = 2,
                             StockStatus = 0,
@@ -815,6 +903,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 42,
                             Measure = 100.0,
                             MeasurementUnit = 3,
+                            MenuId = 0,
                             Name = "Ham 'N Cheese",
                             StockCategory = 2,
                             StockStatus = 0,
@@ -825,6 +914,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 43,
                             Measure = 100.0,
                             MeasurementUnit = 3,
+                            MenuId = 0,
                             Name = "Peperoni",
                             StockCategory = 2,
                             StockStatus = 0,
@@ -835,6 +925,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 44,
                             Measure = 100.0,
                             MeasurementUnit = 3,
+                            MenuId = 0,
                             Name = "Hawaiian",
                             StockCategory = 2,
                             StockStatus = 0,
@@ -845,6 +936,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 45,
                             Measure = 100.0,
                             MeasurementUnit = 3,
+                            MenuId = 0,
                             Name = "Beef Mushroom",
                             StockCategory = 2,
                             StockStatus = 0,
@@ -907,7 +999,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 1,
                             Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City",
                             ContactNumber = 9178077279L,
-                            DateAdded = "Sunday, 20 November 2022",
+                            DateAdded = "Monday, 21 November 2022",
                             Name = "In joy"
                         },
                         new
@@ -915,7 +1007,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 2,
                             Address = "208A Banawe St., Brgy Tatalon, Quezon City",
                             ContactNumber = 9175858100L,
-                            DateAdded = "Sunday, 20 November 2022",
+                            DateAdded = "Monday, 21 November 2022",
                             Name = "PHNI Bubble Tea Store"
                         },
                         new
@@ -923,7 +1015,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 3,
                             Address = "San Juan Manila",
                             ContactNumber = 91712841510L,
-                            DateAdded = "Sunday, 20 November 2022",
+                            DateAdded = "Monday, 21 November 2022",
                             Name = "MSCS PrimeGoods, Inc."
                         },
                         new
@@ -931,7 +1023,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 10,
                             Address = "#24 F Pasco Aveue Santolan, Pasig, Philippines",
                             ContactNumber = 9955823086L,
-                            DateAdded = "Sunday, 20 November 2022",
+                            DateAdded = "Monday, 21 November 2022",
                             Name = "Pizza Crust"
                         });
                 });

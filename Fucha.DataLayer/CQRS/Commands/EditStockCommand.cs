@@ -36,7 +36,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             //selectedStock.Name = request.Name;
             selectedStock.Measure = request.Measure;
             selectedStock.MeasurementUnit = (MeasurementUnit)Enum.Parse(typeof(MeasurementUnit), request.MeasurementUnit);
-            selectedStock.StockCategory = (StockCategory)Enum.Parse(typeof(StockCategory), request.StockCategory);
+            selectedStock.Category = (StockCategory)Enum.Parse(typeof(StockCategory), request.StockCategory);
             _context.SaveChanges();
             var editedStock = new StockDTO
             {
@@ -44,7 +44,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 //Name = selectedStock.Name,
                 Measure = selectedStock.Measure,
                 MeasurementUnit = selectedStock.MeasurementUnit.ToString(),
-                StockCategory = selectedStock.StockCategory.ToString()
+                Category = selectedStock.Category.ToString()
 
             };
             

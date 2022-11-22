@@ -26,7 +26,7 @@ namespace Fucha.DataLayer.CQRS.Queries
             var allMenus = _context.Menus.Select(m => m).ToList();
             var allUsers = _context.Users.Select(u => u).ToList();
 
-            var stocksMenusSupplier = allStocks
+            var stocksMenusSuppliers = allStocks
                 .Join(
                     allMenus,
                     s => s.MenuId,
@@ -76,7 +76,7 @@ namespace Fucha.DataLayer.CQRS.Queries
 
             var joinedPORDTO = allPOR
                 .Join(
-                    stocksMenusSupplier,
+                    stocksMenusSuppliers,
                     por => por.StockId,
                     sms => sms.Id,
                     (por, sms) => new

@@ -12,7 +12,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         public string Name { get; set; }
         public double Measure { get; set; }
         public string MeasurementUnit { get; set; }
-        public string StockCategory { get; set; }
+        public string Category { get; set; }
         //public string StockStatus { get; set; }
         //dateadded
         //public string Supplier { get; set; }
@@ -35,7 +35,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 //Name = request.Name,
                 Measure = request.Measure,
                 MeasurementUnit = (MeasurementUnit)Enum.Parse(typeof(MeasurementUnit), request.MeasurementUnit),
-                StockCategory = (StockCategory)Enum.Parse(typeof(StockCategory), request.StockCategory),
+                Category = (StockCategory)Enum.Parse(typeof(StockCategory), request.Category),
                 DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
                 //SupplierId = _context.Suppliers.FirstOrDefault(s => s.Name == request.Supplier).Id,
                 SupplierId = 1

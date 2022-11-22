@@ -1,14 +1,8 @@
 ﻿using Fucha.DataLayer.DTOs;
 using Fucha.DataLayer.Models;
-
-using Fucha.DomainClasses;
 using Fucha.DomainClasses.Enums;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Fucha.DataLayer.CQRS.Queries
 {
@@ -26,59 +20,61 @@ namespace Fucha.DataLayer.CQRS.Queries
 
         public Task<List<StockDTO>> Handle(GetAllStocksQuery request, CancellationToken cancellationToken)
         {
-            //var allItems = _context.Stocks.Select(item => new Stock
-            //{
-            //    Id = item.Id,
-            //    Name = item.Name,
-            //    Measure = item.Measure,
-            //    MeasurementUnit = item.MeasurementUnit,
-            //    StockCategory = item.StockCategory
-            //}).ToList();
-            //return Task.FromResult<List<Stock>>(allItems);
-            var allStocks = _context.Stocks.Select(x => x).ToList();
-            var allSuppliers = _context.Suppliers.Select(x => x).ToList();
-            var stockDTO = allStocks
-                                      .Join(
-                                        allSuppliers,
-                                      stock => stock.SupplierId,
-                                      supplier => supplier.Id,
-                                      (stock, supplier) => new
-                                      {
-                                          stock.Id,
-                                          //stock.Name,
-                                          stock.Measure,
-                                          MeasurementUnit = ((MeasurementUnit)stock.MeasurementUnit).ToString(),
-                                          StockCategory = ((StockCategory)stock.Category).ToString(),
-                                          Supplier = supplier.Name
-                                      }).ToList();
-            //var getSupplierNameById = (id) => joinedStockSupplier.FirstOrDefault(s => s.SupplierId == id);
+            var allPOR = _context.PORecords.Select(por => por).ToList();
+            var allPurchaseRecords = _context.PurchaseRecords.Select(pr => pr).ToList();
+            var allStocks = _context.Stocks.Select(s => s).ToList();
+            var allSuppliers = _context.Suppliers.Select(s => s).ToList();
+            var allMenus = _context.Menus.Select(m => m).ToList();
+            var allUsers = _context.Users.Select(u => u).ToList();
 
+            var stocksMenusSuppliers = allStocks
+                .Join(
+                    allMenus,
+                    s => s.MenuId,
+                    m => m.Id,
+                    (s, m) => new
+                    {
+                        s.Id,
+                        m.Name,
+                        s.Measure,
+                        MeasurementUnit = (MeasurementUnit)s.MeasurementUnit,
+                        Category = (StockCategory)s.Category,
+                        Status = (QuantityStatus)s.Category,
+                        s.DateAdded,
+                        s.LastRestocked,
+                        s.SupplierId,
+                        s.IsRemoved
+                    })
+                .Join(
+                    allSuppliers,
+                    sm => sm.SupplierId,
+                    s => s.Id,
+                    (sm, s) => new
+                    {
+                        sm.Id,
+                        sm.Name,
+                        sm.Category,
+                        sm.Measure,
+                        sm.MeasurementUnit,
+                        sm.Status,
+                        sm.DateAdded,
+                        sm.LastRestocked,
+                        Supplier = s.Name,
+                        sm.IsRemoved
+                    }).ToList();
 
-            var allStocksDTO = stockDTO.Select(stock => new StockDTO
+            var stocksDTO = stocksMenusSuppliers.Select(s => new StockDTO
             {
-                Id = stock.Id,
-                //Name = stock.Name,
-                Measure = stock.Measure,
-                MeasurementUnit = stock.MeasurementUnit,
-                StockCategory = stock.StockCategory,
-                Supplier = stock.Supplier
+                Id = s.Id,
+                Name = s.Name,
+                Measure = s.Measure,
+                MeasurementUnit = s.MeasurementUnit.ToString(),
+                Category = s.Category.ToString(),
+                Supplier = s.Supplier,
+                IsRemoved = s.IsRemoved
             }).ToList();
 
-            //var allStockss = _context.Stocks.Select(stock => new StockDTO
-            //{
-            //    Id = stock.Id,
-            //    Name = stock.Name,
-            //    Measure = stock.Measure,
-            //    //MeasurementUnit = Enum.GetName(typeof(MeasurementUnit), MeasurementUnit.Kilogram,
-            //    //MeasurementUnit = (MeasurementUnit)Enum.ToObject(typeof(MeasurementUnit), stock.MeasurementUnit),
-            //    MeasurementUnit = ((MeasurementUnit)stock.MeasurementUnit).ToString(),
-            //    //StockCategory = (StockCategory)Enum.ToObject(typeof(StockCategory),stock.StockCategory)
-            //    StockCategory = ((StockCategory)stock.StockCategory).ToString(),
-            //    //StockCategory = (StockCategory)Enum.Parse(typeof(StockCategory),stock.StockCategory)
-            //    //StockCategory = Enum.Parse(typeof(StockCategory),stock.StockCategory)
-
-            //}).ToList();
-            return Task.FromResult<List<StockDTO>>(allStocksDTO);
+            return Task.FromResult<List<StockDTO>>(stocksDTO);
         }
     }
 }

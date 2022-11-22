@@ -48,7 +48,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                                           //stock.Name,
                                           stock.Measure,
                                           MeasurementUnit = ((MeasurementUnit)stock.MeasurementUnit).ToString(),
-                                          StockCategory = ((StockCategory)stock.StockCategory).ToString(),
+                                          StockCategory = ((StockCategory)stock.Category).ToString(),
                                           Supplier = supplier.Name
                                       }).ToList();
             //var getSupplierNameById = (id) => joinedStockSupplier.FirstOrDefault(s => s.SupplierId == id);

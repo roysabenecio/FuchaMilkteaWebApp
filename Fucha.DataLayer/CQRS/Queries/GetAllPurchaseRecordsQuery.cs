@@ -19,16 +19,16 @@ namespace Fucha.DataLayer.CQRS.Queries
         }
         public Task<List<PORecordDTO>> Handle(GetAllPurchaseRecordsQuery request, CancellationToken cancellationToken)
         {
-            var getAllPOR = _context.PORecords.Select(por => por).ToList();
-            var getAllPurchaseRecords = _context.PurchaseRecords.Select(pr => pr).ToList();
-            var getAllStocks = _context.Stocks.Select(s => s).ToList();
-            var getAllSuppliers = _context.Suppliers.Select(s => s).ToList();
-            var getAllMenus = _context.Menus.Select(m => m).ToList();
-            var getAllUsers = _context.Users.Select(u => u).ToList();
+            var allPOR = _context.PORecords.Select(por => por).ToList();
+            var allPurchaseRecords = _context.PurchaseRecords.Select(pr => pr).ToList();
+            var allStocks = _context.Stocks.Select(s => s).ToList();
+            var allSuppliers = _context.Suppliers.Select(s => s).ToList();
+            var allMenus = _context.Menus.Select(m => m).ToList();
+            var allUsers = _context.Users.Select(u => u).ToList();
 
-            var StocksMenusSupplier = getAllStocks
+            var stocksMenusSupplier = allStocks
                 .Join(
-                    getAllMenus,
+                    allMenus,
                     s => s.MenuId,
                     m => m.Id,
                     (s, m) => new
@@ -37,14 +37,14 @@ namespace Fucha.DataLayer.CQRS.Queries
                         m.Name,
                         s.Measure,
                         MeasurementUnit = (MeasurementUnit)s.MeasurementUnit,
-                        Category = (StockCategory)s.StockCategory,
-                        Status = (QuantityStatus)s.StockStatus,
+                        Category = (StockCategory)s.Category,
+                        Status = (QuantityStatus)s.Category,
                         s.DateAdded,
                         s.LastRestocked,
                         s.SupplierId
                     })
                 .Join(
-                    getAllSuppliers,
+                    allSuppliers,
                     sm => sm.SupplierId,
                     s => s.Id,
                     (sm, s) => new
@@ -60,9 +60,9 @@ namespace Fucha.DataLayer.CQRS.Queries
                         Supplier = s.Name
                     }).ToList();
 
-            var PRUsers = getAllPurchaseRecords
+            var PRUsers = allPurchaseRecords
                 .Join(
-                    getAllUsers,
+                    allUsers,
                     pr => pr.UserId,
                     u => u.Id,
                     (pr, u) => new
@@ -74,9 +74,9 @@ namespace Fucha.DataLayer.CQRS.Queries
                         User = u.FirstName + " " + u.LastName
                     }).ToList();
 
-            var JoinedPORDTO = getAllPOR
+            var joinedPORDTO = allPOR
                 .Join(
-                    StocksMenusSupplier,
+                    stocksMenusSupplier,
                     por => por.StockId,
                     sms => sms.Id,
                     (por, sms) => new
@@ -109,7 +109,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                         pru.User
                     }).ToList();
 
-            var PORecordsDTO = JoinedPORDTO.Select(por => new PORecordDTO
+            var PORecordsDTO = joinedPORDTO.Select(por => new PORecordDTO
             {
                 Id = por.Id,
                 Stock = por.Name,

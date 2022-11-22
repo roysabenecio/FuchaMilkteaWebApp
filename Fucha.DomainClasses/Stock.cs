@@ -14,8 +14,8 @@ namespace Fucha.DomainClasses
         public int? AddOnId { get; set; }
         public double Measure { get; set; } // nullable
         public MeasurementUnit MeasurementUnit { get; set; } // nullable
-        public StockCategory StockCategory { get; set; }
-        public QuantityStatus? StockStatus { get; set; }
+        public StockCategory Category { get; set; }
+        public QuantityStatus? Status { get; set; }
         //public string? ItemStatus { get; set; }
         public string? DateAdded { get; set; }
         public string? LastRestocked { get; set; }

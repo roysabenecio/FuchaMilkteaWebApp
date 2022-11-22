@@ -125,23 +125,23 @@ namespace Fucha.DataLayer.Models
                 new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "r", Password = "r", Role = "Admin", UserStatus = "Approved" }
                 );
             modelBuilder.Entity<Stock>().HasData(
-                new Stock { Id = 1, MenuId = 1, StockCategory = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
-                new Stock { Id = 2, MenuId = 2, StockCategory = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
-                new Stock { Id = 3, MenuId = 3, StockCategory = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 2 },
-                new Stock { Id = 10, AddOnId = 3, StockCategory = StockCategory.MilkTeaAddOn, Measure = 5, MeasurementUnit = MeasurementUnit.Gram, SupplierId = 3 },
+                new Stock { Id = 1, MenuId = 1, Category = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
+                new Stock { Id = 2, MenuId = 2, Category = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
+                new Stock { Id = 3, MenuId = 3, Category = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 2 },
+                new Stock { Id = 10, AddOnId = 3, Category = StockCategory.MilkTeaAddOn, Measure = 5, MeasurementUnit = MeasurementUnit.Gram, SupplierId = 3 },
 
 
-                new Stock { Id = 41, MenuId = 41, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
-                new Stock { Id = 42, MenuId = 42, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
-                new Stock { Id = 43, MenuId = 43, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
-                new Stock { Id = 44, MenuId = 44, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
-                new Stock { Id = 45, MenuId = 45, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 }
+                new Stock { Id = 41, MenuId = 41, Category = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 42, MenuId = 42, Category = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 43, MenuId = 43, Category = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 44, MenuId = 44, Category = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 45, MenuId = 45, Category = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 }
                 //new Stock { Id = 2, StockCategory = "Utensil", Name= "Milk Tea Cup", Quantity = 10, MeasurementUnit = "Pieces"}
                 );
             modelBuilder.Entity<Supplier>().HasData(
                 new Supplier { Id = 1, Name = "In joy", Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", ContactNumber = 9178077279, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
                 new Supplier { Id = 2, Name = "PHNI Bubble Tea Store", Address = "208A Banawe St., Brgy Tatalon, Quezon City", ContactNumber = 09175858100, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Supplier { Id = 3, Name = "MSCS PrimeGoods, Inc.", Address = "San Juan Manila", ContactNumber = 91712841510, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Supplier { Id = 3, Name = "MSCS PrimeGoods, Inc.", Address = "San Juan Manila", ContactNumber = 9171284151, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
                 new Supplier { Id = 10, Name = "Pizza Crust", Address = "#24 F Pasco Aveue Santolan, Pasig, Philippines", ContactNumber = 9955823086, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") }
                 );
             modelBuilder.Entity<PurchaseRecord>().HasData(

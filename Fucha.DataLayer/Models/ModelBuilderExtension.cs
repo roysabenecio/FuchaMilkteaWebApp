@@ -125,17 +125,17 @@ namespace Fucha.DataLayer.Models
                 new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "r", Password = "r", Role = "Admin", UserStatus = "Approved" }
                 );
             modelBuilder.Entity<Stock>().HasData(
-                new Stock { Id = 1, StockCategory = StockCategory.MilkTeaFlavor, Name = "Okinawa", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
-                new Stock { Id = 2, StockCategory = StockCategory.MilkTeaFlavor, Name = "Red Velvet", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
-                new Stock { Id = 3, StockCategory = StockCategory.MilkTeaFlavor, Name = "Wintermelon", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 2 },
-                new Stock { Id = 4, StockCategory = StockCategory.MilkTeaAddOn, Name = "Nutella", Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 3 },
+                new Stock { Id = 1, MenuId = 1, StockCategory = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
+                new Stock { Id = 2, MenuId = 2, StockCategory = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
+                new Stock { Id = 3, MenuId = 3, StockCategory = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 2 },
+                new Stock { Id = 10, AddOnId = 3, StockCategory = StockCategory.MilkTeaAddOn, Measure = 5, MeasurementUnit = MeasurementUnit.Gram, SupplierId = 3 },
 
 
-                new Stock { Id = 41, StockCategory = StockCategory.Pizza, Name = "Cheesy Garlic", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
-                new Stock { Id = 42, StockCategory = StockCategory.Pizza, Name = "Ham 'N Cheese", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
-                new Stock { Id = 43, StockCategory = StockCategory.Pizza, Name = "Peperoni", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
-                new Stock { Id = 44, StockCategory = StockCategory.Pizza, Name = "Hawaiian", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
-                new Stock { Id = 45, StockCategory = StockCategory.Pizza, Name = "Beef Mushroom", Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 }
+                new Stock { Id = 41, MenuId = 41, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 42, MenuId = 42, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 43, MenuId = 43, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 44, MenuId = 44, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
+                new Stock { Id = 45, MenuId = 45, StockCategory = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 }
                 //new Stock { Id = 2, StockCategory = "Utensil", Name= "Milk Tea Cup", Quantity = 10, MeasurementUnit = "Pieces"}
                 );
             modelBuilder.Entity<Supplier>().HasData(
@@ -145,13 +145,13 @@ namespace Fucha.DataLayer.Models
                 new Supplier { Id = 10, Name = "Pizza Crust", Address = "#24 F Pasco Aveue Santolan, Pasig, Philippines", ContactNumber = 9955823086, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") }
                 );
             modelBuilder.Entity<PurchaseRecord>().HasData(
-                new PurchaseRecord() { Id = 1, SupplierId = 1, ItemQuantity = 2, TotalAmount = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), },
-                new PurchaseRecord() { Id = 2, SupplierId = 3, ItemQuantity = 1, TotalAmount = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), }
+                new PurchaseRecord() { Id = 1, SupplierId = 1, ItemQuantity = 2, TotalAmount = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1 },
+                new PurchaseRecord() { Id = 2, SupplierId = 3, ItemQuantity = 1, TotalAmount = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1}
                 );
             modelBuilder.Entity<PORecord>().HasData(
-                new PORecord() { Id = 1, StockId = 1, Category = StockCategory.MilkTeaFlavor, Quantity = 100, MeasurementUnit = MeasurementUnit.Kilogram, Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
-                new PORecord() { Id = 2, StockId = 2, Category = StockCategory.MilkTeaFlavor, Quantity = 50, MeasurementUnit = MeasurementUnit.Kilogram, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
-                new PORecord() { Id = 3, StockId = 4, Category = StockCategory.MilkTeaAddOn, Quantity = 50, MeasurementUnit = MeasurementUnit.Kilogram, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
+                new PORecord() { Id = 1, StockId = 1, Category = StockCategory.MilkTeaFlavor, Measure = 100, MeasurementUnit = MeasurementUnit.Kilogram, Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord() { Id = 2, StockId = 2, Category = StockCategory.MilkTeaFlavor, Measure = 50, MeasurementUnit = MeasurementUnit.Kilogram, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord() { Id = 3, StockId = 4, Category = StockCategory.MilkTeaAddOn, Measure = 50, MeasurementUnit = MeasurementUnit.Kilogram, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
                 );
         }
     }

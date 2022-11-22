@@ -32,7 +32,7 @@ namespace Fucha.DataLayer.CQRS.Commands
 
             var newStock = new Stock
             {
-                Name = request.Name,
+                //Name = request.Name,
                 Measure = request.Measure,
                 MeasurementUnit = (MeasurementUnit)Enum.Parse(typeof(MeasurementUnit), request.MeasurementUnit),
                 StockCategory = (StockCategory)Enum.Parse(typeof(StockCategory), request.StockCategory),

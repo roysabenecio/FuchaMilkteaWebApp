@@ -14,5 +14,7 @@ namespace Fucha.DomainClasses
         public string Role { get; set; }
         public string UserStatus { get; set; }
         public string? DateCreated { get; set; }
+        public bool isRemoved{ get; set; } = false;
+
     }
 }

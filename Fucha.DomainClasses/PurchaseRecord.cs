@@ -12,6 +12,7 @@ namespace Fucha.DomainClasses
         //public PRStatus Status { get; set; }
 
         public int SupplierId { get; set; }
+        public int UserId { get; set; }
 
         //public int PurchaseRecordId { get; set; }
 

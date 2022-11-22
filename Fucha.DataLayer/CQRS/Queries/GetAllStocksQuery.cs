@@ -45,7 +45,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                                       (stock, supplier) => new
                                       {
                                           stock.Id,
-                                          stock.Name,
+                                          //stock.Name,
                                           stock.Measure,
                                           MeasurementUnit = ((MeasurementUnit)stock.MeasurementUnit).ToString(),
                                           StockCategory = ((StockCategory)stock.StockCategory).ToString(),
@@ -57,7 +57,7 @@ namespace Fucha.DataLayer.CQRS.Queries
             var allStocksDTO = stockDTO.Select(stock => new StockDTO
             {
                 Id = stock.Id,
-                Name = stock.Name,
+                //Name = stock.Name,
                 Measure = stock.Measure,
                 MeasurementUnit = stock.MeasurementUnit,
                 StockCategory = stock.StockCategory,

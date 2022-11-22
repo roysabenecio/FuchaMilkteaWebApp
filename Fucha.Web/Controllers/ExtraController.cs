@@ -17,10 +17,10 @@ namespace Fucha.Web.Controllers
 
         [HttpPost]
         [Route("CalculateStockMeasure")]
-        public async Task<IActionResult> CalculateStockMeasure(CalculateStockMeasureQuery command)
+        public async Task<IActionResult> CalculateStockMeasure(CalculateStockMeasureCommand command)
         {
-            var result = await _mediator.Send(command);
-            return Ok(result);
+            var response = await _mediator.Send(command);
+            return Ok(response);
         }
     }
 }

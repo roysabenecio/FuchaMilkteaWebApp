@@ -1,22 +1,15 @@
 ﻿using Fucha.DataLayer.DTOs;
 using Fucha.DataLayer.Models;
-using Fucha.DomainClasses;
 using Fucha.DomainClasses.Enums;
 using MediatR;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fucha.DataLayer.CQRS.Queries
 {
-    public class GetAllPurchaseRecordsQuery : IRequest<List<PurchaseRecordsDTO>>
+    public class GetAllPurchaseRecordsQuery : IRequest<List<PORecordDTO>>
     {
     }
 
-    public class GetAllPurchaseRecordsQueryHandler : IRequestHandler<GetAllPurchaseRecordsQuery, List<PurchaseRecordsDTO>>
+    public class GetAllPurchaseRecordsQueryHandler : IRequestHandler<GetAllPurchaseRecordsQuery, List<PORecordDTO>>
     {
         private readonly IFuchaMilkteaContext _context;
 
@@ -24,60 +17,113 @@ namespace Fucha.DataLayer.CQRS.Queries
         {
             _context = context;
         }
-        public Task<List<PurchaseRecordsDTO>> Handle(GetAllPurchaseRecordsQuery request, CancellationToken cancellationToken)
+        public Task<List<PORecordDTO>> Handle(GetAllPurchaseRecordsQuery request, CancellationToken cancellationToken)
         {
-            var getAllPOR = _context.PORecords.Select(pr => pr).ToList();
+            var getAllPOR = _context.PORecords.Select(por => por).ToList();
+            var getAllPurchaseRecords = _context.PurchaseRecords.Select(pr => pr).ToList();
             var getAllStocks = _context.Stocks.Select(s => s).ToList();
             var getAllSuppliers = _context.Suppliers.Select(s => s).ToList();
+            var getAllMenus = _context.Menus.Select(m => m).ToList();
+            var getAllUsers = _context.Users.Select(u => u).ToList();
 
-            var PurchaseRecordDTO = getAllStocks
-                        .Join(
-                            getAllPOR,
-                            s => s.Id,
-                            por => por.StockId,
-                            (s, por) => new
-                            {
-                                por.Id,
-                                Item = s.Name,
-                                Category = (StockCategory)s.StockCategory,
-                                s.Measure,
-                                MeasurementUnit = (MeasurementUnit)s.MeasurementUnit,
-                                Price = 100,
-                                s.SupplierId,
-                                por.DatePurchased,
-                                por.PurchaseRecordId
-                            })
-                        .Join(
-                        getAllSuppliers,
-                        joined => joined.SupplierId,
-                        supplier => supplier.Id,
-                        (joined, supplier) => new
-                        {
-                            Id = joined.Id,
-                            joined.PurchaseRecordId,
-                            joined.Item,
-                            joined.Category,
-                            joined.Measure,
-                            joined.MeasurementUnit,
-                            joined.Price,
-                            Supplier = supplier.Name,
-                            joined.DatePurchased
-                        }).ToList();
+            var StocksMenusSupplier = getAllStocks
+                .Join(
+                    getAllMenus,
+                    s => s.MenuId,
+                    m => m.Id,
+                    (s, m) => new
+                    {
+                        s.Id,
+                        m.Name,
+                        s.Measure,
+                        MeasurementUnit = (MeasurementUnit)s.MeasurementUnit,
+                        Category = (StockCategory)s.StockCategory,
+                        Status = (QuantityStatus)s.StockStatus,
+                        s.DateAdded,
+                        s.LastRestocked,
+                        s.SupplierId
+                    })
+                .Join(
+                    getAllSuppliers,
+                    sm => sm.SupplierId,
+                    s => s.Id,
+                    (sm, s) => new
+                    {
+                        sm.Id,
+                        sm.Name,
+                        sm.Category,
+                        sm.Measure,
+                        sm.MeasurementUnit,
+                        sm.Status,
+                        sm.DateAdded,
+                        sm.LastRestocked,
+                        Supplier = s.Name
+                    }).ToList();
 
-            var allPurchaseRecords = PurchaseRecordDTO.Select(pr => new PurchaseRecordsDTO
+            var PRUsers = getAllPurchaseRecords
+                .Join(
+                    getAllUsers,
+                    pr => pr.UserId,
+                    u => u.Id,
+                    (pr, u) => new
+                    {
+                        pr.Id,
+                        pr.ItemQuantity,
+                        pr.TotalAmount,
+                        pr.DatePurchased,
+                        User = u.FirstName + " " + u.LastName
+                    }).ToList();
+
+            var JoinedPORDTO = getAllPOR
+                .Join(
+                    StocksMenusSupplier,
+                    por => por.StockId,
+                    sms => sms.Id,
+                    (por, sms) => new
+                    {
+                        por.Id,
+                        sms.Name,
+                        sms.Category,
+                        sms.Measure,
+                        sms.MeasurementUnit,
+                        por.Price,
+                        por.DatePurchased,
+                        por.PurchaseRecordId,
+                        sms.Supplier,
+                    })
+                .Join(
+                    PRUsers,
+                    por => por.PurchaseRecordId,
+                    pru => pru.Id,
+                    (por, pru) => new
+                    {
+                        por.Id,
+                        por.Name,
+                        por.Category,
+                        por.Measure,
+                        por.MeasurementUnit,
+                        por.Price,
+                        por.DatePurchased,
+                        por.PurchaseRecordId,
+                        por.Supplier,
+                        pru.User
+                    }).ToList();
+
+            var PORecordsDTO = JoinedPORDTO.Select(por => new PORecordDTO
             {
-                Id = pr.Id,
-                PurchaseRecordId = pr.PurchaseRecordId,
-                Item = pr.Item,
-                Category = pr.Category.ToString(),
-                Measure = pr.Measure,
-                MeasurementUnit = pr.MeasurementUnit.ToString(),
-                Price = pr.Price,
-                Supplier = pr.Supplier,
-                DatePurchased = pr.DatePurchased,
+                Id = por.Id,
+                Stock = por.Name,
+                Category = por.Category.ToString(),
+                Measure = por.Measure,
+                MeasurementUnit = por.MeasurementUnit.ToString(),
+                Price = por.Price,
+                DatePurchased = por.DatePurchased,
+                Supplier = por.Supplier,
+                PurchaseRecordId = por.PurchaseRecordId,
+                User = por.User
             }).ToList();
 
-            return Task.FromResult<List<PurchaseRecordsDTO>>(allPurchaseRecords);
+            return Task.FromResult<List<PORecordDTO>>(PORecordsDTO);
         }
     }
 }

@@ -17,6 +17,14 @@ namespace Fucha.Web.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
+        [Route("AllOrders")]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            var result = await _mediator.Send(new GetAllOrdersQuery());
+            return Ok(result);
+        }
+
         [HttpPost]
         [Route("SalesOrders")]
         public async Task<IActionResult> PostSalesOrders([FromBody] PostSalesOrdersCommand command)

@@ -4,8 +4,10 @@
     {
         //public int OrderId { get; set; }
         //public List<Order>? Orders { get; set; }
+        public int ItemQuantity { get; set; }
         public string DateSold { get; set; }
         public double TotalSales { get; set; }
+        public int UserId { get; set; }
 
         //public Menu MenuItem { get; set; } //Product
 

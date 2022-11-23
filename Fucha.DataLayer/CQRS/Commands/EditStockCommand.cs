@@ -33,7 +33,6 @@ namespace Fucha.DataLayer.CQRS.Commands
         public Task<StockDTO> Handle(EditStockCommand request, CancellationToken cancellationToken)
         {
             var selectedStock = _context.Stocks.FirstOrDefault(x => x.Id == request.Id);
-            //selectedStock.Name = request.Name;
             selectedStock.Measure = request.Measure;
             selectedStock.MeasurementUnit = (MeasurementUnit)Enum.Parse(typeof(MeasurementUnit), request.MeasurementUnit);
             selectedStock.Category = (StockCategory)Enum.Parse(typeof(StockCategory), request.StockCategory);
@@ -41,17 +40,12 @@ namespace Fucha.DataLayer.CQRS.Commands
             var editedStock = new StockDTO
             {
                 Id = selectedStock.Id,
-                //Name = selectedStock.Name,
                 Measure = selectedStock.Measure,
                 MeasurementUnit = selectedStock.MeasurementUnit.ToString(),
                 Category = selectedStock.Category.ToString()
-
             };
             
             return Task.FromResult(editedStock);
-
-
         }
-
     }
 }

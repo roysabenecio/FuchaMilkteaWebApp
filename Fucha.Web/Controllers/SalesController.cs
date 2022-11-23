@@ -1,5 +1,6 @@
 ﻿using Fucha.DataLayer.CQRS.Commands;
 using Fucha.DataLayer.CQRS.Queries;
+using Fucha.DataLayer.DTOs;
 using Fucha.DomainClasses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,17 +19,14 @@ namespace Fucha.Web.Controllers
 
         [HttpPost]
         [Route("SalesOrders")]
-        //public async Task<IActionResult> PostSalesOrders([FromBody]PostSalesOrdersCommand request)
-        //public async Task<IActionResult> PostSalesOrders([FromBody] PostSalesOrdersCommand request)
-        public async Task<IActionResult> PostSalesOrders([FromBody] List<Order> orders)
+        public async Task<IActionResult> PostSalesOrders([FromBody] PostSalesOrdersCommand command)
         {
-            if (orders.Count != 0)
+            if (command.Orders != null)
             {
-                var result = await _mediator.Send(new PostSalesOrdersCommand(orders));
-                //var result = await _mediator.Send(new PostSalesOrdersCommand());
-                //var result = await _mediator.Send(request);
+                var result = await _mediator.Send(command);
                 return Ok(result);
-            } else
+            }
+            else
             {
                 return NoContent();
             }

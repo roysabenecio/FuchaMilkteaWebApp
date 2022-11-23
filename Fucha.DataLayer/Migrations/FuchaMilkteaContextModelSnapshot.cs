@@ -537,11 +537,9 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<double?>("AddOnPrice")
                         .HasColumnType("float");
 
-                    b.Property<int>("MenuCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MenuId")
-                        .HasColumnType("int");
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -556,8 +554,8 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<int>("SaleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SizeId")
-                        .HasColumnType("int");
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -602,7 +600,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 1,
                             Category = 0,
-                            DatePurchased = "Tuesday, 22 November 2022",
+                            DatePurchased = "Wednesday, 23 November 2022",
                             Measure = 100.0,
                             MeasurementUnit = 1,
                             Price = 100.0,
@@ -613,7 +611,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 2,
                             Category = 0,
-                            DatePurchased = "Tuesday, 22 November 2022",
+                            DatePurchased = "Wednesday, 23 November 2022",
                             Measure = 50.0,
                             MeasurementUnit = 1,
                             Price = 50.0,
@@ -624,7 +622,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 3,
                             Category = 1,
-                            DatePurchased = "Tuesday, 22 November 2022",
+                            DatePurchased = "Wednesday, 23 November 2022",
                             Measure = 50.0,
                             MeasurementUnit = 1,
                             Price = 50.0,
@@ -664,7 +662,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            DatePurchased = "Tuesday, 22 November 2022",
+                            DatePurchased = "Wednesday, 23 November 2022",
                             ItemQuantity = 2,
                             SupplierId = 1,
                             TotalAmount = 100.0,
@@ -673,7 +671,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 2,
-                            DatePurchased = "Tuesday, 22 November 2022",
+                            DatePurchased = "Wednesday, 23 November 2022",
                             ItemQuantity = 1,
                             SupplierId = 3,
                             TotalAmount = 50.0,
@@ -758,8 +756,14 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ItemQuantity")
+                        .HasColumnType("int");
+
                     b.Property<double>("TotalSales")
                         .HasColumnType("float");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -995,7 +999,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 1,
                             Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City",
                             ContactNumber = 9178077279L,
-                            DateAdded = "Tuesday, 22 November 2022",
+                            DateAdded = "Wednesday, 23 November 2022",
                             Name = "In joy"
                         },
                         new
@@ -1003,7 +1007,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 2,
                             Address = "208A Banawe St., Brgy Tatalon, Quezon City",
                             ContactNumber = 9175858100L,
-                            DateAdded = "Tuesday, 22 November 2022",
+                            DateAdded = "Wednesday, 23 November 2022",
                             Name = "PHNI Bubble Tea Store"
                         },
                         new
@@ -1011,7 +1015,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 3,
                             Address = "San Juan Manila",
                             ContactNumber = 9171284151L,
-                            DateAdded = "Tuesday, 22 November 2022",
+                            DateAdded = "Wednesday, 23 November 2022",
                             Name = "MSCS PrimeGoods, Inc."
                         },
                         new
@@ -1019,7 +1023,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 10,
                             Address = "#24 F Pasco Aveue Santolan, Pasig, Philippines",
                             ContactNumber = 9955823086L,
-                            DateAdded = "Tuesday, 22 November 2022",
+                            DateAdded = "Wednesday, 23 November 2022",
                             Name = "Pizza Crust"
                         });
                 });

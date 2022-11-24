@@ -44,7 +44,7 @@ namespace Fucha.DataLayer.Models
 
         //Inventory Side
         public DbSet<Stock> Stocks { get; set; }
-        public DbSet<StockCategorys> StockCategories { get; set; }
+        //public DbSet<StockCategorys> StockCategories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 
         public new int SaveChanges()
@@ -56,9 +56,15 @@ namespace Fucha.DataLayer.Models
         {
             // Azure Connection String
             //var connectionString = "Data Source = tcp:fuchaappdb.database.windows.net,1433; Initial Catalog = FuchaAppDB; User Id = dbAdmin@fuchaappdb; Password = @CapstoneDb;";
-            var connectionString = "Data Source=DESKTOP-LMK627L\\SQLEXPRESS;Initial Catalog=fuchaappdb;Integrated Security=True";
+            var connectionString = "server=localhost; port=3306; database=fuchaappdb; username=root; password=adminPass";
+
+
+            //var connectionString = "Data Source=DESKTOP-LMK627L\\SQLEXPRESS;Initial Catalog=fuchaappdb;Integrated Security=True";
             //var connectionString = "Data Source=DESKTOP-8QM55PT;Initial Catalog=fuchaappdb;Integrated Security=True";
-            optionsBuilder.UseSqlServer(connectionString);
+            //optionsBuilder.UseSqlServer(connectionString);
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 30));
+
+            optionsBuilder.UseMySql(connectionString, serverVersion);
         }
     }
 
@@ -85,7 +91,7 @@ namespace Fucha.DataLayer.Models
 
         //Inventory Side
         DbSet<Stock> Stocks { get; set; }
-        DbSet<StockCategorys> StockCategories { get; set; }
+        //DbSet<StockCategorys> StockCategories { get; set; }
         DbSet<Supplier> Suppliers { get; set; }
 
 

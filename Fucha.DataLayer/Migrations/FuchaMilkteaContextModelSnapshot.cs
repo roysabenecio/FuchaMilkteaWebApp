@@ -3,7 +3,6 @@ using System;
 using Fucha.DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -18,9 +17,7 @@ namespace Fucha.DataLayer.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.9")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Fucha.DomainClasses.AddOn", b =>
                 {
@@ -28,14 +25,12 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<double>("AddOnPrice")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -80,14 +75,12 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<int>("MenuCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -282,11 +275,9 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -341,8 +332,6 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<int>("MenuCategoryId")
                         .HasColumnType("int");
 
@@ -350,7 +339,7 @@ namespace Fucha.DataLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int?>("SizeId")
                         .HasColumnType("int");
@@ -529,24 +518,22 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("AddOn")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<double?>("AddOnPrice")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Price")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -555,7 +542,7 @@ namespace Fucha.DataLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -568,22 +555,20 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
                     b.Property<string>("DatePurchased")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Measure")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int>("MeasurementUnit")
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int>("PurchaseRecordId")
                         .HasColumnType("int");
@@ -600,7 +585,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 1,
                             Category = 0,
-                            DatePurchased = "Wednesday, 23 November 2022",
+                            DatePurchased = "Thursday, 24 November 2022",
                             Measure = 100.0,
                             MeasurementUnit = 1,
                             Price = 100.0,
@@ -611,7 +596,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 2,
                             Category = 0,
-                            DatePurchased = "Wednesday, 23 November 2022",
+                            DatePurchased = "Thursday, 24 November 2022",
                             Measure = 50.0,
                             MeasurementUnit = 1,
                             Price = 50.0,
@@ -622,7 +607,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 3,
                             Category = 1,
-                            DatePurchased = "Wednesday, 23 November 2022",
+                            DatePurchased = "Thursday, 24 November 2022",
                             Measure = 50.0,
                             MeasurementUnit = 1,
                             Price = 50.0,
@@ -637,10 +622,8 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("DatePurchased")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("ItemQuantity")
                         .HasColumnType("int");
@@ -649,7 +632,7 @@ namespace Fucha.DataLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("TotalAmount")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -662,7 +645,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            DatePurchased = "Wednesday, 23 November 2022",
+                            DatePurchased = "Thursday, 24 November 2022",
                             ItemQuantity = 2,
                             SupplierId = 1,
                             TotalAmount = 100.0,
@@ -671,7 +654,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 2,
-                            DatePurchased = "Wednesday, 23 November 2022",
+                            DatePurchased = "Thursday, 24 November 2022",
                             ItemQuantity = 1,
                             SupplierId = 3,
                             TotalAmount = 50.0,
@@ -685,8 +668,6 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<int?>("AddOnId")
                         .HasColumnType("int");
 
@@ -697,7 +678,7 @@ namespace Fucha.DataLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("RequiredMeasure")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int?>("SizeId")
                         .HasColumnType("int");
@@ -758,17 +739,15 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("DateSold")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("ItemQuantity")
                         .HasColumnType("int");
 
                     b.Property<double>("TotalSales")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -784,11 +763,9 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -823,8 +800,6 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<int?>("AddOnId")
                         .HasColumnType("int");
 
@@ -832,16 +807,16 @@ namespace Fucha.DataLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DateAdded")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("LastRestocked")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Measure")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int>("MeasurementUnit")
                         .HasColumnType("int");
@@ -952,50 +927,25 @@ namespace Fucha.DataLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.StockCategorys", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("MeasurementUnit")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StockCategories");
-                });
-
             modelBuilder.Entity("Fucha.DomainClasses.Supplier", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<long>("ContactNumber")
                         .HasColumnType("bigint");
 
                     b.Property<string>("DateAdded")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -1007,7 +957,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 1,
                             Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City",
                             ContactNumber = 9178077279L,
-                            DateAdded = "Wednesday, 23 November 2022",
+                            DateAdded = "Thursday, 24 November 2022",
                             Name = "In joy"
                         },
                         new
@@ -1015,7 +965,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 2,
                             Address = "208A Banawe St., Brgy Tatalon, Quezon City",
                             ContactNumber = 9175858100L,
-                            DateAdded = "Wednesday, 23 November 2022",
+                            DateAdded = "Thursday, 24 November 2022",
                             Name = "PHNI Bubble Tea Store"
                         },
                         new
@@ -1023,7 +973,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 3,
                             Address = "San Juan Manila",
                             ContactNumber = 9171284151L,
-                            DateAdded = "Wednesday, 23 November 2022",
+                            DateAdded = "Thursday, 24 November 2022",
                             Name = "MSCS PrimeGoods, Inc."
                         },
                         new
@@ -1031,7 +981,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 10,
                             Address = "#24 F Pasco Aveue Santolan, Pasig, Philippines",
                             ContactNumber = 9955823086L,
-                            DateAdded = "Wednesday, 23 November 2022",
+                            DateAdded = "Thursday, 24 November 2022",
                             Name = "Pizza Crust"
                         });
                 });
@@ -1042,37 +992,35 @@ namespace Fucha.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("DateCreated")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserStatus")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("isRemoved")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 

@@ -142,6 +142,10 @@
               "target": "Package",
               "version": "[6.0.9, )"
             },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[6.0.7, )"
@@ -317,6 +321,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.9, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[6.0.2, )"
             }
           },
           "imports": [

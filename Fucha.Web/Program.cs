@@ -5,10 +5,15 @@ using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 30));
+
 /* PostgreSql Connection */
 builder.Services.AddDbContext<FuchaMilkteaContext>(options =>
     //options.UseSqlServer(builder.Configuration.GetConnectionString("AzureConnectionString")));
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnectionString"))); 
+
+    options.UseMySql(builder.Configuration.GetConnectionString("MySQLServerConnectionString"), serverVersion));
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnectionString"))); 
+
 
 //builder.Services.AddCors(options =>
 //{

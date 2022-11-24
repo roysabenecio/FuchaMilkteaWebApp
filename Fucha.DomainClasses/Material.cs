@@ -1,14 +1,18 @@
 ﻿using Fucha.DomainClasses.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fucha.DomainClasses
 {
     public class Material : BaseEntity
     {
-        public string Name { get; set; }
+        [Required]
+        public string? Name { get; set; }
         
         public double Quantity { get; set; } // nullable
-        public string MeasurementType { get; set; } // nullable
-        public string MaterialCategory { get; set; }
+        [Required]
+        public string? MeasurementType { get; set; } // nullable
+        [Required]
+        public string? MaterialCategory { get; set; }
         public string? MaterialStatus { get; set; }
 
         //public Measurement Measurement { get; set; }

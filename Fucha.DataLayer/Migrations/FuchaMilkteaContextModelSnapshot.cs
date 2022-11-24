@@ -709,6 +709,14 @@ namespace Fucha.DataLayer.Migrations
                     b.HasData(
                         new
                         {
+                            Id = 1,
+                            MeasurementUnit = 0,
+                            MenuId = 1,
+                            RequiredMeasure = 15.0,
+                            SizeId = 1
+                        },
+                        new
+                        {
                             Id = 31,
                             MeasurementUnit = 3,
                             MenuId = 41,

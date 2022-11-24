@@ -1,28 +1,20 @@
 ﻿using Fucha.DataLayer.DTOs;
+using Fucha.DataLayer.Extras;
 using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
-using Fucha.DomainClasses.Enums;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
     public class PostSalesOrdersCommand : IRequest<OrderDTO>
-    //public class PostSalesOrdersCommand : IRequest<List<Order>>
     {
         public int UserId { get; set; }
+        [Required]
         public List<OrderDTO> Orders { get; set; }
     }
 
     public class PostSalesOrdersCommandHandler : IRequestHandler<PostSalesOrdersCommand, OrderDTO>
-    //public class PostSalesOrdersCommandHandler : IRequestHandler<PostSalesOrdersCommand, List<Order>>
     {
         private readonly IFuchaMilkteaContext _context;
         public PostSalesOrdersCommandHandler(IFuchaMilkteaContext dbContext)
@@ -31,104 +23,75 @@ namespace Fucha.DataLayer.CQRS.Commands
         }
 
         public Task<OrderDTO> Handle(PostSalesOrdersCommand request, CancellationToken cancellationToken)
-        //public Task<List<Order>> Handle(PostSalesOrdersCommand request, CancellationToken cancellationToken)
         {
-            var allPOR = _context.PORecords.Select(por => por).ToList();
-            var allPurchaseRecords = _context.PurchaseRecords.Select(pr => pr).ToList();
-            var allStocks = _context.Stocks.Select(s => s).ToList();
-            var allSuppliers = _context.Suppliers.Select(s => s).ToList();
-            var allMenus = _context.Menus.Select(m => m).ToList();
-            var allUsers = _context.Users.Select(u => u).ToList();
+            Calculate calculate = new();
+            var allRecipes = _context.Recipes.Select(r => r).ToList();
+            var checkRecipe = (int menuId) => _context.Recipes.FirstOrDefault(r => r.MenuId == menuId);
+            var checkStock = (int menuId) => _context.Stocks.FirstOrDefault(s => s.MenuId == menuId);
+            var isMilkTea = (int catId) => catId == 1 || catId == 2;
 
-            //var id = request.UserId;
-
-            //if (request.Orders.Count != 0)
+            //request.Orders.ForEach(order =>
             //{
-            //var t = request.Orders;
+            //    var currentRecipe = checkRecipe(order.MenuId);
+            //    var currentStock = checkStock(order.MenuId);
+            //    currentStock.Measure -= calculate.AutoCalculate((order.Quantity * currentRecipe.RequiredMeasure), (int)currentRecipe.MeasurementUnit, (int)currentStock.MeasurementUnit);
+            //    _context.SaveChanges();
+            //});
+
             var newSale = new SaleTransaction
             {
-                DateSold = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")
+                ItemQuantity = request.Orders.Count,
+                DateSold = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"),
+                UserId = request.UserId
             };
             _context.SalesTransaction.Add(newSale);
             _context.SaveChanges();
 
             var currentSaleId = newSale.Id;
-            //}
-
-            //var orders = new Order();
-
-            //request.Orders.ForEach(dto => )
-
-
-            //request.Orders.Select(dto =>
-            //{
-            //    if (dto.MenuCategoryId == 1 || dto.MenuCategoryId == 2)
-            //    {
-            //        new Order
-            //        {
-            //            Name = _context.Menus.FirstOrDefault(m => m.Id == dto.MenuId).Name,
-            //            Category = _context.MenuCategories.FirstOrDefault(mc => mc.Id == dto.MenuCategoryId).Name,
-            //            Quantity = dto.Quantity,
-            //            Price = dto.Price,
-            //            AddOn = dto.AddOn,
-            //            AddOnPrice = dto.AddOnPrice,
-            //            Size = _context.Sizes.FirstOrDefault(s => s.Id == dto.SizeId).Name,
-            //            SaleId = currentSaleId
-            //        }.ToList();
-            //    }
-            //    else
-            //    {
-            //        new Order
-            //        {
-
-            //            Name = _context.Menus.FirstOrDefault(m => m.Id == dto.MenuId).Name,
-            //            Category = _context.MenuCategories.FirstOrDefault(mc => mc.Id == dto.MenuCategoryId).Name,
-            //            Quantity = dto.Quantity,
-            //            Price = dto.Price,
-            //            SaleId = currentSaleId
-            //        }
-            //    }
-
-            //});
-
-            //var orders = request.Orders.Select(dto => new Order
-            //{
-            //    Name = _context.Menus.FirstOrDefault(m => m.Id == dto.MenuId).Name,
-            //    Category = _context.MenuCategories.FirstOrDefault(mc => mc.Id == dto.MenuCategoryId).Name,
-            //    Quantity = dto.Quantity,
-            //    Price = dto.Price,
-            //    AddOn = dto.AddOn ?? null,
-            //    AddOnPrice = dto.AddOnPrice ?? null,
-            //    Size = _context.Sizes.FirstOrDefault(s => s.Id == dto.SizeId).Name ?? null,
-            //    SaleId = currentSaleId
-            //}).ToList();
 
             request.Orders.ForEach(o =>
             {
-                if (o.MenuCategoryId == 1 || o.MenuCategoryId == 2)
+                if (isMilkTea(o.MenuCategoryId))
                 {
                     _context.Orders.Add(new Order
                     {
-                        Name = _context.Menus.FirstOrDefault(m => m.Id == o.MenuId).Name,
-                        Category = _context.MenuCategories.FirstOrDefault(mc => mc.Id == o.MenuCategoryId).Name,
+                        Name = _context.Menus.First(m => m.Id == o.MenuId).Name,
+                        Category = _context.MenuCategories.First(mc => mc.Id == o.MenuCategoryId).Name,
                         Quantity = o.Quantity,
                         Price = o.Price,
                         AddOn = o.AddOn ?? null,
                         AddOnPrice = o.AddOnPrice ?? null,
-                        Size = _context.Sizes.FirstOrDefault(s => s.Id == o.SizeId).Name ?? null,
+                        Size = _context.Sizes.First(s => s.Id == o.SizeId).Name ?? null,
                         SaleId = currentSaleId
                     });
+
+                    //Deduct milktea in stocks
+                    var currentRecipe = checkRecipe(o.MenuId);
+                    var currentStock = checkStock(o.MenuId);
+                    currentStock.Measure -= calculate.AutoCalculate(
+                        (o.Quantity * currentRecipe.RequiredMeasure), 
+                        (int)currentRecipe.MeasurementUnit, 
+                        (int)currentStock.MeasurementUnit);
+
                 }
                 else
                 {
                     _context.Orders.Add(new Order
                     {
-                        Name = _context.Menus.FirstOrDefault(m => m.Id == o.MenuId).Name,
-                        Category = _context.MenuCategories.FirstOrDefault(mc => mc.Id == o.MenuCategoryId).Name,
+                        Name = _context.Menus.First(m => m.Id == o.MenuId).Name,
+                        Category = _context.MenuCategories.First(mc => mc.Id == o.MenuCategoryId).Name,
                         Quantity = o.Quantity,
                         Price = o.Price,
                         SaleId = currentSaleId
                     });
+
+                    //Deduct menu in stocks
+                    var currentRecipe = checkRecipe(o.MenuId);
+                    var currentStock = checkStock(o.MenuId);
+                    currentStock.Measure -= calculate.AutoCalculate(
+                        (o.Quantity * currentRecipe.RequiredMeasure),
+                        (int)currentRecipe.MeasurementUnit,
+                        (int)currentStock.MeasurementUnit);
                 }
             });
 
@@ -170,21 +133,18 @@ namespace Fucha.DataLayer.CQRS.Commands
             //    Price = order.Price,
             //}).ToList();
 
-            //newOrders.ForEach(x =>
-            //{
-            //    _context.Orders.Add(x);
-            //    _context.SaveChanges();
-            //});
-
-            //foreach (var order in newOrders)
-            //{
-            //    _context.Orders.Add(order);
-            //    _context.SaveChanges();
-            //}
-            // addRange() option
-
-            var currentOrdersPrices = _context.Orders.Select(o => o).Where(o => o.SaleId == currentSaleId).Select(o => o.Price).ToList().Sum();
-            var currentAddOnsPrices = _context.Orders.Select(o => o).Where(o => o.SaleId == currentSaleId).Select(o => o.AddOnPrice).ToList().Sum();
+            var currentOrdersPrices = _context.Orders
+                .Select(o => o)
+                .Where(o => o.SaleId == currentSaleId)
+                .Select(o => o.Price)
+                .ToList()
+                .Sum();
+            var currentAddOnsPrices = _context.Orders
+                .Select(o => o)
+                .Where(o => o.SaleId == currentSaleId)
+                .Select(o => o.AddOnPrice)
+                .ToList()
+                .Sum();
             var totalPrice = currentAddOnsPrices + currentOrdersPrices;
             //foreach (var price in currentOrdersPrices)
             //{
@@ -202,7 +162,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             currentSale.TotalSales = (double) totalPrice;
             _context.SaveChanges();
 
-            OrderDTO isT = new OrderDTO();
+            OrderDTO isT = new();
 
             return Task.FromResult<OrderDTO>(isT);
         }

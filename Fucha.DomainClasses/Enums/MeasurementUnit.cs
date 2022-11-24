@@ -2,9 +2,9 @@
 {
     public enum MeasurementUnit
     {
-        Gram,
-        Kilogram,
-        Liter,
+        Grams,
+        Kilograms,
+        Liters,
         Pieces
     }
 }

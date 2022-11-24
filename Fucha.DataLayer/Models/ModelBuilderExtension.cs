@@ -9,7 +9,9 @@ namespace Fucha.DataLayer.Models
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Recipe>().HasData(
-                new Recipe { Id = 31, MenuId = 41, MeasurementUnit = MeasurementUnit.Pieces, RequiredMeasure = 1   },
+                new Recipe { Id = 1, MenuId = 1, SizeId = 1, MeasurementUnit = MeasurementUnit.Grams, RequiredMeasure = 15 },
+
+                new Recipe { Id = 31, MenuId = 41, MeasurementUnit = MeasurementUnit.Pieces, RequiredMeasure = 1 },
                 new Recipe { Id = 32, MenuId = 42, MeasurementUnit = MeasurementUnit.Pieces, RequiredMeasure = 1 },
 
                 new Recipe { Id = 33, MenuId = 43, MeasurementUnit = MeasurementUnit.Pieces, RequiredMeasure = 1 },
@@ -125,10 +127,10 @@ namespace Fucha.DataLayer.Models
                 new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "r", Password = "r", Role = "Admin", UserStatus = "Approved" }
                 );
             modelBuilder.Entity<Stock>().HasData(
-                new Stock { Id = 1, MenuId = 1, Category = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
-                new Stock { Id = 2, MenuId = 2, Category = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 1 },
-                new Stock { Id = 3, MenuId = 3, Category = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilogram, SupplierId = 2 },
-                new Stock { Id = 10, AddOnId = 3, Category = StockCategory.MilkTeaAddOn, Measure = 5, MeasurementUnit = MeasurementUnit.Gram, SupplierId = 3 },
+                new Stock { Id = 1, MenuId = 1, Category = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, SupplierId = 1 },
+                new Stock { Id = 2, MenuId = 2, Category = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, SupplierId = 1 },
+                new Stock { Id = 3, MenuId = 3, Category = StockCategory.MilkTeaFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, SupplierId = 2 },
+                new Stock { Id = 10, AddOnId = 3, Category = StockCategory.MilkTeaAddOn, Measure = 5, MeasurementUnit = MeasurementUnit.Grams, SupplierId = 3 },
 
 
                 new Stock { Id = 41, MenuId = 41, Category = StockCategory.Pizza, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, SupplierId = 10 },
@@ -149,9 +151,9 @@ namespace Fucha.DataLayer.Models
                 new PurchaseRecord() { Id = 2, SupplierId = 3, ItemQuantity = 1, TotalAmount = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1}
                 );
             modelBuilder.Entity<PORecord>().HasData(
-                new PORecord() { Id = 1, StockId = 1, Category = StockCategory.MilkTeaFlavor, Measure = 100, MeasurementUnit = MeasurementUnit.Kilogram, Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
-                new PORecord() { Id = 2, StockId = 2, Category = StockCategory.MilkTeaFlavor, Measure = 50, MeasurementUnit = MeasurementUnit.Kilogram, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
-                new PORecord() { Id = 3, StockId = 4, Category = StockCategory.MilkTeaAddOn, Measure = 50, MeasurementUnit = MeasurementUnit.Kilogram, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
+                new PORecord() { Id = 1, StockId = 1, Category = StockCategory.MilkTeaFlavor, Measure = 100, MeasurementUnit = MeasurementUnit.Kilograms, Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord() { Id = 2, StockId = 2, Category = StockCategory.MilkTeaFlavor, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord() { Id = 3, StockId = 4, Category = StockCategory.MilkTeaAddOn, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
                 );
         }
     }

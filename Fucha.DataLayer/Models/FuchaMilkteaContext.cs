@@ -47,7 +47,7 @@ namespace Fucha.DataLayer.Models
         public DbSet<StockCategorys> StockCategories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 
-        public int SaveChanges()
+        public new int SaveChanges()
         {
             return base.SaveChanges();
         }

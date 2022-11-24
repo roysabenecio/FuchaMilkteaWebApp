@@ -20,18 +20,7 @@ namespace Fucha.DataLayer.CQRS.Queries
 
         public Task<List<Order>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
         {
-            var allOrders = _context.Orders.Select(o => new Order
-            {
-                Name = o.Name,
-                Category = o.Category,
-                Quantity = o.Quantity,
-                Price = o.Price,
-                AddOn = o.AddOn,
-                AddOnPrice = o.AddOnPrice,
-                Size = o.Size,
-                SaleId = o.SaleId
-
-            }).ToList();
+            var allOrders = _context.Orders.Select(o => o).ToList();
             return Task.FromResult(allOrders);
         }
     }

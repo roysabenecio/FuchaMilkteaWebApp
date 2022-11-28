@@ -4,6 +4,7 @@ using Fucha.DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fucha.DataLayer.Migrations
 {
     [DbContext(typeof(FuchaMilkteaContext))]
-    partial class FuchaMilkteaContextModelSnapshot : ModelSnapshot
+    [Migration("20221128031633_I10")]
+    partial class I10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -679,28 +681,6 @@ namespace Fucha.DataLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.R", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("AddOnId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MenuId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SizeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Rs");
-                });
-
             modelBuilder.Entity("Fucha.DomainClasses.Recipe", b =>
                 {
                     b.Property<int>("Id")
@@ -871,9 +851,6 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<int?>("MenuId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("Status")
                         .HasColumnType("int");
 
@@ -881,8 +858,6 @@ namespace Fucha.DataLayer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RId");
 
                     b.ToTable("Stocks");
 
@@ -1094,18 +1069,6 @@ namespace Fucha.DataLayer.Migrations
                             UserStatus = "Approved",
                             isRemoved = false
                         });
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.Stock", b =>
-                {
-                    b.HasOne("Fucha.DomainClasses.R", null)
-                        .WithMany("Stocks")
-                        .HasForeignKey("RId");
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.R", b =>
-                {
-                    b.Navigation("Stocks");
                 });
 #pragma warning restore 612, 618
         }

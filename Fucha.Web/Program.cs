@@ -11,8 +11,8 @@ var serverVersion = new MySqlServerVersion(new Version(8, 0, 30));
 builder.Services.AddDbContext<FuchaMilkteaContext>(options =>
     //options.UseSqlServer(builder.Configuration.GetConnectionString("AzureConnectionString")));
 
-    options.UseMySql(builder.Configuration.GetConnectionString("MySQLServerConnectionString"), serverVersion));
-    //options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnectionString"))); 
+    //options.UseMySql(builder.Configuration.GetConnectionString("MySQLServerConnectionString"), serverVersion));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnectionString")));
 
 
 //builder.Services.AddCors(options =>

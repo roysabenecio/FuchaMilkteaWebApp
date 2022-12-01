@@ -4,6 +4,7 @@ using Fucha.DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fucha.DataLayer.Migrations
 {
     [DbContext(typeof(FuchaMilkteaContext))]
-    partial class FuchaMilkteaContextModelSnapshot : ModelSnapshot
+    [Migration("20221201100212_I8")]
+    partial class I8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2289,6 +2291,7 @@ namespace Fucha.DataLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DateAdded")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -2438,6 +2441,7 @@ namespace Fucha.DataLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserStatus")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isRemoved")

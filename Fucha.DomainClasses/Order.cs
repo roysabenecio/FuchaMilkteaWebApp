@@ -1,24 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Fucha.DomainClasses
 {
     public class Order : BaseEntity
     {
-        //public int MenuId { get; set; } //
-        //public int MenuCategoryId { get; set; }
-        ////public string Name { get; set; }
-        //public int Quantity { get; set; }
-        //public double Price { get; set; }
-        //public string? AddOn { get; set; }
-        //public double? AddOnPrice { get; set; }
-        //public int? SizeId { get; set; }
-
-        //public int? SaleId { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]

@@ -9,13 +9,8 @@ namespace Fucha.DomainClasses
         public int ItemQuantity { get; set; }
         public double TotalAmount { get; set; }
         public string? DatePurchased { get; set; }
-        //public PRStatus Status { get; set; }
 
         public int SupplierId { get; set; }
         public int UserId { get; set; }
-
-        //public int PurchaseRecordId { get; set; }
-
-        //public User? User { get; set; }
     }
 }

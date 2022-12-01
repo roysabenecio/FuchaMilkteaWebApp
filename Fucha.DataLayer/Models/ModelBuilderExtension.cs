@@ -338,16 +338,30 @@ namespace Fucha.DataLayer.Models
                 );
 
             modelBuilder.Entity<PurchaseRecord>().HasData(
-                new PurchaseRecord() { Id = 1, SupplierId = 1, ItemQuantity = 2, TotalAmount = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1 },
-                new PurchaseRecord() { Id = 2, SupplierId = 3, ItemQuantity = 1, TotalAmount = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1 }
+                new PurchaseRecord { Id = 1, SupplierId = 1, ItemQuantity = 2, TotalAmount = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1 },
+                new PurchaseRecord { Id = 2, SupplierId = 3, ItemQuantity = 1, TotalAmount = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1 }
                 );
 
             modelBuilder.Entity<PORecord>().HasData(
-                new PORecord() { Id = 1, StockId = 1, Category = StockCategory.MilkTeaFlavor, Measure = 100, MeasurementUnit = MeasurementUnit.Kilograms, Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
-                new PORecord() { Id = 2, StockId = 2, Category = StockCategory.MilkTeaFlavor, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
-                new PORecord() { Id = 3, StockId = 4, Category = StockCategory.MilkTeaAddOn, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
+                new PORecord { Id = 1, StockId = 1, Category = StockCategory.MilkTeaFlavor, Measure = 100, MeasurementUnit = MeasurementUnit.Kilograms, Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord { Id = 2, StockId = 2, Category = StockCategory.MilkTeaFlavor, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord { Id = 3, StockId = 4, Category = StockCategory.MilkTeaAddOn, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
                 );
-            
+
+            modelBuilder.Entity<SaleTransaction>().HasData(
+                new SaleTransaction { Id = 1, ItemQuantity = 10, DateSold = "01/01/2022 16:30:21", TotalSales = 5500, UserId = 1 },
+                new SaleTransaction { Id = 2, ItemQuantity = 10, DateSold = "02/01/2022 16:30:21", TotalSales = 4352, UserId = 1 },
+                new SaleTransaction { Id = 3, ItemQuantity = 10, DateSold = "03/01/2022 16:30:21", TotalSales = 3670, UserId = 1 },
+                new SaleTransaction { Id = 4, ItemQuantity = 10, DateSold = "04/01/2022 16:30:21", TotalSales = 8710, UserId = 1 },
+                new SaleTransaction { Id = 5, ItemQuantity = 10, DateSold = "05/01/2022 16:30:21", TotalSales = 4405, UserId = 1 },
+                new SaleTransaction { Id = 6, ItemQuantity = 10, DateSold = "06/01/2022 16:30:21", TotalSales = 5123, UserId = 1 },
+                new SaleTransaction { Id = 7, ItemQuantity = 10, DateSold = "07/01/2022 16:30:21", TotalSales = 6990, UserId = 1 },
+                new SaleTransaction { Id = 8, ItemQuantity = 10, DateSold = "08/01/2022 16:30:21", TotalSales = 8321, UserId = 1 },
+                new SaleTransaction { Id = 9, ItemQuantity = 10, DateSold = "09/01/2022 16:30:21", TotalSales = 4327, UserId = 1 },
+                new SaleTransaction { Id = 10, ItemQuantity = 10, DateSold = "10/01/2022 16:30:21", TotalSales = 2950, UserId = 1 },
+                new SaleTransaction { Id = 11, ItemQuantity = 10, DateSold = "11/01/2022 16:30:21", TotalSales = 6254, UserId = 1 },
+                new SaleTransaction { Id = 12, ItemQuantity = 10, DateSold = "12/01/2022 16:30:21", TotalSales = 8513, UserId = 1 }
+                );
         }
     }
 }

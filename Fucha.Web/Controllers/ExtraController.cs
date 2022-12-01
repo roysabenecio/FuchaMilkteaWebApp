@@ -22,5 +22,12 @@ namespace Fucha.Web.Controllers
         //    var response = await _mediator.Send(command);
         //    return Ok(response);
         //}
+        [HttpGet]
+        [Route("LoginCredentials")]
+        public async Task<IActionResult> GetLoginCredentials(GetAllLoginCredentialsQuery request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
     }
 }

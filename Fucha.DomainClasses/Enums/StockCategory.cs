@@ -4,6 +4,10 @@
     {
         MilkTeaFlavor,
         MilkTeaAddOn,
-        Pizza
+        Pizza,
+        Snack,
+        Material,
+        Ingredient,
+        Wing
     }
 }

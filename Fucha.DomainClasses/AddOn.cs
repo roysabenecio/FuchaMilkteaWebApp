@@ -7,5 +7,6 @@ namespace Fucha.DomainClasses
         [Required]
         public string? Name { get; set; }
         public double AddOnPrice { get; set; }
+        public int StockId { get; set; }
     }
 }

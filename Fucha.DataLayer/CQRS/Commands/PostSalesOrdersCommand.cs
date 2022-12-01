@@ -3,6 +3,7 @@ using Fucha.DataLayer.Extras;
 using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fucha.DataLayer.CQRS.Commands
@@ -11,7 +12,7 @@ namespace Fucha.DataLayer.CQRS.Commands
     {
         public int UserId { get; set; }
         [Required]
-        public List<OrderDTO> Orders { get; set; }
+        public List<OrderDTO>? Orders { get; set; }
     }
 
     public class PostSalesOrdersCommandHandler : IRequestHandler<PostSalesOrdersCommand, OrderDTO>
@@ -27,9 +28,24 @@ namespace Fucha.DataLayer.CQRS.Commands
             Calculate calculate = new();
             var allRecipes = _context.Recipes.Select(r => r).ToList();
             var checkRecipe = (int menuId) => _context.Recipes.FirstOrDefault(r => r.MenuId == menuId);
-            var checkStock = (int menuId) => _context.Stocks.FirstOrDefault(s => s.MenuId == menuId);
+            //var checkStock = (int menuId) => _context.Stocks.FirstOrDefault(s => s.MenuId == menuId);
             var isMilkTea = (int catId) => catId == 1 || catId == 2;
+            
+            var allStocks = _context.Stocks.Select(s => s).ToList();
+            var allStockServings = _context.StockServings.Select(ss => ss).ToList();
 
+            var joinedStockServing = allStocks
+                .Join(
+                    allStockServings,
+                    s => s.StockServingId,
+                    ss => ss.Id,
+                    (s, ss) => new
+                    {
+                        s.Id,
+                        s.Measure,
+                        ss.RequiredPerServing,
+                        ss.MeasurementUnit
+                    });
             //request.Orders.ForEach(order =>
             //{
             //    var currentRecipe = checkRecipe(order.MenuId);
@@ -66,13 +82,63 @@ namespace Fucha.DataLayer.CQRS.Commands
                     });
 
                     //Deduct milktea in stocks
-                    var currentRecipe = checkRecipe(o.MenuId);
-                    var currentStock = checkStock(o.MenuId);
-                    currentStock.Measure -= calculate.AutoCalculate(
-                        (o.Quantity * currentRecipe.RequiredMeasure), 
-                        (int)currentRecipe.MeasurementUnit, 
-                        (int)currentStock.MeasurementUnit);
+                    //var currentRecipe = checkRecipe(o.MenuId);
+                    //var currentStock = checkStock(o.MenuId);
+                    //currentStock.Measure -= calculate.AutoCalculate(
+                    //    (o.Quantity * currentRecipe.RequiredMeasure), 
+                    //    (int)currentRecipe.MeasurementUnit, 
+                    //    (int)currentStock.MeasurementUnit);
 
+                    //var currentRecipe = checkRecipe(o.MenuId);
+                    //var currentStock = checkStock(o.MenuId);
+                    //var getAllRecipeStock = _context.RecipeStocks.Include(rs => rs.Stock).ThenInclude(s => s.Measure);
+                    //var selectRecipeStock = getAllRecipeStock.FirstOrDefault(r => r.RecipeId == currentRecipe.Id && r.StockId == currentStock.Id);
+
+                    // Get Recipe by size and add on
+                    var currentRecipe = _context.Recipes
+                                                .FirstOrDefault(r => r.SizeId == o.SizeId && 
+                                                o.AddOn != null);
+
+                    // Get RecipeStock by RecipeId
+                    // to get all stocks included in recipe
+                    var currentRecipeStock = _context.RecipeStocks
+                                                 .Select(rs => rs)
+                                                 .Where(rs => rs.RecipeId == currentRecipe.Id)
+                                                 .ToList();
+                    //var getRecipeStock = _context.RecipeStocks.Include(rs => rs.Stock).ThenInclude(s => s.Measure).Select(rs => rs).Where(rs => rs.RecipeId == currentRecipe.Id);
+                    //var getRecipeStock = _context.RecipeStocks.Select(rs=>rs).Where(rs => rs.RecipeId == currentRecipe.Id);
+                    //var getStock = getRecipeStock.Select(rs =>
+                    //getRecipeStock.ForEachAsync(rs => rs.Stock.Measure -= 1);
+
+                    // Get All Stocks
+                    var currentStockIds = currentRecipeStock.Select(rs => rs.StockId).ToList();
+                    var currentStocks = new List<Stock>();
+
+                    // Added Stocks from Stock Id
+                    currentStockIds.ForEach(sId => currentStocks.Add(_context.Stocks.FirstOrDefault(s => s.Id == sId)));
+
+                    // Deduct Stocks based on StockServing
+                    currentStocks.ForEach(s => s.Measure -= (o.Quantity * joinedStockServing.FirstOrDefault(ss => ss.Id == s.Id).RequiredPerServing));
+                    
+                    //currentStockIds.ForEach(sId => 
+                    //    joinedStockServing.FirstOrDefault(ss => ss.Id == sId).Measure -=
+                    //    (joinedStockServing.FirstOrDefault(ss => ss.Id == sId).RequiredPerServing)
+                            
+                    //);
+
+                    //var selectedStock = currentStockId.ForEach(sId => _context.Stocks.Select(s => s).Where(s => s.Id == sId));
+                    // Get StockServingId from all Stocks
+                    //var selectedStockServingId = selectedStock.Select(ss => ss.StockServingId).ToList();
+                    //var selectStockServing = selectedStock.Select(ss => ss)
+
+                    //var selectedStockServings = _context.StockServings.Select(ss => ss).ToList();
+
+                    //selectedStockServings.ForEach(ss => 
+                    //    _context.Stocks.FirstOrDefault(s => s.StockServingId == ss.Id).Measure -= o.Quantity
+                    //);
+                    //selectedStock.ForEach(s => s.Measure -= (o.Quantity * _context.StockServings.FirstOrDefault(ss => ss.Id == s.StockServingId).RequiredPerServing));
+
+                    _context.SaveChanges();
                 }
                 else
                 {
@@ -86,12 +152,34 @@ namespace Fucha.DataLayer.CQRS.Commands
                     });
 
                     //Deduct menu in stocks
-                    var currentRecipe = checkRecipe(o.MenuId);
-                    var currentStock = checkStock(o.MenuId);
-                    currentStock.Measure -= calculate.AutoCalculate(
-                        (o.Quantity * currentRecipe.RequiredMeasure),
-                        (int)currentRecipe.MeasurementUnit,
-                        (int)currentStock.MeasurementUnit);
+
+                    // Get Recipe by menu id
+                    var currentRecipe = _context.Recipes
+                                                .FirstOrDefault(r => r.MenuId == o.MenuId);
+
+                    // Get RecipeStock by RecipeId
+                    // to get all stocks included in recipe
+                    var currentRecipeStock = _context.RecipeStocks
+                                                 .Select(rs => rs)
+                                                 .Where(rs => rs.RecipeId == currentRecipe.Id)
+                                                 .ToList();
+
+                    // Get All Stocks
+                    var currentStockIds = currentRecipeStock.Select(rs => rs.StockId).ToList();
+                    var currentStocks = new List<Stock>();
+
+                    // Added Stocks from Stock Id
+                    currentStockIds.ForEach(sId => currentStocks.Add(_context.Stocks.FirstOrDefault(s => s.Id == sId)));
+
+                    // Deduct Stocks based on StockServing
+                    currentStocks.ForEach(s => s.Measure -= (o.Quantity * joinedStockServing.FirstOrDefault(ss => ss.Id == s.Id).RequiredPerServing));
+
+                    //var currentRecipe = checkRecipe(o.MenuId);
+                    //var currentStock = checkStock(o.MenuId);
+                    //currentStock.Measure -= calculate.AutoCalculate(
+                    //    (o.Quantity * currentRecipe.RequiredMeasure),
+                    //    (int)currentRecipe.MeasurementUnit,
+                    //    (int)currentStock.MeasurementUnit);
                 }
             });
 

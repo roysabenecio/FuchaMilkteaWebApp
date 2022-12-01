@@ -15,12 +15,12 @@ namespace Fucha.Web.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
-        [Route("CalculateStockMeasure")]
-        public async Task<IActionResult> CalculateStockMeasure(CalculateStockMeasureCommand command)
-        {
-            var response = await _mediator.Send(command);
-            return Ok(response);
-        }
+        //[HttpPost]
+        //[Route("CalculateStockMeasure")]
+        //public async Task<IActionResult> CalculateStockMeasure(CalculateStockMeasureCommand command)
+        //{
+        //    var response = await _mediator.Send(command);
+        //    return Ok(response);
+        //}
     }
 }

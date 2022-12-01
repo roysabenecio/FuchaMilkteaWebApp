@@ -2,16 +2,16 @@
 {
     public class Calculate
     {
-        public double AutoCalculate(double requiredMeasure, int recipeMeasurementUnit, int stockMeasurementUnit )
+        public double AutoCalculate(double? requiredMeasure, int recipeMeasurementUnit, int stockMeasurementUnit )
         {
             var value = 0.0;
             if (recipeMeasurementUnit == 0 && stockMeasurementUnit == 1)
             {
-                value = GToKg(requiredMeasure);
+                value = GToKg((double)requiredMeasure);
             }
             if (recipeMeasurementUnit == 3 && stockMeasurementUnit == 3)
             {
-                value = requiredMeasure;
+                value = (double)requiredMeasure;
             }
             
             return value;

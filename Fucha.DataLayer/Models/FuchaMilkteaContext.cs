@@ -23,6 +23,11 @@ namespace Fucha.DataLayer.Models
             modelBuilder.Seed(); // Initialize Data
         }
 
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<RecipeStock> RecipeStocks { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<StockServing> StockServings { get; set; }
+
         public DbSet<Menu> Menus { get; set; }
         public DbSet<AddOn> AddOns { get; set; }
         public DbSet<User> Users { get; set; }
@@ -36,17 +41,16 @@ namespace Fucha.DataLayer.Models
         public DbSet<PORecord> PORecords { get; set; }
         public DbSet<PurchaseRecord> PurchaseRecords { get; set; }
 
-        public DbSet<Recipe> Recipes { get; set; }
         
         
         //public DbSet<Meal> Meals { get; set; } // double check
         public DbSet<MenuPrice> MenuPrices { get; set; }
 
         //Inventory Side
-        public DbSet<Stock> Stocks { get; set; }
         //public DbSet<StockCategorys> StockCategories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<R> Rs { get; set; }
+
+
 
 
         public new int SaveChanges()
@@ -72,6 +76,12 @@ namespace Fucha.DataLayer.Models
 
     public interface IFuchaMilkteaContext : IDisposable
     {
+        DbSet<Recipe> Recipes { get; set; }
+        DbSet<RecipeStock> RecipeStocks { get; set; }
+        DbSet<Stock> Stocks { get; set; }
+        DbSet<StockServing> StockServings { get; set; }
+
+
         DbSet<Menu> Menus { get; set; }
         DbSet<AddOn> AddOns { get; set; }
         DbSet<Order> Orders { get; set; }
@@ -84,7 +94,6 @@ namespace Fucha.DataLayer.Models
 
         DbSet<PORecord> PORecords { get; set; }
         DbSet<PurchaseRecord> PurchaseRecords { get; set; }
-        DbSet<Recipe> Recipes { get; set; }
         //DbSet<Meal> Meals { get; set; }
         DbSet<MenuPrice> MenuPrices { get; set; }
 
@@ -92,11 +101,9 @@ namespace Fucha.DataLayer.Models
 
 
         //Inventory Side
-        DbSet<Stock> Stocks { get; set; }
         //DbSet<StockCategorys> StockCategories { get; set; }
         DbSet<Supplier> Suppliers { get; set; }
 
-        DbSet<R> Rs { get; set; }
 
 
 

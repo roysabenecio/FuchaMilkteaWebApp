@@ -27,37 +27,37 @@ namespace Fucha.DataLayer.CQRS.Queries
             var allUsers = _context.Users.Select(u => u).ToList();
 
             var stocksMenusSuppliers = allStocks
-                .Join(
-                    allMenus,
-                    s => s.MenuId,
-                    m => m.Id,
-                    (s, m) => new
-                    {
-                        s.Id,
-                        m.Name,
-                        s.Measure,
-                        MeasurementUnit = (MeasurementUnit)s.MeasurementUnit,
-                        Category = (StockCategory)s.Category,
-                        Status = (QuantityStatus)s.Category,
-                        s.DateAdded,
-                        s.LastRestocked,
-                        s.SupplierId
-                    })
+                //.Join(
+                //    allMenus,
+                //    s => s.MenuId,
+                //    m => m.Id,
+                //    (s, m) => new
+                //    {
+                //        s.Id,
+                //        m.Name,
+                //        s.Measure,
+                //        MeasurementUnit = (MeasurementUnit)s.MeasurementUnit,
+                //        Category = (StockCategory)s.Category,
+                //        Status = (QuantityStatus)s.Category,
+                //        s.DateAdded,
+                //        s.LastRestocked,
+                //        s.SupplierId
+                //    })
                 .Join(
                     allSuppliers,
-                    sm => sm.SupplierId,
-                    s => s.Id,
-                    (sm, s) => new
+                    stock => stock.SupplierId,
+                    supp => supp.Id,
+                    (stock, supp) => new
                     {
-                        sm.Id,
-                        sm.Name,
-                        sm.Category,
-                        sm.Measure,
-                        sm.MeasurementUnit,
-                        sm.Status,
-                        sm.DateAdded,
-                        sm.LastRestocked,
-                        Supplier = s.Name
+                        stock.Id,
+                        stock.Name,
+                        stock.Category,
+                        //sm.Measure,
+                        //sm.MeasurementUnit,
+                        //sm.Status,
+                        //sm.DateAdded,
+                        stock.LastRestocked,
+                        Supplier = supp.Name
                     }).ToList();
 
             var PRUsers = allPurchaseRecords
@@ -84,8 +84,8 @@ namespace Fucha.DataLayer.CQRS.Queries
                         por.Id,
                         sms.Name,
                         sms.Category,
-                        sms.Measure,
-                        sms.MeasurementUnit,
+                        por.Measure,
+                        por.MeasurementUnit,
                         por.Price,
                         por.DatePurchased,
                         por.PurchaseRecordId,
@@ -114,7 +114,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                 Id = por.Id,
                 Stock = por.Name,
                 Category = por.Category.ToString(),
-                Measure = por.Measure,
+                Measure = (double)por.Measure,
                 MeasurementUnit = por.MeasurementUnit.ToString(),
                 Price = por.Price,
                 DatePurchased = por.DatePurchased,

@@ -5,6 +5,9 @@
         Grams,
         Kilograms,
         Liters,
-        Pieces
+        Pieces,
+        Can,
+        Pack,
+        Bottle
     }
 }

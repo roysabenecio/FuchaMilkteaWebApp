@@ -40,7 +40,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             var editedStock = new StockDTO
             {
                 Id = selectedStock.Id,
-                Measure = selectedStock.Measure,
+                Measure = (double)selectedStock.Measure,
                 MeasurementUnit = selectedStock.MeasurementUnit.ToString(),
                 Category = selectedStock.Category.ToString()
             };

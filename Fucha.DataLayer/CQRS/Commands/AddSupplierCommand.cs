@@ -8,7 +8,7 @@ namespace Fucha.DataLayer.CQRS.Commands
     {
         public string Name { get; set; }
         public string? Address { get; set; }
-        public long ContactNumber { get; set; }
+        public string ContactNumber { get; set; }
     }
 
     public class AddSupplierCommandHandler : IRequestHandler<AddSupplierCommand, Supplier>

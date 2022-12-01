@@ -4,7 +4,7 @@
 
 namespace Fucha.DataLayer.Migrations
 {
-    public partial class I12 : Migration
+    public partial class I2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

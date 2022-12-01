@@ -2,6 +2,12 @@
 {
     public enum StockCategory
     {
-        MilkTeaFlavor
+        MilkTeaFlavor,
+        MilkTeaAddOn,
+        Pizza,
+        Snack,
+        Material,
+        Ingredient,
+        Wing
     }
 }

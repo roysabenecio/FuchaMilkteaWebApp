@@ -6,5 +6,6 @@ namespace Fucha.DomainClasses
     {
         [Key]
         public int Id { get; set; }
+
     }
 }

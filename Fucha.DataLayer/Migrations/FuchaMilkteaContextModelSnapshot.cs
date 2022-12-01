@@ -37,6 +37,9 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("AddOns");
@@ -45,64 +48,45 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            AddOnPrice = 10.0,
-                            Name = "Pearl"
+                            AddOnPrice = 0.0,
+                            Name = "No Add-On",
+                            StockId = 0
                         },
                         new
                         {
                             Id = 2,
                             AddOnPrice = 10.0,
-                            Name = "Nata"
+                            Name = "Pearl",
+                            StockId = 0
                         },
                         new
                         {
                             Id = 3,
                             AddOnPrice = 10.0,
-                            Name = "Nutella"
+                            Name = "Nata",
+                            StockId = 0
                         },
                         new
                         {
                             Id = 4,
                             AddOnPrice = 10.0,
-                            Name = "Cookies"
+                            Name = "Nutella",
+                            StockId = 0
                         },
                         new
                         {
                             Id = 5,
                             AddOnPrice = 10.0,
-                            Name = "Cream Cheese"
+                            Name = "Cookies",
+                            StockId = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AddOnPrice = 10.0,
+                            Name = "Cream Cheese",
+                            StockId = 0
                         });
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.Ingredient", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("IngredientCategory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IngredientStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MeasurementType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ingredient");
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.Menu", b =>
@@ -177,7 +161,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 9,
                             MenuCategoryId = 2,
-                            Name = "Black Wintermel"
+                            Name = "Black Wintermelon"
                         },
                         new
                         {
@@ -231,19 +215,127 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 18,
                             MenuCategoryId = 3,
-                            Name = "Cheesedog with Rice & Hotdog"
+                            Name = "Cheesedog with Rice & Egg"
                         },
                         new
                         {
                             Id = 19,
                             MenuCategoryId = 3,
-                            Name = "Hungarian Sausage"
+                            Name = "Spam & Japanese Sausage"
                         },
                         new
                         {
                             Id = 20,
-                            MenuCategoryId = 3,
-                            Name = "Spam & Japanese Sausage"
+                            MenuCategoryId = 4,
+                            Name = "Cheesy Garlic"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            MenuCategoryId = 4,
+                            Name = "Ham 'N Cheese"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            MenuCategoryId = 4,
+                            Name = "Peperoni"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            MenuCategoryId = 4,
+                            Name = "Hawaiian"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            MenuCategoryId = 4,
+                            Name = "Beef Mushroom"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            MenuCategoryId = 5,
+                            Name = "All Meat"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            MenuCategoryId = 5,
+                            Name = "Supreme"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            MenuCategoryId = 5,
+                            Name = "Chick N Cheese"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            MenuCategoryId = 5,
+                            Name = "Aloha Special"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            MenuCategoryId = 6,
+                            Name = "Hungarian Solo"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            MenuCategoryId = 6,
+                            Name = "Assorted Balls"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            MenuCategoryId = 6,
+                            Name = "Gyoza"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            MenuCategoryId = 6,
+                            Name = "Fries"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            MenuCategoryId = 6,
+                            Name = "Siomai"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            MenuCategoryId = 7,
+                            Name = "3 pcs with Rice"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            MenuCategoryId = 7,
+                            Name = "6 pcs with Rice"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            MenuCategoryId = 8,
+                            Name = "12 pcs"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            MenuCategoryId = 8,
+                            Name = "18 pcs"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            MenuCategoryId = 8,
+                            Name = "30 pcs"
                         });
                 });
 
@@ -278,6 +370,31 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 3,
                             Name = "All Day Meals"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Pizza Regular"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Pizza Premium"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Snacks"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Ala Carte"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Barkada Wings"
                         });
                 });
 
@@ -385,17 +502,143 @@ namespace Fucha.DataLayer.Migrations
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 13,
                             MenuCategoryId = 3,
                             MenuId = 19,
+                            Price = 65.0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            MenuCategoryId = 4,
+                            MenuId = 20,
+                            Price = 115.0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            MenuCategoryId = 4,
+                            MenuId = 21,
+                            Price = 115.0
+                        },
+                        new
+                        {
+                            Id = 16,
+                            MenuCategoryId = 4,
+                            MenuId = 22,
+                            Price = 115.0
+                        },
+                        new
+                        {
+                            Id = 17,
+                            MenuCategoryId = 4,
+                            MenuId = 23,
+                            Price = 115.0
+                        },
+                        new
+                        {
+                            Id = 18,
+                            MenuCategoryId = 4,
+                            MenuId = 24,
+                            Price = 115.0
+                        },
+                        new
+                        {
+                            Id = 19,
+                            MenuCategoryId = 5,
+                            MenuId = 25,
+                            Price = 135.0
+                        },
+                        new
+                        {
+                            Id = 20,
+                            MenuCategoryId = 5,
+                            MenuId = 26,
+                            Price = 135.0
+                        },
+                        new
+                        {
+                            Id = 21,
+                            MenuCategoryId = 5,
+                            MenuId = 27,
+                            Price = 135.0
+                        },
+                        new
+                        {
+                            Id = 22,
+                            MenuCategoryId = 5,
+                            MenuId = 28,
+                            Price = 135.0
+                        },
+                        new
+                        {
+                            Id = 23,
+                            MenuCategoryId = 6,
+                            MenuId = 29,
                             Price = 50.0
                         },
                         new
                         {
-                            Id = 13,
-                            MenuCategoryId = 3,
-                            MenuId = 20,
-                            Price = 65.0
+                            Id = 24,
+                            MenuCategoryId = 6,
+                            MenuId = 30,
+                            Price = 25.0
+                        },
+                        new
+                        {
+                            Id = 25,
+                            MenuCategoryId = 6,
+                            MenuId = 31,
+                            Price = 40.0
+                        },
+                        new
+                        {
+                            Id = 26,
+                            MenuCategoryId = 6,
+                            MenuId = 32,
+                            Price = 30.0
+                        },
+                        new
+                        {
+                            Id = 27,
+                            MenuCategoryId = 6,
+                            MenuId = 33,
+                            Price = 25.0
+                        },
+                        new
+                        {
+                            Id = 28,
+                            MenuCategoryId = 7,
+                            MenuId = 34,
+                            Price = 88.0
+                        },
+                        new
+                        {
+                            Id = 29,
+                            MenuCategoryId = 7,
+                            MenuId = 35,
+                            Price = 149.0
+                        },
+                        new
+                        {
+                            Id = 30,
+                            MenuCategoryId = 8,
+                            MenuId = 36,
+                            Price = 249.0
+                        },
+                        new
+                        {
+                            Id = 31,
+                            MenuCategoryId = 8,
+                            MenuId = 37,
+                            Price = 380.0
+                        },
+                        new
+                        {
+                            Id = 32,
+                            MenuCategoryId = 8,
+                            MenuId = 38,
+                            Price = 649.0
                         });
                 });
 
@@ -413,11 +656,9 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<double?>("AddOnPrice")
                         .HasColumnType("float");
 
-                    b.Property<int>("MenuCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MenuId")
-                        .HasColumnType("int");
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -432,12 +673,81 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<int>("SaleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SizeId")
-                        .HasColumnType("int");
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.PORecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DatePurchased")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Measure")
+                        .HasColumnType("float");
+
+                    b.Property<int>("MeasurementUnit")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("PurchaseRecordId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PORecords");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = 0,
+                            DatePurchased = "Thursday, 01 December 2022",
+                            Measure = 100.0,
+                            MeasurementUnit = 1,
+                            Price = 100.0,
+                            PurchaseRecordId = 1,
+                            StockId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = 0,
+                            DatePurchased = "Thursday, 01 December 2022",
+                            Measure = 50.0,
+                            MeasurementUnit = 1,
+                            Price = 50.0,
+                            PurchaseRecordId = 1,
+                            StockId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = 1,
+                            DatePurchased = "Thursday, 01 December 2022",
+                            Measure = 50.0,
+                            MeasurementUnit = 1,
+                            Price = 50.0,
+                            PurchaseRecordId = 2,
+                            StockId = 4
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.PurchaseRecord", b =>
@@ -448,24 +758,44 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<string>("StockName")
-                        .IsRequired()
+                    b.Property<string>("DatePurchased")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ItemQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("PurchaseRecords");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DatePurchased = "Thursday, 01 December 2022",
+                            ItemQuantity = 2,
+                            SupplierId = 1,
+                            TotalAmount = 100.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DatePurchased = "Thursday, 01 December 2022",
+                            ItemQuantity = 1,
+                            SupplierId = 3,
+                            TotalAmount = 50.0,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.Recipe", b =>
@@ -476,30 +806,564 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("IngredientId")
+                    b.Property<bool?>("HasAddOn")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("MenuCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MenuId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<string>("RecipeCategory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("SizeId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IngredientId")
-                        .IsUnique();
-
                     b.ToTable("Recipes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            HasAddOn = true,
+                            MenuCategoryId = 1,
+                            Name = "Milk Tea Small",
+                            SizeId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            HasAddOn = true,
+                            MenuCategoryId = 2,
+                            Name = "Milk Tea Medium",
+                            SizeId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            HasAddOn = true,
+                            MenuCategoryId = 2,
+                            Name = "Milk Tea Large",
+                            SizeId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            HasAddOn = true,
+                            MenuCategoryId = 2,
+                            Name = "Milk Tea 1 Liter",
+                            SizeId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MenuCategoryId = 3,
+                            MenuId = 15,
+                            Name = "Japanese Sausage with Rice & Egg"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            MenuCategoryId = 3,
+                            MenuId = 16,
+                            Name = "Hungarian Sausage with Rice & Egg"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            MenuCategoryId = 3,
+                            MenuId = 17,
+                            Name = "Spam Bacon with Rice & Egg"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            MenuCategoryId = 3,
+                            MenuId = 18,
+                            Name = "Cheesedog with Rice & Egg"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            MenuCategoryId = 3,
+                            MenuId = 19,
+                            Name = "Spam & Japanese Sausage"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            MenuCategoryId = 4,
+                            MenuId = 20,
+                            Name = "Cheesy Garlic"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            MenuCategoryId = 4,
+                            MenuId = 21,
+                            Name = "Ham 'N Cheese"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            MenuCategoryId = 4,
+                            MenuId = 22,
+                            Name = "Peperoni"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            MenuCategoryId = 4,
+                            MenuId = 23,
+                            Name = "Hawaiian"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            MenuCategoryId = 4,
+                            MenuId = 24,
+                            Name = "Beef Mushroom"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            MenuCategoryId = 5,
+                            MenuId = 25,
+                            Name = "All Meat"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            MenuCategoryId = 5,
+                            MenuId = 26,
+                            Name = "Supreme"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            MenuCategoryId = 5,
+                            MenuId = 27,
+                            Name = "Chick N Cheese"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            MenuCategoryId = 5,
+                            MenuId = 28,
+                            Name = "Aloha Special"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            MenuCategoryId = 6,
+                            MenuId = 29,
+                            Name = "Hungarian Solo"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            MenuCategoryId = 6,
+                            MenuId = 30,
+                            Name = "Assorted Balls"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            MenuCategoryId = 6,
+                            MenuId = 31,
+                            Name = "Gyoza"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            MenuCategoryId = 6,
+                            MenuId = 32,
+                            Name = "Fries"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            MenuCategoryId = 6,
+                            MenuId = 33,
+                            Name = "Siomai"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            MenuCategoryId = 7,
+                            MenuId = 34,
+                            Name = "3 pcs with Rice"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            MenuCategoryId = 7,
+                            MenuId = 35,
+                            Name = "6 pcs with Rice"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            MenuCategoryId = 8,
+                            MenuId = 36,
+                            Name = "12 pcs"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            MenuCategoryId = 8,
+                            MenuId = 37,
+                            Name = "18 pcs"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            MenuCategoryId = 8,
+                            MenuId = 38,
+                            Name = "30 pcs"
+                        });
+                });
+
+            modelBuilder.Entity("Fucha.DomainClasses.RecipeStock", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("StockId");
+
+                    b.ToTable("RecipeStocks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RecipeId = 1,
+                            StockId = 19
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RecipeId = 1,
+                            StockId = 21
+                        },
+                        new
+                        {
+                            Id = 3,
+                            RecipeId = 2,
+                            StockId = 19
+                        },
+                        new
+                        {
+                            Id = 4,
+                            RecipeId = 2,
+                            StockId = 22
+                        },
+                        new
+                        {
+                            Id = 5,
+                            RecipeId = 3,
+                            StockId = 19
+                        },
+                        new
+                        {
+                            Id = 6,
+                            RecipeId = 3,
+                            StockId = 23
+                        },
+                        new
+                        {
+                            Id = 7,
+                            RecipeId = 4,
+                            StockId = 19
+                        },
+                        new
+                        {
+                            Id = 8,
+                            RecipeId = 4,
+                            StockId = 20
+                        },
+                        new
+                        {
+                            Id = 9,
+                            RecipeId = 5,
+                            StockId = 29
+                        },
+                        new
+                        {
+                            Id = 10,
+                            RecipeId = 5,
+                            StockId = 30
+                        },
+                        new
+                        {
+                            Id = 11,
+                            RecipeId = 5,
+                            StockId = 25
+                        },
+                        new
+                        {
+                            Id = 12,
+                            RecipeId = 6,
+                            StockId = 29
+                        },
+                        new
+                        {
+                            Id = 13,
+                            RecipeId = 6,
+                            StockId = 30
+                        },
+                        new
+                        {
+                            Id = 14,
+                            RecipeId = 6,
+                            StockId = 26
+                        },
+                        new
+                        {
+                            Id = 15,
+                            RecipeId = 7,
+                            StockId = 29
+                        },
+                        new
+                        {
+                            Id = 16,
+                            RecipeId = 7,
+                            StockId = 30
+                        },
+                        new
+                        {
+                            Id = 17,
+                            RecipeId = 7,
+                            StockId = 27
+                        },
+                        new
+                        {
+                            Id = 18,
+                            RecipeId = 8,
+                            StockId = 29
+                        },
+                        new
+                        {
+                            Id = 19,
+                            RecipeId = 8,
+                            StockId = 30
+                        },
+                        new
+                        {
+                            Id = 20,
+                            RecipeId = 8,
+                            StockId = 28
+                        },
+                        new
+                        {
+                            Id = 21,
+                            RecipeId = 9,
+                            StockId = 25
+                        },
+                        new
+                        {
+                            Id = 22,
+                            RecipeId = 9,
+                            StockId = 28
+                        },
+                        new
+                        {
+                            Id = 23,
+                            RecipeId = 9,
+                            StockId = 30
+                        },
+                        new
+                        {
+                            Id = 24,
+                            RecipeId = 10,
+                            StockId = 33
+                        },
+                        new
+                        {
+                            Id = 25,
+                            RecipeId = 11,
+                            StockId = 34
+                        },
+                        new
+                        {
+                            Id = 26,
+                            RecipeId = 12,
+                            StockId = 35
+                        },
+                        new
+                        {
+                            Id = 27,
+                            RecipeId = 13,
+                            StockId = 36
+                        },
+                        new
+                        {
+                            Id = 28,
+                            RecipeId = 14,
+                            StockId = 37
+                        },
+                        new
+                        {
+                            Id = 29,
+                            RecipeId = 15,
+                            StockId = 38
+                        },
+                        new
+                        {
+                            Id = 30,
+                            RecipeId = 16,
+                            StockId = 39
+                        },
+                        new
+                        {
+                            Id = 31,
+                            RecipeId = 17,
+                            StockId = 40
+                        },
+                        new
+                        {
+                            Id = 32,
+                            RecipeId = 18,
+                            StockId = 41
+                        },
+                        new
+                        {
+                            Id = 33,
+                            RecipeId = 19,
+                            StockId = 26
+                        },
+                        new
+                        {
+                            Id = 34,
+                            RecipeId = 19,
+                            StockId = 48
+                        },
+                        new
+                        {
+                            Id = 35,
+                            RecipeId = 20,
+                            StockId = 42
+                        },
+                        new
+                        {
+                            Id = 36,
+                            RecipeId = 20,
+                            StockId = 43
+                        },
+                        new
+                        {
+                            Id = 37,
+                            RecipeId = 20,
+                            StockId = 44
+                        },
+                        new
+                        {
+                            Id = 38,
+                            RecipeId = 20,
+                            StockId = 49
+                        },
+                        new
+                        {
+                            Id = 39,
+                            RecipeId = 21,
+                            StockId = 46
+                        },
+                        new
+                        {
+                            Id = 40,
+                            RecipeId = 21,
+                            StockId = 49
+                        },
+                        new
+                        {
+                            Id = 41,
+                            RecipeId = 22,
+                            StockId = 49
+                        },
+                        new
+                        {
+                            Id = 42,
+                            RecipeId = 23,
+                            StockId = 47
+                        },
+                        new
+                        {
+                            Id = 43,
+                            RecipeId = 23,
+                            StockId = 49
+                        },
+                        new
+                        {
+                            Id = 44,
+                            RecipeId = 24,
+                            StockId = 54
+                        },
+                        new
+                        {
+                            Id = 45,
+                            RecipeId = 24,
+                            StockId = 31
+                        },
+                        new
+                        {
+                            Id = 46,
+                            RecipeId = 24,
+                            StockId = 32
+                        },
+                        new
+                        {
+                            Id = 47,
+                            RecipeId = 25,
+                            StockId = 54
+                        },
+                        new
+                        {
+                            Id = 48,
+                            RecipeId = 25,
+                            StockId = 31
+                        },
+                        new
+                        {
+                            Id = 49,
+                            RecipeId = 25,
+                            StockId = 32
+                        },
+                        new
+                        {
+                            Id = 50,
+                            RecipeId = 26,
+                            StockId = 54
+                        },
+                        new
+                        {
+                            Id = 51,
+                            RecipeId = 27,
+                            StockId = 54
+                        },
+                        new
+                        {
+                            Id = 52,
+                            RecipeId = 28,
+                            StockId = 54
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.SaleTransaction", b =>
@@ -514,8 +1378,14 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ItemQuantity")
+                        .HasColumnType("int");
+
                     b.Property<double>("TotalSales")
                         .HasColumnType("float");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -569,13 +1439,19 @@ namespace Fucha.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
                     b.Property<string>("DateAdded")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastRestocked")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Measure")
+                    b.Property<double?>("Measure")
                         .HasColumnType("float");
 
                     b.Property<int>("MeasurementUnit")
@@ -585,13 +1461,13 @@ namespace Fucha.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StockCategory")
+                    b.Property<int?>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("StockStatus")
+                    b.Property<int?>("StockServingId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SupplierId")
+                    b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -602,16 +1478,752 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            Measure = 5.0,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
                             MeasurementUnit = 1,
                             Name = "Okinawa",
-                            StockCategory = 0,
-                            StockStatus = 0,
-                            SupplierId = 0
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Red Velvet",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Wintermelon",
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Salted Caramel",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Taro",
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Dark Chocolate",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Hokkaido",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Black Wintermelon",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Avocado Cheesecake",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Choco Bunny",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Choco Berry Meiji",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Mango Graham Cabin",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Category = 0,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 15.0,
+                            MeasurementUnit = 1,
+                            Name = "Salty Cream Okinawa",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Category = 1,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 1,
+                            Name = "Pearl",
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Category = 1,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 1,
+                            Name = "Nata",
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Category = 1,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 1,
+                            Name = "Nutella",
+                            SupplierId = 3
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Category = 1,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 1,
+                            Name = "Cookies",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Category = 1,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 1,
+                            Name = "Cream Cheese",
+                            SupplierId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Straw",
+                            StockServingId = 1,
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Straw 1L",
+                            StockServingId = 1,
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Cup 12 oz",
+                            StockServingId = 1,
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Cup 16 oz",
+                            StockServingId = 1,
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Cup 22 oz",
+                            StockServingId = 1,
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Cup 1L",
+                            StockServingId = 1,
+                            SupplierId = 2
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 50.0,
+                            MeasurementUnit = 3,
+                            Name = "Japanese Sausage",
+                            StockServingId = 1,
+                            SupplierId = 4
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 50.0,
+                            MeasurementUnit = 3,
+                            Name = "Hungarian Sausage",
+                            StockServingId = 1,
+                            SupplierId = 5
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 50.0,
+                            MeasurementUnit = 3,
+                            Name = "Cheesedog",
+                            StockServingId = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 50.0,
+                            MeasurementUnit = 4,
+                            Name = "Spam Bacon",
+                            StockServingId = 2,
+                            SupplierId = 4
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 50.0,
+                            MeasurementUnit = 3,
+                            Name = "Egg",
+                            StockServingId = 1,
+                            SupplierId = 6
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 200.0,
+                            MeasurementUnit = 3,
+                            Name = "Styro Plate",
+                            StockServingId = 1
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 200.0,
+                            MeasurementUnit = 3,
+                            Name = "Plastic Spoon",
+                            StockServingId = 1
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 200.0,
+                            MeasurementUnit = 3,
+                            Name = "Plastic Fork",
+                            StockServingId = 1
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Category = 2,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 20.0,
+                            MeasurementUnit = 3,
+                            Name = "Cheesy Garlic",
+                            StockServingId = 1,
+                            SupplierId = 7
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Category = 2,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 20.0,
+                            MeasurementUnit = 3,
+                            Name = "Ham 'N Cheese",
+                            StockServingId = 1,
+                            SupplierId = 7
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Category = 2,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 20.0,
+                            MeasurementUnit = 3,
+                            Name = "Peperoni",
+                            StockServingId = 1,
+                            SupplierId = 8
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Category = 2,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 20.0,
+                            MeasurementUnit = 3,
+                            Name = "Hawaiian",
+                            StockServingId = 1,
+                            SupplierId = 9
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Category = 2,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 20.0,
+                            MeasurementUnit = 3,
+                            Name = "Beef Mushroom",
+                            StockServingId = 1,
+                            SupplierId = 7
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Category = 2,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 20.0,
+                            MeasurementUnit = 3,
+                            Name = "All Meat",
+                            StockServingId = 1,
+                            SupplierId = 7
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Category = 2,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 20.0,
+                            MeasurementUnit = 3,
+                            Name = "Supreme",
+                            StockServingId = 1,
+                            SupplierId = 7
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Category = 2,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 20.0,
+                            MeasurementUnit = 3,
+                            Name = "Chick N Cheese",
+                            StockServingId = 1,
+                            SupplierId = 7
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Category = 2,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 20.0,
+                            MeasurementUnit = 3,
+                            Name = "Aloha Special",
+                            StockServingId = 1,
+                            SupplierId = 7
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Category = 3,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Chicken balls",
+                            StockServingId = 2,
+                            SupplierId = 10
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Category = 3,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Squad balls",
+                            StockServingId = 2,
+                            SupplierId = 10
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Category = 3,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Shrimp balls",
+                            StockServingId = 2,
+                            SupplierId = 10
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Category = 3,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 10.0,
+                            MeasurementUnit = 1,
+                            Name = "French Fries",
+                            SupplierId = 5
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Category = 3,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Gyoza",
+                            StockServingId = 5,
+                            SupplierId = 4
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Category = 3,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Siomai",
+                            StockServingId = 5,
+                            SupplierId = 11
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Stick",
+                            StockServingId = 1
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Paper Tray",
+                            StockServingId = 5
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 10.0,
+                            MeasurementUnit = 5,
+                            Name = "BBQ"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 10.0,
+                            MeasurementUnit = 5,
+                            Name = "Cheese"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 10.0,
+                            MeasurementUnit = 5,
+                            Name = "Sour Cream"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Category = 6,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 50.0,
+                            MeasurementUnit = 1,
+                            Name = "Chicken"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Category = 4,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 100.0,
+                            MeasurementUnit = 3,
+                            Name = "Paper Liner",
+                            StockServingId = 1
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Sweet Chili",
+                            SupplierId = 12
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Terriyaki",
+                            SupplierId = 13
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Mango Habanero",
+                            SupplierId = 8
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Buffalo",
+                            SupplierId = 12
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Soy Garlic",
+                            SupplierId = 13
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Hickory BBQ",
+                            SupplierId = 12
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Garlic Parmesan",
+                            SupplierId = 12
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Sriracha",
+                            SupplierId = 12
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Salted Egg",
+                            SupplierId = 8
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Spiced Maple",
+                            SupplierId = 8
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Lemon Glazed",
+                            SupplierId = 12
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Category = 5,
+                            DateAdded = "Thursday, 01 December 2022",
+                            IsRemoved = false,
+                            Measure = 5.0,
+                            MeasurementUnit = 6,
+                            Name = "Korean Spicy",
+                            SupplierId = 12
                         });
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.StockCategorys", b =>
+            modelBuilder.Entity("Fucha.DomainClasses.StockServing", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -622,16 +2234,44 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<int>("MeasurementUnit")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SupplierId")
-                        .HasColumnType("int");
+                    b.Property<double?>("RequiredPerServing")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.ToTable("StockCategories");
+                    b.ToTable("StockServings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MeasurementUnit = 3,
+                            RequiredPerServing = 1.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MeasurementUnit = 3,
+                            RequiredPerServing = 2.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MeasurementUnit = 3,
+                            RequiredPerServing = 3.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            MeasurementUnit = 3,
+                            RequiredPerServing = 4.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MeasurementUnit = 3,
+                            RequiredPerServing = 5.0
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.Supplier", b =>
@@ -643,18 +2283,12 @@ namespace Fucha.DataLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ContactNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContactPerson")
-                        .IsRequired()
+                    b.Property<string>("ContactNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DateAdded")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -664,6 +2298,112 @@ namespace Fucha.DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Suppliers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City",
+                            ContactNumber = "09178077279",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "In joy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "208A Banawe St., Brgy Tatalon, Quezon City",
+                            ContactNumber = "09175858100",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "PHNI Bubble Tea Store"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "San Juan Manila",
+                            ContactNumber = "09171284151",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "MSCS PrimeGoods, Inc."
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "1747 A. Mabini St, Malate, Manila, 1004 Metro Manila",
+                            ContactNumber = "(02) 8523 1186",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "Fuji Mart Incorporated"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "2329 Juan Luna St, Gagalangin, Manila, Metro Manila",
+                            ContactNumber = "09985172380",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "Consistent Frozen Solutions"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Address = "40 Scout Oscar M. Alcaraz St, Santa Mesa Heights, Quezon City, 1114 Metro Manila",
+                            ContactNumber = "09171735588",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "FST Egg Store"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Address = "#24 F Pasco Aveue Santolan, Pasig",
+                            ContactNumber = "09955823086",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "Pizza Crust"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Address = "704 Rizal Ave. ext.Caloocan City, Metro Manil, 1403",
+                            ContactNumber = "09955823086",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "Negosyo Now"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Address = "Metro Manila",
+                            ContactNumber = "09955823086",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "Vostra Pizza"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Address = "837 Asuncion St, Binondo, Manila, 2006 Metro Manila",
+                            ContactNumber = "09971220886",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "Golden Fishball Factory"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Address = "San Roque, Antipolo",
+                            ContactNumber = "09610074035",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "Siomai Wholesale Supplier PH"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Address = "1005 Atlanta Centre Bldg., 31 Annapolis St., Greenhills, San Juan City",
+                            ContactNumber = "721-339-47",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "JD FOODS Premium Sauces"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Address = "7F Steelworld Bldg. 713 N.S. Amoranto Sr. corner Biak na Bato Street, Quezon City",
+                            ContactNumber = "09286418135",
+                            DateAdded = "Thursday, 01 December 2022",
+                            Name = "Easy Brand Ph"
+                        });
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.User", b =>
@@ -698,8 +2438,10 @@ namespace Fucha.DataLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserStatus")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isRemoved")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -714,35 +2456,33 @@ namespace Fucha.DataLayer.Migrations
                             Password = "r",
                             Role = "Admin",
                             UserName = "r",
-                            UserStatus = "Approved"
+                            UserStatus = "Approved",
+                            isRemoved = false
                         });
                 });
 
-            modelBuilder.Entity("Fucha.DomainClasses.PurchaseRecord", b =>
+            modelBuilder.Entity("Fucha.DomainClasses.RecipeStock", b =>
                 {
-                    b.HasOne("Fucha.DomainClasses.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                    b.HasOne("Fucha.DomainClasses.Recipe", "Recipe")
+                        .WithMany("RecipeStocks")
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.HasOne("Fucha.DomainClasses.Stock", "Stock")
+                        .WithMany()
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
+
+                    b.Navigation("Stock");
                 });
 
             modelBuilder.Entity("Fucha.DomainClasses.Recipe", b =>
                 {
-                    b.HasOne("Fucha.DomainClasses.Ingredient", "Ingredient")
-                        .WithOne("Recipe")
-                        .HasForeignKey("Fucha.DomainClasses.Recipe", "IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ingredient");
-                });
-
-            modelBuilder.Entity("Fucha.DomainClasses.Ingredient", b =>
-                {
-                    b.Navigation("Recipe");
+                    b.Navigation("RecipeStocks");
                 });
 #pragma warning restore 612, 618
         }

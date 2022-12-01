@@ -18,18 +18,9 @@ namespace Fucha.Web.Controllers
             _mediator = mediator;
         }
 
-        // Get All Item
-        //[HttpGet]
-        //[Route("GetAllItems")]
-        //public async Task<IActionResult> GetAllItems()
-        //{
-        //    var result = await _mediator.Send(new GetAllItemsQuery());
-        //    return Ok(result);
-        //}
-
         // Get All Menu
         [HttpGet]
-        [Route("GetAllMenus")]
+        [Route("AllMenus")]
         public async Task<IActionResult> GetAllMenus()
         {
             var result = await _mediator.Send(new GetAllMenuQuery());
@@ -38,7 +29,7 @@ namespace Fucha.Web.Controllers
 
         // Get All Prices
         [HttpGet]
-        [Route("GetAllMenuPrices")]
+        [Route("AllMenuPrices")]
         public async Task<IActionResult> GetAllMenuPrices()
         {
             var result = await _mediator.Send(new GetAllMenuPricesQuery());
@@ -47,19 +38,50 @@ namespace Fucha.Web.Controllers
 
         // Get All Add Ons
         [HttpGet]
-        [Route("GetAllAddOns")]
+        [Route("AllAddOns")]
         public async Task<IActionResult> GetAllAddOns()
         {
             var result = await _mediator.Send(new GetAllAddOnsQuery());
             return Ok(result);
         }
 
-        // Get All Sizes
         [HttpGet]
-        [Route("GetAllSizes")]
+        [Route("AllSizes")]
         public async Task<IActionResult> GetAllSizes()
         {
             var result = await _mediator.Send(new GetAllSizesQuery());
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("AllStocks")]
+        public async Task<IActionResult> GetAllStocks()
+        {
+            var result = await _mediator.Send(new GetAllStocksQuery());
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("AddStock")]
+        public async Task<IActionResult> AddStock(AddStockCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        [Route("EditStock/{id}")]
+        public async Task<IActionResult> EditStock(int id, [FromBody] EditStockCommand command )
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [Route("RemoveStock")]
+        public async Task<IActionResult> RemoveStock(RemoveStockCommand command)
+        {
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
     }

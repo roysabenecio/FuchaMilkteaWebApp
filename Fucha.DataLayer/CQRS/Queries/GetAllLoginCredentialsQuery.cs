@@ -22,7 +22,7 @@ namespace Fucha.DataLayer.CQRS.Queries
             {
                 Id = u.Id,
                 UserName = u.UserName,
-                Password = u.Password
+                //Password = u.Password
             }).ToList();
 
             return Task.FromResult(userCredentials);

@@ -1,5 +1,6 @@
 ﻿using Fucha.DataLayer.CQRS.Commands;
 using Fucha.DataLayer.CQRS.Queries;
+using Fucha.DataLayer.DTOs;
 using Fucha.DomainClasses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +43,7 @@ namespace Fucha.Web.Controllers
 
         [HttpPut]
         [Route("EditUser/{id}")]
-        public async Task<IActionResult> EditUser(int id, [FromBody] User command)
+        public async Task<IActionResult> EditUser(int id, [FromBody] UserDTO command)
         {
             var response = await _mediator.Send(new EditUserCommand(id, command));
             return Ok(response);

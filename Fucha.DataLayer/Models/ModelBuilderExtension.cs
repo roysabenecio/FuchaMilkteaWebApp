@@ -1,6 +1,8 @@
 ﻿using Fucha.DomainClasses;
 using Fucha.DomainClasses.Enums;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace Fucha.DataLayer.Models
 {
@@ -317,8 +319,19 @@ namespace Fucha.DataLayer.Models
                 new Size { Id = 4, Name = "1 Liter" }
                 );
 
+            void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+            {
+                using (var hmac = new HMACSHA256())
+                {
+                    passwordSalt = hmac.Key;
+                    passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                }
+            }
+
+            CreatePasswordHash("r", out byte[] passwordHash, out byte[] passwordSalt);
+
             modelBuilder.Entity<User>().HasData(
-                new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "r", Password = "r", Role = "Admin", UserStatus = "Approved" }
+                new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "r", PasswordHash = passwordHash, PasswordSalt = passwordSalt, Role = "Admin", UserStatus = "Approved" }
                 );
 
             modelBuilder.Entity<Supplier>().HasData(

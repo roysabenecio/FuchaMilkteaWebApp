@@ -10,12 +10,12 @@ namespace Fucha.DomainClasses
         public string? LastName { get; set; }
         [Required]
         public string? UserName { get; set; }
-        [Required]
-        public string? Password { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
         [Required]
         public string? Role { get; set; }
         public string? UserStatus { get; set; }
         public string? DateCreated { get; set; }
-        public bool isRemoved{ get; set; } = false;
+        public bool IsRemoved { get; set; } = false;
     }
 }

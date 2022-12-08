@@ -89,6 +89,31 @@ namespace Fucha.DataLayer.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Fucha.DomainClasses.LoginHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("User")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LoginHistories");
+                });
+
             modelBuilder.Entity("Fucha.DomainClasses.Menu", b =>
                 {
                     b.Property<int>("Id")
@@ -719,7 +744,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 1,
                             Category = 0,
-                            DatePurchased = "Wednesday, 07 December 2022",
+                            DatePurchased = "Thursday, 08 December 2022",
                             Measure = 100.0,
                             MeasurementUnit = 1,
                             Price = 100.0,
@@ -730,7 +755,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 2,
                             Category = 0,
-                            DatePurchased = "Wednesday, 07 December 2022",
+                            DatePurchased = "Thursday, 08 December 2022",
                             Measure = 50.0,
                             MeasurementUnit = 1,
                             Price = 50.0,
@@ -741,7 +766,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 3,
                             Category = 1,
-                            DatePurchased = "Wednesday, 07 December 2022",
+                            DatePurchased = "Thursday, 08 December 2022",
                             Measure = 50.0,
                             MeasurementUnit = 1,
                             Price = 50.0,
@@ -781,7 +806,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            DatePurchased = "Wednesday, 07 December 2022",
+                            DatePurchased = "Thursday, 08 December 2022",
                             ItemQuantity = 2,
                             SupplierId = 1,
                             TotalAmount = 100.0,
@@ -790,7 +815,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 2,
-                            DatePurchased = "Wednesday, 07 December 2022",
+                            DatePurchased = "Thursday, 08 December 2022",
                             ItemQuantity = 1,
                             SupplierId = 3,
                             TotalAmount = 50.0,
@@ -1577,7 +1602,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 1,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1588,7 +1613,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 2,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1599,7 +1624,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 3,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1610,7 +1635,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 4,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1621,7 +1646,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 5,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1632,7 +1657,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 6,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1643,7 +1668,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 7,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1654,7 +1679,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 8,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1665,7 +1690,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 9,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1676,7 +1701,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 10,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1687,7 +1712,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 11,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1698,7 +1723,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 12,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1709,7 +1734,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 13,
                             Category = 0,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 15.0,
                             MeasurementUnit = 1,
@@ -1720,7 +1745,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 14,
                             Category = 1,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 1,
@@ -1731,7 +1756,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 15,
                             Category = 1,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 1,
@@ -1742,7 +1767,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 16,
                             Category = 1,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 1,
@@ -1753,7 +1778,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 17,
                             Category = 1,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 1,
@@ -1764,7 +1789,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 18,
                             Category = 1,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 1,
@@ -1775,7 +1800,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 19,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -1787,7 +1812,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 20,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -1799,7 +1824,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 21,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -1811,7 +1836,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 22,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -1823,7 +1848,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 23,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -1835,7 +1860,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 24,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -1847,7 +1872,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 25,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 50.0,
                             MeasurementUnit = 3,
@@ -1859,7 +1884,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 26,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 50.0,
                             MeasurementUnit = 3,
@@ -1871,7 +1896,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 27,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 50.0,
                             MeasurementUnit = 3,
@@ -1882,7 +1907,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 28,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 50.0,
                             MeasurementUnit = 4,
@@ -1894,7 +1919,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 29,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 50.0,
                             MeasurementUnit = 3,
@@ -1906,7 +1931,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 30,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 200.0,
                             MeasurementUnit = 3,
@@ -1917,7 +1942,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 31,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 200.0,
                             MeasurementUnit = 3,
@@ -1928,7 +1953,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 32,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 200.0,
                             MeasurementUnit = 3,
@@ -1939,7 +1964,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 33,
                             Category = 2,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 20.0,
                             MeasurementUnit = 3,
@@ -1951,7 +1976,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 34,
                             Category = 2,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 20.0,
                             MeasurementUnit = 3,
@@ -1963,7 +1988,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 35,
                             Category = 2,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 20.0,
                             MeasurementUnit = 3,
@@ -1975,7 +2000,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 36,
                             Category = 2,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 20.0,
                             MeasurementUnit = 3,
@@ -1987,7 +2012,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 37,
                             Category = 2,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 20.0,
                             MeasurementUnit = 3,
@@ -1999,7 +2024,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 38,
                             Category = 2,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 20.0,
                             MeasurementUnit = 3,
@@ -2011,7 +2036,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 39,
                             Category = 2,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 20.0,
                             MeasurementUnit = 3,
@@ -2023,7 +2048,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 40,
                             Category = 2,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 20.0,
                             MeasurementUnit = 3,
@@ -2035,7 +2060,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 41,
                             Category = 2,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 20.0,
                             MeasurementUnit = 3,
@@ -2047,7 +2072,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 42,
                             Category = 3,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -2059,7 +2084,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 43,
                             Category = 3,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -2071,7 +2096,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 44,
                             Category = 3,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -2083,7 +2108,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 45,
                             Category = 3,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 10.0,
                             MeasurementUnit = 1,
@@ -2094,7 +2119,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 46,
                             Category = 3,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -2106,7 +2131,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 47,
                             Category = 3,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -2118,7 +2143,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 48,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -2129,7 +2154,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 49,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -2140,7 +2165,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 50,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 10.0,
                             MeasurementUnit = 5,
@@ -2150,7 +2175,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 51,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 10.0,
                             MeasurementUnit = 5,
@@ -2160,7 +2185,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 52,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 10.0,
                             MeasurementUnit = 5,
@@ -2170,7 +2195,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 53,
                             Category = 6,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 50.0,
                             MeasurementUnit = 1,
@@ -2180,7 +2205,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 54,
                             Category = 4,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 100.0,
                             MeasurementUnit = 3,
@@ -2191,7 +2216,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 55,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2202,7 +2227,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 56,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2213,7 +2238,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 57,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2224,7 +2249,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 58,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2235,7 +2260,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 59,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2246,7 +2271,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 60,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2257,7 +2282,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 61,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2268,7 +2293,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 62,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2279,7 +2304,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 63,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2290,7 +2315,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 64,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2301,7 +2326,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 65,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2312,7 +2337,7 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 66,
                             Category = 5,
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Measure = 5.0,
                             MeasurementUnit = 6,
@@ -2406,7 +2431,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 1,
                             Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City",
                             ContactNumber = "09178077279",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "In joy"
                         },
@@ -2415,7 +2440,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 2,
                             Address = "208A Banawe St., Brgy Tatalon, Quezon City",
                             ContactNumber = "09175858100",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "PHNI Bubble Tea Store"
                         },
@@ -2424,7 +2449,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 3,
                             Address = "San Juan Manila",
                             ContactNumber = "09171284151",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "MSCS PrimeGoods, Inc."
                         },
@@ -2433,7 +2458,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 4,
                             Address = "1747 A. Mabini St, Malate, Manila, 1004 Metro Manila",
                             ContactNumber = "(02) 8523 1186",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "Fuji Mart Incorporated"
                         },
@@ -2442,7 +2467,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 5,
                             Address = "2329 Juan Luna St, Gagalangin, Manila, Metro Manila",
                             ContactNumber = "09985172380",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "Consistent Frozen Solutions"
                         },
@@ -2451,7 +2476,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 6,
                             Address = "40 Scout Oscar M. Alcaraz St, Santa Mesa Heights, Quezon City, 1114 Metro Manila",
                             ContactNumber = "09171735588",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "FST Egg Store"
                         },
@@ -2460,7 +2485,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 7,
                             Address = "#24 F Pasco Aveue Santolan, Pasig",
                             ContactNumber = "09955823086",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "Pizza Crust"
                         },
@@ -2469,7 +2494,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 8,
                             Address = "704 Rizal Ave. ext.Caloocan City, Metro Manil, 1403",
                             ContactNumber = "09955823086",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "Negosyo Now"
                         },
@@ -2478,7 +2503,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 9,
                             Address = "Metro Manila",
                             ContactNumber = "09955823086",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "Vostra Pizza"
                         },
@@ -2487,7 +2512,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 10,
                             Address = "837 Asuncion St, Binondo, Manila, 2006 Metro Manila",
                             ContactNumber = "09971220886",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "Golden Fishball Factory"
                         },
@@ -2496,7 +2521,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 11,
                             Address = "San Roque, Antipolo",
                             ContactNumber = "09610074035",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "Siomai Wholesale Supplier PH"
                         },
@@ -2505,7 +2530,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 12,
                             Address = "1005 Atlanta Centre Bldg., 31 Annapolis St., Greenhills, San Juan City",
                             ContactNumber = "721-339-47",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "JD FOODS Premium Sauces"
                         },
@@ -2514,7 +2539,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 13,
                             Address = "7F Steelworld Bldg. 713 N.S. Amoranto Sr. corner Biak na Bato Street, Quezon City",
                             ContactNumber = "09286418135",
-                            DateAdded = "Wednesday, 07 December 2022",
+                            DateAdded = "Thursday, 08 December 2022",
                             IsRemoved = false,
                             Name = "Easy Brand Ph"
                         });
@@ -2572,8 +2597,8 @@ namespace Fucha.DataLayer.Migrations
                             FirstName = "Roy",
                             IsRemoved = false,
                             LastName = "Sabenecio",
-                            PasswordHash = new byte[] { 26, 113, 42, 160, 195, 166, 254, 169, 133, 34, 6, 23, 185, 60, 103, 61, 128, 229, 87, 206, 122, 111, 255, 65, 218, 3, 52, 123, 26, 124, 224, 89 },
-                            PasswordSalt = new byte[] { 37, 74, 133, 52, 46, 195, 254, 179, 97, 6, 84, 103, 104, 143, 194, 207, 2, 1, 92, 123, 190, 44, 2, 66, 252, 193, 171, 21, 115, 87, 177, 78, 110, 200, 19, 170, 88, 167, 211, 148, 173, 119, 12, 0, 48, 3, 94, 178, 90, 214, 120, 91, 245, 118, 231, 39, 9, 152, 194, 15, 71, 125, 113, 237 },
+                            PasswordHash = new byte[] { 251, 252, 16, 219, 198, 117, 230, 185, 241, 73, 127, 114, 89, 229, 188, 80, 34, 73, 134, 130, 31, 186, 219, 78, 110, 237, 225, 181, 186, 100, 238, 129 },
+                            PasswordSalt = new byte[] { 97, 247, 11, 192, 115, 144, 78, 172, 235, 76, 190, 202, 199, 91, 107, 179, 201, 225, 248, 246, 231, 114, 30, 130, 105, 250, 42, 253, 106, 248, 27, 56, 228, 160, 46, 203, 21, 241, 175, 85, 78, 60, 27, 254, 90, 132, 160, 138, 99, 16, 237, 246, 222, 213, 14, 221, 239, 76, 59, 193, 235, 193, 16, 180 },
                             Role = "Admin",
                             UserName = "r",
                             UserStatus = "Approved"

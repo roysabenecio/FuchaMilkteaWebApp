@@ -20,15 +20,31 @@ namespace Fucha.Web.Controllers
 
         [HttpPost]
         [Route("LoginUser")]
-        public async Task<IActionResult> RegisterUser(LoginUserCommand command)
+        public async Task<IActionResult> LoginUser(LoginUserCommand command)
         {
             var response = await _mediator.Send(command);
             if (response == null)
             {
                 return BadRequest(response);
-
             }
             return Ok(response);
-        }       
+        }
+
+        [HttpPost]
+        [Route("LoginActivity")]
+        public async Task<IActionResult> LoginActivity(LoginActivityCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("LogoutActivity")]
+        public async Task<IActionResult> LogoutActivity(LogoutActivityCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
     }
 }

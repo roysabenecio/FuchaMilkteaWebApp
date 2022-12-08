@@ -26,8 +26,6 @@ namespace Fucha.Web.Controllers
             return Ok(result);
         }
 
-        
-
         // Get All Purchase Records
         [HttpGet]
         [Route("AllPurchaseRecords")]
@@ -37,7 +35,6 @@ namespace Fucha.Web.Controllers
             return Ok(result);
         }
 
-        // Get All Purchase Records
         [HttpPost]
         [Route("AddSupplier")]
         public async Task<IActionResult> AddSupplier(AddSupplierCommand command)
@@ -54,7 +51,6 @@ namespace Fucha.Web.Controllers
             return Ok(response);
         }
 
-        // Remove Supplier
         [HttpPut]
         [Route("RemoveSupplier")]
         public async Task<IActionResult> RemoveUser(RemoveSupplierCommand command)
@@ -63,12 +59,11 @@ namespace Fucha.Web.Controllers
             return Ok(response);
         }
 
-        // Restore Supplier
-        [HttpPut]
         [Route("RestoreSupplier")]
+        [HttpPut]
         public async Task<IActionResult> RestoreSupplier(RestoreSupplierCommand command)
         {
-            var response = _mediator.Send(command);
+            var response = await _mediator.Send(command);
             return Ok(response);
         }
     }

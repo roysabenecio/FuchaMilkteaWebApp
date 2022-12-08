@@ -1,5 +1,6 @@
 ﻿using Fucha.DataLayer.CQRS.Commands;
 using Fucha.DataLayer.CQRS.Queries;
+using Fucha.DataLayer.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,14 +26,7 @@ namespace Fucha.Web.Controllers
             return Ok(result);
         }
 
-        // Remove Supplier
-        [HttpDelete]
-        [Route("RemoveSupplier")]
-        public async Task<IActionResult> RemoveUser(RemoveSupplierCommand command)
-        {
-            var response = await _mediator.Send(command);
-            return Ok(response);
-        }
+        
 
         // Get All Purchase Records
         [HttpGet]
@@ -50,6 +44,32 @@ namespace Fucha.Web.Controllers
         {
             var result = await _mediator.Send(command);
             return Ok(result);
+        }
+
+        [HttpPut]
+        [Route("EditSupplier/{id}")]
+        public async Task<IActionResult> EditUser(int id, [FromBody] SupplierDTO command)
+        {
+            var response = await _mediator.Send(new EditSupplierCommand(id, command));
+            return Ok(response);
+        }
+
+        // Remove Supplier
+        [HttpPut]
+        [Route("RemoveSupplier")]
+        public async Task<IActionResult> RemoveUser(RemoveSupplierCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        // Restore Supplier
+        [HttpPut]
+        [Route("RestoreSupplier")]
+        public async Task<IActionResult> RestoreSupplier(RestoreSupplierCommand command)
+        {
+            var response = _mediator.Send(command);
+            return Ok(response);
         }
     }
 }

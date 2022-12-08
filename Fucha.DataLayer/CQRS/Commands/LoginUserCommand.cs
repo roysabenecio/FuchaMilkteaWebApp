@@ -44,7 +44,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             //_context.SaveChanges();
             var userInfo = _context.Users.FirstOrDefault(x => x.UserName == request.UserName);
 
-            if (userInfo == null)
+            if (userInfo == null || userInfo.IsRemoved == true)
             {
                 string userNotFound = "User Not Found";
                 object obj = new { userNotFound };
@@ -57,6 +57,12 @@ namespace Fucha.DataLayer.CQRS.Commands
                 {
                     string wrongPassword = "Wrong Password";
                     obj = new { wrongPassword };
+                    return Task.FromResult(obj);
+                }
+                if (userInfo.UserStatus == "Pending")
+                {
+                    string accountPending = "Account is pending. Please contact the administrator.";
+                    obj = new { accountPending };
                     return Task.FromResult(obj);
                 }
                 string token = CreateToken(userInfo);

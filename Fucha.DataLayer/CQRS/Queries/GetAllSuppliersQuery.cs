@@ -23,15 +23,16 @@ namespace Fucha.DataLayer.CQRS.Queries
 
         public Task<List<Supplier>> Handle(GetAllSuppliersQuery request, CancellationToken cancellationToken)
         {
-            var allSuppliers = _context.Suppliers.Select(supplier => new Supplier
-            {
-                Id = supplier.Id,
-                Name = supplier.Name,
-                Address = supplier.Address,
-                ContactNumber = supplier.ContactNumber,
-                DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
-            }).ToList();
-            
+            //    var allSuppliers = _context.Suppliers.Select(supplier => new Supplier
+            //    {
+            //        Id = supplier.Id,
+            //        Name = supplier.Name,
+            //        Address = supplier.Address,
+            //        ContactNumber = supplier.ContactNumber,
+            //        DateAdded = supplier.DateAdded,
+            //        IsRemoved = supplier.IsRemoved,
+            //    }).ToList();
+            var allSuppliers = _context.Suppliers.Select(supplier => supplier).ToList();
             return Task.FromResult(allSuppliers);
         }
     }

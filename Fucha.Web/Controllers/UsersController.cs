@@ -1,7 +1,6 @@
 ﻿using Fucha.DataLayer.CQRS.Commands;
 using Fucha.DataLayer.CQRS.Queries;
 using Fucha.DataLayer.DTOs;
-using Fucha.DomainClasses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +17,7 @@ namespace Fucha.Web.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllUsers")]
+        [Route("AllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
             var result = await _mediator.Send(new GetAllUsersQuery());
@@ -49,9 +48,17 @@ namespace Fucha.Web.Controllers
             return Ok(response);
         }
 
-        [HttpDelete]
+        [HttpPut]
         [Route("RemoveUser")]
         public async Task<IActionResult> RemoveUser(RemoveUserCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        [Route("RestoreUser")]
+        public async Task<IActionResult> RestoreUser(RestoreUserCommand command)
         {
             var response = await _mediator.Send(command);
             return Ok(response);

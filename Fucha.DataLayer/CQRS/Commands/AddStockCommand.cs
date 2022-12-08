@@ -13,9 +13,10 @@ namespace Fucha.DataLayer.CQRS.Commands
         public double Measure { get; set; }
         public string MeasurementUnit { get; set; }
         public string Category { get; set; }
+        public int StockServingId { get; set; }
         //public string StockStatus { get; set; }
         //dateadded
-        //public string Supplier { get; set; }
+        public string Supplier { get; set; }
     }
 
     public class AddStockCommandHandler : IRequestHandler<AddStockCommand, Stock>
@@ -29,16 +30,18 @@ namespace Fucha.DataLayer.CQRS.Commands
 
         public Task<Stock> Handle(AddStockCommand request, CancellationToken cancellationToken)
         {
+            var supplierId = _context.Suppliers.FirstOrDefault(x => x.Name == request.Supplier).Id;
 
             var newStock = new Stock
             {
-                //Name = request.Name,
+                Name = request.Name,
                 Measure = request.Measure,
                 MeasurementUnit = (MeasurementUnit)Enum.Parse(typeof(MeasurementUnit), request.MeasurementUnit),
                 Category = (StockCategory)Enum.Parse(typeof(StockCategory), request.Category),
                 DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
                 //SupplierId = _context.Suppliers.FirstOrDefault(s => s.Name == request.Supplier).Id,
-                SupplierId = 1
+                StockServingId = request.StockServingId,
+                SupplierId = supplierId
 
             };
             _context.Stocks.Add(newStock);

@@ -14,7 +14,7 @@ namespace Fucha.DataLayer.CQRS.Queries
         }
         public Task<List<LoginHistory>> Handle(GetAllLoginHistoryQuery request, CancellationToken cancellationToken)
         {
-            var allLoginHistory = _context.LoginHistories.Select(x => x).ToList();
+            var allLoginHistory = _context.LoginHistories.Select(x => x).OrderByDescending(x => x.Id).ToList();
             return Task.FromResult(allLoginHistory);
         }
     }

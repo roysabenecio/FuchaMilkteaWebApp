@@ -47,19 +47,20 @@ namespace Fucha.DataLayer.Models
             };
 
             modelBuilder.Entity<Stock>().HasData(
-                new Stock { Id = 1, Name = "Okinawa", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 2, Name = "Red Velvet", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 3, Name = "Wintermelon", SupplierId = 2, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 4, Name = "Salted Caramel", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 5, Name = "Taro", SupplierId = 2, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 6, Name = "Dark Chocolate", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 7, Name = "Hokkaido", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 8, Name = "Black Wintermelon", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 9, Name = "Avocado Cheesecake", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 10, Name = "Choco Bunny", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 11, Name = "Choco Berry Meiji", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 12, Name = "Mango Graham Cabin", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 13, Name = "Salty Cream Okinawa", SupplierId = 1, Measure = 15, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 1, Name = "Okinawa", StockServingId = 1, Status = QuantityStatus.Critical, SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 2, Name = "Red Velvet", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 3, Name = "Wintermelon", SupplierId = 2, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 4, Name = "Salted Caramel", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 5, Name = "Taro", SupplierId = 2, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 70, Name = "Cookies & Cream", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 6, Name = "Dark Chocolate", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 7, Name = "Hokkaido", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 8, Name = "Black Wintermelon", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 9, Name = "Avocado Cheesecake", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 10, Name = "Choco Bunny", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 11, Name = "Choco Berry Meiji", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 12, Name = "Mango Graham Cabin", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 13, Name = "Salty Cream Okinawa", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
 
                 new Stock { Id = 14, Name = "Pearl", SupplierId = 2, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
                 new Stock { Id = 15, Name = "Nata", SupplierId = 2, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
@@ -131,7 +132,11 @@ namespace Fucha.DataLayer.Models
                 new StockServing { Id = 2, RequiredPerServing = 2, MeasurementUnit = MeasurementUnit.Pieces },
                 new StockServing { Id = 3, RequiredPerServing = 3, MeasurementUnit = MeasurementUnit.Pieces },
                 new StockServing { Id = 4, RequiredPerServing = 4, MeasurementUnit = MeasurementUnit.Pieces },
-                new StockServing { Id = 5, RequiredPerServing = 5, MeasurementUnit = MeasurementUnit.Pieces }
+                new StockServing { Id = 5, RequiredPerServing = 5, MeasurementUnit = MeasurementUnit.Pieces },
+                new StockServing { Id = 21, RequiredPerServing = 15, MeasurementUnit = MeasurementUnit.Grams },
+                new StockServing { Id = 22, RequiredPerServing = 30, MeasurementUnit = MeasurementUnit.Grams },
+                new StockServing { Id = 23, RequiredPerServing = 45, MeasurementUnit = MeasurementUnit.Grams },
+                new StockServing { Id = 24, RequiredPerServing = 60, MeasurementUnit = MeasurementUnit.Grams }
                 );
 
             modelBuilder.Entity<RecipeStock>().HasData(
@@ -217,7 +222,7 @@ namespace Fucha.DataLayer.Models
                 new Menu { Id = 7, MenuCategoryId = 2, Name = "Dark Chocolate" },
                 new Menu { Id = 8, MenuCategoryId = 2, Name = "Hokkaido" },
                 new Menu { Id = 9, MenuCategoryId = 2, Name = "Black Wintermelon" },
-                new Menu { Id = 10, MenuCategoryId = 2, Name = "Avocado Cheescake" },
+                new Menu { Id = 10, MenuCategoryId = 2, Name = "Avocado Cheesecake" },
                 new Menu { Id = 11, MenuCategoryId = 2, Name = "Choco Bunny" },
                 new Menu { Id = 12, MenuCategoryId = 2, Name = "Choco Berry Meiji" },
                 new Menu { Id = 13, MenuCategoryId = 2, Name = "Mango Graham Cabin" },
@@ -374,6 +379,23 @@ namespace Fucha.DataLayer.Models
                 new SaleTransaction { Id = 10, ItemQuantity = 10, DateSold = "10/01/2022 16:30:21", TotalSales = 2950, UserId = 1 },
                 new SaleTransaction { Id = 11, ItemQuantity = 10, DateSold = "11/01/2022 16:30:21", TotalSales = 6254, UserId = 1 },
                 new SaleTransaction { Id = 12, ItemQuantity = 10, DateSold = "12/01/2022 16:30:21", TotalSales = 8513, UserId = 1 }
+                );
+
+            modelBuilder.Entity<MTGramSold>().HasData(
+                new MTGramSold { Id = 1, StockId = 1, Name = "Okinawa", Grams = 0 },
+                new MTGramSold { Id = 2, StockId = 2, Name = "Red Velvet", Grams = 1700 },
+                new MTGramSold { Id = 3, StockId = 3, Name = "Wintermelon", Grams = 1500 },
+                new MTGramSold { Id = 4, StockId = 4, Name = "Salted Caramel", Grams = 0 },
+                new MTGramSold { Id = 5, StockId = 5, Name = "Taro", Grams = 0 },
+                new MTGramSold { Id = 6, StockId = 6, Name = "Dark Chocolate", Grams = 0 },
+                new MTGramSold { Id = 7, StockId = 7, Name = "Hokkaido", Grams = 0 },
+                new MTGramSold { Id = 8, StockId = 8, Name = "Black Wintermelon", Grams = 0 },
+                new MTGramSold { Id = 9, StockId = 9, Name = "Avocado Cheesecake", Grams = 0 },
+                new MTGramSold { Id = 10, StockId = 10, Name = "Choco Bunny", Grams = 0 },
+                new MTGramSold { Id = 11, StockId = 11, Name = "Choco Berry Meiji", Grams = 0 },
+                new MTGramSold { Id = 12, StockId = 12, Name = "Mango Graham Cabin", Grams = 0 },
+                new MTGramSold { Id = 13, StockId = 13, Name = "Salty Cream Okinawa", Grams = 0 },
+                new MTGramSold { Id = 70, StockId = 70, Name = "Cookies & Cream", Grams = 0 }
                 );
         }
     }

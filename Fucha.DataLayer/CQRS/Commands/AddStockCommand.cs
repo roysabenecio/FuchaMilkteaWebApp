@@ -17,6 +17,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         //public string StockStatus { get; set; }
         //dateadded
         public string Supplier { get; set; }
+        public int UserId { get; set; }
     }
 
     public class AddStockCommandHandler : IRequestHandler<AddStockCommand, Stock>
@@ -32,6 +33,10 @@ namespace Fucha.DataLayer.CQRS.Commands
         {
             var supplierId = _context.Suppliers.FirstOrDefault(x => x.Name == request.Supplier).Id;
 
+            var currentUser = _context.Users.FirstOrDefault(u => u.Id == request.UserId);
+
+
+
             var newStock = new Stock
             {
                 Name = request.Name,
@@ -45,25 +50,26 @@ namespace Fucha.DataLayer.CQRS.Commands
 
             };
             _context.Stocks.Add(newStock);
+
+            // add activity on activity history
+            var activityDescription = $"Added new stock {newStock.Name} {newStock.Measure} {request.MeasurementUnit}";
+
+            var newActivity = new ActivityHistory
+            {
+                User = currentUser.FirstName + " " + currentUser.LastName,
+                Activity = activityDescription,
+                Date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
+            };
+            _context.ActivityHistories.Add(newActivity);
             _context.SaveChanges();
 
             var stockAdded = _context.Stocks.FirstOrDefault(x => x.Id == newStock.Id);
-
-            //public string StockCategory { get; set; }
-            //public string StockStatus { get; set; }
-            //Quantity = request.Quantity,
-            //Category = request.Category,
-            //Status = request.Status,
-   
 
             //var mapper = new Mapper(config);
             //return mapper.Map<IngredientDTO>(newIngredient);
             //IngredientDTO ingredientDTO = mapper.Map<Ingredient, IngredientDTO>(newIngredient);
 
             //AutoMapper mapper;
-
-
-
             //return Task.FromResult<IngredientDTO>(ingredientDTO);
             //IngredientDTO ingredientDTO = Mapper.Map<IngredientDTO>(ingredient);
             return Task.FromResult(stockAdded);

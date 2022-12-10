@@ -44,6 +44,11 @@ namespace Fucha.DataLayer.Models
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<LoginHistory> LoginHistories { get; set; }
 
+        public DbSet<MTGramSold> MTGramSolds { get; set; }
+
+        public DbSet<ActivityHistory> ActivityHistories { get; set; }
+
+
         public new int SaveChanges()
         {
             return base.SaveChanges();
@@ -68,6 +73,10 @@ namespace Fucha.DataLayer.Models
         DbSet<MenuPrice> MenuPrices { get; set; }
         DbSet<Supplier> Suppliers { get; set; }
         DbSet<LoginHistory> LoginHistories { get; set; }
+
+        DbSet<MTGramSold> MTGramSolds { get; set; }
+
+        DbSet<ActivityHistory> ActivityHistories { get; set; }
 
         int SaveChanges();
     }

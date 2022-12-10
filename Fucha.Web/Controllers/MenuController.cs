@@ -32,11 +32,12 @@ namespace Fucha.Web.Controllers
 
         [HttpGet]
         [Route("AllMenuCategories")]
-        public async Task<IActionResult> GetAllMenuCategories(GetAllMenuCategoriesQuery query)
+        public async Task<IActionResult> GetAllMenuCategories()
         {
-            var response = await _mediator.Send(query);
+            var response = await _mediator.Send(new GetAllMenuCategoriesQuery());
             return Ok(response);
         }
+
 
     }
 }

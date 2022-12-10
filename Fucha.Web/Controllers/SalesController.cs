@@ -39,5 +39,13 @@ namespace Fucha.Web.Controllers
                 return NoContent();
             }
         }
+
+        [HttpGet]
+        [Route("AllSaleTransactions")]
+        public async Task<IActionResult> GetAllSaleTransactions()
+        {
+            var result = await _mediator.Send(new GetAllSaleTransactionsQuery());
+            return Ok(result);
+        }
     }
 }

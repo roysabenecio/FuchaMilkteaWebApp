@@ -2,20 +2,21 @@
 using Fucha.DataLayer.Extras;
 using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
+using Fucha.DomainClasses.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
-    public class PostSalesOrdersCommand : IRequest<OrderDTO>
+    public class PostSalesOrdersCommand : IRequest<List<Order>>
     {
         public int UserId { get; set; }
         [Required]
         public List<OrderDTO>? Orders { get; set; }
     }
 
-    public class PostSalesOrdersCommandHandler : IRequestHandler<PostSalesOrdersCommand, OrderDTO>
+    public class PostSalesOrdersCommandHandler : IRequestHandler<PostSalesOrdersCommand, List<Order>>
     {
         private readonly IFuchaMilkteaContext _context;
         public PostSalesOrdersCommandHandler(IFuchaMilkteaContext dbContext)
@@ -23,16 +24,17 @@ namespace Fucha.DataLayer.CQRS.Commands
             _context = dbContext;
         }
 
-        public Task<OrderDTO> Handle(PostSalesOrdersCommand request, CancellationToken cancellationToken)
+        public Task<List<Order>> Handle(PostSalesOrdersCommand request, CancellationToken cancellationToken)
         {
             Calculate calculate = new();
             var allRecipes = _context.Recipes.Select(r => r).ToList();
             var checkRecipe = (int menuId) => _context.Recipes.FirstOrDefault(r => r.MenuId == menuId);
-            //var checkStock = (int menuId) => _context.Stocks.FirstOrDefault(s => s.MenuId == menuId);
             var isMilkTea = (int catId) => catId == 1 || catId == 2;
             
             var allStocks = _context.Stocks.Select(s => s).ToList();
             var allStockServings = _context.StockServings.Select(ss => ss).ToList();
+
+            var gramSold = _context.MTGramSolds.Select(gs => gs).ToList();
 
             var joinedStockServing = allStocks
                 .Join(
@@ -46,13 +48,6 @@ namespace Fucha.DataLayer.CQRS.Commands
                         ss.RequiredPerServing,
                         ss.MeasurementUnit
                     });
-            //request.Orders.ForEach(order =>
-            //{
-            //    var currentRecipe = checkRecipe(order.MenuId);
-            //    var currentStock = checkStock(order.MenuId);
-            //    currentStock.Measure -= calculate.AutoCalculate((order.Quantity * currentRecipe.RequiredMeasure), (int)currentRecipe.MeasurementUnit, (int)currentStock.MeasurementUnit);
-            //    _context.SaveChanges();
-            //});
 
             var newSale = new SaleTransaction
             {
@@ -82,17 +77,6 @@ namespace Fucha.DataLayer.CQRS.Commands
                     });
 
                     //Deduct milktea in stocks
-                    //var currentRecipe = checkRecipe(o.MenuId);
-                    //var currentStock = checkStock(o.MenuId);
-                    //currentStock.Measure -= calculate.AutoCalculate(
-                    //    (o.Quantity * currentRecipe.RequiredMeasure), 
-                    //    (int)currentRecipe.MeasurementUnit, 
-                    //    (int)currentStock.MeasurementUnit);
-
-                    //var currentRecipe = checkRecipe(o.MenuId);
-                    //var currentStock = checkStock(o.MenuId);
-                    //var getAllRecipeStock = _context.RecipeStocks.Include(rs => rs.Stock).ThenInclude(s => s.Measure);
-                    //var selectRecipeStock = getAllRecipeStock.FirstOrDefault(r => r.RecipeId == currentRecipe.Id && r.StockId == currentStock.Id);
 
                     // Get Recipe by size and add on
                     var currentRecipe = _context.Recipes
@@ -105,10 +89,6 @@ namespace Fucha.DataLayer.CQRS.Commands
                                                  .Select(rs => rs)
                                                  .Where(rs => rs.RecipeId == currentRecipe.Id)
                                                  .ToList();
-                    //var getRecipeStock = _context.RecipeStocks.Include(rs => rs.Stock).ThenInclude(s => s.Measure).Select(rs => rs).Where(rs => rs.RecipeId == currentRecipe.Id);
-                    //var getRecipeStock = _context.RecipeStocks.Select(rs=>rs).Where(rs => rs.RecipeId == currentRecipe.Id);
-                    //var getStock = getRecipeStock.Select(rs =>
-                    //getRecipeStock.ForEachAsync(rs => rs.Stock.Measure -= 1);
 
                     // Get All Stocks
                     var currentStockIds = currentRecipeStock.Select(rs => rs.StockId).ToList();
@@ -119,25 +99,55 @@ namespace Fucha.DataLayer.CQRS.Commands
 
                     // Deduct Stocks based on StockServing
                     currentStocks.ForEach(s => s.Measure -= (o.Quantity * joinedStockServing.FirstOrDefault(ss => ss.Id == s.Id).RequiredPerServing));
+
+                    // Add info on GramSold table
+                    var currentGS = gramSold.FirstOrDefault(gs => gs.Name == o.Name);
+                    if (o.SizeId == 1)
+                    {
+                        currentGS.Grams += 15;
+                    }
+                    if (o.SizeId == 2)
+                    {
+                        currentGS.Grams += 30;
+                    }
+                    if (o.SizeId == 3)
+                    {
+                        currentGS.Grams += 45;
+                    }
+                    if (o.SizeId == 4)
+                    {
+                        currentGS.Grams += 60;
+                    }
+
+                    // Set Milktea status
+                    var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
+                    var MTStock= _context.Stocks.FirstOrDefault(s => s.Name == o.Name);
+                    var GramSold = (GSInKg);
+                    var lowStart = (MTStock.Measure * 0.7);
+                    var lowEnd= (MTStock.Measure * 0.84);
+                    var criticalStart = (MTStock.Measure * 0.85);
+                    var criticalEnd= (MTStock.Measure * 0.99);
+
+                    var isLow = GramSold >= lowStart && GramSold <= lowEnd;
+                    var isCritical = GramSold >= criticalStart && GramSold <= criticalEnd;
+                    var outOfStock = (MTStock.Measure - GramSold) <= 0;
                     
-                    //currentStockIds.ForEach(sId => 
-                    //    joinedStockServing.FirstOrDefault(ss => ss.Id == sId).Measure -=
-                    //    (joinedStockServing.FirstOrDefault(ss => ss.Id == sId).RequiredPerServing)
-                            
-                    //);
-
-                    //var selectedStock = currentStockId.ForEach(sId => _context.Stocks.Select(s => s).Where(s => s.Id == sId));
-                    // Get StockServingId from all Stocks
-                    //var selectedStockServingId = selectedStock.Select(ss => ss.StockServingId).ToList();
-                    //var selectStockServing = selectedStock.Select(ss => ss)
-
-                    //var selectedStockServings = _context.StockServings.Select(ss => ss).ToList();
-
-                    //selectedStockServings.ForEach(ss => 
-                    //    _context.Stocks.FirstOrDefault(s => s.StockServingId == ss.Id).Measure -= o.Quantity
-                    //);
-                    //selectedStock.ForEach(s => s.Measure -= (o.Quantity * _context.StockServings.FirstOrDefault(ss => ss.Id == s.StockServingId).RequiredPerServing));
-
+                    if (isLow)
+                    {
+                        MTStock.Status = QuantityStatus.Low;
+                    }
+                    if (isCritical)
+                    {
+                        MTStock.Status = QuantityStatus.Critical;
+                    }
+                    if (outOfStock)
+                    {
+                        MTStock.Status = QuantityStatus.OutOfStock;
+                    }
+                    if (!outOfStock && !isLow && !isCritical)
+                    {
+                        MTStock.Status = QuantityStatus.Sufficient;
+                    }
                     _context.SaveChanges();
                 }
                 else
@@ -152,7 +162,6 @@ namespace Fucha.DataLayer.CQRS.Commands
                     });
 
                     //Deduct menu in stocks
-
                     // Get Recipe by menu id
                     var currentRecipe = _context.Recipes
                                                 .FirstOrDefault(r => r.MenuId == o.MenuId);
@@ -174,12 +183,6 @@ namespace Fucha.DataLayer.CQRS.Commands
                     // Deduct Stocks based on StockServing
                     currentStocks.ForEach(s => s.Measure -= (o.Quantity * joinedStockServing.FirstOrDefault(ss => ss.Id == s.Id).RequiredPerServing));
 
-                    //var currentRecipe = checkRecipe(o.MenuId);
-                    //var currentStock = checkStock(o.MenuId);
-                    //currentStock.Measure -= calculate.AutoCalculate(
-                    //    (o.Quantity * currentRecipe.RequiredMeasure),
-                    //    (int)currentRecipe.MeasurementUnit,
-                    //    (int)currentStock.MeasurementUnit);
                 }
             });
 
@@ -250,9 +253,11 @@ namespace Fucha.DataLayer.CQRS.Commands
             currentSale.TotalSales = (double) totalPrice;
             _context.SaveChanges();
 
+            var bill = _context.Orders.Select(x => x).Where(x => x.SaleId == currentSaleId).ToList();
+
             OrderDTO isT = new();
 
-            return Task.FromResult<OrderDTO>(isT);
+            return Task.FromResult(bill);
         }
     }
 }

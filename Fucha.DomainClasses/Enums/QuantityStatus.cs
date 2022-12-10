@@ -4,6 +4,7 @@
     {
         Sufficient,
         Low,
-        OutOfStock
+        Critical,
+        OutOfStock,
     }
 }

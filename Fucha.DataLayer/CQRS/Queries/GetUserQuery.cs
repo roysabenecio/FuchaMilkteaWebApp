@@ -20,8 +20,8 @@ namespace Fucha.DataLayer.CQRS.Queries
 
         public Task<User> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
-            var selectedUser = _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName && user.Password == request.Password);
-            if (selectedUser == null || (selectedUser.Password != request.Password && selectedUser.UserName != request.UserName))
+            var selectedUser = _dbContext.Users.FirstOrDefault(user => user.UserName == request.UserName);
+            if (selectedUser == null || (selectedUser.UserName != request.UserName))
             {
                 selectedUser = new User();
                 return Task.FromResult<User>(selectedUser);

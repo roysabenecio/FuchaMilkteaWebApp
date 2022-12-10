@@ -9,5 +9,6 @@ namespace Fucha.DomainClasses
         public string? Address { get; set; }
         public string? ContactNumber { get; set; }
         public string? DateAdded { get; set; }
+        public bool IsRemoved { get; set; } = false;
     }
 }

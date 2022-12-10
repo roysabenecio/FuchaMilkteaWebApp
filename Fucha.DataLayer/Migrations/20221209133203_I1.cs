@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -21,6 +22,22 @@ namespace Fucha.DataLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AddOns", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LoginHistories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    User = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LoginHistories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,6 +81,22 @@ namespace Fucha.DataLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Menus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MTGramSolds",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StockId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Grams = table.Column<double>(type: "float", nullable: true),
+                    ResetDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MTGramSolds", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -129,10 +162,10 @@ namespace Fucha.DataLayer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HasAddOn = table.Column<bool>(type: "bit", nullable: true),
                     MenuId = table.Column<int>(type: "int", nullable: true),
-                    MenuCategoryId = table.Column<int>(type: "int", nullable: true),
                     SizeId = table.Column<int>(type: "int", nullable: true),
-                    HasAddOn = table.Column<bool>(type: "bit", nullable: true)
+                    MenuCategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -174,15 +207,15 @@ namespace Fucha.DataLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Measure = table.Column<double>(type: "float", nullable: true),
                     MeasurementUnit = table.Column<int>(type: "int", nullable: false),
                     Category = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: true),
                     DateAdded = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastRestocked = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SupplierId = table.Column<int>(type: "int", nullable: true),
                     IsRemoved = table.Column<bool>(type: "bit", nullable: false),
+                    SupplierId = table.Column<int>(type: "int", nullable: true),
                     StockServingId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -213,7 +246,8 @@ namespace Fucha.DataLayer.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateAdded = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DateAdded = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsRemoved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -229,11 +263,12 @@ namespace Fucha.DataLayer.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    isRemoved = table.Column<bool>(type: "bit", nullable: false)
+                    IsRemoved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -280,6 +315,27 @@ namespace Fucha.DataLayer.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "MTGramSolds",
+                columns: new[] { "Id", "Grams", "Name", "ResetDate", "StockId" },
+                values: new object[,]
+                {
+                    { 1, 0.0, "Okinawa", null, 1 },
+                    { 2, 0.0, "Red Velvet", null, 2 },
+                    { 3, 0.0, "Wintermelon", null, 3 },
+                    { 4, 0.0, "Salted Caramel", null, 4 },
+                    { 5, 0.0, "Taro", null, 5 },
+                    { 6, 0.0, "Dark Chocolate", null, 6 },
+                    { 7, 0.0, "Hokkaido", null, 7 },
+                    { 8, 0.0, "Black Wintermelon", null, 8 },
+                    { 9, 0.0, "Avocado Cheesecake", null, 9 },
+                    { 10, 0.0, "Choco Bunny", null, 10 },
+                    { 11, 0.0, "Choco Berry Meiji", null, 11 },
+                    { 12, 0.0, "Mango Graham Cabin", null, 12 },
+                    { 13, 0.0, "Salty Cream Okinawa", null, 13 },
+                    { 70, 0.0, "Cookies & Cream", null, 70 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "MenuCategories",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -311,22 +367,8 @@ namespace Fucha.DataLayer.Migrations
                     { 10, 3, 17, 65.0, null },
                     { 11, 3, 18, 65.0, null },
                     { 13, 3, 19, 65.0, null },
-                    { 14, 6, 20, 50.0, null },
-                    { 15, 6, 21, 25.0, null },
-                    { 16, 6, 22, 40.0, null },
-                    { 17, 6, 23, 30.0, null },
-                    { 18, 6, 24, 25.0, null },
-                    { 19, 7, 25, 88.0, null },
-                    { 20, 7, 26, 149.0, null },
-                    { 21, 8, 27, 249.0, null },
-                    { 22, 8, 28, 380.0, null },
-                    { 23, 8, 29, 649.0, null },
-                    { 24, 4, 30, 115.0, null },
-                    { 25, 4, 31, 115.0, null },
-                    { 26, 4, 32, 115.0, null },
-                    { 27, 4, 33, 115.0, null },
-                    { 28, 4, 34, 115.0, null },
-                    { 29, 5, 35, 135.0, null }
+                    { 14, 4, 20, 115.0, null },
+                    { 15, 4, 21, 115.0, null }
                 });
 
             migrationBuilder.InsertData(
@@ -334,9 +376,23 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "MenuCategoryId", "MenuId", "Price", "SizeId" },
                 values: new object[,]
                 {
-                    { 30, 5, 36, 135.0, null },
-                    { 31, 5, 37, 135.0, null },
-                    { 32, 5, 38, 135.0, null }
+                    { 16, 4, 22, 115.0, null },
+                    { 17, 4, 23, 115.0, null },
+                    { 18, 4, 24, 115.0, null },
+                    { 19, 5, 25, 135.0, null },
+                    { 20, 5, 26, 135.0, null },
+                    { 21, 5, 27, 135.0, null },
+                    { 22, 5, 28, 135.0, null },
+                    { 23, 6, 29, 50.0, null },
+                    { 24, 6, 30, 25.0, null },
+                    { 25, 6, 31, 40.0, null },
+                    { 26, 6, 32, 30.0, null },
+                    { 27, 6, 33, 25.0, null },
+                    { 28, 7, 34, 88.0, null },
+                    { 29, 7, 35, 149.0, null },
+                    { 30, 8, 36, 249.0, null },
+                    { 31, 8, 37, 380.0, null },
+                    { 32, 8, 38, 649.0, null }
                 });
 
             migrationBuilder.InsertData(
@@ -353,7 +409,7 @@ namespace Fucha.DataLayer.Migrations
                     { 7, 2, "Dark Chocolate" },
                     { 8, 2, "Hokkaido" },
                     { 9, 2, "Black Wintermelon" },
-                    { 10, 2, "Avocado Cheescake" },
+                    { 10, 2, "Avocado Cheesecake" },
                     { 11, 2, "Choco Bunny" },
                     { 12, 2, "Choco Berry Meiji" },
                     { 13, 2, "Mango Graham Cabin" },
@@ -368,7 +424,14 @@ namespace Fucha.DataLayer.Migrations
                     { 22, 4, "Peperoni" },
                     { 23, 4, "Hawaiian" },
                     { 24, 4, "Beef Mushroom" },
-                    { 25, 5, "All Meat" },
+                    { 25, 5, "All Meat" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Menus",
+                columns: new[] { "Id", "MenuCategoryId", "Name" },
+                values: new object[,]
+                {
                     { 26, 5, "Supreme" },
                     { 27, 5, "Chick N Cheese" },
                     { 28, 5, "Aloha Special" },
@@ -387,15 +450,11 @@ namespace Fucha.DataLayer.Migrations
             migrationBuilder.InsertData(
                 table: "PORecords",
                 columns: new[] { "Id", "Category", "DatePurchased", "Measure", "MeasurementUnit", "Price", "PurchaseRecordId", "StockId" },
-                values: new object[] { 1, 0, "Thursday, 01 December 2022", 100.0, 1, 100.0, 1, 1 });
-
-            migrationBuilder.InsertData(
-                table: "PORecords",
-                columns: new[] { "Id", "Category", "DatePurchased", "Measure", "MeasurementUnit", "Price", "PurchaseRecordId", "StockId" },
                 values: new object[,]
                 {
-                    { 2, 0, "Thursday, 01 December 2022", 50.0, 1, 50.0, 1, 2 },
-                    { 3, 1, "Thursday, 01 December 2022", 50.0, 1, 50.0, 2, 4 }
+                    { 1, 0, "Friday, 09 December 2022", 100.0, 1, 100.0, 1, 1 },
+                    { 2, 0, "Friday, 09 December 2022", 50.0, 1, 50.0, 1, 2 },
+                    { 3, 1, "Friday, 09 December 2022", 50.0, 1, 50.0, 2, 4 }
                 });
 
             migrationBuilder.InsertData(
@@ -403,8 +462,8 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "DatePurchased", "ItemQuantity", "SupplierId", "TotalAmount", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Thursday, 01 December 2022", 2, 1, 100.0, 1 },
-                    { 2, "Thursday, 01 December 2022", 1, 3, 50.0, 1 }
+                    { 1, "Friday, 09 December 2022", 2, 1, 100.0, 1 },
+                    { 2, "Friday, 09 December 2022", 1, 3, 50.0, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -435,11 +494,37 @@ namespace Fucha.DataLayer.Migrations
                     { 21, null, 6, 31, "Gyoza", null },
                     { 22, null, 6, 32, "Fries", null },
                     { 23, null, 6, 33, "Siomai", null },
-                    { 24, null, 7, 34, "3 pcs with Rice", null },
+                    { 24, null, 7, 34, "3 pcs with Rice", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Recipes",
+                columns: new[] { "Id", "HasAddOn", "MenuCategoryId", "MenuId", "Name", "SizeId" },
+                values: new object[,]
+                {
                     { 25, null, 7, 35, "6 pcs with Rice", null },
                     { 26, null, 8, 36, "12 pcs", null },
                     { 27, null, 8, 37, "18 pcs", null },
                     { 28, null, 8, 38, "30 pcs", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SalesTransaction",
+                columns: new[] { "Id", "DateSold", "ItemQuantity", "TotalSales", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "01/01/2022 16:30:21", 10, 5500.0, 1 },
+                    { 2, "02/01/2022 16:30:21", 10, 4352.0, 1 },
+                    { 3, "03/01/2022 16:30:21", 10, 3670.0, 1 },
+                    { 4, "04/01/2022 16:30:21", 10, 8710.0, 1 },
+                    { 5, "05/01/2022 16:30:21", 10, 4405.0, 1 },
+                    { 6, "06/01/2022 16:30:21", 10, 5123.0, 1 },
+                    { 7, "07/01/2022 16:30:21", 10, 6990.0, 1 },
+                    { 8, "08/01/2022 16:30:21", 10, 8321.0, 1 },
+                    { 9, "09/01/2022 16:30:21", 10, 4327.0, 1 },
+                    { 10, "10/01/2022 16:30:21", 10, 2950.0, 1 },
+                    { 11, "11/01/2022 16:30:21", 10, 6254.0, 1 },
+                    { 12, "12/01/2022 16:30:21", 10, 8513.0, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -462,61 +547,11 @@ namespace Fucha.DataLayer.Migrations
                     { 2, 3, 2.0 },
                     { 3, 3, 3.0 },
                     { 4, 3, 4.0 },
-                    { 5, 3, 5.0 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Stocks",
-                columns: new[] { "Id", "Category", "DateAdded", "IsRemoved", "LastRestocked", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
-                values: new object[] { 1, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Okinawa", null, null, 1 });
-
-            migrationBuilder.InsertData(
-                table: "Stocks",
-                columns: new[] { "Id", "Category", "DateAdded", "IsRemoved", "LastRestocked", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
-                values: new object[,]
-                {
-                    { 2, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Red Velvet", null, null, 1 },
-                    { 3, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Wintermelon", null, null, 2 },
-                    { 4, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Salted Caramel", null, null, 1 },
-                    { 5, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Taro", null, null, 2 },
-                    { 6, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Dark Chocolate", null, null, 1 },
-                    { 7, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Hokkaido", null, null, 1 },
-                    { 8, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Black Wintermelon", null, null, 1 },
-                    { 9, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Avocado Cheesecake", null, null, 1 },
-                    { 10, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Choco Bunny", null, null, 1 },
-                    { 11, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Choco Berry Meiji", null, null, 1 },
-                    { 12, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Mango Graham Cabin", null, null, 1 },
-                    { 13, 0, "Thursday, 01 December 2022", false, null, 15.0, 1, "Salty Cream Okinawa", null, null, 1 },
-                    { 14, 1, "Thursday, 01 December 2022", false, null, 5.0, 1, "Pearl", null, null, 2 },
-                    { 15, 1, "Thursday, 01 December 2022", false, null, 5.0, 1, "Nata", null, null, 2 },
-                    { 16, 1, "Thursday, 01 December 2022", false, null, 5.0, 1, "Nutella", null, null, 3 },
-                    { 17, 1, "Thursday, 01 December 2022", false, null, 5.0, 1, "Cookies", null, null, 1 },
-                    { 18, 1, "Thursday, 01 December 2022", false, null, 5.0, 1, "Cream Cheese", null, null, 1 },
-                    { 19, 4, "Thursday, 01 December 2022", false, null, 100.0, 3, "Straw", null, 1, 2 },
-                    { 20, 4, "Thursday, 01 December 2022", false, null, 100.0, 3, "Straw 1L", null, 1, 2 },
-                    { 21, 4, "Thursday, 01 December 2022", false, null, 100.0, 3, "Cup 12 oz", null, 1, 2 },
-                    { 22, 4, "Thursday, 01 December 2022", false, null, 100.0, 3, "Cup 16 oz", null, 1, 2 },
-                    { 23, 4, "Thursday, 01 December 2022", false, null, 100.0, 3, "Cup 22 oz", null, 1, 2 },
-                    { 24, 4, "Thursday, 01 December 2022", false, null, 100.0, 3, "Cup 1L", null, 1, 2 },
-                    { 25, 5, "Thursday, 01 December 2022", false, null, 50.0, 3, "Japanese Sausage", null, 1, 4 },
-                    { 26, 5, "Thursday, 01 December 2022", false, null, 50.0, 3, "Hungarian Sausage", null, 1, 5 },
-                    { 27, 5, "Thursday, 01 December 2022", false, null, 50.0, 3, "Cheesedog", null, 1, null },
-                    { 28, 5, "Thursday, 01 December 2022", false, null, 50.0, 4, "Spam Bacon", null, 2, 4 },
-                    { 29, 5, "Thursday, 01 December 2022", false, null, 50.0, 3, "Egg", null, 1, 6 },
-                    { 30, 4, "Thursday, 01 December 2022", false, null, 50.0, 3, "Styro Plate", null, 1, null },
-                    { 31, 4, "Thursday, 01 December 2022", false, null, 20.0, 5, "Plastic Spoon", null, null, null },
-                    { 32, 4, "Thursday, 01 December 2022", false, null, 20.0, 5, "Plastic Fork", null, null, null },
-                    { 33, 2, "Thursday, 01 December 2022", false, null, 20.0, 3, "Cheesy Garlic", null, 1, 7 },
-                    { 34, 2, "Thursday, 01 December 2022", false, null, 20.0, 3, "Ham 'N Cheese", null, 1, 7 },
-                    { 35, 2, "Thursday, 01 December 2022", false, null, 20.0, 3, "Peperoni", null, 1, 8 },
-                    { 36, 2, "Thursday, 01 December 2022", false, null, 20.0, 3, "Hawaiian", null, 1, 9 },
-                    { 37, 2, "Thursday, 01 December 2022", false, null, 20.0, 3, "Beef Mushroom", null, 1, 7 },
-                    { 38, 2, "Thursday, 01 December 2022", false, null, 20.0, 3, "All Meat", null, 1, 7 },
-                    { 39, 2, "Thursday, 01 December 2022", false, null, 20.0, 3, "Supreme", null, 1, 7 },
-                    { 40, 2, "Thursday, 01 December 2022", false, null, 20.0, 3, "Chick N Cheese", null, 1, 7 },
-                    { 41, 2, "Thursday, 01 December 2022", false, null, 20.0, 3, "Aloha Special", null, 1, 7 },
-                    { 42, 3, "Thursday, 01 December 2022", false, null, 100.0, 3, "Chicken balls", null, 2, 10 },
-                    { 43, 3, "Thursday, 01 December 2022", false, null, 100.0, 3, "Squad balls", null, 2, 10 }
+                    { 5, 3, 5.0 },
+                    { 21, 0, 15.0 },
+                    { 22, 0, 30.0 },
+                    { 23, 0, 45.0 },
+                    { 24, 0, 60.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -524,55 +559,113 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "Category", "DateAdded", "IsRemoved", "LastRestocked", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
                 values: new object[,]
                 {
-                    { 44, 3, "Thursday, 01 December 2022", false, null, 100.0, 3, "Shrimp balls", null, 2, 10 },
-                    { 45, 3, "Thursday, 01 December 2022", false, null, 10.0, 1, "French Fries", null, null, 5 },
-                    { 46, 3, "Thursday, 01 December 2022", false, null, 100.0, 3, "Gyoza", null, 5, 4 },
-                    { 47, 3, "Thursday, 01 December 2022", false, null, 100.0, 3, "Siomai", null, 5, 11 },
-                    { 48, 4, "Thursday, 01 December 2022", false, null, 100.0, 3, "Stick", null, 1, null },
-                    { 49, 4, "Thursday, 01 December 2022", false, null, 100.0, 3, "Paper Tray", null, 5, null },
-                    { 50, 5, "Thursday, 01 December 2022", false, null, 10.0, 5, "BBQ", null, null, null },
-                    { 51, 5, "Thursday, 01 December 2022", false, null, 10.0, 5, "Cheese", null, null, null },
-                    { 52, 5, "Thursday, 01 December 2022", false, null, 10.0, 5, "Sour Cream", null, null, null },
-                    { 53, 6, "Thursday, 01 December 2022", false, null, 50.0, 1, "Chicken", null, null, null },
-                    { 54, 4, "Thursday, 01 December 2022", false, null, 100.0, 3, "Paper Liner", null, null, null },
-                    { 55, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Sweet Chili", null, null, 12 },
-                    { 56, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Terriyaki", null, null, 13 },
-                    { 57, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Mango Habanero", null, null, 8 },
-                    { 58, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Buffalo", null, null, 12 },
-                    { 59, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Soy Garlic", null, null, 13 },
-                    { 60, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Hickory BBQ", null, null, 12 },
-                    { 61, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Garlic Parmesan", null, null, 12 },
-                    { 62, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Sriracha", null, null, 12 },
-                    { 63, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Salted Egg", null, null, 8 },
-                    { 64, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Spiced Maple", null, null, 8 },
-                    { 65, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Lemon Glazed", null, null, 12 },
-                    { 66, 5, "Thursday, 01 December 2022", false, null, 5.0, 6, "Korean Spicy", null, null, 12 }
+                    { 1, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Okinawa", null, 1, 1 },
+                    { 2, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Red Velvet", null, null, 1 },
+                    { 3, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Wintermelon", null, null, 2 },
+                    { 4, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Salted Caramel", null, null, 1 },
+                    { 5, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Taro", null, null, 2 },
+                    { 6, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Dark Chocolate", null, null, 1 },
+                    { 7, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Hokkaido", null, null, 1 },
+                    { 8, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Black Wintermelon", null, null, 1 },
+                    { 9, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Avocado Cheesecake", null, null, 1 },
+                    { 10, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Choco Bunny", null, null, 1 },
+                    { 11, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Choco Berry Meiji", null, null, 1 },
+                    { 12, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Mango Graham Cabin", null, null, 1 },
+                    { 13, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Salty Cream Okinawa", null, null, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Stocks",
+                columns: new[] { "Id", "Category", "DateAdded", "IsRemoved", "LastRestocked", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
+                values: new object[,]
+                {
+                    { 14, 1, "Friday, 09 December 2022", false, null, 5.0, 1, "Pearl", null, null, 2 },
+                    { 15, 1, "Friday, 09 December 2022", false, null, 5.0, 1, "Nata", null, null, 2 },
+                    { 16, 1, "Friday, 09 December 2022", false, null, 5.0, 1, "Nutella", null, null, 3 },
+                    { 17, 1, "Friday, 09 December 2022", false, null, 5.0, 1, "Cookies", null, null, 1 },
+                    { 18, 1, "Friday, 09 December 2022", false, null, 5.0, 1, "Cream Cheese", null, null, 1 },
+                    { 19, 4, "Friday, 09 December 2022", false, null, 100.0, 3, "Straw", null, 1, 2 },
+                    { 20, 4, "Friday, 09 December 2022", false, null, 100.0, 3, "Straw 1L", null, 1, 2 },
+                    { 21, 4, "Friday, 09 December 2022", false, null, 100.0, 3, "Cup 12 oz", null, 1, 2 },
+                    { 22, 4, "Friday, 09 December 2022", false, null, 100.0, 3, "Cup 16 oz", null, 1, 2 },
+                    { 23, 4, "Friday, 09 December 2022", false, null, 100.0, 3, "Cup 22 oz", null, 1, 2 },
+                    { 24, 4, "Friday, 09 December 2022", false, null, 100.0, 3, "Cup 1L", null, 1, 2 },
+                    { 25, 5, "Friday, 09 December 2022", false, null, 50.0, 3, "Japanese Sausage", null, 1, 4 },
+                    { 26, 5, "Friday, 09 December 2022", false, null, 50.0, 3, "Hungarian Sausage", null, 1, 5 },
+                    { 27, 5, "Friday, 09 December 2022", false, null, 50.0, 3, "Cheesedog", null, 1, null },
+                    { 28, 5, "Friday, 09 December 2022", false, null, 50.0, 4, "Spam Bacon", null, 2, 4 },
+                    { 29, 5, "Friday, 09 December 2022", false, null, 50.0, 3, "Egg", null, 1, 6 },
+                    { 30, 4, "Friday, 09 December 2022", false, null, 200.0, 3, "Styro Plate", null, 1, null },
+                    { 31, 4, "Friday, 09 December 2022", false, null, 200.0, 3, "Plastic Spoon", null, 1, null },
+                    { 32, 4, "Friday, 09 December 2022", false, null, 200.0, 3, "Plastic Fork", null, 1, null },
+                    { 33, 2, "Friday, 09 December 2022", false, null, 20.0, 3, "Cheesy Garlic", null, 1, 7 },
+                    { 34, 2, "Friday, 09 December 2022", false, null, 20.0, 3, "Ham 'N Cheese", null, 1, 7 },
+                    { 35, 2, "Friday, 09 December 2022", false, null, 20.0, 3, "Peperoni", null, 1, 8 },
+                    { 36, 2, "Friday, 09 December 2022", false, null, 20.0, 3, "Hawaiian", null, 1, 9 },
+                    { 37, 2, "Friday, 09 December 2022", false, null, 20.0, 3, "Beef Mushroom", null, 1, 7 },
+                    { 38, 2, "Friday, 09 December 2022", false, null, 20.0, 3, "All Meat", null, 1, 7 },
+                    { 39, 2, "Friday, 09 December 2022", false, null, 20.0, 3, "Supreme", null, 1, 7 },
+                    { 40, 2, "Friday, 09 December 2022", false, null, 20.0, 3, "Chick N Cheese", null, 1, 7 },
+                    { 41, 2, "Friday, 09 December 2022", false, null, 20.0, 3, "Aloha Special", null, 1, 7 },
+                    { 42, 3, "Friday, 09 December 2022", false, null, 100.0, 3, "Chicken balls", null, 2, 10 },
+                    { 43, 3, "Friday, 09 December 2022", false, null, 100.0, 3, "Squad balls", null, 2, 10 },
+                    { 44, 3, "Friday, 09 December 2022", false, null, 100.0, 3, "Shrimp balls", null, 2, 10 },
+                    { 45, 3, "Friday, 09 December 2022", false, null, 10.0, 1, "French Fries", null, null, 5 },
+                    { 46, 3, "Friday, 09 December 2022", false, null, 100.0, 3, "Gyoza", null, 5, 4 },
+                    { 47, 3, "Friday, 09 December 2022", false, null, 100.0, 3, "Siomai", null, 5, 11 },
+                    { 48, 4, "Friday, 09 December 2022", false, null, 100.0, 3, "Stick", null, 1, null },
+                    { 49, 4, "Friday, 09 December 2022", false, null, 100.0, 3, "Paper Tray", null, 5, null },
+                    { 50, 5, "Friday, 09 December 2022", false, null, 10.0, 5, "BBQ", null, null, null },
+                    { 51, 5, "Friday, 09 December 2022", false, null, 10.0, 5, "Cheese", null, null, null },
+                    { 52, 5, "Friday, 09 December 2022", false, null, 10.0, 5, "Sour Cream", null, null, null },
+                    { 53, 6, "Friday, 09 December 2022", false, null, 50.0, 1, "Chicken", null, null, null },
+                    { 54, 4, "Friday, 09 December 2022", false, null, 100.0, 3, "Paper Liner", null, 1, null },
+                    { 55, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Sweet Chili", null, null, 12 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Stocks",
+                columns: new[] { "Id", "Category", "DateAdded", "IsRemoved", "LastRestocked", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
+                values: new object[,]
+                {
+                    { 56, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Terriyaki", null, null, 13 },
+                    { 57, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Mango Habanero", null, null, 8 },
+                    { 58, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Buffalo", null, null, 12 },
+                    { 59, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Soy Garlic", null, null, 13 },
+                    { 60, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Hickory BBQ", null, null, 12 },
+                    { 61, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Garlic Parmesan", null, null, 12 },
+                    { 62, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Sriracha", null, null, 12 },
+                    { 63, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Salted Egg", null, null, 8 },
+                    { 64, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Spiced Maple", null, null, 8 },
+                    { 65, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Lemon Glazed", null, null, 12 },
+                    { 66, 5, "Friday, 09 December 2022", false, null, 5.0, 6, "Korean Spicy", null, null, 12 },
+                    { 70, 0, "Friday, 09 December 2022", false, null, 15.0, 1, "Cookies & Cream", null, null, 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Suppliers",
-                columns: new[] { "Id", "Address", "ContactNumber", "DateAdded", "Name" },
+                columns: new[] { "Id", "Address", "ContactNumber", "DateAdded", "IsRemoved", "Name" },
                 values: new object[,]
                 {
-                    { 1, "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", "09178077279", "Thursday, 01 December 2022", "In joy" },
-                    { 2, "208A Banawe St., Brgy Tatalon, Quezon City", "09175858100", "Thursday, 01 December 2022", "PHNI Bubble Tea Store" },
-                    { 3, "San Juan Manila", "09171284151", "Thursday, 01 December 2022", "MSCS PrimeGoods, Inc." },
-                    { 4, "1747 A. Mabini St, Malate, Manila, 1004 Metro Manila", "(02) 8523 1186", "Thursday, 01 December 2022", "Fuji Mart Incorporated" },
-                    { 5, "2329 Juan Luna St, Gagalangin, Manila, Metro Manila", "09985172380", "Thursday, 01 December 2022", "Consistent Frozen Solutions" },
-                    { 6, "40 Scout Oscar M. Alcaraz St, Santa Mesa Heights, Quezon City, 1114 Metro Manila", "09171735588", "Thursday, 01 December 2022", "FST Egg Store" },
-                    { 7, "#24 F Pasco Aveue Santolan, Pasig", "09955823086", "Thursday, 01 December 2022", "Pizza Crust" },
-                    { 8, "704 Rizal Ave. ext.Caloocan City, Metro Manil, 1403", "09955823086", "Thursday, 01 December 2022", "Negosyo Now" },
-                    { 9, "Metro Manila", "09955823086", "Thursday, 01 December 2022", "Vostra Pizza" },
-                    { 10, "837 Asuncion St, Binondo, Manila, 2006 Metro Manila", "09971220886", "Thursday, 01 December 2022", "Golden Fishball Factory" },
-                    { 11, "San Roque, Antipolo", "09610074035", "Thursday, 01 December 2022", "Siomai Wholesale Supplier PH" },
-                    { 12, "1005 Atlanta Centre Bldg., 31 Annapolis St., Greenhills, San Juan City", "721-339-47", "Thursday, 01 December 2022", "JD FOODS Premium Sauces" },
-                    { 13, "7F Steelworld Bldg. 713 N.S. Amoranto Sr. corner Biak na Bato Street, Quezon City", "09286418135", "Thursday, 01 December 2022", "Easy Brand Ph" }
+                    { 1, "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", "09178077279", "Friday, 09 December 2022", false, "In joy" },
+                    { 2, "208A Banawe St., Brgy Tatalon, Quezon City", "09175858100", "Friday, 09 December 2022", false, "PHNI Bubble Tea Store" },
+                    { 3, "San Juan Manila", "09171284151", "Friday, 09 December 2022", false, "MSCS PrimeGoods, Inc." },
+                    { 4, "1747 A. Mabini St, Malate, Manila, 1004 Metro Manila", "(02) 8523 1186", "Friday, 09 December 2022", false, "Fuji Mart Incorporated" },
+                    { 5, "2329 Juan Luna St, Gagalangin, Manila, Metro Manila", "09985172380", "Friday, 09 December 2022", false, "Consistent Frozen Solutions" },
+                    { 6, "40 Scout Oscar M. Alcaraz St, Santa Mesa Heights, Quezon City, 1114 Metro Manila", "09171735588", "Friday, 09 December 2022", false, "FST Egg Store" },
+                    { 7, "#24 F Pasco Aveue Santolan, Pasig", "09955823086", "Friday, 09 December 2022", false, "Pizza Crust" },
+                    { 8, "704 Rizal Ave. ext.Caloocan City, Metro Manil, 1403", "09955823086", "Friday, 09 December 2022", false, "Negosyo Now" },
+                    { 9, "Metro Manila", "09955823086", "Friday, 09 December 2022", false, "Vostra Pizza" },
+                    { 10, "837 Asuncion St, Binondo, Manila, 2006 Metro Manila", "09971220886", "Friday, 09 December 2022", false, "Golden Fishball Factory" },
+                    { 11, "San Roque, Antipolo", "09610074035", "Friday, 09 December 2022", false, "Siomai Wholesale Supplier PH" },
+                    { 12, "1005 Atlanta Centre Bldg., 31 Annapolis St., Greenhills, San Juan City", "721-339-47", "Friday, 09 December 2022", false, "JD FOODS Premium Sauces" },
+                    { 13, "7F Steelworld Bldg. 713 N.S. Amoranto Sr. corner Biak na Bato Street, Quezon City", "09286418135", "Friday, 09 December 2022", false, "Easy Brand Ph" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "DateCreated", "FirstName", "LastName", "Password", "Role", "UserName", "UserStatus", "isRemoved" },
-                values: new object[] { 1, null, "Roy", "Sabenecio", "r", "Admin", "r", "Approved", false });
+                columns: new[] { "Id", "DateCreated", "FirstName", "IsRemoved", "LastName", "PasswordHash", "PasswordSalt", "Role", "UserName", "UserStatus" },
+                values: new object[] { 1, null, "Roy", false, "Sabenecio", new byte[] { 116, 131, 97, 150, 128, 29, 206, 109, 242, 13, 238, 205, 147, 53, 222, 199, 79, 103, 31, 57, 157, 128, 76, 187, 105, 165, 217, 8, 132, 150, 222, 34 }, new byte[] { 169, 162, 74, 153, 46, 120, 190, 253, 225, 162, 42, 167, 50, 148, 98, 222, 53, 154, 194, 229, 183, 16, 132, 91, 33, 231, 1, 35, 209, 82, 40, 210, 60, 254, 16, 228, 198, 231, 128, 223, 131, 253, 255, 201, 217, 111, 103, 119, 25, 144, 246, 245, 78, 57, 238, 62, 242, 107, 43, 236, 203, 102, 2, 161 }, "Admin", "r", "Approved" });
 
             migrationBuilder.InsertData(
                 table: "RecipeStocks",
@@ -657,6 +750,9 @@ namespace Fucha.DataLayer.Migrations
                 name: "AddOns");
 
             migrationBuilder.DropTable(
+                name: "LoginHistories");
+
+            migrationBuilder.DropTable(
                 name: "MenuCategories");
 
             migrationBuilder.DropTable(
@@ -664,6 +760,9 @@ namespace Fucha.DataLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Menus");
+
+            migrationBuilder.DropTable(
+                name: "MTGramSolds");
 
             migrationBuilder.DropTable(
                 name: "Orders");

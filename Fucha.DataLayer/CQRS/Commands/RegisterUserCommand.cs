@@ -1,6 +1,7 @@
 ﻿using Fucha.DataLayer.Models;
 using MediatR;
 using Fucha.DomainClasses;
+using System.Security.Cryptography;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
@@ -27,12 +28,14 @@ namespace Fucha.DataLayer.CQRS.Commands
 
         public Task<User> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
+            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             var newUser = new User
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 UserName = request.UserName,
-                Password = request.Password,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
                 Role = request.Role,
                 UserStatus = request.UserStatus,
                 DateCreated = DateTime.Now.ToString("dddd, dd MMMM yyyy")
@@ -40,6 +43,15 @@ namespace Fucha.DataLayer.CQRS.Commands
             _dbContext.Users.Add(newUser);
             _dbContext.SaveChanges();
             return Task.FromResult(newUser);
+        }
+
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA256())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
         }
     }
 }

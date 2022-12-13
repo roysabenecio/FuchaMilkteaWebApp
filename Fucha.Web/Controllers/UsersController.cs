@@ -49,6 +49,14 @@ namespace Fucha.Web.Controllers
         }
 
         [HttpPut]
+        [Route("EditProfile/{id}")]
+        public async Task<IActionResult> EditProfile(int id, [FromBody] ProfileDTO command)
+        {
+            var response = await _mediator.Send(new EditProfileCommand(id, command));
+            return Ok(response);
+        }
+
+        [HttpPut]
         [Route("RemoveUser")]
         public async Task<IActionResult> RemoveUser(RemoveUserCommand command)
         {

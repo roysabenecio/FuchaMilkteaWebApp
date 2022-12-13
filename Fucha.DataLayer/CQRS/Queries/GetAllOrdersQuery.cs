@@ -1,16 +1,11 @@
-﻿using Fucha.DataLayer.Models;
-using Fucha.DomainClasses;
+﻿using Fucha.DataLayer.DTOs;
+using Fucha.DataLayer.Models;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fucha.DataLayer.CQRS.Queries
 {
-    public class GetAllOrdersQuery : IRequest<List<Order>> { }
-    public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersQuery, List<Order>>
+    public class GetAllOrdersQuery : IRequest<List<OrderReportDTO>> { }
+    public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersQuery, List<OrderReportDTO>>
     {
         private readonly IFuchaMilkteaContext _context;
         public GetAllOrdersQueryHandler(IFuchaMilkteaContext context)
@@ -18,9 +13,19 @@ namespace Fucha.DataLayer.CQRS.Queries
             _context = context;
         }
 
-        public Task<List<Order>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
+        public Task<List<OrderReportDTO>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
         {
-            var allOrders = _context.Orders.Select(o => o).ToList();
+            var allOrders = _context.Orders.Select(o => new OrderReportDTO
+            {
+                Name = o.Name,
+                Category = o.Category,
+                Price = o.Price,
+                AddOn = o.AddOn,
+                AddOnPrice = o.AddOnPrice,
+                Size = o.Size,
+                SaleId = o.SaleId,
+                Date = _context.SalesTransaction.FirstOrDefault(x => x.Id == o.SaleId).DateSold
+            }).ToList();
             return Task.FromResult(allOrders);
         }
     }

@@ -39,92 +39,92 @@ namespace Fucha.DataLayer.Models
                 new Recipe { Id = 22, Name = "Fries", MenuId = 32, MenuCategoryId = 6},
                 new Recipe { Id = 23, Name = "Siomai", MenuId = 33, MenuCategoryId = 6},
 
-                new Recipe { Id = 24, Name = "3 pcs with Rice", MenuId = 34, MenuCategoryId = 7},
-                new Recipe { Id = 25, Name = "6 pcs with Rice", MenuId = 35, MenuCategoryId = 7},
-                new Recipe { Id = 26, Name = "12 pcs", MenuId = 36, MenuCategoryId = 8},
-                new Recipe { Id = 27, Name = "18 pcs", MenuId = 37, MenuCategoryId = 8},
-                new Recipe { Id = 28, Name = "30 pcs", MenuId = 38, MenuCategoryId = 8},
+                new Recipe { Id = 24, Name = "Wings 3 pcs with Rice", MenuId = 34, MenuCategoryId = 7},
+                new Recipe { Id = 25, Name = "Wings 6 pcs with Rice", MenuId = 35, MenuCategoryId = 7},
+                new Recipe { Id = 26, Name = "Wings 12 pcs", MenuId = 36, MenuCategoryId = 8},
+                new Recipe { Id = 27, Name = "Wings 18 pcs", MenuId = 37, MenuCategoryId = 8},
+                new Recipe { Id = 28, Name = "Wings 30 pcs", MenuId = 38, MenuCategoryId = 8},
             };
 
             modelBuilder.Entity<Stock>().HasData(
-                new Stock { Id = 1, Name = "Okinawa", StockServingId = 1, Status = QuantityStatus.Critical, SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 2, Name = "Red Velvet", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 3, Name = "Wintermelon", SupplierId = 2, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 4, Name = "Salted Caramel", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 5, Name = "Taro", SupplierId = 2, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 70, Name = "Cookies & Cream", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 6, Name = "Dark Chocolate", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 7, Name = "Hokkaido", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 8, Name = "Black Wintermelon", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 9, Name = "Avocado Cheesecake", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 10, Name = "Choco Bunny", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 11, Name = "Choco Berry Meiji", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 12, Name = "Mango Graham Cabin", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 13, Name = "Salty Cream Okinawa", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 1, Name = "Okinawa", Status = QuantityStatus.Critical, SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 2, Name = "Red Velvet", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 3, Name = "Wintermelon", SupplierId = 2, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 4, Name = "Salted Caramel", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 5, Name = "Taro", SupplierId = 2, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 70, Name = "Cookies & Cream", SupplierId = 1, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 6, Name = "Dark Chocolate", SupplierId = 1, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 7, Name = "Hokkaido", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 8, Name = "Black Wintermelon", SupplierId = 1, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 9, Name = "Avocado Cheesecake", SupplierId = 1, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 10, Name = "Choco Bunny", SupplierId = 1, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 11, Name = "Choco Berry Meiji", SupplierId = 1, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 12, Name = "Mango Graham Cabin", SupplierId = 1, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 13, Name = "Salty Cream Okinawa", SupplierId = 1, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
 
-                new Stock { Id = 14, Name = "Pearl", SupplierId = 2, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 15, Name = "Nata", SupplierId = 2, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 16, Name = "Nutella", SupplierId = 3, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 17, Name = "Cookies", SupplierId = 1, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 18, Name = "Cream Cheese", SupplierId = 1, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 14, Name = "Pearl", SupplierId = 2, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn,  },
+                new Stock { Id = 15, Name = "Nata", SupplierId = 2, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn,  },
+                new Stock { Id = 16, Name = "Nutella", SupplierId = 3, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn,  },
+                new Stock { Id = 17, Name = "Cookies", SupplierId = 1, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn,  },
+                new Stock { Id = 18, Name = "Cream Cheese", SupplierId = 1, Measure = 5, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaAddOn,  },
 
-                new Stock { Id = 19, Name = "Straw", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 20, Name = "Straw 1L", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 21, Name = "Cup 12 oz", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 22, Name = "Cup 16 oz", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 23, Name = "Cup 22 oz", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 24, Name = "Cup 1L", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 19, Name = "Straw", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 20, Name = "Straw 1L", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 21, Name = "Cup 12 oz", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 22, Name = "Cup 16 oz", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 23, Name = "Cup 22 oz", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 24, Name = "Cup 1L", SupplierId = 2, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
 
-                new Stock { Id = 25, Name = "Japanese Sausage", SupplierId = 4, StockServingId = 1, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 26, Name = "Hungarian Sausage", SupplierId = 5, StockServingId = 1, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 27, Name = "Cheesedog", SupplierId = null, StockServingId = 1, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 28, Name = "Spam Bacon", SupplierId = 4, StockServingId = 2, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Can, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 29, Name = "Egg", SupplierId = 6, StockServingId = 1, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 25, Name = "Japanese Sausage", SupplierId = 4, StockServingId = 1, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 26, Name = "Hungarian Sausage", SupplierId = 5, StockServingId = 1, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 27, Name = "Cheesedog", SupplierId = null, StockServingId = 1, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 28, Name = "Spam Bacon", SupplierId = 4, StockServingId = 2, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Can,  },
+                new Stock { Id = 29, Name = "Egg", SupplierId = 6, StockServingId = 1, Category = StockCategory.Ingredient, Measure = 50, MeasurementUnit = MeasurementUnit.Pieces,  },
 
-                new Stock { Id = 30, Name = "Styro Plate", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 200, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 31, Name = "Plastic Spoon", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 200, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 32, Name = "Plastic Fork", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 200, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 30, Name = "Styro Plate", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 200, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 31, Name = "Plastic Spoon", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 200, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 32, Name = "Plastic Fork", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 200, MeasurementUnit = MeasurementUnit.Pieces,  },
 
-                new Stock { Id = 33, Name = "Cheesy Garlic", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 34, Name = "Ham 'N Cheese", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 35, Name = "Peperoni", SupplierId = 8, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 36, Name = "Hawaiian", SupplierId = 9, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 37, Name = "Beef Mushroom", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 38, Name = "All Meat", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 39, Name = "Supreme", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 40, Name = "Chick N Cheese", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 41, Name = "Aloha Special", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 33, Name = "Cheesy Garlic", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 34, Name = "Ham 'N Cheese", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 35, Name = "Peperoni", SupplierId = 8, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 36, Name = "Hawaiian", SupplierId = 9, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 37, Name = "Beef Mushroom", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 38, Name = "All Meat", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 39, Name = "Supreme", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 40, Name = "Chick N Cheese", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 41, Name = "Aloha Special", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
 
-                new Stock { Id = 42, Name = "Chicken balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 43, Name = "Squad balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 44, Name = "Shrimp balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 42, Name = "Chicken balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 43, Name = "Squad balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 44, Name = "Shrimp balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
 
-                new Stock { Id = 45, Name = "French Fries", SupplierId = 5, StockServingId = null, Category = StockCategory.Snack, Measure = 10, MeasurementUnit = MeasurementUnit.Kilograms, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 46, Name = "Gyoza", SupplierId = 4, StockServingId = 5, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 47, Name = "Siomai", SupplierId = 11, StockServingId = 5, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 45, Name = "French Fries", SupplierId = 5, StockServingId = null, Category = StockCategory.Snack, Measure = 10, MeasurementUnit = MeasurementUnit.Kilograms,  },
+                new Stock { Id = 46, Name = "Gyoza", SupplierId = 4, StockServingId = 5, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 47, Name = "Siomai", SupplierId = 11, StockServingId = 5, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
 
-                new Stock { Id = 48, Name = "Stick", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 49, Name = "Paper Tray", SupplierId = null, StockServingId = 5, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 48, Name = "Stick", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 49, Name = "Paper Tray", SupplierId = null, StockServingId = 5, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
 
-                new Stock { Id = 50, Name = "BBQ", SupplierId = null, Category = StockCategory.Ingredient, Measure = 10, MeasurementUnit = MeasurementUnit.Pack, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 51, Name = "Cheese", SupplierId = null, Category = StockCategory.Ingredient, Measure = 10, MeasurementUnit = MeasurementUnit.Pack, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 52, Name = "Sour Cream", SupplierId = null, Category = StockCategory.Ingredient, Measure = 10, MeasurementUnit = MeasurementUnit.Pack, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 50, Name = "BBQ", SupplierId = null, Category = StockCategory.Ingredient, Measure = 10, MeasurementUnit = MeasurementUnit.Pack,  },
+                new Stock { Id = 51, Name = "Cheese", SupplierId = null, Category = StockCategory.Ingredient, Measure = 10, MeasurementUnit = MeasurementUnit.Pack,  },
+                new Stock { Id = 52, Name = "Sour Cream", SupplierId = null, Category = StockCategory.Ingredient, Measure = 10, MeasurementUnit = MeasurementUnit.Pack,  },
 
-                new Stock { Id = 53, Name = "Chicken", SupplierId = null, Category = StockCategory.Wing, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 54, Name = "Paper Liner", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
+                new Stock { Id = 53, Name = "Chicken", SupplierId = null, Category = StockCategory.Wing, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms,  },
+                new Stock { Id = 54, Name = "Paper Liner", SupplierId = null, StockServingId = 1, Category = StockCategory.Material, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
 
-                new Stock { Id = 55, Name = "Sweet Chili", SupplierId = 12, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 56, Name = "Terriyaki", SupplierId = 13, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 57, Name = "Mango Habanero", SupplierId = 8, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 58, Name = "Buffalo", SupplierId = 12, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 59, Name = "Soy Garlic", SupplierId = 13, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 60, Name = "Hickory BBQ", SupplierId = 12, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 61, Name = "Garlic Parmesan", SupplierId = 12, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 62, Name = "Sriracha", SupplierId = 12, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 63, Name = "Salted Egg", SupplierId = 8, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 64, Name = "Spiced Maple", SupplierId = 8, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 65, Name = "Lemon Glazed", SupplierId = 12, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") },
-                new Stock { Id = 66, Name = "Korean Spicy", SupplierId = 12, Category = StockCategory.Ingredient, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle, DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy") }
+                new Stock { Id = 55, Name = "Sweet Chili", SupplierId = 12, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle },
+                new Stock { Id = 56, Name = "Terriyaki", SupplierId = 13, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle },
+                new Stock { Id = 57, Name = "Mango Habanero", SupplierId = 8, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle },
+                new Stock { Id = 58, Name = "Buffalo", SupplierId = 12, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle,   },
+                new Stock { Id = 59, Name = "Soy Garlic", SupplierId = 13, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle,  },
+                new Stock { Id = 60, Name = "Hickory BBQ", SupplierId = 12, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle,  },
+                new Stock { Id = 61, Name = "Garlic Parmesan", SupplierId = 12, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle,  },
+                new Stock { Id = 62, Name = "Sriracha", SupplierId = 12, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle,  },
+                new Stock { Id = 63, Name = "Salted Egg", SupplierId = 8, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle,  },
+                new Stock { Id = 64, Name = "Spiced Maple", SupplierId = 8, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle,  },
+                new Stock { Id = 65, Name = "Lemon Glazed", SupplierId = 12, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle,  },
+                new Stock { Id = 66, Name = "Korean Spicy", SupplierId = 12, Category = StockCategory.WingFlavor, Measure = 5, MeasurementUnit = MeasurementUnit.Bottle,  }
                 );
 
             modelBuilder.Entity<StockServing>().HasData(
@@ -251,11 +251,11 @@ namespace Fucha.DataLayer.Models
                 new Menu { Id = 32, MenuCategoryId = 6, Name = "Fries" },
                 new Menu { Id = 33, MenuCategoryId = 6, Name = "Siomai" },
 
-                new Menu { Id = 34, MenuCategoryId = 7, Name = "3 pcs with Rice" },
-                new Menu { Id = 35, MenuCategoryId = 7, Name = "6 pcs with Rice" },
-                new Menu { Id = 36, MenuCategoryId = 8, Name = "12 pcs" },
-                new Menu { Id = 37, MenuCategoryId = 8, Name = "18 pcs" },
-                new Menu { Id = 38, MenuCategoryId = 8, Name = "30 pcs" }
+                new Menu { Id = 34, MenuCategoryId = 7, Name = "Wings 3 pcs with Rice" },
+                new Menu { Id = 35, MenuCategoryId = 7, Name = "Wings 6 pcs with Rice" },
+                new Menu { Id = 36, MenuCategoryId = 8, Name = "Wings 12 pcs" },
+                new Menu { Id = 37, MenuCategoryId = 8, Name = "Wings 18 pcs" },
+                new Menu { Id = 38, MenuCategoryId = 8, Name = "Wings 30 pcs" }
                 );
             
             modelBuilder.Entity<MenuPrice>().HasData(
@@ -356,14 +356,17 @@ namespace Fucha.DataLayer.Models
                 );
 
             modelBuilder.Entity<PurchaseRecord>().HasData(
-                new PurchaseRecord { Id = 1, SupplierId = 1, ItemQuantity = 2, TotalAmount = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1 },
-                new PurchaseRecord { Id = 2, SupplierId = 3, ItemQuantity = 1, TotalAmount = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1 }
+                new PurchaseRecord { Id = 1, SupplierId = 1, ItemQuantity = 2, TotalAmount = 2000, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1 },
+                new PurchaseRecord { Id = 2, SupplierId = 1, ItemQuantity = 1, TotalAmount = 500, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), UserId = 1 }
                 );
 
             modelBuilder.Entity<PORecord>().HasData(
-                new PORecord { Id = 1, StockId = 1, Category = StockCategory.MilkTeaFlavor, Measure = 100, MeasurementUnit = MeasurementUnit.Kilograms, Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
-                new PORecord { Id = 2, StockId = 2, Category = StockCategory.MilkTeaFlavor, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
-                new PORecord { Id = 3, StockId = 4, Category = StockCategory.MilkTeaAddOn, Measure = 50, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
+                //new PORecord { Id = 1, StockName = "Okinawa", Category = StockCategory.MilkTeaFlavor, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                //new PORecord { Id = 2, StockName = "Red Velvet", Category = StockCategory.MilkTeaFlavor, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                //new PORecord { Id = 3, StockName = "Salted Caramel", Category = StockCategory.MilkTeaAddOn, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
+                new PORecord { Id = 1, StockName = "Okinawa", Category = StockCategory.MilkTeaFlavor.ToString(), Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms.ToString(), Price = 100, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord { Id = 2, StockName = "Red Velvet", Category = StockCategory.MilkTeaFlavor.ToString(), Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms.ToString(), Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 1 },
+                new PORecord { Id = 3, StockName = "Salted Caramel", Category = StockCategory.MilkTeaAddOn.ToString(), Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms.ToString(), Price = 50, DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"), PurchaseRecordId = 2 }
                 );
 
             modelBuilder.Entity<SaleTransaction>().HasData(

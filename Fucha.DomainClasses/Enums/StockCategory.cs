@@ -8,6 +8,7 @@
         Snack,
         Material,
         Ingredient,
-        Wing
+        Wing,
+        WingFlavor
     }
 }

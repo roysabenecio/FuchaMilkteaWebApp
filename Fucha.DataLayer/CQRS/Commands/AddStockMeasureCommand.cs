@@ -32,6 +32,9 @@ namespace Fucha.DataLayer.CQRS.Commands
             var currentStock = _context.Stocks.FirstOrDefault(x => x.Id == request.StockId);
             currentStock.Measure += request.Measure;
 
+            // Edit Stock's Last Restocked Date
+            currentStock.LastRestocked = DateTime.Now.ToString("dddd, dd MMMM yyyy");
+
             var activityDescription = $"Added {request.Measure} {(MeasurementUnit)currentStock.MeasurementUnit} of {currentStock.Name}" ;
 
             // add activity on activity history

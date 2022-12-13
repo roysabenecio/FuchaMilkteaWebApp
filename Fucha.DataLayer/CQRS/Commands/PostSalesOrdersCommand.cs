@@ -51,7 +51,7 @@ namespace Fucha.DataLayer.CQRS.Commands
 
             var newSale = new SaleTransaction
             {
-                ItemQuantity = request.Orders.Count,
+                ItemQuantity = request.Orders.Select(x => x.Quantity).Sum(),
                 DateSold = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"),
                 UserId = request.UserId
             };
@@ -122,15 +122,12 @@ namespace Fucha.DataLayer.CQRS.Commands
                     // Set Milktea status
                     var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
                     var MTStock= _context.Stocks.FirstOrDefault(s => s.Name == o.Name);
-                    var GramSold = (GSInKg);
-                    var lowStart = (MTStock.Measure * 0.7);
-                    var lowEnd= (MTStock.Measure * 0.84);
-                    var criticalStart = (MTStock.Measure * 0.85);
-                    var criticalEnd= (MTStock.Measure * 0.99);
+                    var RemainingMeasure = (MTStock.Measure - GSInKg);
 
-                    var isLow = GramSold >= lowStart && GramSold <= lowEnd;
-                    var isCritical = GramSold >= criticalStart && GramSold <= criticalEnd;
-                    var outOfStock = (MTStock.Measure - GramSold) <= 0;
+                    var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
+                    var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
+                    var overStock = MTStock.Measure >= MTStock.OverStockLevel;
+                    var outOfStock = RemainingMeasure <= 0;
                     
                     if (isLow)
                     {
@@ -144,7 +141,11 @@ namespace Fucha.DataLayer.CQRS.Commands
                     {
                         MTStock.Status = QuantityStatus.OutOfStock;
                     }
-                    if (!outOfStock && !isLow && !isCritical)
+                    if (overStock)
+                    {
+                        MTStock.Status = QuantityStatus.OverStock;
+                    }
+                    if (!outOfStock && !isLow && !isCritical && !overStock)
                     {
                         MTStock.Status = QuantityStatus.Sufficient;
                     }
@@ -254,8 +255,6 @@ namespace Fucha.DataLayer.CQRS.Commands
             _context.SaveChanges();
 
             var bill = _context.Orders.Select(x => x).Where(x => x.SaleId == currentSaleId).ToList();
-
-            OrderDTO isT = new();
 
             return Task.FromResult(bill);
         }

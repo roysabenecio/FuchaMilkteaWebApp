@@ -43,7 +43,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 Measure = request.Measure,
                 MeasurementUnit = (MeasurementUnit)Enum.Parse(typeof(MeasurementUnit), request.MeasurementUnit),
                 Category = (StockCategory)Enum.Parse(typeof(StockCategory), request.Category),
-                DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
+                //DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
                 //SupplierId = _context.Suppliers.FirstOrDefault(s => s.Name == request.Supplier).Id,
                 StockServingId = request.StockServingId,
                 SupplierId = supplierId

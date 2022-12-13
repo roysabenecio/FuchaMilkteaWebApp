@@ -34,7 +34,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                         stock.MeasurementUnit,
                         stock.Category,
                         stock.Status,
-                        stock.DateAdded,
+                        //stock.DateAdded,
                         stock.LastRestocked,
                         Supplier = supp.Name,
                         stock.IsRemoved
@@ -50,7 +50,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                 Category = s.Category.ToString(),
                 Status = s.Status.ToString(),
                 Supplier = s.Supplier,
-                DateAdded = s.DateAdded,
+                //DateAdded = s.DateAdded,
                 LastRestocked = s.LastRestocked,
                 IsRemoved = s.IsRemoved
             }).ToList(); 

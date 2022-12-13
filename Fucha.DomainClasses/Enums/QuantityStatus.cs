@@ -2,6 +2,7 @@
 {
     public enum QuantityStatus
     {
+        OverStock,
         Sufficient,
         Low,
         Critical,

@@ -6,6 +6,6 @@
         public string? Name { get; set; }
         public double? Grams { get; set; }
         public string? ResetDate{ get; set; }
-
+        public double? LastGramInfo { get; set; }
     }
 }

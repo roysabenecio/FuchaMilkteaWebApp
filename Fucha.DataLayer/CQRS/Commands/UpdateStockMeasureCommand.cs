@@ -30,7 +30,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 // Add Stock Quantity
                 currentStock.Measure += request.Measure;
 
-                // Check Gram Sold if milk tea
+                // Edit Gram Sold if milk tea
                 if (currentStock.Category == StockCategory.MilkTeaFlavor)
                 {
                     var currentGS = _context.MTGramSolds.FirstOrDefault(gs => gs.Name == currentStock.Name);
@@ -64,6 +64,38 @@ namespace Fucha.DataLayer.CQRS.Commands
                     if (!outOfStock && !isLow && !isCritical && !overStock)
                     {
                         MTStock.Status = QuantityStatus.Sufficient;
+                    }
+                    _context.SaveChanges();
+
+                }
+
+                // Edit stock status if not milk tea
+                if (currentStock.Category != StockCategory.MilkTeaFlavor)
+                {
+                    var isLow = currentStock.Measure > currentStock.CriticalLevel && currentStock.Measure <= currentStock.LowLevel;
+                    var isCritical = currentStock.Measure > 0 && currentStock.Measure <= currentStock.CriticalLevel;
+                    var overStock = currentStock.Measure >= currentStock.OverStockLevel;
+                    var outOfStock = currentStock.Measure <= 0;
+
+                    if (isLow)
+                    {
+                        currentStock.Status = QuantityStatus.Low;
+                    }
+                    if (isCritical)
+                    {
+                        currentStock.Status = QuantityStatus.Critical;
+                    }
+                    if (outOfStock)
+                    {
+                        currentStock.Status = QuantityStatus.OutOfStock;
+                    }
+                    if (overStock)
+                    {
+                        currentStock.Status = QuantityStatus.OverStock;
+                    }
+                    if (!outOfStock && !isLow && !isCritical && !overStock)
+                    {
+                        currentStock.Status = QuantityStatus.Sufficient;
                     }
                     _context.SaveChanges();
 

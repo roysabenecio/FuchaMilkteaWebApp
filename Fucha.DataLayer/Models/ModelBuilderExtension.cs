@@ -381,7 +381,17 @@ namespace Fucha.DataLayer.Models
                 new SaleTransaction { Id = 9, ItemQuantity = 10, DateSold = "09/01/2022 16:30:21", TotalSales = 4327, UserId = 1 },
                 new SaleTransaction { Id = 10, ItemQuantity = 10, DateSold = "10/01/2022 16:30:21", TotalSales = 2950, UserId = 1 },
                 new SaleTransaction { Id = 11, ItemQuantity = 10, DateSold = "11/01/2022 16:30:21", TotalSales = 6254, UserId = 1 },
-                new SaleTransaction { Id = 12, ItemQuantity = 10, DateSold = "12/01/2022 16:30:21", TotalSales = 8513, UserId = 1 }
+                new SaleTransaction { Id = 12, ItemQuantity = 10, DateSold = "12/01/2022 16:30:21", TotalSales = 8513, UserId = 1 },
+                new SaleTransaction { Id = 13, ItemQuantity = 10, DateSold = "03/01/2021 16:30:21", TotalSales = 1234, UserId = 1 },
+                new SaleTransaction { Id = 14, ItemQuantity = 10, DateSold = "04/01/2021 16:30:21", TotalSales = 4321, UserId = 1 },
+                new SaleTransaction { Id = 15, ItemQuantity = 10, DateSold = "05/01/2021 16:30:21", TotalSales = 3241, UserId = 1 },
+                new SaleTransaction { Id = 16, ItemQuantity = 10, DateSold = "06/01/2021 16:30:21", TotalSales = 4231, UserId = 1 },
+                new SaleTransaction { Id = 17, ItemQuantity = 10, DateSold = "07/01/2021 16:30:21", TotalSales = 2431, UserId = 1 },
+                new SaleTransaction { Id = 18, ItemQuantity = 10, DateSold = "08/01/2020 16:30:21", TotalSales = 1342, UserId = 1 },
+                new SaleTransaction { Id = 19, ItemQuantity = 10, DateSold = "09/01/2020 16:30:21", TotalSales = 3214, UserId = 1 },
+                new SaleTransaction { Id = 20, ItemQuantity = 10, DateSold = "10/01/2020 16:30:21", TotalSales = 5614, UserId = 1 },
+                new SaleTransaction { Id = 21, ItemQuantity = 10, DateSold = "11/01/2020 16:30:21", TotalSales = 4625, UserId = 1 },
+                new SaleTransaction { Id = 22, ItemQuantity = 10, DateSold = "12/01/2020 16:30:21", TotalSales = 7521, UserId = 1 }
                 );
 
             modelBuilder.Entity<MTGramSold>().HasData(

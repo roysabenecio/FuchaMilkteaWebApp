@@ -61,9 +61,9 @@ namespace Fucha.Web.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        [Route("AddStock")]
-        public async Task<IActionResult> AddStock(AddStockCommand command)
+        [HttpPut]
+        [Route("UpdateStockMeasure")]
+        public async Task<IActionResult> AddStock(UpdateStockMeasureCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);

@@ -20,8 +20,10 @@ namespace Fucha.DataLayer.CQRS.Queries
             {
                 Id = x.Id,
                 Name = x.Name,
-                Grams = x.Grams,
+                GramsSold = x.Grams,
                 ResetDate = x.ResetDate,
+                PreviousMeasure = x.PreviousMeasure,
+                Status = _context.Stocks.FirstOrDefault(s => s.Name == x.Name).Status.ToString()
             }).ToList();
 
             return Task.FromResult(allGramSold);

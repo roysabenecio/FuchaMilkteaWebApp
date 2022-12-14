@@ -47,9 +47,9 @@ namespace Fucha.DataLayer.Models
             };
 
             modelBuilder.Entity<Stock>().HasData(
-                new Stock { Id = 1, Name = "Okinawa", Status = QuantityStatus.Critical, SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
-                new Stock { Id = 2, Name = "Red Velvet", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
-                new Stock { Id = 3, Name = "Wintermelon", SupplierId = 2, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 1, Name = "Okinawa", CriticalLevel = 0.15, LowLevel = 0.3, OverStockLevel = 3, Status = QuantityStatus.Critical, SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 2, Name = "Red Velvet", CriticalLevel = 0.15, LowLevel = 0.3, OverStockLevel = 3, SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
+                new Stock { Id = 3, Name = "Wintermelon", CriticalLevel = 0.15, LowLevel = 0.3, OverStockLevel = 3, SupplierId = 2, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
                 new Stock { Id = 4, Name = "Salted Caramel", SupplierId = 1, Measure = 2, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
                 new Stock { Id = 5, Name = "Taro", SupplierId = 2, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },
                 new Stock { Id = 70, Name = "Cookies & Cream", SupplierId = 1, Measure = 0, MeasurementUnit = MeasurementUnit.Kilograms, Category = StockCategory.MilkTeaFlavor,  },

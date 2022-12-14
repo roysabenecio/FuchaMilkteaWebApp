@@ -14,6 +14,7 @@ namespace Fucha.DataLayer.DTOs
         public double? AddOnPrice { get; set; }
         public string? Size { get; set; }
         public string? Date { get; set; }
+        public string? Cashier { get; set; }
         public int SaleId { get; set; }
     }
 }

@@ -21,5 +21,13 @@ namespace Fucha.Web.Controllers
             var response = await _mediator.Send(new GetAllLoginHistoryQuery());
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("AllActivityHistory")]
+        public async Task<IActionResult> GetAllActivityHistory()
+        {
+            var response = await _mediator.Send(new GetAllActivityHistoryQuery());
+            return Ok(response);
+        }
     }
 }

@@ -885,6 +885,9 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<string>("StockName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("PORecords");
@@ -894,34 +897,37 @@ namespace Fucha.DataLayer.Migrations
                         {
                             Id = 1,
                             Category = "MilkTeaFlavor",
-                            DatePurchased = "Wednesday, 14 December 2022",
+                            DatePurchased = "Thursday, 15 December 2022",
                             Measure = 2.0,
                             MeasurementUnit = "Kilograms",
                             Price = 100.0,
                             PurchaseRecordId = 1,
-                            StockName = "Okinawa"
+                            StockName = "Okinawa",
+                            SupplierId = 0
                         },
                         new
                         {
                             Id = 2,
                             Category = "MilkTeaFlavor",
-                            DatePurchased = "Wednesday, 14 December 2022",
+                            DatePurchased = "Thursday, 15 December 2022",
                             Measure = 2.0,
                             MeasurementUnit = "Kilograms",
                             Price = 50.0,
                             PurchaseRecordId = 1,
-                            StockName = "Red Velvet"
+                            StockName = "Red Velvet",
+                            SupplierId = 0
                         },
                         new
                         {
                             Id = 3,
                             Category = "MilkTeaAddOn",
-                            DatePurchased = "Wednesday, 14 December 2022",
+                            DatePurchased = "Thursday, 15 December 2022",
                             Measure = 2.0,
                             MeasurementUnit = "Kilograms",
                             Price = 50.0,
                             PurchaseRecordId = 2,
-                            StockName = "Salted Caramel"
+                            StockName = "Salted Caramel",
+                            SupplierId = 0
                         });
                 });
 
@@ -936,13 +942,13 @@ namespace Fucha.DataLayer.Migrations
                     b.Property<string>("DatePurchased")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ItemQuantity")
+                    b.Property<int?>("ItemQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("SupplierId")
+                    b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
-                    b.Property<double>("TotalAmount")
+                    b.Property<double?>("TotalAmount")
                         .HasColumnType("float");
 
                     b.Property<int>("UserId")
@@ -956,7 +962,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            DatePurchased = "Wednesday, 14 December 2022",
+                            DatePurchased = "Thursday, 15 December 2022",
                             ItemQuantity = 2,
                             SupplierId = 1,
                             TotalAmount = 2000.0,
@@ -965,7 +971,7 @@ namespace Fucha.DataLayer.Migrations
                         new
                         {
                             Id = 2,
-                            DatePurchased = "Wednesday, 14 December 2022",
+                            DatePurchased = "Thursday, 15 December 2022",
                             ItemQuantity = 1,
                             SupplierId = 1,
                             TotalAmount = 500.0,
@@ -1661,6 +1667,86 @@ namespace Fucha.DataLayer.Migrations
                             DateSold = "12/01/2022 16:30:21",
                             ItemQuantity = 10,
                             TotalSales = 8513.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DateSold = "03/01/2021 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 1234.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DateSold = "04/01/2021 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 4321.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DateSold = "05/01/2021 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 3241.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DateSold = "06/01/2021 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 4231.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DateSold = "07/01/2021 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 2431.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DateSold = "08/01/2020 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 1342.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            DateSold = "09/01/2020 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 3214.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DateSold = "10/01/2020 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 5614.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            DateSold = "11/01/2020 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 4625.0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            DateSold = "12/01/2020 16:30:21",
+                            ItemQuantity = 10,
+                            TotalSales = 7521.0,
                             UserId = 1
                         });
                 });
@@ -2565,7 +2651,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 1,
                             Address = "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City",
                             ContactNumber = "09178077279",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "In joy"
                         },
@@ -2574,7 +2660,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 2,
                             Address = "208A Banawe St., Brgy Tatalon, Quezon City",
                             ContactNumber = "09175858100",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "PHNI Bubble Tea Store"
                         },
@@ -2583,7 +2669,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 3,
                             Address = "San Juan Manila",
                             ContactNumber = "09171284151",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "MSCS PrimeGoods, Inc."
                         },
@@ -2592,7 +2678,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 4,
                             Address = "1747 A. Mabini St, Malate, Manila, 1004 Metro Manila",
                             ContactNumber = "(02) 8523 1186",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "Fuji Mart Incorporated"
                         },
@@ -2601,7 +2687,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 5,
                             Address = "2329 Juan Luna St, Gagalangin, Manila, Metro Manila",
                             ContactNumber = "09985172380",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "Consistent Frozen Solutions"
                         },
@@ -2610,7 +2696,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 6,
                             Address = "40 Scout Oscar M. Alcaraz St, Santa Mesa Heights, Quezon City, 1114 Metro Manila",
                             ContactNumber = "09171735588",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "FST Egg Store"
                         },
@@ -2619,7 +2705,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 7,
                             Address = "#24 F Pasco Aveue Santolan, Pasig",
                             ContactNumber = "09955823086",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "Pizza Crust"
                         },
@@ -2628,7 +2714,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 8,
                             Address = "704 Rizal Ave. ext.Caloocan City, Metro Manil, 1403",
                             ContactNumber = "09955823086",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "Negosyo Now"
                         },
@@ -2637,7 +2723,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 9,
                             Address = "Metro Manila",
                             ContactNumber = "09955823086",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "Vostra Pizza"
                         },
@@ -2646,7 +2732,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 10,
                             Address = "837 Asuncion St, Binondo, Manila, 2006 Metro Manila",
                             ContactNumber = "09971220886",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "Golden Fishball Factory"
                         },
@@ -2655,7 +2741,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 11,
                             Address = "San Roque, Antipolo",
                             ContactNumber = "09610074035",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "Siomai Wholesale Supplier PH"
                         },
@@ -2664,7 +2750,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 12,
                             Address = "1005 Atlanta Centre Bldg., 31 Annapolis St., Greenhills, San Juan City",
                             ContactNumber = "721-339-47",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "JD FOODS Premium Sauces"
                         },
@@ -2673,7 +2759,7 @@ namespace Fucha.DataLayer.Migrations
                             Id = 13,
                             Address = "7F Steelworld Bldg. 713 N.S. Amoranto Sr. corner Biak na Bato Street, Quezon City",
                             ContactNumber = "09286418135",
-                            DateAdded = "Wednesday, 14 December 2022",
+                            DateAdded = "Thursday, 15 December 2022",
                             IsRemoved = false,
                             Name = "Easy Brand Ph"
                         });
@@ -2731,8 +2817,8 @@ namespace Fucha.DataLayer.Migrations
                             FirstName = "Roy",
                             IsRemoved = false,
                             LastName = "Sabenecio",
-                            PasswordHash = new byte[] { 79, 143, 230, 2, 47, 212, 30, 131, 78, 106, 64, 22, 209, 153, 100, 172, 181, 135, 128, 0, 46, 159, 141, 226, 143, 204, 44, 250, 176, 163, 213, 124 },
-                            PasswordSalt = new byte[] { 6, 17, 17, 53, 52, 20, 208, 65, 17, 242, 210, 234, 203, 108, 199, 66, 172, 5, 202, 18, 79, 181, 99, 2, 85, 33, 205, 155, 243, 163, 1, 80, 233, 123, 148, 71, 162, 49, 230, 36, 23, 136, 132, 254, 41, 214, 213, 30, 168, 227, 73, 4, 107, 163, 38, 16, 199, 147, 64, 96, 144, 195, 58, 103 },
+                            PasswordHash = new byte[] { 190, 222, 103, 76, 63, 92, 203, 107, 161, 47, 238, 105, 150, 220, 186, 207, 57, 169, 173, 194, 0, 66, 153, 29, 218, 15, 64, 193, 190, 152, 73, 205 },
+                            PasswordSalt = new byte[] { 38, 3, 97, 56, 228, 166, 74, 78, 208, 51, 53, 113, 12, 227, 60, 233, 91, 49, 244, 97, 150, 138, 224, 206, 54, 20, 106, 21, 192, 224, 109, 205, 79, 190, 86, 153, 137, 166, 58, 189, 175, 127, 245, 250, 51, 29, 41, 101, 30, 0, 141, 101, 152, 45, 183, 172, 216, 184, 8, 177, 194, 119, 230, 208 },
                             Role = "Admin",
                             UserName = "r",
                             UserStatus = "Approved"

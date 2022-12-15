@@ -164,6 +164,36 @@ namespace Fucha.DataLayer.CQRS.Commands
                     _context.SaveChanges();
                 }
 
+                if (currentStock.Category != StockCategory.MilkTeaFlavor)
+                {
+                    var isLow = currentStock.Measure > currentStock.CriticalLevel && currentStock.Measure <= currentStock.LowLevel;
+                    var isCritical = currentStock.Measure > 0 && currentStock.Measure <= currentStock.CriticalLevel;
+                    var overStock = currentStock.Measure >= currentStock.OverStockLevel;
+                    var outOfStock = currentStock.Measure <= 0;
+
+                    if (isLow)
+                    {
+                        currentStock.Status = QuantityStatus.Low;
+                    }
+                    if (isCritical)
+                    {
+                        currentStock.Status = QuantityStatus.Critical;
+                    }
+                    if (outOfStock)
+                    {
+                        currentStock.Status = QuantityStatus.OutOfStock;
+                    }
+                    if (overStock)
+                    {
+                        currentStock.Status = QuantityStatus.OverStock;
+                    }
+                    if (!outOfStock && !isLow && !isCritical && !overStock)
+                    {
+                        currentStock.Status = QuantityStatus.Sufficient;
+                    }
+                    _context.SaveChanges();
+                }
+
                 // add activity on activity history
                 var activityDescription = $"Deducted {computedMeasure * -1} {(MeasurementUnit)currentStock.MeasurementUnit} of {currentStock.Name}";
                 var newActivity = new ActivityHistory

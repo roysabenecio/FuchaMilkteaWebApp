@@ -43,6 +43,14 @@ namespace Fucha.Web.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        [Route("AddPurchaseRecord")]
+        public async Task<IActionResult> AddPurchaseRecord(AddPurchaseRecordCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
         [HttpPut]
         [Route("EditSupplier/{id}")]
         public async Task<IActionResult> EditUser(int id, [FromBody] SupplierDTO command)

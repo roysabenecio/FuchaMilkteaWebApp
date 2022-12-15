@@ -12,6 +12,7 @@ namespace Fucha.DomainClasses
         public string? DatePurchased { get; set; }
 
         //public int StockId { get; set; }
+        public int SupplierId { get; set; }
         public int PurchaseRecordId { get; set; }
     }
 }

@@ -35,8 +35,6 @@ namespace Fucha.DataLayer.CQRS.Commands
 
             var currentUser = _context.Users.FirstOrDefault(u => u.Id == request.UserId);
 
-
-
             var newStock = new Stock
             {
                 Name = request.Name,

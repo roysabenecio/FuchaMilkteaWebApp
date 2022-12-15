@@ -35,6 +35,14 @@ namespace Fucha.Web.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("AllPORecords")]
+        public async Task<IActionResult> AllPORecords()
+        {
+            var result = await _mediator.Send(new GetAllPORecordsQuery());
+            return Ok(result);
+        }
+
         [HttpPost]
         [Route("AddSupplier")]
         public async Task<IActionResult> AddSupplier(AddSupplierCommand command)

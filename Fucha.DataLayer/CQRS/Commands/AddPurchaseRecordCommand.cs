@@ -1,8 +1,8 @@
 ﻿using Fucha.DataLayer.DTOs;
 using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
+using Fucha.DomainClasses.Enums;
 using MediatR;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
@@ -63,6 +63,81 @@ namespace Fucha.DataLayer.CQRS.Commands
 
             // Add Stock's Measure
             newPurchaseOrders.ForEach(po => _context.Stocks.FirstOrDefault(s => s.Name == po.StockName).Measure += po.Measure);
+
+
+            newPurchaseOrders.ForEach(po =>
+            {
+                var currentStock = _context.Stocks.FirstOrDefault(s => s.Name == po.StockName && s.SupplierId == po.SupplierId);
+
+                // Edit Gram Sold if milk tea
+                if (currentStock.Category == StockCategory.MilkTeaFlavor)
+                {
+                    var currentGS = _context.MTGramSolds.FirstOrDefault(gs => gs.Name == currentStock.Name);
+
+                    // Set Milktea status
+                    var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
+                    var MTStock = currentStock;
+                    var RemainingMeasure = (MTStock.Measure - GSInKg);
+
+                    var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
+                    var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
+                    var overStock = MTStock.Measure >= MTStock.OverStockLevel;
+                    var outOfStock = RemainingMeasure <= 0;
+
+                    if (isLow)
+                    {
+                        MTStock.Status = QuantityStatus.Low;
+                    }
+                    if (isCritical)
+                    {
+                        MTStock.Status = QuantityStatus.Critical;
+                    }
+                    if (outOfStock)
+                    {
+                        MTStock.Status = QuantityStatus.OutOfStock;
+                    }
+                    if (overStock)
+                    {
+                        MTStock.Status = QuantityStatus.OverStock;
+                    }
+                    if (!outOfStock && !isLow && !isCritical && !overStock)
+                    {
+                        MTStock.Status = QuantityStatus.Sufficient;
+                    }
+                    _context.SaveChanges();
+                }
+
+                // Edit stock status if not milk tea
+                if (currentStock.Category != StockCategory.MilkTeaFlavor)
+                {
+                    var isLow = currentStock.Measure > currentStock.CriticalLevel && currentStock.Measure <= currentStock.LowLevel;
+                    var isCritical = currentStock.Measure > 0 && currentStock.Measure <= currentStock.CriticalLevel;
+                    var overStock = currentStock.Measure >= currentStock.OverStockLevel;
+                    var outOfStock = currentStock.Measure <= 0;
+
+                    if (isLow)
+                    {
+                        currentStock.Status = QuantityStatus.Low;
+                    }
+                    if (isCritical)
+                    {
+                        currentStock.Status = QuantityStatus.Critical;
+                    }
+                    if (outOfStock)
+                    {
+                        currentStock.Status = QuantityStatus.OutOfStock;
+                    }
+                    if (overStock)
+                    {
+                        currentStock.Status = QuantityStatus.OverStock;
+                    }
+                    if (!outOfStock && !isLow && !isCritical && !overStock)
+                    {
+                        currentStock.Status = QuantityStatus.Sufficient;
+                    }
+                    _context.SaveChanges();
+                }
+            });
 
             // Edit Stock's Last Restocked Date
             newPurchaseOrders.ForEach(po => _context.Stocks.FirstOrDefault(s => s.Name == po.StockName).LastRestocked = DateTime.Now.ToString("dddd, dd MMMM yyyy"));

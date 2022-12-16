@@ -9,14 +9,17 @@ namespace Fucha.DataLayer.CQRS.Commands
 {
     public class AddStockCommand : IRequest<Stock>
     {
-        public string Name { get; set; }
-        public double Measure { get; set; }
-        public string MeasurementUnit { get; set; }
-        public string Category { get; set; }
-        public int StockServingId { get; set; }
+        public string? Name { get; set; }
+        public double? Measure { get; set; }
+        public string? MeasurementUnit { get; set; }
+        public string? Category { get; set; }
+        public double? CriticalLevel { get; set; }
+        public double? LowLevel { get; set; }
+        public double? OverStockLevel { get; set; }
+        public int? StockServingId { get; set; }
         //public string StockStatus { get; set; }
         //dateadded
-        public string Supplier { get; set; }
+        public string? Supplier { get; set; }
         public int UserId { get; set; }
     }
 
@@ -41,6 +44,9 @@ namespace Fucha.DataLayer.CQRS.Commands
                 Measure = request.Measure,
                 MeasurementUnit = (MeasurementUnit)Enum.Parse(typeof(MeasurementUnit), request.MeasurementUnit),
                 Category = (StockCategory)Enum.Parse(typeof(StockCategory), request.Category),
+                CriticalLevel = request.CriticalLevel,
+                LowLevel = request.LowLevel,
+                OverStockLevel = request.OverStockLevel,
                 //DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
                 //SupplierId = _context.Suppliers.FirstOrDefault(s => s.Name == request.Supplier).Id,
                 StockServingId = request.StockServingId,
@@ -56,6 +62,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             {
                 User = currentUser.FirstName + " " + currentUser.LastName,
                 Activity = activityDescription,
+                Module = "Inventory",
                 Date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
             };
             _context.ActivityHistories.Add(newActivity);

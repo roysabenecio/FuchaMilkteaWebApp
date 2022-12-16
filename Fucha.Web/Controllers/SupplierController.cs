@@ -60,10 +60,10 @@ namespace Fucha.Web.Controllers
         }
 
         [HttpPut]
-        [Route("EditSupplier/{id}")]
-        public async Task<IActionResult> EditUser(int id, [FromBody] SupplierDTO command)
+        [Route("EditSupplier")]
+        public async Task<IActionResult> EditUser(EditSupplierCommand command)
         {
-            var response = await _mediator.Send(new EditSupplierCommand(id, command));
+            var response = await _mediator.Send(command);
             return Ok(response);
         }
 

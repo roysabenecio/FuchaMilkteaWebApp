@@ -28,7 +28,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             {
                 ItemQuantity = 0,
                 TotalAmount = 0,
-                DatePurchased = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"),
+                DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
                 SupplierId = _context.Suppliers.FirstOrDefault(s => s.Name == request.PurchaseRec[0].Supplier).Id,
                 UserId = request.UserId,
             };
@@ -44,7 +44,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 Category = POR.Category,
                 Measure = POR.Measure,
                 MeasurementUnit = POR.MeasurementUnit,
-                DatePurchased = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"),
+                DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
                 Price = POR.Price,
                 SupplierId = _context.Suppliers.FirstOrDefault(s => s.Name == POR.Supplier).Id,
                 PurchaseRecordId = newPurchaseRecord.Id // Get the new Purchase Record Id

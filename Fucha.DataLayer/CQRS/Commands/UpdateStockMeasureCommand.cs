@@ -28,7 +28,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             if (computedMeasure > 0)
             {
                 // Add Stock Quantity
-                currentStock.Measure += request.Measure;
+                currentStock.Measure += computedMeasure;
 
                 // Edit Gram Sold if milk tea
                 if (currentStock.Category == StockCategory.MilkTeaFlavor)

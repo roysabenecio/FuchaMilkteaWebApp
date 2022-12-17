@@ -41,10 +41,10 @@ namespace Fucha.Web.Controllers
         }
 
         [HttpPut]
-        [Route("EditUser/{id}")]
-        public async Task<IActionResult> EditUser(int id, [FromBody] UserDTO command)
+        [Route("EditUser")]
+        public async Task<IActionResult> EditUser([FromBody] EditUserCommand command)
         {
-            var response = await _mediator.Send(new EditUserCommand(id, command));
+            var response = await _mediator.Send(command);
             return Ok(response);
         }
 

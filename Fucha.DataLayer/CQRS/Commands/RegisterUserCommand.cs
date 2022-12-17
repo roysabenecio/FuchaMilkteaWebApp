@@ -2,11 +2,13 @@
 using MediatR;
 using Fucha.DomainClasses;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
     public class RegisterUserCommand : IRequest<User>
     {
+        public int UserId { get; set; }
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -28,6 +30,7 @@ namespace Fucha.DataLayer.CQRS.Commands
 
         public Task<User> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
+            var actor = _dbContext.Users.FirstOrDefault(x => x.Id == request.UserId);
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             var newUser = new User
             {
@@ -37,10 +40,27 @@ namespace Fucha.DataLayer.CQRS.Commands
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Role = request.Role,
-                UserStatus = request.UserStatus,
+                UserStatus = actor != null ? "Approved" : request.UserStatus,
                 DateCreated = DateTime.Now.ToString("dddd, dd MMMM yyyy")
             };
             _dbContext.Users.Add(newUser);
+
+            if (actor != null)
+            {
+                // Add activity
+                var actorFullName = actor.FirstName + " " + actor.LastName;
+                var newUserFullName = newUser.FirstName + " " + newUser.LastName;
+                var activityDescription = $"Added user {newUserFullName}";
+                var newActivity = new ActivityHistory
+                {
+                    User = actorFullName,
+                    Activity = activityDescription,
+                    Module = "User",
+                    Date = DateTime.Now.ToString("MM/dd/yyyy HH:mm")
+                };
+                _dbContext.ActivityHistories.Add(newActivity);
+            }
+            
             _dbContext.SaveChanges();
             return Task.FromResult(newUser);
         }

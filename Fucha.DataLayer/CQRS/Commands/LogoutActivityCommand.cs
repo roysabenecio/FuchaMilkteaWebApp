@@ -25,7 +25,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             {
                 Date = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"),
                 Description = description,
-                User = selectUser.FirstName + selectUser.LastName,
+                User = selectUser.FirstName + " " + selectUser.LastName,
                 Role = selectUser.Role
             };
             _context.LoginHistories.Add(newloginHistory);

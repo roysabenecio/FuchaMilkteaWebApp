@@ -20,17 +20,21 @@ namespace Fucha.DataLayer.CQRS.Commands
         }
         public Task<bool> Handle(RemoveUserCommand request, CancellationToken cancellationToken)
         {
+            var selectedUser = _context.Users.FirstOrDefault(user => user.Id == request.Id);
+            selectedUser.IsRemoved = true;
             if (request.Id == 1)
             {
                 return Task.FromResult(false);
             }
+            if (request.Id == selectedUser.Id)
+            {
+                return Task.FromResult(false);
+            }
+
             var actor = _context.Users.FirstOrDefault(x => x.Id == request.UserId);
 
-            var selectedUser = _context.Users.FirstOrDefault(user => user.Id == request.Id);
-            selectedUser.IsRemoved = true;
-
             // Add activity
-            var fullName = actor.FirstName + " " + actor.LastName;
+            var fullName = selectedUser.FirstName + " " + selectedUser.LastName;
             var activityDescription = $"Removed user {fullName}";
             var newActivity = new ActivityHistory
             {

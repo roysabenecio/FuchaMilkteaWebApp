@@ -26,7 +26,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             selectedUser.IsRemoved = false;
 
             // Add activity
-            var fullName = actor.FirstName + " " + actor.LastName;
+            var fullName = selectedUser.FirstName + " " + selectedUser.LastName;
             var activityDescription = $"Restored user {fullName}";
             var newActivity = new ActivityHistory
             {

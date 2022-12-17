@@ -34,6 +34,8 @@ namespace Fucha.DataLayer.CQRS.Commands
             };
 
             _context.ActivityHistories.Add(newActivity);
+            _context.SaveChanges();
+
             return Task.FromResult(true);
         }
     }

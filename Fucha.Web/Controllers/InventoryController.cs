@@ -78,8 +78,8 @@ namespace Fucha.Web.Controllers
         }
 
         [HttpPut]
-        [Route("EditStock/{id}")]
-        public async Task<IActionResult> EditStock(int id, [FromBody] EditStockCommand command )
+        [Route("EditStock/")]
+        public async Task<IActionResult> EditStock([FromBody] EditStockCommand command )
         {
             var result = await _mediator.Send(command);
             return Ok(result);

@@ -36,9 +36,13 @@ namespace Fucha.DataLayer.CQRS.Commands
                     var currentGS = _context.MTGramSolds.FirstOrDefault(gs => gs.Name == currentStock.Name);
 
                     // Set Milktea status
-                    var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
                     var MTStock = currentStock;
-                    var RemainingMeasure = (MTStock.Measure - GSInKg);
+                    var RemainingMeasure = MTStock.Measure;
+                    if (currentGS != null)
+                    {
+                        var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
+                        RemainingMeasure = (MTStock.Measure - GSInKg);
+                    }
 
                     var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
                     var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
@@ -126,15 +130,20 @@ namespace Fucha.DataLayer.CQRS.Commands
                 if (currentStock.Category == StockCategory.MilkTeaFlavor)
                 {
                     var currentGS = _context.MTGramSolds.FirstOrDefault(gs => gs.Name == currentStock.Name);
-                    // Update grams sold info
-                    currentGS.PreviousMeasure = currentGS.Grams;
-                    currentGS.ResetDate = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-                    currentGS.Grams = 0;
 
                     // Set Milktea status
-                    var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
                     var MTStock = currentStock;
-                    var RemainingMeasure = (MTStock.Measure - GSInKg);
+                    var RemainingMeasure = MTStock.Measure;
+                    if (currentGS != null)
+                    {
+                        // Update grams sold info
+                        currentGS.PreviousMeasure = currentGS.Grams;
+                        currentGS.ResetDate = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+                        currentGS.Grams = 0;
+
+                        var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
+                        RemainingMeasure = (MTStock.Measure - GSInKg);
+                    }
 
                     var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
                     var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;

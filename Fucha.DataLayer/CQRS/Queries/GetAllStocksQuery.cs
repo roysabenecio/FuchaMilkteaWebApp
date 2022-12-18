@@ -1,5 +1,6 @@
 ﻿using Fucha.DataLayer.DTOs;
 using Fucha.DataLayer.Models;
+using Fucha.DomainClasses;
 using MediatR;
 
 namespace Fucha.DataLayer.CQRS.Queries
@@ -34,6 +35,9 @@ namespace Fucha.DataLayer.CQRS.Queries
                         stock.MeasurementUnit,
                         stock.Category,
                         stock.Status,
+                        stock.CriticalLevel,
+                        stock.LowLevel,
+                        stock.OverStockLevel,
                         //stock.DateAdded,
                         stock.LastRestocked,
                         Supplier = supp.Name,
@@ -50,6 +54,9 @@ namespace Fucha.DataLayer.CQRS.Queries
                 Category = s.Category.ToString(),
                 Status = s.Status.ToString(),
                 Supplier = s.Supplier,
+                CriticalLevel = s.CriticalLevel,
+                LowLevel = s.LowLevel,
+                OverStockLevel = s.OverStockLevel,
                 //DateAdded = s.DateAdded,
                 LastRestocked = s.LastRestocked,
                 IsRemoved = s.IsRemoved

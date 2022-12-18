@@ -151,6 +151,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             {
                 User = FullName,
                 Activity = activity,
+                Module = "Reorder",
                 Date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
             };
 

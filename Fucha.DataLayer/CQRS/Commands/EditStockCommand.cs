@@ -61,8 +61,8 @@ namespace Fucha.DataLayer.CQRS.Commands
 
             // Reset Gram Sold if milk tea
             var currentStock = selectedStock;
-            if (currentStock.Category == StockCategory.MilkTeaFlavor)
-            {
+            //if (currentStock.Category == StockCategory.MilkTeaFlavor)
+            //{
                 var currentGS = _context.MTGramSolds.FirstOrDefault(gs => gs.Name == currentStock.Name);
 
                 // Set Milktea status
@@ -100,7 +100,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                     MTStock.Status = QuantityStatus.Sufficient;
                 }
                 _context.SaveChanges();
-            }
+            //}
 
             // Add activity
             var activityDescription = $"Edited Stock {selectedStock.Name}";

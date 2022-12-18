@@ -96,7 +96,7 @@ namespace Fucha.DataLayer.Models
                 new Stock { Id = 41, Name = "Aloha Special", SupplierId = 7, StockServingId = 1, Category = StockCategory.Pizza, Measure = 20, MeasurementUnit = MeasurementUnit.Pieces,  },
 
                 new Stock { Id = 42, Name = "Chicken balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
-                new Stock { Id = 43, Name = "Squad balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
+                new Stock { Id = 43, Name = "Squid balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
                 new Stock { Id = 44, Name = "Shrimp balls", SupplierId = 10, StockServingId = 2, Category = StockCategory.Snack, Measure = 100, MeasurementUnit = MeasurementUnit.Pieces,  },
 
                 new Stock { Id = 45, Name = "French Fries", SupplierId = 5, StockServingId = null, Category = StockCategory.Snack, Measure = 10, MeasurementUnit = MeasurementUnit.Kilograms,  },

@@ -85,7 +85,7 @@ namespace Fucha.Web.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
+        [HttpPut]
         [Route("RemoveStock")]
         public async Task<IActionResult> RemoveStock(RemoveStockCommand command)
         {

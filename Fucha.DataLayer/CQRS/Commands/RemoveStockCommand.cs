@@ -1,18 +1,13 @@
-﻿using Fucha.DataLayer.DTOs;
-using Fucha.DataLayer.Models;
+﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
     public class RemoveStockCommand : IRequest<bool>
     {
         public int Id { get; set; }
+        public int UserId { get; set; }
     }
 
     public class RemoveStockCommandHandler: IRequestHandler<RemoveStockCommand, bool>
@@ -26,7 +21,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         public Task<bool> Handle(RemoveStockCommand request, CancellationToken cancellationToken)
         {
             var selectedStock = _context.Stocks.FirstOrDefault(x => x.Id == request.Id);
-
+            var actor = _context.Users.FirstOrDefault(x => x.Id == request.UserId);
             //var stockDTO = new StockDTO
             //{
             //    Id = selectedStock.Id,
@@ -36,8 +31,19 @@ namespace Fucha.DataLayer.CQRS.Commands
             //    StockCategory = selectedStock.StockCategory.ToString()
 
             //};
+            selectedStock.IsRemoved = true;
 
-            _context.Stocks.Remove(selectedStock);
+            // Add activity
+            var activityDescription = $"Removed stock {selectedStock.Name}";
+            var newActivity = new ActivityHistory
+            {
+                User = actor.FirstName + " " + actor.LastName,
+                Activity = activityDescription,
+                Module = "Inventory",
+                Date = DateTime.Now.ToString("MM/dd/yyyy HH:mm")
+            };
+
+            //_context.Stocks.Remove(selectedStock);
             _context.SaveChanges();
 
             return Task.FromResult(true);

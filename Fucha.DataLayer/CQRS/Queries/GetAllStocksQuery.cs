@@ -60,7 +60,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                 //DateAdded = s.DateAdded,
                 LastRestocked = s.LastRestocked,
                 IsRemoved = s.IsRemoved
-            }).ToList(); 
+            }).OrderByDescending(x => x.Id).ToList(); 
 
             return Task.FromResult<List<StockDTO>>(stocksDTO);
         }

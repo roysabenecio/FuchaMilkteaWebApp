@@ -28,7 +28,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                 UserStatus = user.UserStatus,
                 DateCreated = user.DateCreated,
                 IsRemoved = user.IsRemoved
-            }).ToList();
+            }).OrderByDescending(x => x.Id).ToList();
             return Task.FromResult(allUsers);
         }
     }

@@ -32,7 +32,7 @@ namespace Fucha.DataLayer.CQRS.Queries
             //        DateAdded = supplier.DateAdded,
             //        IsRemoved = supplier.IsRemoved,
             //    }).ToList();
-            var allSuppliers = _context.Suppliers.Select(supplier => supplier).ToList();
+            var allSuppliers = _context.Suppliers.Select(supplier => supplier).OrderByDescending(s => s.Id).ToList();
             return Task.FromResult(allSuppliers);
         }
     }

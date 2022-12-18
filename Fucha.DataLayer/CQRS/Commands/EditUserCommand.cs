@@ -56,7 +56,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             selectedUser.UserStatus = request.UserStatus;
 
             // Add activity
-            var fullName = actor.FirstName + " " + actor.LastName;
+            var fullName = selectedUser.FirstName + " " + selectedUser.LastName;
             var activityDescription = $"Edited user {fullName}";
             var newActivity = new ActivityHistory
             {

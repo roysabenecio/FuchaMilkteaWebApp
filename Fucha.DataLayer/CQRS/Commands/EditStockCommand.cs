@@ -48,7 +48,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             selectedStock.CriticalLevel = request.CriticalLevel;
             selectedStock.OverStockLevel = request.OverStockLevel;
             selectedStock.SupplierId = selectedSupplier.Id;
-            _context.SaveChanges();
+            //_context.SaveChanges();
 
             var editedStock = new StockDTO
             {

@@ -26,7 +26,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             {
                 return Task.FromResult(false);
             }
-            if (request.Id == selectedUser.Id)
+            if (request.UserId == selectedUser.Id)
             {
                 return Task.FromResult(false);
             }

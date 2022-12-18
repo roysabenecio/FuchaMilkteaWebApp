@@ -1,4 +1,5 @@
-﻿using Fucha.DataLayer.CQRS.Queries;
+﻿using Fucha.DataLayer.CQRS.Commands;
+using Fucha.DataLayer.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,6 +36,14 @@ namespace Fucha.Web.Controllers
         public async Task<IActionResult> GetAllGramSold()
         {
             var response = await _mediator.Send(new GetAllGramSoldQuery());
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("SearchStock")]
+        public async Task<IActionResult> SearchStock(SearchStockCommand command)
+        {
+            var response = await _mediator.Send(command);
             return Ok(response);
         }
     }

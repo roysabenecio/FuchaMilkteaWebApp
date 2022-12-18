@@ -333,10 +333,10 @@ namespace Fucha.DataLayer.Models
                 }
             }
 
-            CreatePasswordHash("r", out byte[] passwordHash, out byte[] passwordSalt);
+            CreatePasswordHash("adminPass", out byte[] passwordHash, out byte[] passwordSalt);
 
             modelBuilder.Entity<User>().HasData(
-                new User() { Id = 1, FirstName = "Roy", LastName = "Sabenecio", UserName = "r", PasswordHash = passwordHash, PasswordSalt = passwordSalt, Role = "Admin", UserStatus = "Approved" }
+                new User() { Id = 1, FirstName = "Admin", LastName = "Admin", UserName = "admin", PasswordHash = passwordHash, PasswordSalt = passwordSalt, Role = "Admin", UserStatus = "Approved" }
                 );
 
             modelBuilder.Entity<Supplier>().HasData(

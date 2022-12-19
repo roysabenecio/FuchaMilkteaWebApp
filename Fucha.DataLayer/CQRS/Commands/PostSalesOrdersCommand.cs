@@ -104,7 +104,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                     var currentGS = gramSold.FirstOrDefault(gs => gs.Name == o.Name);
                     if (o.SizeId == 1)
                     {
-                        currentGS.Grams += (15 * o.Quantity);
+                        currentGS.Grams += (30 * o.Quantity);
                     }
                     if (o.SizeId == 2)
                     {
@@ -112,11 +112,11 @@ namespace Fucha.DataLayer.CQRS.Commands
                     }
                     if (o.SizeId == 3)
                     {
-                        currentGS.Grams += (45 * o.Quantity);
+                        currentGS.Grams += (60 * o.Quantity);
                     }
                     if (o.SizeId == 4)
                     {
-                        currentGS.Grams += (60 * o.Quantity);
+                        currentGS.Grams += (90 * o.Quantity);
                     }
 
                     // Set Milktea status

@@ -55,6 +55,90 @@ namespace Fucha.DataLayer.CQRS.Commands
             };
             _context.Stocks.Add(newStock);
 
+            // Reset Gram Sold if milk tea
+            var currentStock = newStock;
+            //if (currentStock.Category == StockCategory.MilkTeaFlavor)
+            //{
+            var currentGS = _context.MTGramSolds.FirstOrDefault(gs => gs.Name == currentStock.Name);
+
+            // Set Milktea status
+            var MTStock = currentStock;
+            var RemainingMeasure = MTStock.Measure;
+            if (currentGS != null)
+            {
+                var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
+                RemainingMeasure = (MTStock.Measure - GSInKg);
+            }
+
+            var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
+            var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
+            var overStock = MTStock.Measure >= MTStock.OverStockLevel;
+            var outOfStock = RemainingMeasure <= 0;
+
+            if (isLow)
+            {
+                MTStock.Status = QuantityStatus.Low;
+            }
+            if (isCritical)
+            {
+                MTStock.Status = QuantityStatus.Critical;
+            }
+            if (outOfStock)
+            {
+                MTStock.Status = QuantityStatus.OutOfStock;
+            }
+            if (overStock)
+            {
+                MTStock.Status = QuantityStatus.OverStock;
+            }
+            if (!outOfStock && !isLow && !isCritical && !overStock)
+            {
+                MTStock.Status = QuantityStatus.Sufficient;
+            }
+
+            if (newStock.Category == StockCategory.Pizza)
+            {
+                var newPizza = new Menu
+                {
+                    Name = newStock.Name,
+                    MenuCategoryId = 4
+                };
+
+                newStock.StockServingId = 1;
+
+                _context.Menus.Add(newPizza);
+                _context.SaveChanges();
+
+                var newPrice = new MenuPrice
+                {
+                    Price = 600,
+                    MenuId = newPizza.Id,
+                    MenuCategoryId=4
+                };
+
+                _context.MenuPrices.Add(newPrice);
+                _context.SaveChanges();
+
+                var newRecipe = new Recipe
+                {
+                    Name = newStock.Name,
+                    MenuId = newPrice.MenuId,
+                    MenuCategoryId = newPrice.MenuCategoryId
+                };
+
+                _context.Recipes.Add(newRecipe);
+                _context.SaveChanges();
+
+                var newRecipeStock = new RecipeStock
+                {
+                    RecipeId = newRecipe.Id,
+                    StockId = newStock.Id,
+                };
+
+                _context.RecipeStocks.Add(newRecipeStock);
+                _context.SaveChanges();
+            }
+
             // add activity on activity history
             var activityDescription = $"Added new stock {newStock.Name} {newStock.Measure} {request.MeasurementUnit}";
 

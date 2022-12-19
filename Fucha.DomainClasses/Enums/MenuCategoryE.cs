@@ -9,6 +9,6 @@
         ChickenWings,
         AlaCarte,
         PizzaRegular,
-        PizzaSpecial
+        PizzaSpecial,
     }
 }

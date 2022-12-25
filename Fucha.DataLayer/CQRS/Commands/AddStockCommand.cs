@@ -21,6 +21,8 @@ namespace Fucha.DataLayer.CQRS.Commands
         //dateadded
         public string? Supplier { get; set; }
         public int UserId { get; set; }
+
+        public double? Price { get; set; }
     }
 
     public class AddStockCommandHandler : IRequestHandler<AddStockCommand, Stock>
@@ -96,6 +98,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 MTStock.Status = QuantityStatus.Sufficient;
             }
 
+            // For Pizza
             if (newStock.Category == StockCategory.Pizza)
             {
                 var newPizza = new Menu
@@ -111,7 +114,7 @@ namespace Fucha.DataLayer.CQRS.Commands
 
                 var newPrice = new MenuPrice
                 {
-                    Price = 600,
+                    Price = (double)request.Price,
                     MenuId = newPizza.Id,
                     MenuCategoryId=4
                 };

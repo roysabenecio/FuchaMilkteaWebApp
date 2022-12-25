@@ -25,6 +25,8 @@ namespace Fucha.DataLayer.CQRS.Commands
 
         public string? Supplier { get; set; }
         public int UserId { get; set; }
+
+        public double? Price { get; set; }
     }
 
     public class EditStockCommandHandler : IRequestHandler<EditStockCommand, bool>
@@ -43,11 +45,34 @@ namespace Fucha.DataLayer.CQRS.Commands
             //selectedStock.Measure = request.Measure;
             //selectedStock.MeasurementUnit = (MeasurementUnit)Enum.Parse(typeof(MeasurementUnit), request.MeasurementUnit);
             //selectedStock.Category = (StockCategory)Enum.Parse(typeof(StockCategory), request.Category);
-            selectedStock.Name = request.Name;
-            selectedStock.LowLevel = request.LowLevel;
-            selectedStock.CriticalLevel = request.CriticalLevel;
-            selectedStock.OverStockLevel = request.OverStockLevel;
-            selectedStock.SupplierId = selectedSupplier.Id;
+
+            if (selectedStock.Category == StockCategory.Pizza)
+            {
+                var selectedMenu = _context.Menus.FirstOrDefault(m => m.Name == selectedStock.Name);
+                var selectedPrice = _context.MenuPrices.FirstOrDefault(mp => mp.Id == selectedMenu.Id);
+
+                selectedMenu.Name = request.Name;
+                if (request.Price != null)
+                {
+                    selectedPrice.Price = (double)request.Price;
+                }
+
+                selectedStock.Name = request.Name;
+                selectedStock.LowLevel = request.LowLevel;
+                selectedStock.CriticalLevel = request.CriticalLevel;
+                selectedStock.OverStockLevel = request.OverStockLevel;
+                selectedStock.SupplierId = selectedSupplier.Id;
+                
+            } 
+            else
+            {
+                selectedStock.Name = request.Name;
+                selectedStock.LowLevel = request.LowLevel;
+                selectedStock.CriticalLevel = request.CriticalLevel;
+                selectedStock.OverStockLevel = request.OverStockLevel;
+                selectedStock.SupplierId = selectedSupplier.Id;
+            }
+            
             //selectedStock.StockServingId = request.StockServingId != null ? request.StockServingId : null;
             //_context.SaveChanges();
 

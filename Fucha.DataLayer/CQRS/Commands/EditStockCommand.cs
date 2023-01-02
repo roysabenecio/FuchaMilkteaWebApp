@@ -49,7 +49,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             if (selectedStock.Category == StockCategory.Pizza)
             {
                 var selectedMenu = _context.Menus.FirstOrDefault(m => m.Name == selectedStock.Name);
-                var selectedPrice = _context.MenuPrices.FirstOrDefault(mp => mp.Id == selectedMenu.Id);
+                var selectedPrice = _context.MenuPrices.FirstOrDefault(mp => mp.MenuId == selectedMenu.Id);
 
                 selectedMenu.Name = request.Name;
                 if (request.Price != null)

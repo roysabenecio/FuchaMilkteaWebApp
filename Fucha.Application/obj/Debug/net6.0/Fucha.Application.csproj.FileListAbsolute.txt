@@ -22,3 +22,15 @@ C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\Fu
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\refint\Fucha.Application.dll
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\Fucha.Application.pdb
 C:\Users\A\source\repos\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\ref\Fucha.Application.dll
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\bin\Debug\net6.0\Fucha.Application.deps.json
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\bin\Debug\net6.0\Fucha.Application.dll
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\bin\Debug\net6.0\Fucha.Application.pdb
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\Fucha.Application.csproj.AssemblyReference.cache
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\Fucha.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\Fucha.Application.AssemblyInfoInputs.cache
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\Fucha.Application.AssemblyInfo.cs
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\Fucha.Application.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\Fucha.Application.dll
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\refint\Fucha.Application.dll
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\Fucha.Application.pdb
+C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.Application\obj\Debug\net6.0\ref\Fucha.Application.dll

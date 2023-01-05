@@ -126,7 +126,7 @@ namespace Fucha.DataLayer.CQRS.Commands
 
                     var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
                     var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
-                    var overStock = MTStock.Measure >= MTStock.OverStockLevel;
+                    var overStock = MTStock.Measure > MTStock.Ceiling;
                     var outOfStock = RemainingMeasure <= 0;
                     
                     if (isLow)
@@ -184,6 +184,36 @@ namespace Fucha.DataLayer.CQRS.Commands
                     // Deduct Stocks based on StockServing
                     currentStocks.ForEach(s => s.Measure -= (o.Quantity * joinedStockServing.FirstOrDefault(ss => ss.Id == s.Id).RequiredPerServing));
 
+                    // Set Stock status
+                    //var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
+                    var stock = _context.Stocks.FirstOrDefault(s => s.Name == o.Name);
+
+                    var isLow = stock.Measure > stock.CriticalLevel && stock.Measure <= stock.LowLevel;
+                    var isCritical = stock.Measure > 0 && stock.Measure <= stock.CriticalLevel;
+                    var overStock = stock.Measure > stock.Ceiling;
+                    var outOfStock = stock.Measure <= 0;
+
+                    if (isLow)
+                    {
+                        stock.Status = QuantityStatus.Low;
+                    }
+                    if (isCritical)
+                    {
+                        stock.Status = QuantityStatus.Critical;
+                    }
+                    if (outOfStock)
+                    {
+                        stock.Status = QuantityStatus.OutOfStock;
+                    }
+                    if (overStock)
+                    {
+                        stock.Status = QuantityStatus.OverStock;
+                    }
+                    if (!outOfStock && !isLow && !isCritical && !overStock)
+                    {
+                        stock.Status = QuantityStatus.Sufficient;
+                    }
+                    _context.SaveChanges();
                 }
             });
 

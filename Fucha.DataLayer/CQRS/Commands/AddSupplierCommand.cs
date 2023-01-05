@@ -8,7 +8,9 @@ namespace Fucha.DataLayer.CQRS.Commands
     {
         public string? Name { get; set; }
         public string? Address { get; set; }
+        public string? ContactPerson { get; set; }
         public string? ContactNumber { get; set; }
+        public string? Email { get; set; }
         public int UserId { get; set; }
     }
 
@@ -25,7 +27,9 @@ namespace Fucha.DataLayer.CQRS.Commands
             var newSupplier = new Supplier { 
                 Name = request.Name,
                 Address = request.Address,
+                ContactPerson = request.ContactPerson,
                 ContactNumber = request.ContactNumber,
+                Email = request.Email,
                 DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy")
             };
             _context.Suppliers.Add(newSupplier);

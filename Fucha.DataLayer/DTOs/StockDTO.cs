@@ -11,7 +11,7 @@ namespace Fucha.DataLayer.DTOs
         public string Status { get; set; }
         public double? CriticalLevel { get; set; }
         public double? LowLevel { get; set; }
-        public double? OverStockLevel { get; set; }
+        public double? Ceiling { get; set; }
         //public string? DateAdded { get; set; }
         public string? LastRestocked { get; set; }
         public string? Supplier { get; set; }

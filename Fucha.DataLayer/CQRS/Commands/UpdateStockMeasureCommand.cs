@@ -46,7 +46,7 @@ namespace Fucha.DataLayer.CQRS.Commands
 
                     var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
                     var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
-                    var overStock = MTStock.Measure >= MTStock.OverStockLevel;
+                    var overStock = MTStock.Measure > MTStock.Ceiling;
                     var outOfStock = RemainingMeasure <= 0;
 
                     if (isLow)
@@ -78,7 +78,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 {
                     var isLow = currentStock.Measure > currentStock.CriticalLevel && currentStock.Measure <= currentStock.LowLevel;
                     var isCritical = currentStock.Measure > 0 && currentStock.Measure <= currentStock.CriticalLevel;
-                    var overStock = currentStock.Measure >= currentStock.OverStockLevel;
+                    var overStock = currentStock.Measure > currentStock.Ceiling;
                     var outOfStock = currentStock.Measure <= 0;
 
                     if (isLow)
@@ -147,7 +147,7 @@ namespace Fucha.DataLayer.CQRS.Commands
 
                     var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
                     var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
-                    var overStock = MTStock.Measure >= MTStock.OverStockLevel;
+                    var overStock = MTStock.Measure > MTStock.Ceiling;
                     var outOfStock = RemainingMeasure <= 0;
 
                     if (isLow)
@@ -177,7 +177,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 {
                     var isLow = currentStock.Measure > currentStock.CriticalLevel && currentStock.Measure <= currentStock.LowLevel;
                     var isCritical = currentStock.Measure > 0 && currentStock.Measure <= currentStock.CriticalLevel;
-                    var overStock = currentStock.Measure >= currentStock.OverStockLevel;
+                    var overStock = currentStock.Measure > currentStock.Ceiling;
                     var outOfStock = currentStock.Measure <= 0;
 
                     if (isLow)

@@ -18,7 +18,9 @@ namespace Fucha.DataLayer.CQRS.Commands
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Address { get; set; }
+        public string? ContactPerson { get; set; }
         public string? ContactNumber { get; set; }
+        public string? Email { get; set; }
         public bool IsRemoved { get; set; }
         public int UserId { get; set; }
     }
@@ -37,7 +39,9 @@ namespace Fucha.DataLayer.CQRS.Commands
             var selectedSupplier = _context.Suppliers.FirstOrDefault(x => x.Id == request.Id);
             selectedSupplier.Name = request.Name;
             selectedSupplier.Address = request.Address;
+            selectedSupplier.ContactPerson = request.ContactPerson;
             selectedSupplier.ContactNumber = request.ContactNumber;
+            selectedSupplier.Email = request.Email;
 
             // Add activity
             var activityDescription = $"Edited Supplier {selectedSupplier.Name}";

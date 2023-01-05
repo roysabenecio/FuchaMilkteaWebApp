@@ -17,6 +17,7 @@ namespace Fucha.DataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     User = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Activity = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Module = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -147,6 +148,8 @@ namespace Fucha.DataLayer.Migrations
                     MeasurementUnit = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
                     DatePurchased = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReceivedOrders = table.Column<int>(type: "int", nullable: true),
                     SupplierId = table.Column<int>(type: "int", nullable: false),
                     PurchaseRecordId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -227,7 +230,7 @@ namespace Fucha.DataLayer.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Measure = table.Column<double>(type: "float", nullable: true),
                     MeasurementUnit = table.Column<int>(type: "int", nullable: false),
-                    OverStockLevel = table.Column<double>(type: "float", nullable: true),
+                    Ceiling = table.Column<double>(type: "float", nullable: true),
                     LowLevel = table.Column<double>(type: "float", nullable: true),
                     CriticalLevel = table.Column<double>(type: "float", nullable: true),
                     Category = table.Column<int>(type: "int", nullable: false),
@@ -264,7 +267,9 @@ namespace Fucha.DataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContactPerson = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateAdded = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsRemoved = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -468,12 +473,12 @@ namespace Fucha.DataLayer.Migrations
 
             migrationBuilder.InsertData(
                 table: "PORecords",
-                columns: new[] { "Id", "Category", "DatePurchased", "Measure", "MeasurementUnit", "Price", "PurchaseRecordId", "StockName", "SupplierId" },
+                columns: new[] { "Id", "Category", "DatePurchased", "Measure", "MeasurementUnit", "Price", "PurchaseRecordId", "ReceivedOrders", "Status", "StockName", "SupplierId" },
                 values: new object[,]
                 {
-                    { 1, "MilkTeaFlavor", "Thursday, 15 December 2022", 2.0, "Kilograms", 100.0, 1, "Okinawa", 0 },
-                    { 2, "MilkTeaFlavor", "Thursday, 15 December 2022", 2.0, "Kilograms", 50.0, 1, "Red Velvet", 0 },
-                    { 3, "MilkTeaAddOn", "Thursday, 15 December 2022", 2.0, "Kilograms", 50.0, 2, "Salted Caramel", 0 }
+                    { 1, "MilkTeaFlavor", "Thursday, 05 January 2023", 2.0, "Kilograms", 100.0, 1, null, "Not Received", "Okinawa", 0 },
+                    { 2, "MilkTeaFlavor", "Thursday, 05 January 2023", 2.0, "Kilograms", 50.0, 1, null, "Not Received", "Red Velvet", 0 },
+                    { 3, "MilkTeaAddOn", "Thursday, 05 January 2023", 2.0, "Kilograms", 50.0, 2, null, "Not Received", "Salted Caramel", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -481,8 +486,8 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "DatePurchased", "ItemQuantity", "SupplierId", "TotalAmount", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Thursday, 15 December 2022", 2, 1, 2000.0, 1 },
-                    { 2, "Thursday, 15 December 2022", 1, 1, 500.0, 1 }
+                    { 1, "Thursday, 05 January 2023", 2, 1, 2000.0, 1 },
+                    { 2, "Thursday, 05 January 2023", 1, 1, 500.0, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -585,116 +590,116 @@ namespace Fucha.DataLayer.Migrations
 
             migrationBuilder.InsertData(
                 table: "Stocks",
-                columns: new[] { "Id", "Category", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "OverStockLevel", "Status", "StockServingId", "SupplierId" },
+                columns: new[] { "Id", "Category", "Ceiling", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
                 values: new object[,]
                 {
-                    { 1, 0, 0.14999999999999999, false, null, 0.29999999999999999, 2.0, 1, "Okinawa", 3.0, 3, null, 1 },
-                    { 2, 0, 0.14999999999999999, false, null, 0.29999999999999999, 2.0, 1, "Red Velvet", 3.0, null, null, 1 },
-                    { 3, 0, 0.14999999999999999, false, null, 0.29999999999999999, 0.0, 1, "Wintermelon", 3.0, null, null, 2 }
+                    { 1, 0, 3.0, 0.14999999999999999, false, null, 0.29999999999999999, 2.0, 1, "Okinawa", 3, null, 1 },
+                    { 2, 0, 3.0, 0.14999999999999999, false, null, 0.29999999999999999, 2.0, 1, "Red Velvet", null, null, 1 },
+                    { 3, 0, 3.0, 0.14999999999999999, false, null, 0.29999999999999999, 0.0, 1, "Wintermelon", null, null, 2 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Stocks",
-                columns: new[] { "Id", "Category", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "OverStockLevel", "Status", "StockServingId", "SupplierId" },
+                columns: new[] { "Id", "Category", "Ceiling", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
                 values: new object[,]
                 {
-                    { 4, 0, null, false, null, null, 2.0, 1, "Salted Caramel", null, null, null, 1 },
-                    { 5, 0, null, false, null, null, 0.0, 1, "Taro", null, null, null, 2 },
-                    { 6, 0, null, false, null, null, 0.0, 1, "Dark Chocolate", null, null, null, 1 },
-                    { 7, 0, null, false, null, null, 2.0, 1, "Hokkaido", null, null, null, 1 },
-                    { 8, 0, null, false, null, null, 0.0, 1, "Black Wintermelon", null, null, null, 1 },
-                    { 9, 0, null, false, null, null, 0.0, 1, "Avocado Cheesecake", null, null, null, 1 },
-                    { 10, 0, null, false, null, null, 0.0, 1, "Choco Bunny", null, null, null, 1 },
-                    { 11, 0, null, false, null, null, 0.0, 1, "Choco Berry Meiji", null, null, null, 1 },
-                    { 12, 0, null, false, null, null, 0.0, 1, "Mango Graham Cabin", null, null, null, 1 },
-                    { 13, 0, null, false, null, null, 0.0, 1, "Salty Cream Okinawa", null, null, null, 1 },
-                    { 14, 1, null, false, null, null, 5.0, 1, "Pearl", null, null, null, 2 },
-                    { 15, 1, null, false, null, null, 5.0, 1, "Nata", null, null, null, 2 },
-                    { 16, 1, null, false, null, null, 5.0, 1, "Nutella", null, null, null, 3 },
-                    { 17, 1, null, false, null, null, 5.0, 1, "Cookies", null, null, null, 1 },
-                    { 18, 1, null, false, null, null, 5.0, 1, "Cream Cheese", null, null, null, 1 },
-                    { 19, 4, null, false, null, null, 100.0, 3, "Straw", null, null, 1, 2 },
-                    { 20, 4, null, false, null, null, 100.0, 3, "Straw 1L", null, null, 1, 2 },
-                    { 21, 4, null, false, null, null, 100.0, 3, "Cup 12 oz", null, null, 1, 2 },
-                    { 22, 4, null, false, null, null, 100.0, 3, "Cup 16 oz", null, null, 1, 2 },
-                    { 23, 4, null, false, null, null, 100.0, 3, "Cup 22 oz", null, null, 1, 2 },
-                    { 24, 4, null, false, null, null, 100.0, 3, "Cup 1L", null, null, 1, 2 },
-                    { 25, 5, null, false, null, null, 50.0, 3, "Japanese Sausage", null, null, 1, 4 },
-                    { 26, 5, null, false, null, null, 50.0, 3, "Hungarian Sausage", null, null, 1, 5 },
-                    { 27, 5, null, false, null, null, 50.0, 3, "Cheesedog", null, null, 1, null },
-                    { 28, 5, null, false, null, null, 50.0, 4, "Spam Bacon", null, null, 2, 4 },
-                    { 29, 5, null, false, null, null, 50.0, 3, "Egg", null, null, 1, 6 },
-                    { 30, 4, null, false, null, null, 200.0, 3, "Styro Plate", null, null, 1, null },
-                    { 31, 4, null, false, null, null, 200.0, 3, "Plastic Spoon", null, null, 1, null },
-                    { 32, 4, null, false, null, null, 200.0, 3, "Plastic Fork", null, null, 1, null },
-                    { 33, 2, null, false, null, null, 20.0, 3, "Cheesy Garlic", null, null, 1, 7 },
-                    { 34, 2, null, false, null, null, 20.0, 3, "Ham 'N Cheese", null, null, 1, 7 },
-                    { 35, 2, null, false, null, null, 20.0, 3, "Peperoni", null, null, 1, 8 },
-                    { 36, 2, null, false, null, null, 20.0, 3, "Hawaiian", null, null, 1, 9 },
-                    { 37, 2, null, false, null, null, 20.0, 3, "Beef Mushroom", null, null, 1, 7 },
-                    { 38, 2, null, false, null, null, 20.0, 3, "All Meat", null, null, 1, 7 },
-                    { 39, 2, null, false, null, null, 20.0, 3, "Supreme", null, null, 1, 7 },
-                    { 40, 2, null, false, null, null, 20.0, 3, "Chick N Cheese", null, null, 1, 7 },
-                    { 41, 2, null, false, null, null, 20.0, 3, "Aloha Special", null, null, 1, 7 },
-                    { 42, 3, null, false, null, null, 100.0, 3, "Chicken balls", null, null, 2, 10 },
-                    { 43, 3, null, false, null, null, 100.0, 3, "Squad balls", null, null, 2, 10 },
-                    { 44, 3, null, false, null, null, 100.0, 3, "Shrimp balls", null, null, 2, 10 },
-                    { 45, 3, null, false, null, null, 10.0, 1, "French Fries", null, null, null, 5 }
+                    { 4, 0, null, null, false, null, null, 2.0, 1, "Salted Caramel", null, null, 1 },
+                    { 5, 0, null, null, false, null, null, 0.0, 1, "Taro", null, null, 2 },
+                    { 6, 0, null, null, false, null, null, 0.0, 1, "Dark Chocolate", null, null, 1 },
+                    { 7, 0, null, null, false, null, null, 2.0, 1, "Hokkaido", null, null, 1 },
+                    { 8, 0, null, null, false, null, null, 0.0, 1, "Black Wintermelon", null, null, 1 },
+                    { 9, 0, null, null, false, null, null, 0.0, 1, "Avocado Cheesecake", null, null, 1 },
+                    { 10, 0, null, null, false, null, null, 0.0, 1, "Choco Bunny", null, null, 1 },
+                    { 11, 0, null, null, false, null, null, 0.0, 1, "Choco Berry Meiji", null, null, 1 },
+                    { 12, 0, null, null, false, null, null, 0.0, 1, "Mango Graham Cabin", null, null, 1 },
+                    { 13, 0, null, null, false, null, null, 0.0, 1, "Salty Cream Okinawa", null, null, 1 },
+                    { 14, 1, null, null, false, null, null, 5.0, 1, "Pearl", null, null, 2 },
+                    { 15, 1, null, null, false, null, null, 5.0, 1, "Nata", null, null, 2 },
+                    { 16, 1, null, null, false, null, null, 5.0, 1, "Nutella", null, null, 3 },
+                    { 17, 1, null, null, false, null, null, 5.0, 1, "Cookies", null, null, 1 },
+                    { 18, 1, null, null, false, null, null, 5.0, 1, "Cream Cheese", null, null, 1 },
+                    { 19, 4, null, null, false, null, null, 100.0, 3, "Straw", null, 1, 2 },
+                    { 20, 4, null, null, false, null, null, 100.0, 3, "Straw 1L", null, 1, 2 },
+                    { 21, 4, null, null, false, null, null, 100.0, 3, "Cup 12 oz", null, 1, 2 },
+                    { 22, 4, null, null, false, null, null, 100.0, 3, "Cup 16 oz", null, 1, 2 },
+                    { 23, 4, null, null, false, null, null, 100.0, 3, "Cup 22 oz", null, 1, 2 },
+                    { 24, 4, null, null, false, null, null, 100.0, 3, "Cup 1L", null, 1, 2 },
+                    { 25, 5, null, null, false, null, null, 50.0, 3, "Japanese Sausage", null, 1, 4 },
+                    { 26, 5, null, null, false, null, null, 50.0, 3, "Hungarian Sausage", null, 1, 5 },
+                    { 27, 5, null, null, false, null, null, 50.0, 3, "Cheesedog", null, 1, null },
+                    { 28, 5, null, null, false, null, null, 50.0, 4, "Spam Bacon", null, 2, 4 },
+                    { 29, 5, null, null, false, null, null, 50.0, 3, "Egg", null, 1, 6 },
+                    { 30, 4, null, null, false, null, null, 200.0, 3, "Styro Plate", null, 1, null },
+                    { 31, 4, null, null, false, null, null, 200.0, 3, "Plastic Spoon", null, 1, null },
+                    { 32, 4, null, null, false, null, null, 200.0, 3, "Plastic Fork", null, 1, null },
+                    { 33, 2, null, null, false, null, null, 20.0, 3, "Cheesy Garlic", null, 1, 7 },
+                    { 34, 2, null, null, false, null, null, 20.0, 3, "Ham 'N Cheese", null, 1, 7 },
+                    { 35, 2, null, null, false, null, null, 20.0, 3, "Peperoni", null, 1, 8 },
+                    { 36, 2, null, null, false, null, null, 20.0, 3, "Hawaiian", null, 1, 9 },
+                    { 37, 2, null, null, false, null, null, 20.0, 3, "Beef Mushroom", null, 1, 7 },
+                    { 38, 2, null, null, false, null, null, 20.0, 3, "All Meat", null, 1, 7 },
+                    { 39, 2, null, null, false, null, null, 20.0, 3, "Supreme", null, 1, 7 },
+                    { 40, 2, null, null, false, null, null, 20.0, 3, "Chick N Cheese", null, 1, 7 },
+                    { 41, 2, null, null, false, null, null, 20.0, 3, "Aloha Special", null, 1, 7 },
+                    { 42, 3, null, null, false, null, null, 100.0, 3, "Chicken balls", null, 2, 10 },
+                    { 43, 3, null, null, false, null, null, 100.0, 3, "Squid balls", null, 2, 10 },
+                    { 44, 3, null, null, false, null, null, 100.0, 3, "Shrimp balls", null, 2, 10 },
+                    { 45, 3, null, null, false, null, null, 10.0, 1, "French Fries", null, null, 5 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Stocks",
-                columns: new[] { "Id", "Category", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "OverStockLevel", "Status", "StockServingId", "SupplierId" },
+                columns: new[] { "Id", "Category", "Ceiling", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
                 values: new object[,]
                 {
-                    { 46, 3, null, false, null, null, 100.0, 3, "Gyoza", null, null, 5, 4 },
-                    { 47, 3, null, false, null, null, 100.0, 3, "Siomai", null, null, 5, 11 },
-                    { 48, 4, null, false, null, null, 100.0, 3, "Stick", null, null, 1, null },
-                    { 49, 4, null, false, null, null, 100.0, 3, "Paper Tray", null, null, 5, null },
-                    { 50, 5, null, false, null, null, 10.0, 5, "BBQ", null, null, null, null },
-                    { 51, 5, null, false, null, null, 10.0, 5, "Cheese", null, null, null, null },
-                    { 52, 5, null, false, null, null, 10.0, 5, "Sour Cream", null, null, null, null },
-                    { 53, 6, null, false, null, null, 50.0, 1, "Chicken", null, null, null, null },
-                    { 54, 4, null, false, null, null, 100.0, 3, "Paper Liner", null, null, 1, null },
-                    { 55, 7, null, false, null, null, 5.0, 6, "Sweet Chili", null, null, null, 12 },
-                    { 56, 7, null, false, null, null, 5.0, 6, "Terriyaki", null, null, null, 13 },
-                    { 57, 7, null, false, null, null, 5.0, 6, "Mango Habanero", null, null, null, 8 },
-                    { 58, 7, null, false, null, null, 5.0, 6, "Buffalo", null, null, null, 12 },
-                    { 59, 7, null, false, null, null, 5.0, 6, "Soy Garlic", null, null, null, 13 },
-                    { 60, 7, null, false, null, null, 5.0, 6, "Hickory BBQ", null, null, null, 12 },
-                    { 61, 7, null, false, null, null, 5.0, 6, "Garlic Parmesan", null, null, null, 12 },
-                    { 62, 7, null, false, null, null, 5.0, 6, "Sriracha", null, null, null, 12 },
-                    { 63, 7, null, false, null, null, 5.0, 6, "Salted Egg", null, null, null, 8 },
-                    { 64, 7, null, false, null, null, 5.0, 6, "Spiced Maple", null, null, null, 8 },
-                    { 65, 7, null, false, null, null, 5.0, 6, "Lemon Glazed", null, null, null, 12 },
-                    { 66, 7, null, false, null, null, 5.0, 6, "Korean Spicy", null, null, null, 12 },
-                    { 70, 0, null, false, null, null, 0.0, 1, "Cookies & Cream", null, null, null, 1 }
+                    { 46, 3, null, null, false, null, null, 100.0, 3, "Gyoza", null, 5, 4 },
+                    { 47, 3, null, null, false, null, null, 100.0, 3, "Siomai", null, 5, 11 },
+                    { 48, 4, null, null, false, null, null, 100.0, 3, "Stick", null, 1, null },
+                    { 49, 4, null, null, false, null, null, 100.0, 3, "Paper Tray", null, 5, null },
+                    { 50, 5, null, null, false, null, null, 10.0, 5, "BBQ", null, null, null },
+                    { 51, 5, null, null, false, null, null, 10.0, 5, "Cheese", null, null, null },
+                    { 52, 5, null, null, false, null, null, 10.0, 5, "Sour Cream", null, null, null },
+                    { 53, 6, null, null, false, null, null, 50.0, 1, "Chicken", null, null, null },
+                    { 54, 4, null, null, false, null, null, 100.0, 3, "Paper Liner", null, 1, null },
+                    { 55, 7, null, null, false, null, null, 5.0, 6, "Sweet Chili", null, null, 12 },
+                    { 56, 7, null, null, false, null, null, 5.0, 6, "Terriyaki", null, null, 13 },
+                    { 57, 7, null, null, false, null, null, 5.0, 6, "Mango Habanero", null, null, 8 },
+                    { 58, 7, null, null, false, null, null, 5.0, 6, "Buffalo", null, null, 12 },
+                    { 59, 7, null, null, false, null, null, 5.0, 6, "Soy Garlic", null, null, 13 },
+                    { 60, 7, null, null, false, null, null, 5.0, 6, "Hickory BBQ", null, null, 12 },
+                    { 61, 7, null, null, false, null, null, 5.0, 6, "Garlic Parmesan", null, null, 12 },
+                    { 62, 7, null, null, false, null, null, 5.0, 6, "Sriracha", null, null, 12 },
+                    { 63, 7, null, null, false, null, null, 5.0, 6, "Salted Egg", null, null, 8 },
+                    { 64, 7, null, null, false, null, null, 5.0, 6, "Spiced Maple", null, null, 8 },
+                    { 65, 7, null, null, false, null, null, 5.0, 6, "Lemon Glazed", null, null, 12 },
+                    { 66, 7, null, null, false, null, null, 5.0, 6, "Korean Spicy", null, null, 12 },
+                    { 70, 0, null, null, false, null, null, 0.0, 1, "Cookies & Cream", null, null, 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Suppliers",
-                columns: new[] { "Id", "Address", "ContactNumber", "DateAdded", "IsRemoved", "Name" },
+                columns: new[] { "Id", "Address", "ContactNumber", "ContactPerson", "DateAdded", "Email", "IsRemoved", "Name" },
                 values: new object[,]
                 {
-                    { 1, "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", "09178077279", "Thursday, 15 December 2022", false, "In joy" },
-                    { 2, "208A Banawe St., Brgy Tatalon, Quezon City", "09175858100", "Thursday, 15 December 2022", false, "PHNI Bubble Tea Store" },
-                    { 3, "San Juan Manila", "09171284151", "Thursday, 15 December 2022", false, "MSCS PrimeGoods, Inc." },
-                    { 4, "1747 A. Mabini St, Malate, Manila, 1004 Metro Manila", "(02) 8523 1186", "Thursday, 15 December 2022", false, "Fuji Mart Incorporated" },
-                    { 5, "2329 Juan Luna St, Gagalangin, Manila, Metro Manila", "09985172380", "Thursday, 15 December 2022", false, "Consistent Frozen Solutions" },
-                    { 6, "40 Scout Oscar M. Alcaraz St, Santa Mesa Heights, Quezon City, 1114 Metro Manila", "09171735588", "Thursday, 15 December 2022", false, "FST Egg Store" },
-                    { 7, "#24 F Pasco Aveue Santolan, Pasig", "09955823086", "Thursday, 15 December 2022", false, "Pizza Crust" },
-                    { 8, "704 Rizal Ave. ext.Caloocan City, Metro Manil, 1403", "09955823086", "Thursday, 15 December 2022", false, "Negosyo Now" },
-                    { 9, "Metro Manila", "09955823086", "Thursday, 15 December 2022", false, "Vostra Pizza" },
-                    { 10, "837 Asuncion St, Binondo, Manila, 2006 Metro Manila", "09971220886", "Thursday, 15 December 2022", false, "Golden Fishball Factory" },
-                    { 11, "San Roque, Antipolo", "09610074035", "Thursday, 15 December 2022", false, "Siomai Wholesale Supplier PH" },
-                    { 12, "1005 Atlanta Centre Bldg., 31 Annapolis St., Greenhills, San Juan City", "721-339-47", "Thursday, 15 December 2022", false, "JD FOODS Premium Sauces" },
-                    { 13, "7F Steelworld Bldg. 713 N.S. Amoranto Sr. corner Biak na Bato Street, Quezon City", "09286418135", "Thursday, 15 December 2022", false, "Easy Brand Ph" }
+                    { 1, "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", "09178077279", null, "Thursday, 05 January 2023", null, false, "In joy" },
+                    { 2, "208A Banawe St., Brgy Tatalon, Quezon City", "09175858100", null, "Thursday, 05 January 2023", null, false, "PHNI Bubble Tea Store" },
+                    { 3, "San Juan Manila", "09171284151", null, "Thursday, 05 January 2023", null, false, "MSCS PrimeGoods, Inc." },
+                    { 4, "1747 A. Mabini St, Malate, Manila, 1004 Metro Manila", "(02) 8523 1186", null, "Thursday, 05 January 2023", null, false, "Fuji Mart Incorporated" },
+                    { 5, "2329 Juan Luna St, Gagalangin, Manila, Metro Manila", "09985172380", null, "Thursday, 05 January 2023", null, false, "Consistent Frozen Solutions" },
+                    { 6, "40 Scout Oscar M. Alcaraz St, Santa Mesa Heights, Quezon City, 1114 Metro Manila", "09171735588", null, "Thursday, 05 January 2023", null, false, "FST Egg Store" },
+                    { 7, "#24 F Pasco Aveue Santolan, Pasig", "09955823086", null, "Thursday, 05 January 2023", null, false, "Pizza Crust" },
+                    { 8, "704 Rizal Ave. ext.Caloocan City, Metro Manil, 1403", "09955823086", null, "Thursday, 05 January 2023", null, false, "Negosyo Now" },
+                    { 9, "Metro Manila", "09955823086", null, "Thursday, 05 January 2023", null, false, "Vostra Pizza" },
+                    { 10, "837 Asuncion St, Binondo, Manila, 2006 Metro Manila", "09971220886", null, "Thursday, 05 January 2023", null, false, "Golden Fishball Factory" },
+                    { 11, "San Roque, Antipolo", "09610074035", null, "Thursday, 05 January 2023", null, false, "Siomai Wholesale Supplier PH" },
+                    { 12, "1005 Atlanta Centre Bldg., 31 Annapolis St., Greenhills, San Juan City", "721-339-47", null, "Thursday, 05 January 2023", null, false, "JD FOODS Premium Sauces" },
+                    { 13, "7F Steelworld Bldg. 713 N.S. Amoranto Sr. corner Biak na Bato Street, Quezon City", "09286418135", null, "Thursday, 05 January 2023", null, false, "Easy Brand Ph" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "DateCreated", "FirstName", "IsRemoved", "LastName", "PasswordHash", "PasswordSalt", "Role", "UserName", "UserStatus" },
-                values: new object[] { 1, null, "Roy", false, "Sabenecio", new byte[] { 190, 222, 103, 76, 63, 92, 203, 107, 161, 47, 238, 105, 150, 220, 186, 207, 57, 169, 173, 194, 0, 66, 153, 29, 218, 15, 64, 193, 190, 152, 73, 205 }, new byte[] { 38, 3, 97, 56, 228, 166, 74, 78, 208, 51, 53, 113, 12, 227, 60, 233, 91, 49, 244, 97, 150, 138, 224, 206, 54, 20, 106, 21, 192, 224, 109, 205, 79, 190, 86, 153, 137, 166, 58, 189, 175, 127, 245, 250, 51, 29, 41, 101, 30, 0, 141, 101, 152, 45, 183, 172, 216, 184, 8, 177, 194, 119, 230, 208 }, "Admin", "r", "Approved" });
+                values: new object[] { 1, null, "Admin", false, "Admin", new byte[] { 9, 5, 84, 41, 156, 252, 251, 250, 31, 223, 172, 181, 39, 61, 10, 82, 158, 217, 3, 255, 160, 115, 137, 133, 72, 183, 136, 180, 144, 121, 206, 192 }, new byte[] { 116, 228, 233, 151, 228, 123, 3, 26, 35, 184, 118, 191, 240, 13, 71, 66, 220, 142, 11, 179, 32, 165, 11, 213, 141, 253, 217, 154, 74, 230, 183, 100, 212, 193, 228, 89, 237, 164, 36, 215, 25, 153, 29, 171, 77, 176, 190, 184, 179, 95, 196, 240, 177, 86, 209, 26, 176, 232, 44, 244, 46, 221, 181, 166 }, "Admin", "admin", "Approved" });
 
             migrationBuilder.InsertData(
                 table: "RecipeStocks",

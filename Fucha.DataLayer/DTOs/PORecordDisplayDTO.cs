@@ -9,6 +9,10 @@
         public string? MeasurementUnit { get; set; }
         public double Price { get; set; }
         public string? DatePurchased { get; set; }
+
+        public string? Status { get; set; }
+        public int? ReceivedOrders { get; set; }
+
         public string? Supplier { get; set; }
         public string? User { get; set; }
     }

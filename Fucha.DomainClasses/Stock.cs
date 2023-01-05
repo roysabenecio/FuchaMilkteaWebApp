@@ -9,7 +9,7 @@ namespace Fucha.DomainClasses
         public string? Name { get; set; }
         public double? Measure { get; set; }
         public MeasurementUnit MeasurementUnit { get; set; }
-        public double? OverStockLevel { get; set; }
+        public double? Ceiling { get; set; }
         public double? LowLevel { get; set; }
         public double? CriticalLevel { get; set; }
         public StockCategory Category { get; set; }

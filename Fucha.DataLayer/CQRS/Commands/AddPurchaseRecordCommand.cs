@@ -44,6 +44,8 @@ namespace Fucha.DataLayer.CQRS.Commands
                 Category = POR.Category,
                 Measure = POR.Measure,
                 MeasurementUnit = POR.MeasurementUnit,
+                Status = "Not Received",
+                ReceivedOrders = POR.ReceivedOrders,
                 DatePurchased = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
                 Price = POR.Price,
                 SupplierId = _context.Suppliers.FirstOrDefault(s => s.Name == POR.Supplier).Id,
@@ -62,7 +64,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             currentPuchaseRecord.ItemQuantity = newPurchaseOrders.Count;
 
             // Add Stock's Measure
-            newPurchaseOrders.ForEach(po => _context.Stocks.FirstOrDefault(s => s.Name == po.StockName).Measure += po.Measure);
+            //newPurchaseOrders.ForEach(po => _context.Stocks.FirstOrDefault(s => s.Name == po.StockName).Measure += po.Measure);
 
 
             newPurchaseOrders.ForEach(po =>
@@ -81,7 +83,7 @@ namespace Fucha.DataLayer.CQRS.Commands
 
                     var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
                     var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
-                    var overStock = MTStock.Measure >= MTStock.OverStockLevel;
+                    var overStock = MTStock.Measure > MTStock.Ceiling;
                     var outOfStock = RemainingMeasure <= 0;
 
                     if (isLow)
@@ -112,7 +114,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 {
                     var isLow = currentStock.Measure > currentStock.CriticalLevel && currentStock.Measure <= currentStock.LowLevel;
                     var isCritical = currentStock.Measure > 0 && currentStock.Measure <= currentStock.CriticalLevel;
-                    var overStock = currentStock.Measure >= currentStock.OverStockLevel;
+                    var overStock = currentStock.Measure > currentStock.Ceiling;
                     var outOfStock = currentStock.Measure <= 0;
 
                     if (isLow)

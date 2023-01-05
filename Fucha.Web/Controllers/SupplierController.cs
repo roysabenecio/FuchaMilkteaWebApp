@@ -60,6 +60,14 @@ namespace Fucha.Web.Controllers
         }
 
         [HttpPut]
+        [Route("UpdatePurchaseRecord")]
+        public async Task<IActionResult> EditUser(UpdatePRCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPut]
         [Route("EditSupplier")]
         public async Task<IActionResult> EditUser(EditSupplierCommand command)
         {

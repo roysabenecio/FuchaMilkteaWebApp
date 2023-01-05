@@ -15,13 +15,10 @@ namespace Fucha.DataLayer.CQRS.Commands
         public string? Category { get; set; }
         public double? CriticalLevel { get; set; }
         public double? LowLevel { get; set; }
-        public double? OverStockLevel { get; set; }
+        public double? Ceiling { get; set; }
         public int? StockServingId { get; set; }
-        //public string StockStatus { get; set; }
-        //dateadded
         public string? Supplier { get; set; }
         public int UserId { get; set; }
-
         public double? Price { get; set; }
     }
 
@@ -48,7 +45,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 Category = (StockCategory)Enum.Parse(typeof(StockCategory), request.Category),
                 CriticalLevel = request.CriticalLevel,
                 LowLevel = request.LowLevel,
-                OverStockLevel = request.OverStockLevel,
+                Ceiling = request.Ceiling,
                 //DateAdded = DateTime.Now.ToString("dddd, dd MMMM yyyy"),
                 //SupplierId = _context.Suppliers.FirstOrDefault(s => s.Name == request.Supplier).Id,
                 StockServingId = request.StockServingId,
@@ -59,8 +56,6 @@ namespace Fucha.DataLayer.CQRS.Commands
 
             // Reset Gram Sold if milk tea
             var currentStock = newStock;
-            //if (currentStock.Category == StockCategory.MilkTeaFlavor)
-            //{
             var currentGS = _context.MTGramSolds.FirstOrDefault(gs => gs.Name == currentStock.Name);
 
             // Set Milktea status
@@ -74,7 +69,7 @@ namespace Fucha.DataLayer.CQRS.Commands
 
             var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
             var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
-            var overStock = MTStock.Measure >= MTStock.OverStockLevel;
+            var overStock = MTStock.Measure > MTStock.Ceiling;
             var outOfStock = RemainingMeasure <= 0;
 
             if (isLow)
@@ -116,7 +111,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 {
                     Price = (double)request.Price,
                     MenuId = newPizza.Id,
-                    MenuCategoryId=4
+                    MenuCategoryId = 4
                 };
 
                 _context.MenuPrices.Add(newPrice);

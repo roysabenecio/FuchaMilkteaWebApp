@@ -37,7 +37,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                         stock.Status,
                         stock.CriticalLevel,
                         stock.LowLevel,
-                        stock.OverStockLevel,
+                        stock.Ceiling,
                         //stock.DateAdded,
                         stock.LastRestocked,
                         Supplier = supp.Name,
@@ -56,7 +56,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                 Supplier = s.Supplier,
                 CriticalLevel = s.CriticalLevel,
                 LowLevel = s.LowLevel,
-                OverStockLevel = s.OverStockLevel,
+                Ceiling = s.Ceiling,
                 //DateAdded = s.DateAdded,
                 LastRestocked = s.LastRestocked,
                 IsRemoved = s.IsRemoved

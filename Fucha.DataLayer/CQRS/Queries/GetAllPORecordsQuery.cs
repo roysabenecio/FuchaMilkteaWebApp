@@ -27,6 +27,8 @@ namespace Fucha.DataLayer.CQRS.Queries
                 MeasurementUnit = por.MeasurementUnit.ToString(),
                 Price = por.Price,
                 DatePurchased = por.DatePurchased,
+                Status = por.Status,
+                ReceivedOrders = por.ReceivedOrders,
                 Supplier = _context.Suppliers.FirstOrDefault(s => s.Id == por.SupplierId).Name,
                 User = _context.Users.FirstOrDefault(u => u.Id == _context.PurchaseRecords.FirstOrDefault(pr => pr.Id == por.PurchaseRecordId).UserId).FirstName + " " +
                     _context.Users.FirstOrDefault(u => u.Id == _context.PurchaseRecords.FirstOrDefault(pr => pr.Id == por.PurchaseRecordId).UserId).LastName

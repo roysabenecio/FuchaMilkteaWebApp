@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fucha.DataLayer.Migrations
 {
     [DbContext(typeof(FuchaMilkteaContext))]
-    [Migration("20230105035752_I1")]
+    [Migration("20230105132812_I1")]
     partial class I1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -913,6 +913,7 @@ namespace Fucha.DataLayer.Migrations
                             MeasurementUnit = "Kilograms",
                             Price = 100.0,
                             PurchaseRecordId = 1,
+                            ReceivedOrders = 0,
                             Status = "Not Received",
                             StockName = "Okinawa",
                             SupplierId = 0
@@ -926,6 +927,7 @@ namespace Fucha.DataLayer.Migrations
                             MeasurementUnit = "Kilograms",
                             Price = 50.0,
                             PurchaseRecordId = 1,
+                            ReceivedOrders = 0,
                             Status = "Not Received",
                             StockName = "Red Velvet",
                             SupplierId = 0
@@ -939,6 +941,7 @@ namespace Fucha.DataLayer.Migrations
                             MeasurementUnit = "Kilograms",
                             Price = 50.0,
                             PurchaseRecordId = 2,
+                            ReceivedOrders = 0,
                             Status = "Not Received",
                             StockName = "Salted Caramel",
                             SupplierId = 0
@@ -2837,8 +2840,8 @@ namespace Fucha.DataLayer.Migrations
                             FirstName = "Admin",
                             IsRemoved = false,
                             LastName = "Admin",
-                            PasswordHash = new byte[] { 9, 5, 84, 41, 156, 252, 251, 250, 31, 223, 172, 181, 39, 61, 10, 82, 158, 217, 3, 255, 160, 115, 137, 133, 72, 183, 136, 180, 144, 121, 206, 192 },
-                            PasswordSalt = new byte[] { 116, 228, 233, 151, 228, 123, 3, 26, 35, 184, 118, 191, 240, 13, 71, 66, 220, 142, 11, 179, 32, 165, 11, 213, 141, 253, 217, 154, 74, 230, 183, 100, 212, 193, 228, 89, 237, 164, 36, 215, 25, 153, 29, 171, 77, 176, 190, 184, 179, 95, 196, 240, 177, 86, 209, 26, 176, 232, 44, 244, 46, 221, 181, 166 },
+                            PasswordHash = new byte[] { 3, 215, 50, 231, 102, 152, 243, 209, 200, 84, 129, 177, 149, 182, 242, 108, 68, 41, 67, 246, 38, 10, 187, 191, 46, 231, 18, 205, 31, 12, 98, 7 },
+                            PasswordSalt = new byte[] { 45, 188, 158, 217, 72, 112, 33, 195, 16, 199, 99, 162, 62, 87, 7, 88, 129, 32, 115, 0, 204, 112, 18, 171, 131, 48, 102, 112, 7, 189, 17, 147, 76, 89, 218, 184, 242, 79, 32, 1, 112, 244, 142, 166, 37, 151, 71, 111, 182, 255, 5, 5, 58, 144, 67, 82, 20, 223, 141, 209, 117, 67, 183, 4 },
                             Role = "Admin",
                             UserName = "admin",
                             UserStatus = "Approved"

@@ -12,7 +12,7 @@ namespace Fucha.DomainClasses
         public string? DatePurchased { get; set; }
 
         public string? Status { get; set; } = "Not Received";
-        public int? ReceivedOrders { get; set; } = 0;
+        public int? ReceivedOrders { get; set; }
 
         //public int StockId { get; set; }
         public int SupplierId { get; set; }

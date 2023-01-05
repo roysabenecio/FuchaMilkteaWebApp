@@ -476,9 +476,9 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "Category", "DatePurchased", "Measure", "MeasurementUnit", "Price", "PurchaseRecordId", "ReceivedOrders", "Status", "StockName", "SupplierId" },
                 values: new object[,]
                 {
-                    { 1, "MilkTeaFlavor", "Thursday, 05 January 2023", 2.0, "Kilograms", 100.0, 1, null, "Not Received", "Okinawa", 0 },
-                    { 2, "MilkTeaFlavor", "Thursday, 05 January 2023", 2.0, "Kilograms", 50.0, 1, null, "Not Received", "Red Velvet", 0 },
-                    { 3, "MilkTeaAddOn", "Thursday, 05 January 2023", 2.0, "Kilograms", 50.0, 2, null, "Not Received", "Salted Caramel", 0 }
+                    { 1, "MilkTeaFlavor", "Thursday, 05 January 2023", 2.0, "Kilograms", 100.0, 1, 0, "Not Received", "Okinawa", 0 },
+                    { 2, "MilkTeaFlavor", "Thursday, 05 January 2023", 2.0, "Kilograms", 50.0, 1, 0, "Not Received", "Red Velvet", 0 },
+                    { 3, "MilkTeaAddOn", "Thursday, 05 January 2023", 2.0, "Kilograms", 50.0, 2, 0, "Not Received", "Salted Caramel", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -699,7 +699,7 @@ namespace Fucha.DataLayer.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "DateCreated", "FirstName", "IsRemoved", "LastName", "PasswordHash", "PasswordSalt", "Role", "UserName", "UserStatus" },
-                values: new object[] { 1, null, "Admin", false, "Admin", new byte[] { 9, 5, 84, 41, 156, 252, 251, 250, 31, 223, 172, 181, 39, 61, 10, 82, 158, 217, 3, 255, 160, 115, 137, 133, 72, 183, 136, 180, 144, 121, 206, 192 }, new byte[] { 116, 228, 233, 151, 228, 123, 3, 26, 35, 184, 118, 191, 240, 13, 71, 66, 220, 142, 11, 179, 32, 165, 11, 213, 141, 253, 217, 154, 74, 230, 183, 100, 212, 193, 228, 89, 237, 164, 36, 215, 25, 153, 29, 171, 77, 176, 190, 184, 179, 95, 196, 240, 177, 86, 209, 26, 176, 232, 44, 244, 46, 221, 181, 166 }, "Admin", "admin", "Approved" });
+                values: new object[] { 1, null, "Admin", false, "Admin", new byte[] { 3, 215, 50, 231, 102, 152, 243, 209, 200, 84, 129, 177, 149, 182, 242, 108, 68, 41, 67, 246, 38, 10, 187, 191, 46, 231, 18, 205, 31, 12, 98, 7 }, new byte[] { 45, 188, 158, 217, 72, 112, 33, 195, 16, 199, 99, 162, 62, 87, 7, 88, 129, 32, 115, 0, 204, 112, 18, 171, 131, 48, 102, 112, 7, 189, 17, 147, 76, 89, 218, 184, 242, 79, 32, 1, 112, 244, 142, 166, 37, 151, 71, 111, 182, 255, 5, 5, 58, 144, 67, 82, 20, 223, 141, 209, 117, 67, 183, 4 }, "Admin", "admin", "Approved" });
 
             migrationBuilder.InsertData(
                 table: "RecipeStocks",

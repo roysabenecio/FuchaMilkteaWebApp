@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bvggeMHoVsYKqDstNA48L7HqP6b353Hm/PcLsJtsZN1Bg+2h8LrL26z/N/L8X9Ws5xcZ6rlVE4oiXVy+6Do1dw==",
+  "dgSpecHash": "2aOPgj1wErxeTXI3PWo+5L0shuuhqntYZyXFDmCp/g7QKi6KXJmgHr0FpbPVj0/GPM8QfFDAnlNUxBhsNlBe4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Documents\\My Files\\Programming Projects\\Capstone\\Back-End\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.Web\\Fucha.Web.csproj",
+  "projectFilePath": "C:\\Users\\user\\source\\repos\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.Web\\Fucha.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\8.1.0\\automapper.8.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.0\\automapper.extensions.microsoft.dependencyinjection.6.1.0.nupkg.sha512",

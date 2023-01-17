@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Fucha.DomainClasses
-build_property.ProjectDir = C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\
+build_property.ProjectDir = C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\

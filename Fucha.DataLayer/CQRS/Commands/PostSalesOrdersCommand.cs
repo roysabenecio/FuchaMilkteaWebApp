@@ -124,32 +124,36 @@ namespace Fucha.DataLayer.CQRS.Commands
                     var MTStock= _context.Stocks.FirstOrDefault(s => s.Name == o.Name);
                     var RemainingMeasure = (MTStock.Measure - GSInKg);
 
-                    var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
-                    var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
-                    var overStock = MTStock.Measure > MTStock.Ceiling;
-                    var outOfStock = RemainingMeasure <= 0;
-                    
-                    if (isLow)
+                    if (MTStock.LowLevel != null && MTStock.CriticalLevel != null && MTStock.Ceiling != null)
                     {
-                        MTStock.Status = QuantityStatus.Low;
+                        var isLow = RemainingMeasure > MTStock.CriticalLevel && RemainingMeasure <= MTStock.LowLevel;
+                        var isCritical = RemainingMeasure > 0 && RemainingMeasure <= MTStock.CriticalLevel;
+                        var overStock = MTStock.Measure > MTStock.Ceiling;
+                        var outOfStock = RemainingMeasure <= 0;
+
+                        if (isLow)
+                        {
+                            MTStock.Status = QuantityStatus.Low;
+                        }
+                        if (isCritical)
+                        {
+                            MTStock.Status = QuantityStatus.Critical;
+                        }
+                        if (outOfStock)
+                        {
+                            MTStock.Status = QuantityStatus.OutOfStock;
+                        }
+                        if (overStock)
+                        {
+                            MTStock.Status = QuantityStatus.OverStock;
+                        }
+                        if (!outOfStock && !isLow && !isCritical && !overStock)
+                        {
+                            MTStock.Status = QuantityStatus.Sufficient;
+                        }
+                        _context.SaveChanges();
                     }
-                    if (isCritical)
-                    {
-                        MTStock.Status = QuantityStatus.Critical;
-                    }
-                    if (outOfStock)
-                    {
-                        MTStock.Status = QuantityStatus.OutOfStock;
-                    }
-                    if (overStock)
-                    {
-                        MTStock.Status = QuantityStatus.OverStock;
-                    }
-                    if (!outOfStock && !isLow && !isCritical && !overStock)
-                    {
-                        MTStock.Status = QuantityStatus.Sufficient;
-                    }
-                    _context.SaveChanges();
+                        _context.SaveChanges();
                 }
                 else
                 {
@@ -185,33 +189,37 @@ namespace Fucha.DataLayer.CQRS.Commands
                     currentStocks.ForEach(s => s.Measure -= (o.Quantity * joinedStockServing.FirstOrDefault(ss => ss.Id == s.Id).RequiredPerServing));
 
                     // Set Stock status
-                    //var GSInKg = currentGS.Grams / 1000; // current gram sold convert to kg because of UOM of the stock
                     var stock = _context.Stocks.FirstOrDefault(s => s.Name == o.Name);
 
-                    var isLow = stock.Measure > stock.CriticalLevel && stock.Measure <= stock.LowLevel;
-                    var isCritical = stock.Measure > 0 && stock.Measure <= stock.CriticalLevel;
-                    var overStock = stock.Measure > stock.Ceiling;
-                    var outOfStock = stock.Measure <= 0;
+                    if (stock != null)
+                    //if (stock.LowLevel != null && stock.CriticalLevel != null && stock.Ceiling != null)
+                        {
+                        var isLow = stock.Measure > stock.CriticalLevel && stock.Measure <= stock.LowLevel;
+                        var isCritical = stock.Measure > 0 && stock.Measure <= stock.CriticalLevel;
+                        var overStock = stock.Measure > stock.Ceiling;
+                        var outOfStock = stock.Measure <= 0;
 
-                    if (isLow)
-                    {
-                        stock.Status = QuantityStatus.Low;
-                    }
-                    if (isCritical)
-                    {
-                        stock.Status = QuantityStatus.Critical;
-                    }
-                    if (outOfStock)
-                    {
-                        stock.Status = QuantityStatus.OutOfStock;
-                    }
-                    if (overStock)
-                    {
-                        stock.Status = QuantityStatus.OverStock;
-                    }
-                    if (!outOfStock && !isLow && !isCritical && !overStock)
-                    {
-                        stock.Status = QuantityStatus.Sufficient;
+                        if (isLow)
+                        {
+                            stock.Status = QuantityStatus.Low;
+                        }
+                        if (isCritical)
+                        {
+                            stock.Status = QuantityStatus.Critical;
+                        }
+                        if (outOfStock)
+                        {
+                            stock.Status = QuantityStatus.OutOfStock;
+                        }
+                        if (overStock)
+                        {
+                            stock.Status = QuantityStatus.OverStock;
+                        }
+                        if (!outOfStock && !isLow && !isCritical && !overStock)
+                        {
+                            stock.Status = QuantityStatus.Sufficient;
+                        }
+                        _context.SaveChanges();
                     }
                     _context.SaveChanges();
                 }
@@ -268,18 +276,6 @@ namespace Fucha.DataLayer.CQRS.Commands
                 .ToList()
                 .Sum();
             var totalPrice = currentAddOnsPrices + currentOrdersPrices;
-            //foreach (var price in currentOrdersPrices)
-            //{
-            //    totalPrice += price;
-            //}
-
-            //_dbContext.Sales.Update(s => s.TotalAmount);
-            //var currentSale = _dbContext.Sales.Single(sale => new SaleTransaction
-            //{
-            //    Id = sale.Id
-
-            //}).Where(x => x.Id == saleId);
-            //SaleTransaction currentSale = new SaleTransaction();
             var currentSale = _context.SalesTransaction.Single(s => s.Id == currentSaleId);
             currentSale.TotalSales = (double) totalPrice;
             _context.SaveChanges();

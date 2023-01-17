@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Documents\\My Files\\Programming Projects\\Capstone\\Back-End\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\Fucha.DomainClasses.csproj": {}
+    "C:\\Users\\user\\source\\repos\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\Fucha.DomainClasses.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Documents\\My Files\\Programming Projects\\Capstone\\Back-End\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\Fucha.DomainClasses.csproj": {
+    "C:\\Users\\user\\source\\repos\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\Fucha.DomainClasses.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Documents\\My Files\\Programming Projects\\Capstone\\Back-End\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\Fucha.DomainClasses.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\Fucha.DomainClasses.csproj",
         "projectName": "Fucha.DomainClasses",
-        "projectPath": "C:\\Users\\user\\Documents\\My Files\\Programming Projects\\Capstone\\Back-End\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\Fucha.DomainClasses.csproj",
+        "projectPath": "C:\\Users\\user\\source\\repos\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\Fucha.DomainClasses.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Documents\\My Files\\Programming Projects\\Capstone\\Back-End\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\obj\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.DomainClasses\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

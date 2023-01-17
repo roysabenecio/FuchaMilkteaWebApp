@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fGVQ9Chu1PxMCaDkuXPKkxMYhegPQpUt6bJNzeX0bF552WryiEGrnTnmGIVO1kY0yMBzkSmfegKsGHnTLZB0Hw==",
+  "dgSpecHash": "a6MQnYOPaa5JAFQzsaDq0GwKAnUDnkJo5ZN1cfJM34NHO3vChQ3oxUoXkIdAeRBdUGB2X4asfpix2Dn5WGaVXg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Documents\\My Files\\Programming Projects\\Capstone\\Back-End\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.Application\\Fucha.Application.csproj",
+  "projectFilePath": "C:\\Users\\user\\source\\repos\\io-sono-roy\\FuchaMilkteaWebApp\\Fucha.Application\\Fucha.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\8.1.0\\automapper.8.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",

@@ -34,3 +34,15 @@ C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-
 C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\refint\Fucha.DomainClasses.dll
 C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\Fucha.DomainClasses.pdb
 C:\Users\user\Documents\My Files\Programming Projects\Capstone\Back-End\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\ref\Fucha.DomainClasses.dll
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\bin\Debug\net6.0\Fucha.DomainClasses.deps.json
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\bin\Debug\net6.0\Fucha.DomainClasses.dll
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\bin\Debug\net6.0\Fucha.DomainClasses.pdb
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\Fucha.DomainClasses.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\Fucha.DomainClasses.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\Fucha.DomainClasses.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\Fucha.DomainClasses.AssemblyInfo.cs
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\Fucha.DomainClasses.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\Fucha.DomainClasses.dll
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\refint\Fucha.DomainClasses.dll
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\Fucha.DomainClasses.pdb
+C:\Users\user\source\repos\io-sono-roy\FuchaMilkteaWebApp\Fucha.DomainClasses\obj\Debug\net6.0\ref\Fucha.DomainClasses.dll

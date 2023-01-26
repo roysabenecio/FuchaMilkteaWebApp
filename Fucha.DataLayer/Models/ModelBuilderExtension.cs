@@ -1,6 +1,5 @@
 ﻿using Fucha.DomainClasses;
 using Fucha.DomainClasses.Enums;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 

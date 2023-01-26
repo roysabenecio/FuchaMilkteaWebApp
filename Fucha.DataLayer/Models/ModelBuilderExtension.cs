@@ -1,6 +1,5 @@
 ﻿using Fucha.DomainClasses;
 using Fucha.DomainClasses.Enums;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
@@ -333,7 +332,7 @@ namespace Fucha.DataLayer.Models
                 }
             }
 
-            CreatePasswordHash("adminPass", out byte[] passwordHash, out byte[] passwordSalt);
+            CreatePasswordHash("defaultPass", out byte[] passwordHash, out byte[] passwordSalt);
 
             modelBuilder.Entity<User>().HasData(
                 new User() { Id = 1, FirstName = "Admin", LastName = "Admin", UserName = "admin", PasswordHash = passwordHash, PasswordSalt = passwordSalt, Role = "Admin", UserStatus = "Approved" }

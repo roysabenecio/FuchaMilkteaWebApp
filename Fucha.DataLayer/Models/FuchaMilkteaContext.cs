@@ -14,19 +14,8 @@ namespace Fucha.DataLayer.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Azure Connection String
-            //var connectionString = "Data Source = tcp:fuchaappdb.database.windows.net,1433; Initial Catalog = FuchaAppDB; User Id = dbAdmin@fuchaappdb; Password = @CapstoneDb;";
-            //var connectionString = "server=localhost; port=3306; database=fuchaappdb; username=root; password=adminPass";
-
-
-            //var connectionString = "Data Source=DESKTOP-LMK627L\\SQLEXPRESS;Initial Catalog=fuchaappdb;Integrated Security=True";
             var connectionString = "Server=localhost\\SQLEXPRESS;Initial Catalog=fuchaappdb;Trusted_Connection=True;";
-
-            //var connectionString = "Data Source=DESKTOP-8QM55PT;Initial Catalog=fuchaappdb;Integrated Security=True";
             optionsBuilder.UseSqlServer(connectionString);
-            //var serverVersion = new MySqlServerVersion(new Version(8, 0, 30));
-
-            //optionsBuilder.UseMySql(connectionString, serverVersion);
         }
 
         public DbSet<Menu> Menus { get; set; }

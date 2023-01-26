@@ -6,13 +6,8 @@ namespace Fucha.DomainClasses
 {
     public class Menu : BaseEntity
     {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public decimal? AddOnsPrice { get; set; }
-
-        public MenuStatus MenuStatus { get; set; }
-        List<string>? AddOns { get; set; }
-
-        List<Recipe> Recipes { get; set; }
+        [Required]
+        public string? Name { get; set; }
+        public int MenuCategoryId { get; set; }
     }
 }

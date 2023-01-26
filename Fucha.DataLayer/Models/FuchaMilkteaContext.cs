@@ -1,65 +1,84 @@
 ﻿using Fucha.DomainClasses;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fucha.DataLayer.Models
 {
     public class FuchaMilkteaContext : DbContext, IFuchaMilkteaContext
     {
-        public FuchaMilkteaContext() { }
         public FuchaMilkteaContext(DbContextOptions<FuchaMilkteaContext> options) : base(options) { }
 
-        public DbSet<Ingredient> Ingredients { get; set; }
-        //public DbSet<Inventory> Inventories { get; set; }
-        public DbSet<Material> Materials { get; set; }
-        public DbSet<Menu> Menu { get; set; }
-        public DbSet<PurchaseRecord> PurchaseRecords { get; set; }
-        public DbSet<Recipe> Recipes { get; set; }
-        public DbSet<Sale> Sale { get; set; }
-        public DbSet<User> Users { get; set; }
-
-        public int SaveChanges()
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            return base.SaveChanges();
+            modelBuilder.Seed(); // Initialize Data
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "server=localhost; port=5432; database=fuchaappdb; username=postgres; password=adminPass ;Persist Security Info=False;";
-            optionsBuilder.UseNpgsql(connectionString);
+            // Azure Connection String
+            //var connectionString = "Data Source = tcp:fuchaappdb.database.windows.net,1433; Initial Catalog = FuchaAppDB; User Id = dbAdmin@fuchaappdb; Password = @CapstoneDb;";
+            //var connectionString = "server=localhost; port=3306; database=fuchaappdb; username=root; password=adminPass";
+
+
+            //var connectionString = "Data Source=DESKTOP-LMK627L\\SQLEXPRESS;Initial Catalog=fuchaappdb;Integrated Security=True";
+            var connectionString = "Server=localhost\\SQLEXPRESS;Initial Catalog=fuchaappdb;Trusted_Connection=True;";
+
+            //var connectionString = "Data Source=DESKTOP-8QM55PT;Initial Catalog=fuchaappdb;Integrated Security=True";
+            optionsBuilder.UseSqlServer(connectionString);
+            //var serverVersion = new MySqlServerVersion(new Version(8, 0, 30));
+
+            //optionsBuilder.UseMySql(connectionString, serverVersion);
         }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<RecipeStock> RecipeStocks { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<StockServing> StockServings { get; set; }
+        public DbSet<AddOn> AddOns { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<SaleTransaction> SalesTransaction { get; set; }
+        public DbSet<MenuCategory> MenuCategories { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<PORecord> PORecords { get; set; }
+        public DbSet<PurchaseRecord> PurchaseRecords { get; set; }
+        public DbSet<MenuPrice> MenuPrices { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<LoginHistory> LoginHistories { get; set; }
 
-        //}
-        //public class UserDetailMappings : IEntityTypeConfiguration<User>
-        //{
-        //    public void Configure(EntityTypeBuilder<User> builder)
-        //    {
-        //        //throw new NotImplementedException();
-        //        builder.HasKey(u => u.Id);
-        //    }
-        //}
+        public DbSet<MTGramSold> MTGramSolds { get; set; }
+
+        public DbSet<ActivityHistory> ActivityHistories { get; set; }
+
+
+        public new int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
     }
 
     public interface IFuchaMilkteaContext : IDisposable
     {
-        DbSet<Ingredient> Ingredients { get; set; }
-        //public DbSet<Inventory> Inventories { get; set; }
-        DbSet<Material> Materials { get; set; }
-        DbSet<Menu> Menu { get; set; }
-        DbSet<PurchaseRecord> PurchaseRecords { get; set; }
+        DbSet<Menu> Menus { get; set; }
         DbSet<Recipe> Recipes { get; set; }
-        DbSet<Sale> Sale { get; set; }
+        DbSet<RecipeStock> RecipeStocks { get; set; }
+        DbSet<Stock> Stocks { get; set; }
+        DbSet<StockServing> StockServings { get; set; }
+        DbSet<AddOn> AddOns { get; set; }
+        DbSet<Order> Orders { get; set; }
         DbSet<User> Users { get; set; }
+        DbSet<SaleTransaction> SalesTransaction { get; set; }
+        DbSet<MenuCategory> MenuCategories { get; set; }
+        DbSet<Size> Sizes { get; set; }
+        DbSet<PORecord> PORecords { get; set; }
+        DbSet<PurchaseRecord> PurchaseRecords { get; set; }
+        DbSet<MenuPrice> MenuPrices { get; set; }
+        DbSet<Supplier> Suppliers { get; set; }
+        DbSet<LoginHistory> LoginHistories { get; set; }
+
+        DbSet<MTGramSold> MTGramSolds { get; set; }
+
+        DbSet<ActivityHistory> ActivityHistories { get; set; }
 
         int SaveChanges();
     }

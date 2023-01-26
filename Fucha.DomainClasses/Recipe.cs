@@ -1,15 +1,16 @@
-﻿using Fucha.DomainClasses.Enums;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Fucha.DomainClasses
 {
-    public class Recipe: BaseEntity
+    public class Recipe : BaseEntity
     {
-        public string Name { get; set; }
+        [Required]
+        public string? Name { get; set; }
+        public bool? HasAddOn { get; set; }
 
-        //formula or measure
-        public Size Size { get; set; }
-        public Measurement RequiredMeasure { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
-        public List<Material> Materials { get; set; }
+        public int? MenuId { get; set; }
+        public int? SizeId { get; set; }
+        public int? MenuCategoryId { get; set; }
+        public List<RecipeStock>? RecipeStocks { get; set; }
     }
 }

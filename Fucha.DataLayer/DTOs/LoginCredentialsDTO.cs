@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Fucha.DataLayer.DTOs
 {
     public class LoginCredentialsDTO
     {
         public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        //status
+        [Required]
+        public string? UserName { get; set; }
+        [Required]
+        public string? Password { get; set; }
     }
 }

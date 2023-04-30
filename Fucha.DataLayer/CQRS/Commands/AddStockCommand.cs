@@ -1,9 +1,7 @@
 ﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
-using MediatR;
-
-using AutoMapper;
 using Fucha.DomainClasses.Enums;
+using MediatR;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {

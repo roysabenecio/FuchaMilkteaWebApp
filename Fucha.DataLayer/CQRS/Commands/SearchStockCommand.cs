@@ -13,8 +13,8 @@ namespace Fucha.DataLayer.CQRS.Commands
     public class SearchStockCommandHandler : IRequestHandler<SearchStockCommand, List<StockDTO>>
     {
         private readonly IFuchaMilkteaContext _context;
-        public SearchStockCommandHandler(IFuchaMilkteaContext context) 
-        { 
+        public SearchStockCommandHandler(IFuchaMilkteaContext context)
+        {
             _context = context;
         }
 

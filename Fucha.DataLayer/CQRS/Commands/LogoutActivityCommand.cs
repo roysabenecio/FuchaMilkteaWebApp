@@ -18,7 +18,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         }
         public Task<bool> Handle(LogoutActivityCommand request, CancellationToken cancellationToken)
         {
-            var description =  "User Logged Out";
+            var description = "User Logged Out";
             var selectUser = _context.Users.FirstOrDefault(u => u.Id == request.Id);
 
             var newloginHistory = new LoginHistory

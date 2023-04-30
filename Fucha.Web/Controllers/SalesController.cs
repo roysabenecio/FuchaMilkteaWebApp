@@ -1,7 +1,5 @@
 ﻿using Fucha.DataLayer.CQRS.Commands;
 using Fucha.DataLayer.CQRS.Queries;
-using Fucha.DataLayer.DTOs;
-using Fucha.DomainClasses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,5 +45,22 @@ namespace Fucha.Web.Controllers
             var result = await _mediator.Send(new GetAllSaleTransactionsQuery());
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("CurrentYearMonthlyTransactions")]
+        public async Task<IActionResult> GetCurrentYearMonthlySales()
+        {
+            var result = await _mediator.Send(new GetCurrentYearMonthlySalesQuery());
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("DailySales")]
+        public async Task<IActionResult> GetDailySales()
+        {
+            var result = await _mediator.Send(new GetDailySalesQuery());
+            return Ok(result);
+        }
+
     }
 }

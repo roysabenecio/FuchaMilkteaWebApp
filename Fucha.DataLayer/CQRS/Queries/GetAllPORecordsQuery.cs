@@ -1,7 +1,5 @@
 ﻿using Fucha.DataLayer.DTOs;
 using Fucha.DataLayer.Models;
-using Fucha.DomainClasses;
-using Fucha.DomainClasses.Enums;
 using MediatR;
 
 namespace Fucha.DataLayer.CQRS.Queries

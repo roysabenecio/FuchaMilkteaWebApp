@@ -1,7 +1,7 @@
-using Fucha.DataLayer.Models;
-using Microsoft.EntityFrameworkCore;
-using MediatR;
 using AutoMapper;
+using Fucha.DataLayer.Models;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +30,7 @@ builder.Services.AddCors(options =>
         .WithOrigins(corsOptions.AllowedOrigins.ToArray())
         .AllowAnyHeader()
         .AllowAnyMethod()
+        .AllowAnyOrigin()
         );
 });
 

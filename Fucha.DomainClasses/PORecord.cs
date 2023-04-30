@@ -1,9 +1,7 @@
-﻿using Fucha.DomainClasses.Enums;
-
-namespace Fucha.DomainClasses
+﻿namespace Fucha.DomainClasses
 {
-    public class PORecord: BaseEntity
-    { 
+    public class PORecord : BaseEntity
+    {
         public string? StockName { get; set; }
         public string? Category { get; set; }
         public double Measure { get; set; }

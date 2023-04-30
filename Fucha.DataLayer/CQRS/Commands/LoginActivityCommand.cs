@@ -18,7 +18,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         }
         public Task<bool> Handle(LoginActivityCommand request, CancellationToken cancellationToken)
         {
-            var description =  "User Logged In";
+            var description = "User Logged In";
             var selectUser = _context.Users.FirstOrDefault(u => u.Id == request.Id);
 
             var newloginHistory = new LoginHistory

@@ -1,6 +1,5 @@
 ﻿using Fucha.DataLayer.CQRS.Commands;
 using Fucha.DataLayer.CQRS.Queries;
-using Fucha.DataLayer.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

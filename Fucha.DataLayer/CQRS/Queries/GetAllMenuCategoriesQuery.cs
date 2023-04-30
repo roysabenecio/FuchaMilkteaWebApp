@@ -12,7 +12,7 @@ namespace Fucha.DataLayer.CQRS.Queries
         {
             _context = context;
         }
-        public Task<List<MenuCategory>> Handle(GetAllMenuCategoriesQuery request, CancellationToken cancellationToken) 
+        public Task<List<MenuCategory>> Handle(GetAllMenuCategoriesQuery request, CancellationToken cancellationToken)
         {
             var menuCategories = _context.MenuCategories.Select(mc => mc).ToList();
             return Task.FromResult(menuCategories);

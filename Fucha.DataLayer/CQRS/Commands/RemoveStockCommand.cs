@@ -10,7 +10,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         public int UserId { get; set; }
     }
 
-    public class RemoveStockCommandHandler: IRequestHandler<RemoveStockCommand, bool>
+    public class RemoveStockCommandHandler : IRequestHandler<RemoveStockCommand, bool>
     {
         private readonly IFuchaMilkteaContext _context;
         public RemoveStockCommandHandler(IFuchaMilkteaContext context)

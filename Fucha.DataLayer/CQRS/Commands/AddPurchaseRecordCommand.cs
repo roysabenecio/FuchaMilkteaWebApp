@@ -6,8 +6,8 @@ using MediatR;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
-    public class AddPurchaseRecordCommand : IRequest<bool> 
-    { 
+    public class AddPurchaseRecordCommand : IRequest<bool>
+    {
         public int UserId { get; set; }
         public List<PORecordDTO> PurchaseRec { get; set; }
     }
@@ -24,7 +24,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         public Task<bool> Handle(AddPurchaseRecordCommand request, CancellationToken cancellationToken)
         {
             // Create Purchase Record First
-            var newPurchaseRecord = new PurchaseRecord 
+            var newPurchaseRecord = new PurchaseRecord
             {
                 ItemQuantity = 0,
                 TotalAmount = 0,
@@ -51,7 +51,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 SupplierId = _context.Suppliers.FirstOrDefault(s => s.Name == POR.Supplier).Id,
                 PurchaseRecordId = newPurchaseRecord.Id // Get the new Purchase Record Id
             }));
- 
+
             // Save New Purchase Orders
             _context.PORecords.AddRange(newPurchaseOrders);
 

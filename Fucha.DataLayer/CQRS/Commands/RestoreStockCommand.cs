@@ -1,7 +1,6 @@
 ﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {

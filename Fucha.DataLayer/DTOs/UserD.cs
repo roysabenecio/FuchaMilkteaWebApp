@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Fucha.DataLayer.DTOs
+﻿namespace Fucha.DataLayer.DTOs
 {
     public class UserD
     {

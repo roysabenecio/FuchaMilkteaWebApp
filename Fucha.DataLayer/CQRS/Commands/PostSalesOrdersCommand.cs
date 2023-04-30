@@ -52,7 +52,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             var newSale = new SaleTransaction
             {
                 ItemQuantity = request.Orders.Select(x => x.Quantity).Sum(),
-                DateSold = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"),
+                DateSold = DateTime.Now,
                 UserId = request.UserId
             };
             _context.SalesTransaction.Add(newSale);

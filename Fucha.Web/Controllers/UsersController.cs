@@ -25,6 +25,22 @@ namespace Fucha.Web.Controllers
         }
 
         [HttpGet]
+        [Route("AllExistingUsers")]
+        public async Task<IActionResult> GetAllExistingUsers()
+        {
+            var result = await _mediator.Send(new GetAllExistingUsersQuery());
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("AllRemovedUsers")]
+        public async Task<IActionResult> GetAllRemovedUsers()
+        {
+            var result = await _mediator.Send(new GetAllRemovedUsersQuery());
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("GetUserInfo")]
         public async Task<IActionResult> GetUserInfo([FromQuery] GetUserQuery query)
         {
@@ -33,8 +49,8 @@ namespace Fucha.Web.Controllers
         }
 
         [HttpPost]
-        [Route("RegisterUser")]
-        public async Task<IActionResult> RegisterUser(RegisterUserCommand command)
+        [Route("Register")]
+        public async Task<IActionResult> RegisterUser(RegisterCommand command)
         {
             var response = await _mediator.Send(command);
             return Ok(response);
@@ -71,5 +87,13 @@ namespace Fucha.Web.Controllers
             var response = await _mediator.Send(command);
             return Ok(response);
         }
+
+        [HttpPost]
+        [Route("ValidateUsername")]
+        public async Task<IActionResult> ValidateUsername(ValidateUsernameCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        } 
     }
 }

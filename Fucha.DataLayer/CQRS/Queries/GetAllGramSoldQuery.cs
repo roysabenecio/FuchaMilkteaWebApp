@@ -9,7 +9,7 @@ namespace Fucha.DataLayer.CQRS.Queries
     public class GetAllGramSoldQueryHandler : IRequestHandler<GetAllGramSoldQuery, List<MTGramSoldDTO>>
     {
         private readonly IFuchaMilkteaContext _context;
-        public GetAllGramSoldQueryHandler(IFuchaMilkteaContext context) 
+        public GetAllGramSoldQueryHandler(IFuchaMilkteaContext context)
         {
             _context = context;
         }

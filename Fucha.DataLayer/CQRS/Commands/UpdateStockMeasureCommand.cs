@@ -5,13 +5,13 @@ using MediatR;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
-    public class UpdateStockMeasureCommand : IRequest<bool> 
+    public class UpdateStockMeasureCommand : IRequest<bool>
     {
         public int UserId { get; set; }
-        public string? StockName{ get; set; }
+        public string? StockName { get; set; }
         public double Measure { get; set; }
     }
-    public class UpdateStockMeasureCommandHandler : IRequestHandler<UpdateStockMeasureCommand, bool> 
+    public class UpdateStockMeasureCommandHandler : IRequestHandler<UpdateStockMeasureCommand, bool>
     {
         private readonly IFuchaMilkteaContext _context;
         public UpdateStockMeasureCommandHandler(IFuchaMilkteaContext context)

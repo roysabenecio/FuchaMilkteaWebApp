@@ -1,12 +1,11 @@
-﻿using Fucha.DataLayer.DTOs;
-using Fucha.DataLayer.Models;
+﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
 using MediatR;
 using System.Security.Cryptography;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
-    public class EditUserCommand : IRequest<User>
+    public class EditUserCommand : IRequest<bool>
     {
         //public EditUserCommand(int id, UserDTO user)
         //{
@@ -16,10 +15,10 @@ namespace Fucha.DataLayer.CQRS.Commands
         //public int Id { get; set; }
         //public UserDTO User { get; set; }
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int ActorId { get; set; }
 
         public string? FirstName { get; set; }
-
+        
         public string? LastName { get; set; }
 
         public string? UserName { get; set; }
@@ -32,7 +31,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         //public bool IsRemoved { get; set; }
     }
 
-    public class EditUserCommandHandler : IRequestHandler<EditUserCommand, User>
+    public class EditUserCommandHandler : IRequestHandler<EditUserCommand, bool>
     {
         private readonly IFuchaMilkteaContext _context;
         public EditUserCommandHandler(IFuchaMilkteaContext context)
@@ -40,20 +39,20 @@ namespace Fucha.DataLayer.CQRS.Commands
             _context = context;
         }
 
-        public Task<User> Handle(EditUserCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(EditUserCommand request, CancellationToken cancellationToken)
         {
             //CreatePasswordHash(request.User.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            var actor = _context.Users.FirstOrDefault(x => x.Id == request.UserId);
+            var actor = _context.Users.FirstOrDefault(x => x.Id == request.ActorId);
 
             var selectedUser = _context.Users.FirstOrDefault(x => x.Id == request.Id);
-            selectedUser.FirstName = request.FirstName;
-            selectedUser.LastName = request.LastName;
-            selectedUser.UserName = request.UserName;
+            selectedUser.FirstName = request.FirstName != null ? request.FirstName : selectedUser.FirstName;
+            selectedUser.LastName = request.LastName != null ? request.LastName : selectedUser.LastName;
+            selectedUser.UserName = request.UserName != null ? request.UserName : selectedUser.UserName;
             //selectedUser.PasswordHash = passwordHash;
             //selectedUser.PasswordSalt = passwordSalt;
-            selectedUser.Role = request.Role;
-            selectedUser.UserStatus = request.UserStatus;
+            selectedUser.Role = request.Role != null ? request.Role : selectedUser.Role;
+            selectedUser.UserStatus = request.UserStatus != null ? request.UserStatus : selectedUser.UserStatus;
 
             // Add activity
             var fullName = selectedUser.FirstName + " " + selectedUser.LastName;
@@ -68,7 +67,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             _context.ActivityHistories.Add(newActivity);
             _context.SaveChanges();
 
-            return Task.FromResult(selectedUser);
+            return Task.FromResult(true);
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

@@ -16,13 +16,13 @@ using System.Threading.Tasks;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
-    public class LoginUserCommand : IRequest<object>
+    public class LoginCommand : IRequest<object>
     {
         public string UserName { get; set; }
         public string Password { get; set; }
     }
 
-    public class LoginCommandHandler : IRequestHandler<LoginUserCommand, object>
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, object>
     {
         private readonly IFuchaMilkteaContext _context;
         private readonly IConfiguration _configuration;
@@ -32,7 +32,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             _configuration = configuration;
         }
 
-        public Task<object> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        public Task<object> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             //var selectedUser = _context.Sample.FirstOrDefault(x => x.Id == request.Id);
             //selectedUser.FirstName = request.User.FirstName;
@@ -85,7 +85,13 @@ namespace Fucha.DataLayer.CQRS.Commands
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.FirstName),
+                new Claim("userId", user.Id.ToString()),
+                new Claim("firstName", user.FirstName),
+                new Claim("lastName", user.LastName),
+                new Claim("userName", user.UserName),
+                new Claim("role", user.Role),
+                new Claim("userStatus", user.UserStatus),
+
                 //new Claim(ClaimTypes.Surname, user.LastName),
                 //new Claim(ClaimTypes.Name, user.UserName),
                 //new Claim(ClaimTypes.Role, user.Role),

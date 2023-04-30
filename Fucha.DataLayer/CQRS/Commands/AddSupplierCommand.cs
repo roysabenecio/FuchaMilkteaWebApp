@@ -24,7 +24,8 @@ namespace Fucha.DataLayer.CQRS.Commands
         public Task<Supplier> Handle(AddSupplierCommand request, CancellationToken cancellationToken)
         {
             var selectedUser = _context.Users.FirstOrDefault(u => u.Id == request.UserId);
-            var newSupplier = new Supplier { 
+            var newSupplier = new Supplier
+            {
                 Name = request.Name,
                 Address = request.Address,
                 ContactPerson = request.ContactPerson,

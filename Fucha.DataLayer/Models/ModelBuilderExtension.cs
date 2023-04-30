@@ -332,7 +332,7 @@ namespace Fucha.DataLayer.Models
                 }
             }
 
-            CreatePasswordHash("defaultPass", out byte[] passwordHash, out byte[] passwordSalt);
+            CreatePasswordHash("a", out byte[] passwordHash, out byte[] passwordSalt);
 
             modelBuilder.Entity<User>().HasData(
                 new User() { Id = 1, FirstName = "Admin", LastName = "Admin", UserName = "admin", PasswordHash = passwordHash, PasswordSalt = passwordSalt, Role = "Admin", UserStatus = "Approved" }
@@ -369,28 +369,40 @@ namespace Fucha.DataLayer.Models
                 );
 
             modelBuilder.Entity<SaleTransaction>().HasData(
-                new SaleTransaction { Id = 1, ItemQuantity = 10, DateSold = "01/01/2022 16:30:21", TotalSales = 5500, UserId = 1 },
-                new SaleTransaction { Id = 2, ItemQuantity = 10, DateSold = "02/01/2022 16:30:21", TotalSales = 4352, UserId = 1 },
-                new SaleTransaction { Id = 3, ItemQuantity = 10, DateSold = "03/01/2022 16:30:21", TotalSales = 3670, UserId = 1 },
-                new SaleTransaction { Id = 4, ItemQuantity = 10, DateSold = "04/01/2022 16:30:21", TotalSales = 8710, UserId = 1 },
-                new SaleTransaction { Id = 5, ItemQuantity = 10, DateSold = "05/01/2022 16:30:21", TotalSales = 4405, UserId = 1 },
-                new SaleTransaction { Id = 6, ItemQuantity = 10, DateSold = "06/01/2022 16:30:21", TotalSales = 5123, UserId = 1 },
-                new SaleTransaction { Id = 7, ItemQuantity = 10, DateSold = "07/01/2022 16:30:21", TotalSales = 6990, UserId = 1 },
-                new SaleTransaction { Id = 8, ItemQuantity = 10, DateSold = "08/01/2022 16:30:21", TotalSales = 8321, UserId = 1 },
-                new SaleTransaction { Id = 9, ItemQuantity = 10, DateSold = "09/01/2022 16:30:21", TotalSales = 4327, UserId = 1 },
-                new SaleTransaction { Id = 10, ItemQuantity = 10, DateSold = "10/01/2022 16:30:21", TotalSales = 2950, UserId = 1 },
-                new SaleTransaction { Id = 11, ItemQuantity = 10, DateSold = "11/01/2022 16:30:21", TotalSales = 6254, UserId = 1 },
-                new SaleTransaction { Id = 12, ItemQuantity = 10, DateSold = "12/01/2022 16:30:21", TotalSales = 8513, UserId = 1 },
-                new SaleTransaction { Id = 13, ItemQuantity = 10, DateSold = "03/01/2021 16:30:21", TotalSales = 1234, UserId = 1 },
-                new SaleTransaction { Id = 14, ItemQuantity = 10, DateSold = "04/01/2021 16:30:21", TotalSales = 4321, UserId = 1 },
-                new SaleTransaction { Id = 15, ItemQuantity = 10, DateSold = "05/01/2021 16:30:21", TotalSales = 3241, UserId = 1 },
-                new SaleTransaction { Id = 16, ItemQuantity = 10, DateSold = "06/01/2021 16:30:21", TotalSales = 4231, UserId = 1 },
-                new SaleTransaction { Id = 17, ItemQuantity = 10, DateSold = "07/01/2021 16:30:21", TotalSales = 2431, UserId = 1 },
-                new SaleTransaction { Id = 18, ItemQuantity = 10, DateSold = "08/01/2020 16:30:21", TotalSales = 1342, UserId = 1 },
-                new SaleTransaction { Id = 19, ItemQuantity = 10, DateSold = "09/01/2020 16:30:21", TotalSales = 3214, UserId = 1 },
-                new SaleTransaction { Id = 20, ItemQuantity = 10, DateSold = "10/01/2020 16:30:21", TotalSales = 5614, UserId = 1 },
-                new SaleTransaction { Id = 21, ItemQuantity = 10, DateSold = "11/01/2020 16:30:21", TotalSales = 4625, UserId = 1 },
-                new SaleTransaction { Id = 22, ItemQuantity = 10, DateSold = "12/01/2020 16:30:21", TotalSales = 7521, UserId = 1 }
+                //new SaleTransaction { Id = 1, ItemQuantity = 10, DateSold = "01/01/2023 16:30:21", TotalSales = 5500, UserId = 1 },
+                //new SaleTransaction { Id = 2, ItemQuantity = 10, DateSold = "02/01/2023 16:30:21", TotalSales = 4352, UserId = 1 },
+                //new SaleTransaction { Id = 3, ItemQuantity = 10, DateSold = "03/01/2023 16:30:21", TotalSales = 3670, UserId = 1 },
+                //new SaleTransaction { Id = 4, ItemQuantity = 10, DateSold = "04/01/2023 16:30:21", TotalSales = 8710, UserId = 1 },
+                //new SaleTransaction { Id = 5, ItemQuantity = 10, DateSold = "05/01/2023 16:30:21", TotalSales = 4405, UserId = 1 },
+                //new SaleTransaction { Id = 6, ItemQuantity = 10, DateSold = "06/01/2023 16:30:21", TotalSales = 5123, UserId = 1 },
+                //new SaleTransaction { Id = 7, ItemQuantity = 10, DateSold = "07/01/2023 16:30:21", TotalSales = 6990, UserId = 1 },
+                //new SaleTransaction { Id = 8, ItemQuantity = 10, DateSold = "08/01/2023 16:30:21", TotalSales = 8321, UserId = 1 },
+                //new SaleTransaction { Id = 9, ItemQuantity = 10, DateSold = "09/01/2023 16:30:21", TotalSales = 4327, UserId = 1 },
+                //new SaleTransaction { Id = 10, ItemQuantity = 10, DateSold = "10/01/2023 16:30:21", TotalSales = 2950, UserId = 1 },
+                //new SaleTransaction { Id = 11, ItemQuantity = 10, DateSold = "11/01/2023 16:30:21", TotalSales = 6254, UserId = 1 },
+                //new SaleTransaction { Id = 12, ItemQuantity = 10, DateSold = "12/01/2023 16:30:21", TotalSales = 8513, UserId = 1 },
+                //new SaleTransaction { Id = 13, ItemQuantity = 10, DateSold = "03/01/2023 16:30:21", TotalSales = 1234, UserId = 1 },
+                //new SaleTransaction { Id = 14, ItemQuantity = 10, DateSold = "04/01/2023 16:30:21", TotalSales = 4321, UserId = 1 },
+                //new SaleTransaction { Id = 15, ItemQuantity = 10, DateSold = "05/01/2023 16:30:21", TotalSales = 3241, UserId = 1 },
+                //new SaleTransaction { Id = 16, ItemQuantity = 10, DateSold = "06/01/2023 16:30:21", TotalSales = 4231, UserId = 1 },
+                //new SaleTransaction { Id = 17, ItemQuantity = 10, DateSold = "07/01/2023 16:30:21", TotalSales = 2431, UserId = 1 },
+                //new SaleTransaction { Id = 18, ItemQuantity = 10, DateSold = "08/01/2023 16:30:21", TotalSales = 1342, UserId = 1 },
+                //new SaleTransaction { Id = 19, ItemQuantity = 10, DateSold = "09/01/2023 16:30:21", TotalSales = 3214, UserId = 1 },
+                //new SaleTransaction { Id = 20, ItemQuantity = 10, DateSold = "10/01/2023 16:30:21", TotalSales = 5614, UserId = 1 },
+                //new SaleTransaction { Id = 21, ItemQuantity = 10, DateSold = "11/01/2023 16:30:21", TotalSales = 4625, UserId = 1 },
+                //new SaleTransaction { Id = 22, ItemQuantity = 10, DateSold = "12/01/2023 16:30:21", TotalSales = 7521, UserId = 1 }
+                new SaleTransaction { Id = 1, ItemQuantity = 10, DateSold = new DateTime(2023, 01, 01), TotalSales = 5500, UserId = 1 },
+                new SaleTransaction { Id = 2, ItemQuantity = 10, DateSold = new DateTime(2023, 02, 01), TotalSales = 4352, UserId = 1 },
+                new SaleTransaction { Id = 3, ItemQuantity = 10, DateSold = new DateTime(2023, 03, 01), TotalSales = 3670, UserId = 1 },
+                new SaleTransaction { Id = 4, ItemQuantity = 10, DateSold = new DateTime(2023, 04, 01), TotalSales = 8710, UserId = 1 },
+                new SaleTransaction { Id = 5, ItemQuantity = 10, DateSold = new DateTime(2023, 05, 01), TotalSales = 4405, UserId = 1 },
+                new SaleTransaction { Id = 6, ItemQuantity = 10, DateSold = new DateTime(2023, 06, 01), TotalSales = 5123, UserId = 1 },
+                new SaleTransaction { Id = 7, ItemQuantity = 10, DateSold = new DateTime(2023, 07, 01), TotalSales = 6990, UserId = 1 },
+                new SaleTransaction { Id = 8, ItemQuantity = 10, DateSold = new DateTime(2023, 08, 01), TotalSales = 8321, UserId = 1 },
+                new SaleTransaction { Id = 9, ItemQuantity = 10, DateSold = new DateTime(2023, 09, 01), TotalSales = 4327, UserId = 1 },
+                new SaleTransaction { Id = 10, ItemQuantity = 10, DateSold = new DateTime(2022, 09, 01), TotalSales = 2950, UserId = 1 },
+                new SaleTransaction { Id = 11, ItemQuantity = 10, DateSold = new DateTime(2022, 10, 01), TotalSales = 6254, UserId = 1 },
+                new SaleTransaction { Id = 12, ItemQuantity = 10, DateSold = new DateTime(2022, 11, 01), TotalSales = 8513, UserId = 1 }
                 );
 
             modelBuilder.Entity<MTGramSold>().HasData(

@@ -6,19 +6,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
-    public class RegisterUserCommand : IRequest<User>
+    public class RegisterCommand : IRequest<bool>
     {
-        public int UserId { get; set; }
-        public int Id { get; set; }
+        //public int UserId { get; set; } = 10;
+        //public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-        public string UserStatus { get; set; }
+        //public string UserStatus { get; set; }
     }
 
-    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, User>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterCommand, bool>
     {
         //public IMapper Mapper { get; set; }
         private readonly IFuchaMilkteaContext _dbContext;
@@ -28,9 +28,10 @@ namespace Fucha.DataLayer.CQRS.Commands
             _dbContext = dbContext;
         }
 
-        public Task<User> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            var actor = _dbContext.Users.FirstOrDefault(x => x.Id == request.UserId);
+            //var actor = _dbContext.Users.FirstOrDefault(x => x.Id == request.UserId);
+            var actor = _dbContext.Users.FirstOrDefault(x => x.Id == 0);
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             var newUser = new User
             {
@@ -40,7 +41,8 @@ namespace Fucha.DataLayer.CQRS.Commands
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Role = request.Role,
-                UserStatus = actor != null ? "Approved" : request.UserStatus,
+                //UserStatus = actor != null ? "Approved" : request.UserStatus,
+                UserStatus = "Pending",
                 DateCreated = DateTime.Now.ToString("dddd, dd MMMM yyyy")
             };
             _dbContext.Users.Add(newUser);
@@ -62,7 +64,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             }
             
             _dbContext.SaveChanges();
-            return Task.FromResult(newUser);
+            return Task.FromResult(true);
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -199,7 +198,7 @@ namespace Fucha.DataLayer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ItemQuantity = table.Column<int>(type: "int", nullable: false),
-                    DateSold = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateSold = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalSales = table.Column<double>(type: "float", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -476,9 +475,9 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "Category", "DatePurchased", "Measure", "MeasurementUnit", "Price", "PurchaseRecordId", "ReceivedOrders", "Status", "StockName", "SupplierId" },
                 values: new object[,]
                 {
-                    { 1, "MilkTeaFlavor", "Thursday, 05 January 2023", 2.0, "Kilograms", 100.0, 1, 0, "Not Received", "Okinawa", 0 },
-                    { 2, "MilkTeaFlavor", "Thursday, 05 January 2023", 2.0, "Kilograms", 50.0, 1, 0, "Not Received", "Red Velvet", 0 },
-                    { 3, "MilkTeaAddOn", "Thursday, 05 January 2023", 2.0, "Kilograms", 50.0, 2, 0, "Not Received", "Salted Caramel", 0 }
+                    { 1, "MilkTeaFlavor", "Wednesday, 12 April 2023", 2.0, "Kilograms", 100.0, 1, 0, "Not Received", "Okinawa", 0 },
+                    { 2, "MilkTeaFlavor", "Wednesday, 12 April 2023", 2.0, "Kilograms", 50.0, 1, 0, "Not Received", "Red Velvet", 0 },
+                    { 3, "MilkTeaAddOn", "Wednesday, 12 April 2023", 2.0, "Kilograms", 50.0, 2, 0, "Not Received", "Salted Caramel", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -486,8 +485,8 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "DatePurchased", "ItemQuantity", "SupplierId", "TotalAmount", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Thursday, 05 January 2023", 2, 1, 2000.0, 1 },
-                    { 2, "Thursday, 05 January 2023", 1, 1, 500.0, 1 }
+                    { 1, "Wednesday, 12 April 2023", 2, 1, 2000.0, 1 },
+                    { 2, "Wednesday, 12 April 2023", 1, 1, 500.0, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -537,28 +536,15 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "DateSold", "ItemQuantity", "TotalSales", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "01/01/2022 16:30:21", 10, 5500.0, 1 },
-                    { 2, "02/01/2022 16:30:21", 10, 4352.0, 1 },
-                    { 3, "03/01/2022 16:30:21", 10, 3670.0, 1 },
-                    { 4, "04/01/2022 16:30:21", 10, 8710.0, 1 },
-                    { 5, "05/01/2022 16:30:21", 10, 4405.0, 1 },
-                    { 6, "06/01/2022 16:30:21", 10, 5123.0, 1 },
-                    { 7, "07/01/2022 16:30:21", 10, 6990.0, 1 },
-                    { 8, "08/01/2022 16:30:21", 10, 8321.0, 1 },
-                    { 9, "09/01/2022 16:30:21", 10, 4327.0, 1 },
-                    { 10, "10/01/2022 16:30:21", 10, 2950.0, 1 },
-                    { 11, "11/01/2022 16:30:21", 10, 6254.0, 1 },
-                    { 12, "12/01/2022 16:30:21", 10, 8513.0, 1 },
-                    { 13, "03/01/2021 16:30:21", 10, 1234.0, 1 },
-                    { 14, "04/01/2021 16:30:21", 10, 4321.0, 1 },
-                    { 15, "05/01/2021 16:30:21", 10, 3241.0, 1 },
-                    { 16, "06/01/2021 16:30:21", 10, 4231.0, 1 },
-                    { 17, "07/01/2021 16:30:21", 10, 2431.0, 1 },
-                    { 18, "08/01/2020 16:30:21", 10, 1342.0, 1 },
-                    { 19, "09/01/2020 16:30:21", 10, 3214.0, 1 },
-                    { 20, "10/01/2020 16:30:21", 10, 5614.0, 1 },
-                    { 21, "11/01/2020 16:30:21", 10, 4625.0, 1 },
-                    { 22, "12/01/2020 16:30:21", 10, 7521.0, 1 }
+                    { 1, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 5500.0, 1 },
+                    { 2, new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 4352.0, 1 },
+                    { 3, new DateTime(2023, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 3670.0, 1 },
+                    { 4, new DateTime(2023, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 8710.0, 1 },
+                    { 5, new DateTime(2023, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 4405.0, 1 },
+                    { 6, new DateTime(2023, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 5123.0, 1 },
+                    { 7, new DateTime(2023, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 6990.0, 1 },
+                    { 8, new DateTime(2023, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 8321.0, 1 },
+                    { 9, new DateTime(2023, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 4327.0, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -595,14 +581,7 @@ namespace Fucha.DataLayer.Migrations
                 {
                     { 1, 0, 3.0, 0.14999999999999999, false, null, 0.29999999999999999, 2.0, 1, "Okinawa", 3, null, 1 },
                     { 2, 0, 3.0, 0.14999999999999999, false, null, 0.29999999999999999, 2.0, 1, "Red Velvet", null, null, 1 },
-                    { 3, 0, 3.0, 0.14999999999999999, false, null, 0.29999999999999999, 0.0, 1, "Wintermelon", null, null, 2 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Stocks",
-                columns: new[] { "Id", "Category", "Ceiling", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
-                values: new object[,]
-                {
+                    { 3, 0, 3.0, 0.14999999999999999, false, null, 0.29999999999999999, 0.0, 1, "Wintermelon", null, null, 2 },
                     { 4, 0, null, null, false, null, null, 2.0, 1, "Salted Caramel", null, null, 1 },
                     { 5, 0, null, null, false, null, null, 0.0, 1, "Taro", null, null, 2 },
                     { 6, 0, null, null, false, null, null, 0.0, 1, "Dark Chocolate", null, null, 1 },
@@ -615,7 +594,14 @@ namespace Fucha.DataLayer.Migrations
                     { 13, 0, null, null, false, null, null, 0.0, 1, "Salty Cream Okinawa", null, null, 1 },
                     { 14, 1, null, null, false, null, null, 5.0, 1, "Pearl", null, null, 2 },
                     { 15, 1, null, null, false, null, null, 5.0, 1, "Nata", null, null, 2 },
-                    { 16, 1, null, null, false, null, null, 5.0, 1, "Nutella", null, null, 3 },
+                    { 16, 1, null, null, false, null, null, 5.0, 1, "Nutella", null, null, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Stocks",
+                columns: new[] { "Id", "Category", "Ceiling", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
+                values: new object[,]
+                {
                     { 17, 1, null, null, false, null, null, 5.0, 1, "Cookies", null, null, 1 },
                     { 18, 1, null, null, false, null, null, 5.0, 1, "Cream Cheese", null, null, 1 },
                     { 19, 4, null, null, false, null, null, 100.0, 3, "Straw", null, 1, 2 },
@@ -644,14 +630,7 @@ namespace Fucha.DataLayer.Migrations
                     { 42, 3, null, null, false, null, null, 100.0, 3, "Chicken balls", null, 2, 10 },
                     { 43, 3, null, null, false, null, null, 100.0, 3, "Squid balls", null, 2, 10 },
                     { 44, 3, null, null, false, null, null, 100.0, 3, "Shrimp balls", null, 2, 10 },
-                    { 45, 3, null, null, false, null, null, 10.0, 1, "French Fries", null, null, 5 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Stocks",
-                columns: new[] { "Id", "Category", "Ceiling", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
-                values: new object[,]
-                {
+                    { 45, 3, null, null, false, null, null, 10.0, 1, "French Fries", null, null, 5 },
                     { 46, 3, null, null, false, null, null, 100.0, 3, "Gyoza", null, 5, 4 },
                     { 47, 3, null, null, false, null, null, 100.0, 3, "Siomai", null, 5, 11 },
                     { 48, 4, null, null, false, null, null, 100.0, 3, "Stick", null, 1, null },
@@ -664,7 +643,14 @@ namespace Fucha.DataLayer.Migrations
                     { 55, 7, null, null, false, null, null, 5.0, 6, "Sweet Chili", null, null, 12 },
                     { 56, 7, null, null, false, null, null, 5.0, 6, "Terriyaki", null, null, 13 },
                     { 57, 7, null, null, false, null, null, 5.0, 6, "Mango Habanero", null, null, 8 },
-                    { 58, 7, null, null, false, null, null, 5.0, 6, "Buffalo", null, null, 12 },
+                    { 58, 7, null, null, false, null, null, 5.0, 6, "Buffalo", null, null, 12 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Stocks",
+                columns: new[] { "Id", "Category", "Ceiling", "CriticalLevel", "IsRemoved", "LastRestocked", "LowLevel", "Measure", "MeasurementUnit", "Name", "Status", "StockServingId", "SupplierId" },
+                values: new object[,]
+                {
                     { 59, 7, null, null, false, null, null, 5.0, 6, "Soy Garlic", null, null, 13 },
                     { 60, 7, null, null, false, null, null, 5.0, 6, "Hickory BBQ", null, null, 12 },
                     { 61, 7, null, null, false, null, null, 5.0, 6, "Garlic Parmesan", null, null, 12 },
@@ -681,25 +667,25 @@ namespace Fucha.DataLayer.Migrations
                 columns: new[] { "Id", "Address", "ContactNumber", "ContactPerson", "DateAdded", "Email", "IsRemoved", "Name" },
                 values: new object[,]
                 {
-                    { 1, "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", "09178077279", null, "Thursday, 05 January 2023", null, false, "In joy" },
-                    { 2, "208A Banawe St., Brgy Tatalon, Quezon City", "09175858100", null, "Thursday, 05 January 2023", null, false, "PHNI Bubble Tea Store" },
-                    { 3, "San Juan Manila", "09171284151", null, "Thursday, 05 January 2023", null, false, "MSCS PrimeGoods, Inc." },
-                    { 4, "1747 A. Mabini St, Malate, Manila, 1004 Metro Manila", "(02) 8523 1186", null, "Thursday, 05 January 2023", null, false, "Fuji Mart Incorporated" },
-                    { 5, "2329 Juan Luna St, Gagalangin, Manila, Metro Manila", "09985172380", null, "Thursday, 05 January 2023", null, false, "Consistent Frozen Solutions" },
-                    { 6, "40 Scout Oscar M. Alcaraz St, Santa Mesa Heights, Quezon City, 1114 Metro Manila", "09171735588", null, "Thursday, 05 January 2023", null, false, "FST Egg Store" },
-                    { 7, "#24 F Pasco Aveue Santolan, Pasig", "09955823086", null, "Thursday, 05 January 2023", null, false, "Pizza Crust" },
-                    { 8, "704 Rizal Ave. ext.Caloocan City, Metro Manil, 1403", "09955823086", null, "Thursday, 05 January 2023", null, false, "Negosyo Now" },
-                    { 9, "Metro Manila", "09955823086", null, "Thursday, 05 January 2023", null, false, "Vostra Pizza" },
-                    { 10, "837 Asuncion St, Binondo, Manila, 2006 Metro Manila", "09971220886", null, "Thursday, 05 January 2023", null, false, "Golden Fishball Factory" },
-                    { 11, "San Roque, Antipolo", "09610074035", null, "Thursday, 05 January 2023", null, false, "Siomai Wholesale Supplier PH" },
-                    { 12, "1005 Atlanta Centre Bldg., 31 Annapolis St., Greenhills, San Juan City", "721-339-47", null, "Thursday, 05 January 2023", null, false, "JD FOODS Premium Sauces" },
-                    { 13, "7F Steelworld Bldg. 713 N.S. Amoranto Sr. corner Biak na Bato Street, Quezon City", "09286418135", null, "Thursday, 05 January 2023", null, false, "Easy Brand Ph" }
+                    { 1, "157 Josefa Drive Brgy, Corazon De Jesus, San Juan City", "09178077279", null, "Wednesday, 12 April 2023", null, false, "In joy" },
+                    { 2, "208A Banawe St., Brgy Tatalon, Quezon City", "09175858100", null, "Wednesday, 12 April 2023", null, false, "PHNI Bubble Tea Store" },
+                    { 3, "San Juan Manila", "09171284151", null, "Wednesday, 12 April 2023", null, false, "MSCS PrimeGoods, Inc." },
+                    { 4, "1747 A. Mabini St, Malate, Manila, 1004 Metro Manila", "(02) 8523 1186", null, "Wednesday, 12 April 2023", null, false, "Fuji Mart Incorporated" },
+                    { 5, "2329 Juan Luna St, Gagalangin, Manila, Metro Manila", "09985172380", null, "Wednesday, 12 April 2023", null, false, "Consistent Frozen Solutions" },
+                    { 6, "40 Scout Oscar M. Alcaraz St, Santa Mesa Heights, Quezon City, 1114 Metro Manila", "09171735588", null, "Wednesday, 12 April 2023", null, false, "FST Egg Store" },
+                    { 7, "#24 F Pasco Aveue Santolan, Pasig", "09955823086", null, "Wednesday, 12 April 2023", null, false, "Pizza Crust" },
+                    { 8, "704 Rizal Ave. ext.Caloocan City, Metro Manil, 1403", "09955823086", null, "Wednesday, 12 April 2023", null, false, "Negosyo Now" },
+                    { 9, "Metro Manila", "09955823086", null, "Wednesday, 12 April 2023", null, false, "Vostra Pizza" },
+                    { 10, "837 Asuncion St, Binondo, Manila, 2006 Metro Manila", "09971220886", null, "Wednesday, 12 April 2023", null, false, "Golden Fishball Factory" },
+                    { 11, "San Roque, Antipolo", "09610074035", null, "Wednesday, 12 April 2023", null, false, "Siomai Wholesale Supplier PH" },
+                    { 12, "1005 Atlanta Centre Bldg., 31 Annapolis St., Greenhills, San Juan City", "721-339-47", null, "Wednesday, 12 April 2023", null, false, "JD FOODS Premium Sauces" },
+                    { 13, "7F Steelworld Bldg. 713 N.S. Amoranto Sr. corner Biak na Bato Street, Quezon City", "09286418135", null, "Wednesday, 12 April 2023", null, false, "Easy Brand Ph" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "DateCreated", "FirstName", "IsRemoved", "LastName", "PasswordHash", "PasswordSalt", "Role", "UserName", "UserStatus" },
-                values: new object[] { 1, null, "Admin", false, "Admin", new byte[] { 3, 215, 50, 231, 102, 152, 243, 209, 200, 84, 129, 177, 149, 182, 242, 108, 68, 41, 67, 246, 38, 10, 187, 191, 46, 231, 18, 205, 31, 12, 98, 7 }, new byte[] { 45, 188, 158, 217, 72, 112, 33, 195, 16, 199, 99, 162, 62, 87, 7, 88, 129, 32, 115, 0, 204, 112, 18, 171, 131, 48, 102, 112, 7, 189, 17, 147, 76, 89, 218, 184, 242, 79, 32, 1, 112, 244, 142, 166, 37, 151, 71, 111, 182, 255, 5, 5, 58, 144, 67, 82, 20, 223, 141, 209, 117, 67, 183, 4 }, "Admin", "admin", "Approved" });
+                values: new object[] { 1, null, "Admin", false, "Admin", new byte[] { 219, 228, 154, 135, 45, 2, 84, 209, 134, 7, 203, 210, 173, 36, 111, 57, 93, 249, 2, 73, 95, 218, 233, 208, 222, 255, 106, 199, 253, 71, 42, 228 }, new byte[] { 20, 189, 200, 140, 98, 182, 10, 188, 238, 164, 99, 227, 4, 124, 43, 230, 232, 249, 35, 186, 237, 90, 17, 81, 129, 74, 217, 98, 61, 11, 97, 173, 127, 47, 75, 117, 97, 143, 212, 208, 69, 103, 233, 185, 203, 215, 142, 225, 235, 64, 47, 7, 35, 168, 219, 184, 231, 26, 237, 71, 106, 89, 243, 119 }, "Admin", "admin", "Approved" });
 
             migrationBuilder.InsertData(
                 table: "RecipeStocks",

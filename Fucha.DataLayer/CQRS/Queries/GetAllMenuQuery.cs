@@ -1,14 +1,6 @@
-﻿using Fucha.DataLayer.DTOs;
-using Fucha.DataLayer.Models;
+﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
-using Fucha.DomainClasses.Enums;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fucha.DataLayer.CQRS.Queries
 {

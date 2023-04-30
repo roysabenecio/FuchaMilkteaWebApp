@@ -1,12 +1,10 @@
-﻿using Fucha.DataLayer.DTOs;
-using Fucha.DataLayer.Models;
+﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
-using Fucha.DomainClasses.Enums;
 using MediatR;
 
 namespace Fucha.DataLayer.CQRS.Queries
 {
-    public class GetAllPurchaseRecordsQuery : IRequest<List<PurchaseRecord>> {}
+    public class GetAllPurchaseRecordsQuery : IRequest<List<PurchaseRecord>> { }
 
     public class GetAllPurchaseRecordsQueryHandler : IRequestHandler<GetAllPurchaseRecordsQuery, List<PurchaseRecord>>
     {

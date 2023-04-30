@@ -29,7 +29,7 @@ namespace Fucha.Web.Controllers
 
         // Get All Prices
         [HttpGet]
-        [Route("AllMenuPrices")]
+        [Route("MenuPrices")]
         public async Task<IActionResult> GetAllMenuPrices()
         {
             var result = await _mediator.Send(new GetAllMenuPricesQuery());

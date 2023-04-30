@@ -9,7 +9,7 @@ namespace Fucha.DataLayer.CQRS.Queries
     {
         private readonly IFuchaMilkteaContext _context;
 
-        public GetAllActivityHistoryQueryHandler (IFuchaMilkteaContext context)
+        public GetAllActivityHistoryQueryHandler(IFuchaMilkteaContext context)
         {
             _context = context;
         }

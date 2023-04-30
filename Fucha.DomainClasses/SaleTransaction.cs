@@ -6,7 +6,7 @@ namespace Fucha.DomainClasses
     {
         public int ItemQuantity { get; set; }
         [Required]
-        public string? DateSold { get; set; }
+        public DateTime DateSold { get; set; }
         public double TotalSales { get; set; }
         public int UserId { get; set; }
     }

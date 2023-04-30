@@ -1,12 +1,4 @@
-﻿using AutoMapper;
-using Fucha.DomainClasses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fucha.DataLayer.DTOs
+﻿namespace Fucha.DataLayer.DTOs
 {
     public class IngredientDTO
     {

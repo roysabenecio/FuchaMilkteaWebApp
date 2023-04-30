@@ -1,14 +1,13 @@
 ﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Fucha.DataLayer.CQRS.Commands
 {
     public class RestoreUserCommand : IRequest<bool>
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int ActorId { get; set; }
     }
 
     public class RestoreUserCommandHandler : IRequestHandler<RestoreUserCommand, bool>
@@ -20,7 +19,7 @@ namespace Fucha.DataLayer.CQRS.Commands
         }
         public Task<bool> Handle(RestoreUserCommand request, CancellationToken cancellationToken)
         {
-            var actor = _context.Users.FirstOrDefault(x => x.Id == request.UserId);
+            var actor = _context.Users.FirstOrDefault(x => x.Id == request.ActorId);
 
             var selectedUser = _context.Users.FirstOrDefault(user => user.Id == request.Id);
             selectedUser.IsRemoved = false;
@@ -37,7 +36,7 @@ namespace Fucha.DataLayer.CQRS.Commands
             };
             _context.ActivityHistories.Add(newActivity);
             _context.SaveChanges();
-            return Task.FromResult(selectedUser.IsRemoved);
+            return Task.FromResult(true);
         }
     }
 }

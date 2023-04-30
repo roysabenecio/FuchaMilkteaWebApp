@@ -8,7 +8,7 @@ namespace Fucha.DataLayer.CQRS.Queries
     public class GetAllLoginHistoryQueryHandler : IRequestHandler<GetAllLoginHistoryQuery, List<LoginHistory>>
     {
         private readonly IFuchaMilkteaContext _context;
-        public GetAllLoginHistoryQueryHandler(IFuchaMilkteaContext context) 
+        public GetAllLoginHistoryQueryHandler(IFuchaMilkteaContext context)
         {
             _context = context;
         }

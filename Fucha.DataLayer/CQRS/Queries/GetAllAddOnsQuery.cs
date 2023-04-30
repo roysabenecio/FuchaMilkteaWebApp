@@ -1,11 +1,6 @@
 ﻿using Fucha.DataLayer.Models;
 using Fucha.DomainClasses;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fucha.DataLayer.CQRS.Queries
 {
@@ -31,7 +26,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                 Name = a.Name,
                 AddOnPrice = a.AddOnPrice
             }).ToList();
-            
+
             return Task.FromResult<List<AddOn>>(allAddOns);
         }
     }

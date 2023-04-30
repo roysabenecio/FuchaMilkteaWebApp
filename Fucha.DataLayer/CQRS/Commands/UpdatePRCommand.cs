@@ -16,7 +16,7 @@ namespace Fucha.DataLayer.CQRS.Commands
     public class UpdatePRCommandHandler : IRequestHandler<UpdatePRCommand, bool>
     {
         private readonly IFuchaMilkteaContext _context;
-        public UpdatePRCommandHandler (IFuchaMilkteaContext context)
+        public UpdatePRCommandHandler(IFuchaMilkteaContext context)
         {
             _context = context;
         }
@@ -65,7 +65,7 @@ namespace Fucha.DataLayer.CQRS.Commands
                 {
                     MTStock.Status = QuantityStatus.OverStock;
                 }
-                if (!outOfStock && !isLow && !isCritical && !overStock) 
+                if (!outOfStock && !isLow && !isCritical && !overStock)
                 {
                     MTStock.Status = QuantityStatus.Sufficient;
                 }
@@ -106,7 +106,8 @@ namespace Fucha.DataLayer.CQRS.Commands
             if (selectedPor.ReceivedOrders == selectedPor.Measure)
             {
                 selectedPor.Status = "Received";
-            } else
+            }
+            else
             {
                 selectedPor.Status = "Not Received";
             }

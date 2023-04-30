@@ -19,8 +19,8 @@ namespace Fucha.Web.Controllers
         }
 
         [HttpPost]
-        [Route("LoginUser")]
-        public async Task<IActionResult> LoginUser(LoginUserCommand command)
+        [Route("Login")]
+        public async Task<IActionResult> LoginUser(LoginCommand command)
         {
             var response = await _mediator.Send(command);
             if (response == null)

@@ -1,6 +1,5 @@
 ﻿using Fucha.DataLayer.DTOs;
 using Fucha.DataLayer.Models;
-using Fucha.DomainClasses;
 using MediatR;
 
 namespace Fucha.DataLayer.CQRS.Queries
@@ -60,7 +59,7 @@ namespace Fucha.DataLayer.CQRS.Queries
                 //DateAdded = s.DateAdded,
                 LastRestocked = s.LastRestocked,
                 IsRemoved = s.IsRemoved
-            }).OrderByDescending(x => x.Id).ToList(); 
+            }).OrderByDescending(x => x.Id).ToList();
 
             return Task.FromResult<List<StockDTO>>(stocksDTO);
         }
